@@ -92,7 +92,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(!cartContent)return;
   const count=cartItems.reduce((total,item)=>total+item.quantity,0);
   const subtotal=cartItems.reduce((total,item)=>total+item.price*item.quantity,0);
-  if(cartCount)cartCount.textContent=String(count);\n  const bagBadge=document.querySelector('.header-bag-link .bag-count');\n  const bagLink=document.querySelector('[data-cart-drawer-trigger]');\n  if(bagBadge)bagBadge.textContent=String(count);\n  if(bagLink)bagLink.setAttribute('aria-label','Shopping bag, '+count+' items');
+  if(cartCount)cartCount.textContent=String(count);
+  const bagBadge=document.querySelector('.header-bag-link .bag-count');\n  const bagLink=document.querySelector('[data-cart-drawer-trigger]');\n  if(bagBadge)bagBadge.textContent=String(count);\n  if(bagLink)bagLink.setAttribute('aria-label','Shopping bag, '+count+' items');
   if(cartSubtotal){
    const nextValue=formatCartPrice(subtotal);
    if(cartSubtotal.textContent!==nextValue){
@@ -107,7 +108,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    cartContent.innerHTML='<div class="cart-drawer-empty"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 22h36l3 34H11l3-34Z"/><path d="M23 24v-7a9 9 0 0 1 18 0v7"/></svg><h3>Your bag is empty</h3><a class="cart-drawer-empty-cta" href="/shop.php">Explore Collection <span aria-hidden="true">↗</span></a></div>';
    return;
   }
-  cartContent.innerHTML=cartItems.map(item=>'<article class="cart-drawer-item" data-cart-item="'+item.id+'"><div class="cart-drawer-thumb"><img src="'+item.image+'" alt=""></div><div class="cart-drawer-item-details"><div class="cart-drawer-item-top"><div><h3>'+item.name+'</h3><p>'+item.size+'</p></div><button type="button" class="cart-drawer-remove" data-cart-remove="'+item.id+'" aria-label="Remove '+item.name+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></svg></button></div><div class="cart-drawer-item-bottom"><div class="cart-quantity"><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="-1" aria-label="Decrease '+item.name+' quantity">−</button><span>'+item.quantity+'</span><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="1" aria-label="Increase '+item.name+' quantity">+</button></div><strong>'+formatCartPrice(item.price*item.quantity)+'</strong></div></div></article>').join('');
+  cartContent.innerHTML=cartItems.map(item=>'<article class="cart-drawer-item" data-cart-item="'+item.id+'"><div class="cart-drawer-thumb"><img src="'+item.image+'" alt="'+item.name+' perfume bottle, '+item.size+'"></div><div class="cart-drawer-item-details"><div class="cart-drawer-item-top"><div><h3>'+item.name+'</h3><p>'+item.size+'</p></div><button type="button" class="cart-drawer-remove" data-cart-remove="'+item.id+'" aria-label="Remove '+item.name+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></svg></button></div><div class="cart-drawer-item-bottom"><div class="cart-quantity"><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="-1" aria-label="Decrease '+item.name+' quantity">−</button><span>'+item.quantity+'</span><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="1" aria-label="Increase '+item.name+' quantity">+</button></div><strong>'+formatCartPrice(item.price*item.quantity)+'</strong></div></div></article>').join('');
  };
  const openCartDrawer=()=>{
   if(!cartDrawer||!cartBackdrop)return;
