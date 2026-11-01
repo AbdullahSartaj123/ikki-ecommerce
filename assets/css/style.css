@@ -1668,3 +1668,17 @@ body.is-loading{overflow:hidden}
  .home-preloader-mark{opacity:1;transform:none}
  .home-preloader-progress{transform:scaleX(1)}
 }
+
+
+/* Custom gold cursor — desktop pointer devices only (enabled by JS capability check) */
+.ikki-cursor-dot,.ikki-cursor-ring{position:fixed;top:0;left:0;z-index:10000;pointer-events:none;opacity:0;will-change:transform,opacity;border-radius:50%}
+.ikki-cursor-dot{width:8px;height:8px;background:#c9a86a;transform:translate3d(-50%,-50%,0)}
+.ikki-cursor-ring{width:36px;height:36px;border:1px solid #c9a86a;transform:translate3d(-50%,-50%,0);transition:width .22s ease,height .22s ease,opacity .22s ease}
+body.ikki-custom-cursor{cursor:none}
+body.ikki-custom-cursor .ikki-cursor-dot,body.ikki-custom-cursor .ikki-cursor-ring{opacity:1}
+body.ikki-custom-cursor .cursor-hover~.ikki-cursor-dot{opacity:1}
+.ikki-cursor-ring.is-hover{width:60px;height:60px;opacity:.4}
+@media(max-width:1023px),(hover:none),(pointer:coarse){
+ .ikki-cursor-dot,.ikki-cursor-ring{display:none!important}
+ body.ikki-custom-cursor,body.ikki-custom-cursor *{cursor:auto!important}
+}
