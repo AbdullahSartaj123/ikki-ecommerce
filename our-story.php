@@ -7,7 +7,7 @@ require __DIR__.'/includes/header.php';
  <div class="page-banner-copy reveal">
   <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Our Story</span></nav>
   <h1 id="page-banner-title">Our Story</h1>
-  <p>A fragrance is never just a fragrance. It is a feeling, a memory, a way of being remembered.</p>
+  <p>Three decades of passion, craft, and devotion to the art of fragrance</p>
  </div>
 </section>
 
