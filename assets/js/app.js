@@ -112,6 +112,25 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(!img.closest('.home-hero')&&!img.closest('.product-visual'))img.loading='lazy';
  });
 
+ // Desktop-only half-speed parallax for the full-bleed story artwork.
+ const storyParallax=document.querySelector('.home-story-parallax');
+ if(storyParallax&&!reducedMotion&&window.matchMedia('(min-width: 769px)').matches){
+  let storyFrame=0;
+  const updateStoryParallax=()=>{
+   if(storyFrame)return;
+   storyFrame=requestAnimationFrame(()=>{
+    storyFrame=0;
+    const section=storyParallax.closest('.home-story-teaser');
+    if(!section)return;
+    const rect=section.getBoundingClientRect();
+    const offset=(rect.top+rect.height/2-window.innerHeight/2)*-.5;
+    storyParallax.style.transform='translate3d(0,'+offset+'px,0)';
+   });
+  };
+  updateStoryParallax();
+  window.addEventListener('scroll',updateStoryParallax,{passive:true});
+  window.addEventListener('resize',updateStoryParallax);
+ }
  // Existing editorial reveal behavior.
  const reveal=document.querySelectorAll('.reveal, .home-reveal');
  if(reducedMotion||!('IntersectionObserver'in window)){
