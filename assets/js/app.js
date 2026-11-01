@@ -1,11 +1,47 @@
-function initScrollAnimations(){const s='.fade-up,.fade-in,.scale-in,.slide-left,.slide-right';const els=document.querySelectorAll(s);const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(!els.length)return null;if(reduced||!('IntersectionObserver'in window)){els.forEach(el=>{el.classList.add('in-view');el.style.transitionDelay='0ms';});return null;}const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;const delay=el.getAttribute('data-delay')||'0ms';el.style.transitionDelay=['0ms','100ms','200ms','300ms','400ms'].includes(delay)?delay:'0ms';el.classList.add('in-view');observer.unobserve(el);});},{threshold:.15});els.forEach(el=>observer.observe(el));return observer;}
-
+function initScrollAnimations(){
+ const selector='.fade-up,.fade-in,.scale-in,.slide-left,.slide-right,.reveal,.home-reveal';
+ const elements=[...document.querySelectorAll(selector)];
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const reveal=element=>{element.classList.add('in-view','visible');};
+ if(!elements.length)return null;
+ if(reduced||!('IntersectionObserver'in window)){elements.forEach(reveal);return null;}
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(!entry.isIntersecting)return;
+  const element=entry.target;
+  const delay=element.getAttribute('data-delay')||'0ms';
+  element.style.transitionDelay=['0ms','100ms','150ms','200ms','300ms','400ms'].includes(delay)?delay:'0ms';
+  reveal(element);
+  observer.unobserve(element);
+ }),{threshold:.12,rootMargin:'0px 0px -35px 0px'});
+ elements.forEach(element=>observer.observe(element));
+ return observer;
+}
 document.addEventListener('DOMContentLoaded',()=>{
  const header=document.querySelector('[data-site-header]');
  const toggle=document.querySelector('.menu-toggle');
  const nav=document.querySelector('#primary-navigation');
  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  initScrollAnimations();
+
+ // Keep the branded preloader above the page until the DOM is ready.
+ const preloader=document.querySelector('[data-home-preloader]');
+ if(preloader){
+  const finishLoading=()=>{preloader.classList.add('is-finished');document.body.classList.remove('is-loading');window.setTimeout(()=>preloader.remove(),650);};
+  if(reducedMotion)finishLoading();else window.setTimeout(finishLoading,450);
+ }
+
+ // One delegated smooth-scroll handler for every same-page anchor.
+ document.addEventListener('click',event=>{
+  const link=event.target.closest('a[href*="#"]');
+  if(!link)return;
+  const url=new URL(link.href,window.location.href);
+  if(url.pathname!==window.location.pathname||url.search!==window.location.search||!url.hash)return;
+  const target=document.getElementById(decodeURIComponent(url.hash.slice(1)));
+  if(!target)return;
+  event.preventDefault();
+  target.scrollIntoView({behavior:reducedMotion?'auto':'smooth',block:'start'});
+  if(history.replaceState)history.replaceState(null,'',url.hash);
+ });
 
  // Header transitions to its compact glass surface after 80px of scrolling.
  if(header){
@@ -131,17 +167,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('scroll',updateStoryParallax,{passive:true});
   window.addEventListener('resize',updateStoryParallax);
  }
- // Existing editorial reveal behavior.
- const reveal=document.querySelectorAll('.reveal, .home-reveal');
- if(reducedMotion||!('IntersectionObserver'in window)){
-  reveal.forEach(el=>el.classList.add('visible'));
- }else{
-  const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
-   if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target);}
-  }),{threshold:.12,rootMargin:'0px 0px -35px 0px'});
-  reveal.forEach(el=>observer.observe(el));
- }
-
  // Collection category filters.
  const collectionFilters=document.querySelectorAll('[data-filter]');
  const collectionCards=document.querySelectorAll('.collection-card[data-category]');
