@@ -29,7 +29,7 @@ $navItems=[
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261101-21">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261101-22">
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-9"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261101-1"><?php endif; ?>
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
