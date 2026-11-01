@@ -1761,3 +1761,14 @@ body.cart-drawer-open{overflow:hidden}
  .cart-drawer,.cart-drawer-backdrop,.cart-drawer-checkout,.cart-drawer-empty-cta{transition:none}
  .cart-drawer-subtotal strong.is-updating{animation:none}
 }
+
+/* Shared 404 page */
+.ikki-error-page{min-height:clamp(520px,72vh,820px);display:grid;place-items:center;position:relative;overflow:hidden;padding:90px 24px;background:#0a0a0a}
+.ikki-error-content{position:relative;width:min(100%,900px);min-height:330px;display:grid;place-items:center;text-align:center}
+.ikki-error-number{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-58%);font:700 clamp(6rem,15vw,12rem)/.9 'Playfair Display',Georgia,serif;letter-spacing:-.055em;color:rgba(201,168,106,.15);white-space:nowrap;user-select:none}
+.ikki-error-copy{position:relative;z-index:1;max-width:650px;padding:35px 18px}
+.ikki-error-eyebrow{display:block;margin-bottom:18px;color:#c9a86a;font:500 10px Montserrat,sans-serif;letter-spacing:.25em}
+.ikki-error-copy h1{margin:0 auto 16px;color:#f5f1eb;font:400 clamp(26px,3vw,32px)/1.25 'Playfair Display',Georgia,serif}
+.ikki-error-copy p{max-width:500px;margin:0 auto 30px;color:#96918a;font:300 13px/1.9 Montserrat,sans-serif}
+.ikki-error-copy .ikki-btn{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:50px;padding:0 28px}
+@media(prefers-reduced-motion:reduce){.ikki-error-content{animation:none}}
