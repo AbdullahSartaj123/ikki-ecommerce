@@ -24,12 +24,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  // Start page entrance/reveal animations only after the global preloader exits.
  document.addEventListener('ikki:preloader-finished',initScrollAnimations,{once:true});
 
- // Keep the branded preloader above the page until the DOM is ready.
- const preloader=document.querySelector('[data-home-preloader]');
- if(preloader){
-  const finishLoading=()=>{preloader.classList.add('is-finished');document.body.classList.remove('is-loading');window.setTimeout(()=>preloader.remove(),650);};
-  if(reducedMotion)finishLoading();else window.setTimeout(finishLoading,450);
- }
+ // The shared header owns preloader timing and emits the page-ready event.
 
  // === CUSTOM CURSOR: DESKTOP POINTER DEVICES ONLY ===
  const cursorDot=document.querySelector('[data-ikki-cursor-dot]');
