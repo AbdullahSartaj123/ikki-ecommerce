@@ -180,6 +180,11 @@ document.addEventListener('DOMContentLoaded',()=>{
  const filterIndicator=filterTrack?.querySelector('.collection-filter-indicator');
  const sortSelect=document.querySelector('#collection-sort');
  const toolbarWrap=document.querySelector('.collection-toolbar-wrap');
+ const loadMoreButton=document.querySelector('#collection-load-more');
+ const allViewedMessage=document.querySelector('#collection-all-viewed');
+ const paginationWrap=document.querySelector('#collection-pagination');
+ const perPage=8; // Increase/decrease this to change the number of products shown per batch.
+ let visibleLimit=perPage,loadMoreBusy=false;
  if(collectionFilters.length&&collectionCards.length){
   let activeCollectionFilter='all',filterTimer=null,filterRun=0;
   const positionIndicator=button=>{
@@ -200,9 +205,34 @@ document.addEventListener('DOMContentLoaded',()=>{
   };
   collectionCards.forEach((card,index)=>card.dataset.originalIndex=String(index));
   const matchesFilter=(card,selected)=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
+  const updatePagination=(matchingCount)=>{
+   const hasMore=matchingCount>visibleLimit;
+   if(loadMoreButton){loadMoreButton.hidden=!hasMore;loadMoreButton.disabled=loadMoreBusy||!hasMore;loadMoreButton.setAttribute('aria-busy',String(loadMoreBusy));}
+   if(allViewedMessage){allViewedMessage.hidden=matchingCount===0||hasMore;}
+   if(paginationWrap)paginationWrap.hidden=matchingCount===0;
+  };
+  const revealPage=(selected,animate=true)=>{
+   const matching=collectionCards.filter(card=>matchesFilter(card,selected));
+   const visible=matching.slice(0,visibleLimit);
+   const visibleSet=new Set(visible);
+   collectionCards.forEach((card,index)=>{
+    const show=visibleSet.has(card);
+    card.hidden=!show;
+    card.classList.remove('is-filtering-out','is-filtering-in','is-revealed');
+    if(show){
+     card.style.transitionDelay=(animate?(visible.indexOf(card)%perPage)*65:0)+'ms';
+     void card.offsetWidth;
+     if(collectionRevealObserver)collectionRevealObserver.observe(card);else card.classList.add('is-revealed');
+     if(animate)card.classList.add('is-filtering-in');
+    }
+   });
+   updatePagination(matching.length);
+  };
   const applyFilter=(button,showLoading=true)=>{
    const selected=button.dataset.filter;
    activeCollectionFilter=selected;
+   visibleLimit=perPage;
+   loadMoreBusy=false;
    const run=++filterRun;
    if(filterTimer)window.clearTimeout(filterTimer);
    collectionFilters.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});
@@ -218,17 +248,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    const revealResults=()=>{
     if(run!==filterRun)return;
     if(skeleton){skeleton.classList.remove('is-visible');skeleton.hidden=true;}
-    collectionCards.forEach((card,index)=>{
-     const show=matchesFilter(card,selected);
-     card.hidden=!show;
-     card.classList.remove('is-filtering-out','is-filtering-in','is-revealed');
-     if(show){
-      card.style.transitionDelay=(index*65)+'ms';
-      void card.offsetWidth;
-      if(collectionRevealObserver)collectionRevealObserver.observe(card);else card.classList.add('is-revealed');
-      card.classList.add('is-filtering-in');
-     }
-    });
+    revealPage(selected,true);
     if(noCollectionResults&&matches.length===0){
      noCollectionResults.hidden=false;
      requestAnimationFrame(()=>noCollectionResults.classList.add('is-visible'));
@@ -236,7 +256,23 @@ document.addEventListener('DOMContentLoaded',()=>{
    };
    filterTimer=window.setTimeout(revealResults,showLoading?480:0);
   };
-  collectionFilters.forEach(button=>button.addEventListener('click',()=>applyFilter(button,true)));
+  loadMoreButton?.addEventListener('click',()=>{
+   if(loadMoreBusy)return;
+   const total=collectionCards.filter(card=>matchesFilter(card,activeCollectionFilter)).length;
+   if(visibleLimit>=total){updatePagination(total);return;}
+   loadMoreBusy=true;
+   updatePagination(total);
+   loadMoreButton.classList.add('is-loading');
+   loadMoreButton.innerHTML='<span class="collection-button-spinner" aria-hidden="true"></span><span>Loading</span>';
+   window.setTimeout(()=>{
+    visibleLimit=Math.min(visibleLimit+perPage,total);
+    loadMoreBusy=false;
+    revealPage(activeCollectionFilter,true);
+    loadMoreButton.classList.remove('is-loading');
+    loadMoreButton.textContent='Load More';
+   },480);
+  });
+   collectionFilters.forEach(button=>button.addEventListener('click',()=>applyFilter(button,true)));
   resetFilter?.addEventListener('click',()=>{
    const allButton=collectionFilters.find(button=>button.dataset.filter==='all');
    if(allButton)applyFilter(allButton,true);
