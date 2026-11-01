@@ -1,8 +1,11 @@
+function initScrollAnimations(){const s='.fade-up,.fade-in,.scale-in,.slide-left,.slide-right';const els=document.querySelectorAll(s);const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;if(!els.length)return null;if(reduced||!('IntersectionObserver'in window)){els.forEach(el=>{el.classList.add('in-view');el.style.transitionDelay='0ms';});return null;}const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const el=entry.target;const delay=el.getAttribute('data-delay')||'0ms';el.style.transitionDelay=['0ms','100ms','200ms','300ms','400ms'].includes(delay)?delay:'0ms';el.classList.add('in-view');observer.unobserve(el);});},{threshold:.15});els.forEach(el=>observer.observe(el));return observer;}
+
 document.addEventListener('DOMContentLoaded',()=>{
  const header=document.querySelector('[data-site-header]');
  const toggle=document.querySelector('.menu-toggle');
  const nav=document.querySelector('#primary-navigation');
  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ initScrollAnimations();
 
  // Keep the homepage header transparent over the hero, then give it a solid surface.
  if(header&&header.classList.contains('is-home-header')){
