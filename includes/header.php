@@ -15,6 +15,12 @@ $navItems=[
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#11100e">
+<meta name="color-scheme" content="dark">
+<meta property="og:site_name" content="Ikki">
+<meta property="og:locale" content="en_PK">
+<meta name="robots" content="index,follow">
+<link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+<link rel="apple-touch-icon" href="/assets/images/favicon.svg">
 <meta name="description" content="<?=e($description)?>">
 <meta property="og:type" content="website">
 <meta property="og:title" content="<?=e($pageTitle)?>">
@@ -26,7 +32,7 @@ $navItems=[
 <link rel="stylesheet" href="/assets/css/style.css?v=20261101-6">
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-2"><?php endif; ?>
 </head>
-<body class="<?= $isHomePage?'has-home-hero':'' ?>">
+<body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter">
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
 <header class="site-header<?= $isHomePage?' is-home-header':'' ?>" data-site-header>
 <a class="wordmark" href="/" aria-label="Ikki home">ikki<span>®</span></a>
