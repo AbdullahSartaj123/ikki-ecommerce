@@ -23,7 +23,7 @@ $navItems=[
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261101-5">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261101-6">
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-2"><?php endif; ?>
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?>">
