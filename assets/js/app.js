@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
  }
 
+ // === CART DRAWER MODULE ===
  // Header bag opens the cart drawer rather than navigating away.
  const bagTrigger=document.querySelector('[data-cart-drawer-trigger]');
  const cartDrawer=document.querySelector('[data-cart-drawer]');
@@ -108,7 +109,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    cartContent.innerHTML='<div class="cart-drawer-empty"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 22h36l3 34H11l3-34Z"/><path d="M23 24v-7a9 9 0 0 1 18 0v7"/></svg><h3>Your bag is empty</h3><a class="cart-drawer-empty-cta" href="/shop.php">Explore Collection <span aria-hidden="true">↗</span></a></div>';
    return;
   }
-  cartContent.innerHTML=cartItems.map(item=>'<article class="cart-drawer-item" data-cart-item="'+item.id+'"><div class="cart-drawer-thumb"><img src="'+item.image+'" alt="'+item.name+' perfume bottle, '+item.size+'"></div><div class="cart-drawer-item-details"><div class="cart-drawer-item-top"><div><h3>'+item.name+'</h3><p>'+item.size+'</p></div><button type="button" class="cart-drawer-remove" data-cart-remove="'+item.id+'" aria-label="Remove '+item.name+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></svg></button></div><div class="cart-drawer-item-bottom"><div class="cart-quantity"><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="-1" aria-label="Decrease '+item.name+' quantity">−</button><span>'+item.quantity+'</span><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="1" aria-label="Increase '+item.name+' quantity">+</button></div><strong>'+formatCartPrice(item.price*item.quantity)+'</strong></div></div></article>').join('');
+  cartContent.innerHTML=cartItems.map(item=>'<article class="cart-drawer-item" data-cart-item="'+item.id+'"><div class="cart-drawer-thumb"><img src="'+item.image+'" alt="'+item.name+' perfume bottle, '+item.size+'" width="800" height="1000" loading="lazy" decoding="async"></div><div class="cart-drawer-item-details"><div class="cart-drawer-item-top"><div><h3>'+item.name+'</h3><p>'+item.size+'</p></div><button type="button" class="cart-drawer-remove" data-cart-remove="'+item.id+'" aria-label="Remove '+item.name+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></svg></button></div><div class="cart-drawer-item-bottom"><div class="cart-quantity"><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="-1" aria-label="Decrease '+item.name+' quantity">−</button><span>'+item.quantity+'</span><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="1" aria-label="Increase '+item.name+' quantity">+</button></div><strong>'+formatCartPrice(item.price*item.quantity)+'</strong></div></div></article>').join('');
  };
  const openCartDrawer=()=>{
   if(!cartDrawer||!cartBackdrop)return;
@@ -165,6 +166,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   renderCartDrawer();
  }
 
+ // === NAVIGATION MODULE ===
+ // Internal page transitions, mobile navigation and footer accordions.
  // === PAGE-TO-PAGE TRANSITIONS: DELEGATED INTERNAL NAVIGATION ===
  const transitionDuration=300;
  let pageNavigationPending=false;
@@ -190,6 +193,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   handlePageTransition(destination);
  });
 
+ // === ANIMATIONS MODULE ===
+ // Scroll progress, header state, back-to-top and parallax use RAF scheduling.
  // === GLOBAL SCROLL PROGRESS: RAF-THROTTLED ===
  const scrollProgress=document.querySelector('[data-ikki-scroll-progress] > span');
  if(scrollProgress){
@@ -223,11 +228,20 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(history.replaceState)history.replaceState(null,'',url.hash);
  });
 
- // Header transitions to its compact glass surface after 80px of scrolling.
+ // Header scroll state is RAF-throttled to at most one update per frame.
  if(header){
-  const updateHeader=()=>header.classList.toggle('is-scrolled',window.scrollY>80);
-  updateHeader();
-  window.addEventListener('scroll',updateHeader,{passive:true});
+  let headerFrame=0;
+  const updateHeader=()=>{
+   header.classList.toggle('is-scrolled',window.scrollY>80);
+   headerFrame=0;
+  };
+  const requestHeaderUpdate=()=>{
+   if(headerFrame)return;
+   headerFrame=requestAnimationFrame(updateHeader);
+  };
+  requestHeaderUpdate();
+  window.addEventListener('scroll',requestHeaderUpdate,{passive:true});
+  window.addEventListener('resize',requestHeaderUpdate,{passive:true});
  }
 
  // Accessible full-screen mobile navigation with scroll lock and reversible overlay motion.
@@ -362,6 +376,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('scroll',updateStoryParallax,{passive:true});
   window.addEventListener('resize',updateStoryParallax);
  }
+ // === COLLECTION FILTERING MODULE ===
  // === Collection Page: Filtering ===
  // Category filters, sorting, empty state and skeleton transitions.
  const collectionFilters=[...document.querySelectorAll('[data-filter]')];
@@ -487,6 +502,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    stickyObserver.observe(toolbarSentinel);
   }
  }
+ // === MODALS MODULE ===
  // === Collection Page: Quick View Modal ===
  // Hidden native dialog; product content and purchase options are populated on trigger.
  const quickDialog=document.querySelector('#collection-quick-dialog');
@@ -530,7 +546,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    returnFocus=trigger;closing=false;
    $('#quick-view-title').textContent=product.name;
    $('[data-quick-price]').textContent=trigger.dataset.price||moneyLabel(product.price);
-   const image=$('[data-quick-image]');image.src=trigger.dataset.image||product.image;image.alt=product.name+' fragrance bottle';
+   const image=$('[data-quick-image]');image.src=trigger.dataset.image||product.image;image.alt=product.name+' fragrance bottle';image.width=800;image.height=1000;image.loading='lazy';image.decoding='async';
    $('[data-quick-description]').textContent=trigger.dataset.description||product.description;
    $('[data-note-top]').textContent=trigger.dataset.top||product.top;
    $('[data-note-heart]').textContent=trigger.dataset.heart||product.heart;
@@ -572,6 +588,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   quickDialog.addEventListener('close',()=>{document.body.classList.remove('quick-view-open');quickDialog.classList.remove('is-visible','is-closing');});
   quickForm.addEventListener('submit',event=>{if(!variantInput.value){event.preventDefault();addButton.disabled=true;}});
  }
+ // === FORMS MODULE ===
  // === CONTACT PAGE: FORM VALIDATION ===
  // Client-side validation only; this form does not send or store messages.
  const contactForm=document.querySelector('#ikki-contact-form');
