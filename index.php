@@ -88,6 +88,45 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
+<?php
+$bestSellers=[
+ ['name'=>'Noir Orchid','slug'=>'noir-orchid','price'=>'$185','notes'=>'A dark floral signature','image'=>'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=85'],
+ ['name'=>'Velvet Rose','slug'=>'velvet-rose','price'=>'$165','notes'=>'A modern rose composition','image'=>'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85'],
+ ['name'=>'Amber Nights','slug'=>'amber-nights','price'=>'$195','notes'=>'Amber, leather, tobacco','image'=>'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=85']
+];
+try{
+ $bestStmt=db()->prepare("SELECT p.id,p.slug,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path,(SELECT v.id FROM product_variants v WHERE v.product_id=p.id AND v.is_active=1 AND v.stock_quantity>0 ORDER BY v.price LIMIT 1) variant_id FROM products p WHERE p.slug=? AND p.is_active=1 LIMIT 1");
+ foreach($bestSellers as &$best){$bestStmt->execute([$best['slug']]);$found=$bestStmt->fetch();if($found){$best['image']=$found['image_path']?:$best['image'];$best['variant_id']=$found['variant_id']?:null;}}
+ unset($best);
+}catch(Throwable $ex){error_log('[Ikki best sellers] '.$ex->getMessage());}
+?>
+<section class="home-best-sellers" aria-labelledby="best-sellers-title">
+ <div class="home-best-sellers-heading">
+  <h2 id="best-sellers-title">Our Best Sellers</h2>
+  <a href="/shop.php" class="home-best-sellers-view">View All <span aria-hidden="true">↗</span></a>
+ </div>
+ <div class="home-best-sellers-grid">
+ <?php foreach($bestSellers as $best): ?>
+  <article class="home-best-card">
+   <a class="home-best-card-image" href="/product.php?slug=<?=e($best['slug'])?>" aria-label="View <?=e($best['name'])?>">
+    <img src="<?=e($best['image'])?>" alt="<?=e($best['name'])?> fragrance" loading="lazy" decoding="async">
+    <span class="home-best-badge">Bestseller</span>
+   </a>
+   <?php if(!empty($best['variant_id'])): ?>
+    <form class="home-best-quick-add" action="/actions/cart-add.php" method="post" aria-label="Quick add <?=e($best['name'])?>">
+     <?=csrf_field()?><input type="hidden" name="variant_id" value="<?= (int)$best['variant_id'] ?>"><input type="hidden" name="quantity" value="1">
+     <button type="submit" aria-label="Add <?=e($best['name'])?> to bag">+</button>
+    </form>
+   <?php else: ?>
+    <a class="home-best-quick-add" href="/shop.php" aria-label="Explore <?=e($best['name'])?>"><span aria-hidden="true">+</span></a>
+   <?php endif; ?>
+   <div class="home-best-card-meta"><a href="/product.php?slug=<?=e($best['slug'])?>" class="home-best-name"><?=e($best['name'])?></a><span class="home-best-price"><?=e($best['price'])?></span></div>
+   <?php if($best['slug']==='amber-nights'): ?><p class="home-best-notes"><?=e($best['notes'])?></p><?php endif; ?>
+  </article>
+ <?php endforeach; ?>
+ </div>
+</section>
+
 <section class="home-testimonials" aria-labelledby="testimonials-title" data-testimonial-carousel>
  <div class="home-testimonials-inner">
   <span class="home-testimonials-quote-mark" aria-hidden="true">“</span>
