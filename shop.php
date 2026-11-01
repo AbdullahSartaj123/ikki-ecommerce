@@ -6,7 +6,7 @@ $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.gender,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name")->fetchAll();
 }catch(Throwable $ex){error_log('[Ikki collection] '.$ex->getMessage());}
-$genderLabel=static function($gender){
+$newArrivalIds=[];\nif($products){$newest=$products;usort($newest,static fn($a,$b)=>(int)$b['id']<=>(int)$a['id']);$newArrivalIds=array_column(array_slice($newest,0,4),'id');}\n$genderLabel=static function($gender){
  $value=strtolower(trim((string)$gender));
  if(in_array($value,['female','women','woman','for her'],true))return 'For Her';
  if(in_array($value,['male','men','man','for him'],true))return 'For Him';
@@ -22,21 +22,30 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 <section class="collection-catalog" aria-label="Fragrance collection">
- <div class="collection-toolbar">
-  <div class="collection-filters" role="group" aria-label="Filter fragrances by category">
-   <button class="collection-filter is-active" type="button" data-filter="all" aria-pressed="true">All fragrances</button>
+ <div class="collection-toolbar-wrap">
+ <div class="collection-toolbar" data-collection-toolbar>
+  <div class="collection-filters" role="group" aria-label="Filter fragrances by category" data-filter-track>
+   <span class="collection-filter-indicator" aria-hidden="true"></span>
+   <button class="collection-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
    <button class="collection-filter" type="button" data-filter="her" aria-pressed="false">For Her</button>
    <button class="collection-filter" type="button" data-filter="him" aria-pressed="false">For Him</button>
    <button class="collection-filter" type="button" data-filter="unisex" aria-pressed="false">Unisex</button>
+   <button class="collection-filter" type="button" data-filter="new" aria-pressed="false">New Arrivals</button>
   </div>
-  <span class="collection-count"><b><?=count($products)?></b> FRAGRANCES</span>
+  <div class="collection-toolbar-controls">
+   <span class="collection-count"><b><?=count($products)?></b> FRAGRANCES</span>
+   <label class="collection-sort"><span>Sort by</span>
+    <span class="collection-sort-select"><select id="collection-sort" aria-label="Sort fragrances"><option value="featured">Featured</option><option value="price-asc">Price: Low–High</option><option value="price-desc">Price: High–Low</option><option value="newest">Newest</option></select><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 5.75 4.5 4.5 4.5-4.5"/></svg></span>
+   </label>
+  </div>
+ </div>
  </div>
  <div class="collection-grid" id="collection-grid">
  <?php if($products): foreach($products as $n=>$p):
   $category=$genderLabel($p['gender']??'Unisex');
-  $filterKey=$category==='For Her'?'her':($category==='For Him'?'him':'unisex');
+  $filterKey=$category==='For Her'?'her':($category==='For Him'?'him':'unisex');\n  $isNew=in_array((int)$p['id'],$newArrivalIds,true);
  ?>
-  <article class="collection-card reveal" data-category="<?=e($filterKey)?>">
+  <article class="collection-card reveal" data-category="<?=e($filterKey)?>" data-is-new="<?= $isNew?'true':'false' ?>" data-price="<?=e((string)($p['price']??0)) ?>" data-product-id="<?=e((string)$p['id']) ?>">
    <a class="collection-card-image" href="/product.php?slug=<?=e($p['slug'])?>" aria-label="View <?=e($p['name'])?>">
     <span class="collection-card-index"><?=str_pad((string)($n+1),2,'0',STR_PAD_LEFT)?></span>
     <img src="<?=e($p['image_path']?:'/assets/images/noor.svg')?>" alt="<?=e($p['name'])?> fragrance bottle" loading="lazy">
