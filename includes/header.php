@@ -30,7 +30,7 @@ $navItems=[
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css?v=20261101-10">
-<?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-2"><?php endif; ?>
+<?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-3"><?php endif; ?>
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter">
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
