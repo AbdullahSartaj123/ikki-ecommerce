@@ -108,6 +108,7 @@ try{
  <div class="home-best-sellers-grid">
  <?php foreach($bestSellers as $best): ?>
   <article class="home-best-card">
+   <div class="home-best-card-media">
    <a class="home-best-card-image" href="/product.php?slug=<?=e($best['slug'])?>" aria-label="View <?=e($best['name'])?>">
     <img src="<?=e($best['image'])?>" alt="<?=e($best['name'])?> fragrance" loading="lazy" decoding="async">
     <span class="home-best-badge">Bestseller</span>
@@ -120,6 +121,7 @@ try{
    <?php else: ?>
     <a class="home-best-quick-add" href="/shop.php" aria-label="Explore <?=e($best['name'])?>"><span aria-hidden="true">+</span></a>
    <?php endif; ?>
+   </div>
    <div class="home-best-card-meta"><a href="/product.php?slug=<?=e($best['slug'])?>" class="home-best-name"><?=e($best['name'])?></a><span class="home-best-price"><?=e($best['price'])?></span></div>
    <?php if($best['slug']==='amber-nights'): ?><p class="home-best-notes"><?=e($best['notes'])?></p><?php endif; ?>
   </article>
