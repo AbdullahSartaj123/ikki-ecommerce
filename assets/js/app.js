@@ -193,6 +193,46 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
  }
 
+ // Auto-rotating customer testimonials; pause while hovered, focused or touched.
+ const testimonialRoot=document.querySelector('[data-testimonial-carousel]');
+ if(testimonialRoot){
+  const slides=[...testimonialRoot.querySelectorAll('[data-testimonial-slide]')];
+  const dots=[...testimonialRoot.querySelectorAll('[data-testimonial-dot]')];
+  let activeIndex=Math.max(0,slides.findIndex(slide=>slide.classList.contains('is-active')));
+  let rotation=null;
+  let touchPaused=false;
+  const showTestimonial=index=>{
+   activeIndex=(index+slides.length)%slides.length;
+   slides.forEach((slide,i)=>{
+    const active=i===activeIndex;
+    slide.classList.toggle('is-active',active);
+    slide.setAttribute('aria-hidden',String(!active));
+    if(active)slide.removeAttribute('inert');else slide.setAttribute('inert','');
+   });
+   dots.forEach((dot,i)=>{
+    const active=i===activeIndex;
+    dot.classList.toggle('is-active',active);
+    dot.setAttribute('aria-pressed',String(active));
+   });
+  };
+  const stopRotation=()=>{if(rotation){window.clearInterval(rotation);rotation=null;}};
+  const startRotation=()=>{
+   stopRotation();
+   if(reducedMotion||slides.length<2||document.hidden||testimonialRoot.matches(':hover')||testimonialRoot.contains(document.activeElement)||touchPaused)return;
+   rotation=window.setInterval(()=>showTestimonial(activeIndex+1),6000);
+  };
+  dots.forEach((dot,i)=>dot.addEventListener('click',()=>{showTestimonial(i);startRotation();}));
+  testimonialRoot.addEventListener('mouseenter',stopRotation);
+  testimonialRoot.addEventListener('mouseleave',startRotation);
+  testimonialRoot.addEventListener('focusin',stopRotation);
+  testimonialRoot.addEventListener('focusout',()=>window.setTimeout(startRotation,0));
+  testimonialRoot.addEventListener('touchstart',()=>{touchPaused=true;stopRotation();},{passive:true});
+  testimonialRoot.addEventListener('touchend',()=>{window.setTimeout(()=>{touchPaused=false;startRotation();},2500);},{passive:true});
+  document.addEventListener('visibilitychange',startRotation);
+  showTestimonial(activeIndex);
+  startRotation();
+ }
+
  // Existing product-variant price update.
  const variant=document.querySelector('#variant');
  const price=document.querySelector('.detail-price');
