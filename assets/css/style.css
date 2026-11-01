@@ -1682,3 +1682,12 @@ body.ikki-custom-cursor .cursor-hover~.ikki-cursor-dot{opacity:1}
  .ikki-cursor-dot,.ikki-cursor-ring{display:none!important}
  body.ikki-custom-cursor,body.ikki-custom-cursor *{cursor:auto!important}
 }
+
+
+/* Shared 300ms page transitions for internal navigation */
+body.page-enter>header,body.page-enter>main,body.page-enter>footer{opacity:0;transform:scale(.98)}
+body.page-transition-in>header,body.page-transition-in>main,body.page-transition-in>footer{opacity:1;transform:scale(1);transition:opacity .3s ease,transform .3s ease}
+body.page-transition-out>header,body.page-transition-out>main,body.page-transition-out>footer{opacity:0;transform:scale(.98);transition:opacity .3s ease,transform .3s ease;pointer-events:none}
+@media(prefers-reduced-motion:reduce){
+ body.page-transition-in>header,body.page-transition-in>main,body.page-transition-in>footer,body.page-transition-out>header,body.page-transition-out>main,body.page-transition-out>footer{transition:none}
+}
