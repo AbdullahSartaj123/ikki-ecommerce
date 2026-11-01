@@ -201,3 +201,22 @@
  .home-perfumery-item p{font-size:14px}
 }
 @media(prefers-reduced-motion:reduce){.home-perfumery-item,.home-perfumery-icon{transition:none!important}}
+
+
+/* CUSTOMER TESTIMONIAL CAROUSEL */
+.home-testimonials{width:100%;padding:100px 24px;background:#1a1a1a;color:#f5f1eb;text-align:center}
+.home-testimonials-inner{max-width:900px;margin:0 auto}
+.home-testimonials-quote-mark{display:block;height:56px;margin:0 auto 17px;color:#c9a86a;font:400 76px/.9 'Playfair Display',Georgia,serif;opacity:.3}
+.home-testimonial-slides{position:relative;min-height:245px;display:grid;align-items:center}
+.home-testimonial-slide{grid-area:1/1;width:100%;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .8s ease,transform .8s ease,visibility .8s}
+.home-testimonial-slide.is-active{opacity:1;visibility:visible;transform:translateY(0)}
+.home-testimonial-stars{margin:0 0 24px;color:#c9a86a;font:400 13px/1 'Montserrat',sans-serif;letter-spacing:5px}
+.home-testimonial-slide blockquote{max-width:700px;margin:0 auto 29px;color:#f3eee6;font:italic 400 22px/1.65 'Playfair Display',Georgia,serif}
+.home-testimonial-author{margin:0 0 7px;color:#c9a86a;font:500 14px/1.4 'Montserrat',sans-serif;letter-spacing:1.5px;text-transform:uppercase}
+.home-testimonial-detail{margin:0;color:#9b9994;font:400 12px/1.5 'Montserrat',sans-serif}
+.home-testimonial-dots{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:29px}
+.home-testimonial-dots button{width:9px;height:9px;padding:0;border:1px solid #c9a86a;border-radius:50%;background:transparent;cursor:pointer;transition:background .25s,transform .25s}
+.home-testimonial-dots button.is-active{background:#c9a86a;transform:scale(1.12)}
+.home-testimonial-dots button:focus-visible{outline:2px solid #e3cb97;outline-offset:4px}
+@media(max-width:700px){.home-testimonials{padding:78px 22px}.home-testimonial-slides{min-height:290px}.home-testimonial-slide blockquote{font-size:20px;line-height:1.6}.home-testimonials-quote-mark{font-size:68px}}
+@media(prefers-reduced-motion:reduce){.home-testimonial-slide,.home-testimonial-dots button{transition:none!important}}
