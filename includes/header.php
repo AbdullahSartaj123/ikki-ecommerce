@@ -53,10 +53,10 @@ $navItems=[
  var exitTime=fast?300:500;
  window.setTimeout(function(){
   overlay.classList.add('is-finished');
+  document.body.classList.remove('is-loading');
+  document.dispatchEvent(new CustomEvent('ikki:preloader-finished'));
   window.setTimeout(function(){
    if(overlay.parentNode)overlay.remove();
-   document.body.classList.remove('is-loading');
-   document.dispatchEvent(new CustomEvent('ikki:preloader-finished'));
   },exitTime);
  },progressTime);
 })();
