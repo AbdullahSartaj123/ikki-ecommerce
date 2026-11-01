@@ -14,11 +14,12 @@ $genderLabel=static function($gender){
 };
 require __DIR__.'/includes/header.php';
 ?>
-<section class="collection-page-hero">
- <span class="eyebrow">THE IKKI FRAGRANCE HOUSE / THE COLLECTION</span>
- <h1>Our <em>Collection.</em></h1>
- <p>Discover scent stories with their own character. Find the one that feels unmistakably yours.</p>
- <span class="collection-hero-rule" aria-hidden="true"></span>
+<section class="page-banner page-banner-collection" aria-labelledby="page-banner-title">
+ <div class="page-banner-copy reveal">
+  <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Our Collection</span></nav>
+  <h1 id="page-banner-title">Our Collection</h1>
+  <p>Discover fragrances crafted for every moment</p>
+ </div>
 </section>
 <section class="collection-catalog" aria-label="Fragrance collection">
  <div class="collection-toolbar">
