@@ -1,0 +1,53 @@
+name: Deploy Ikki to InfinityFree
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: ikki-infinityfree-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Upload PHP website
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check PHP syntax
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+      - name: Lint PHP files
+        run: |
+          find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+
+      - name: Deploy website files to InfinityFree
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./
+          server-dir: /htdocs/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/docs/**
+            **/database/**
+            **/vendor/**
+            **/node_modules/**
+            **/storage/uploads/**
+            .gitignore
+            README.md
+            config/database.php
+            config/database.example.php
