@@ -394,6 +394,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     let message='';
     if(!value)message='Please complete this field.';
     else if(field.type==='email'&&!emailPattern.test(value))message='Please enter a valid email address.';
+    else if(field.id==='contact-message'&&value.length<10)message='Please enter at least 10 characters.';
     if(message){const wrap=field.closest('.contact-field');wrap.classList.add('is-invalid');wrap.querySelector('.field-error').textContent=message;if(!firstInvalid)firstInvalid=field;}
    });
    feedback.classList.add('is-visible');
