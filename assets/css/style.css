@@ -1579,7 +1579,7 @@ body.quick-view-open{overflow:hidden}
 .contact-submit-icon{width:17px;height:17px;transition:transform .25s ease}
 .contact-submit:hover .contact-submit-icon{transform:translate(4px,-2px)}
 @media(max-width:950px){.contact-main{grid-template-columns:minmax(0,1fr);padding:80px var(--gutter)}.contact-form-column{max-width:720px}}
-@media(max-width:700px){.contact-main{padding:64px 23px;gap:56px}.contact-form-column h2.contact-form-title{font-size:28px;margin-bottom:32px}.contact-form-grid{gap:28px}.contact-submit{width:100%}}
+@media(max-width:700px){.contact-main{padding:64px 23px;gap:64px}.contact-form-column h2.contact-form-title{font-size:28px;margin-bottom:32px}.contact-form-grid{gap:28px}.contact-submit{width:100%}}
 
 
 /* Contact form validation and submission interaction states */
