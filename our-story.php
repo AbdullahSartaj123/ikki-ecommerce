@@ -16,19 +16,37 @@ require __DIR__.'/includes/header.php';
  <div class="story-intro-copy reveal"><h2>It begins with<br>a <em>feeling.</em></h2><p>Ikki was imagined around a simple idea: the most memorable things do not need to announce themselves. They stay with you quietly — in a familiar note, a passing moment, a feeling you cannot quite put into words.</p><p>We set out to create a fragrance house for those moments. A place where scent becomes a personal signature, and every composition has room for its own story.</p></div>
 </section>
 
-<section class="story-chapter story-chapter-dark">
- <div class="story-chapter-image reveal"><img src="/assets/images/noor.svg" alt="Noor fragrance bottle concept artwork" loading="lazy"><span>CHAPTER 01 / THE SPARK</span></div>
- <div class="story-chapter-copy reveal"><span class="story-kicker">THE BEGINNING / 01</span><h2>Inspired by<br>the <em>unspoken.</em></h2><p>Some memories arrive before the words for them do. A familiar warmth. The air after rain. The quiet confidence of entering a room as yourself. These fleeting impressions became the starting point for Ikki.</p><p>Rather than follow noise, we wanted to make space for individuality — fragrances that feel considered, expressive and personal.</p><span class="story-chapter-number">01</span></div>
-</section>
-
-<section class="story-chapter story-chapter-reverse">
- <div class="story-chapter-image reveal"><img src="/assets/images/sahra.svg" alt="Sahra fragrance bottle concept artwork" loading="lazy"><span>CHAPTER 02 / THE PHILOSOPHY</span></div>
- <div class="story-chapter-copy reveal"><span class="story-kicker">OUR PHILOSOPHY / 02</span><h2>Quiet presence.<br><em>Lasting feeling.</em></h2><p>We believe fragrance should feel like an extension of you, never a costume. It can be subtle or bold, familiar or unexpected — but it should always feel authentic.</p><p>That belief guides the way we think about our collection: distinct scent identities, a thoughtful experience and the freedom to find the fragrance that feels like yours.</p><span class="story-chapter-number">02</span></div>
-</section>
-
-<section class="story-chapter story-chapter-dark">
- <div class="story-chapter-image reveal"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle concept artwork" loading="lazy"><span>CHAPTER 03 / THE CRAFT</span></div>
- <div class="story-chapter-copy reveal"><span class="story-kicker">THE CRAFT / 03</span><h2>Every detail,<br><em>with intention.</em></h2><p>From the first impression to the final detail, we believe the experience matters. The character of a fragrance, the way it is presented and the care behind each order should feel like parts of the same story.</p><p>We continue to learn, refine and build with curiosity — always placing the experience of the person wearing the fragrance at the centre.</p><span class="story-chapter-number">03</span></div>
+<section class="story-narrative" aria-label="The Ikki story">
+ <article class="story-narrative-block">
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature Ikki fragrance bottle, representing the beginning of the house" loading="lazy"></div>
+  <div class="story-narrative-copy fade-up" data-delay="200ms">
+   <span class="story-narrative-eyebrow">THE BEGINNING</span>
+   <span class="story-narrative-rule" aria-hidden="true"></span>
+   <h2>Born from a <em>Single Scent</em></h2>
+   <p>Every fragrance house begins with a moment of inspiration. For Ikki, that beginning is rooted in the belief that a single scent can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered.</p>
+   <p>That first spark grew into a wider ambition: to create fragrances with character, depth and a sense of individuality. The story continues with the same curiosity that started it — following the notes, moods and moments that make scent personal.</p>
+  </div>
+ </article>
+ <article class="story-narrative-block is-reversed">
+  <div class="story-narrative-visual slide-left"><img src="/assets/images/sahra.svg" alt="Sahra fragrance bottle artwork, an expression of the perfumer’s craft" loading="lazy"></div>
+  <div class="story-narrative-copy fade-up" data-delay="200ms">
+   <span class="story-narrative-eyebrow">THE CRAFT</span>
+   <span class="story-narrative-rule" aria-hidden="true"></span>
+   <h2>Where Art Meets <em>Chemistry</em></h2>
+   <p>Perfume is both creative expression and careful composition. A perfumer considers how top, heart and base notes unfold, how materials interact, and how a fragrance changes from its first impression to the trace it leaves behind.</p>
+   <p>It is a process of exploration and precision: balancing accords, refining proportions and allowing each element to find its place. The artistry is in the emotion a fragrance evokes; the chemistry is in the thoughtful work that helps bring that experience to life.</p>
+  </div>
+ </article>
+ <article class="story-narrative-block">
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle artwork, representing the Ikki collection today" loading="lazy"></div>
+  <div class="story-narrative-copy fade-up" data-delay="200ms">
+   <span class="story-narrative-eyebrow">TODAY</span>
+   <span class="story-narrative-rule" aria-hidden="true"></span>
+   <h2>A Global House of <em>Fragrance</em></h2>
+   <p>Today, Ikki continues to shape a fragrance house guided by curiosity, considered design and the belief that scent is deeply individual. Each fragrance is an invitation to discover a mood, express a point of view and make a moment your own.</p>
+   <p>Our outlook is open to the world, while our focus remains personal: creating a welcoming experience, celebrating distinctive scent identities and making the art of fragrance part of everyday life.</p>
+  </div>
+ </article>
 </section>
 
 <section class="story-values">
