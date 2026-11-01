@@ -1,0 +1,11 @@
+/config/database.php
+.env
+.env.*
+!/config/database.example.php
+/storage/uploads/*
+!/storage/uploads/.gitkeep
+*.log
+.DS_Store
+Thumbs.db
+/vendor/
+/node_modules/
