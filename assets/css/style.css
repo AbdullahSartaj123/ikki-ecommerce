@@ -1402,3 +1402,25 @@ body.mobile-menu-open{overflow:hidden;touch-action:none}
  .quick-view-rating{margin:12px 0 17px}
 }
 @media(prefers-reduced-motion:reduce){.collection-quick-dialog,.collection-dialog-close,.quick-view-size-buttons button,.quick-view-add{transition:none}}
+
+
+/* Quick view animation lifecycle and scroll locking */
+body.quick-view-open{overflow:hidden}
+.collection-quick-dialog{display:block;visibility:hidden;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .4s ease .3s,transform .4s ease .3s,visibility 0s linear .7s}
+.collection-quick-dialog[open]{visibility:visible;pointer-events:auto;opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .4s ease .3s,transform .4s ease .3s}
+.collection-quick-dialog[open].is-visible{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.collection-quick-dialog[open].is-closing{opacity:0;transform:translate(-50%,-50%) scale(.9);transition:opacity .3s ease,transform .3s ease}
+.collection-quick-dialog::backdrop{background:rgba(10,10,10,0);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);transition:background .3s ease}
+.collection-quick-dialog[open]::backdrop{background:rgba(10,10,10,.8);animation:quickBackdropIn .3s ease both}
+.collection-quick-dialog[open].is-closing::backdrop{background:rgba(10,10,10,0);animation:quickBackdropOut .3s ease both}
+@keyframes quickBackdropIn{from{background:rgba(10,10,10,0)}to{background:rgba(10,10,10,.8)}}
+@keyframes quickBackdropOut{from{background:rgba(10,10,10,.8)}to{background:rgba(10,10,10,0)}}
+@media(max-width:700px){
+ .collection-quick-dialog{transform:translateY(100%);opacity:0;transition:opacity .4s ease .3s,transform .4s cubic-bezier(.2,.75,.25,1) .3s,visibility 0s linear .7s}
+ .collection-quick-dialog[open]{transform:translateY(100%);opacity:0}
+ .collection-quick-dialog[open].is-visible{transform:translateY(0);opacity:1}
+ .collection-quick-dialog[open].is-closing{transform:translateY(100%);opacity:0;transition:opacity .3s ease,transform .3s ease}
+}
+@media(prefers-reduced-motion:reduce){
+ .collection-quick-dialog,.collection-quick-dialog::backdrop,.collection-quick-dialog[open].is-closing,.collection-quick-dialog[open].is-closing::backdrop{animation:none;transition:none}
+}
