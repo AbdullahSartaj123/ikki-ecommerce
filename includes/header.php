@@ -6,7 +6,7 @@ $isHomePage=($currentPage==='index.php');
 $navItems=[
  ['label'=>'Home','href'=>'/','match'=>['index.php']],
  ['label'=>'Collection','href'=>'/shop.php','match'=>['shop.php']],
- ['label'=>'Our Story','href'=>'/our-story.php','match'=>['our-story.php']],
+ ['label'=>'Our Story','href'=>'/#our-world','match'=>['our-story.php']],
  ['label'=>'Contact','href'=>'/contact.php','match'=>['contact.php']]
 ];
 ?><!doctype html>
