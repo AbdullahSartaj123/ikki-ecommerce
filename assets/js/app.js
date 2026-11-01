@@ -71,6 +71,87 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
  }
 
+ // Header bag opens the cart drawer rather than navigating away.
+ const bagTrigger=document.querySelector('[data-cart-drawer-trigger]');
+ const cartDrawer=document.querySelector('[data-cart-drawer]');
+ const cartBackdrop=document.querySelector('[data-cart-drawer-backdrop]');
+ const cartContent=document.querySelector('[data-cart-drawer-content]');
+ const cartFooter=document.querySelector('[data-cart-drawer-footer]');
+ const cartCount=document.querySelector('[data-cart-count]');
+ const cartSubtotal=document.querySelector('[data-cart-subtotal]');
+ const cartClose=document.querySelector('[data-cart-drawer-close]');
+ const cartContinue=document.querySelector('[data-cart-drawer-continue]');
+ const cartDemoItems=[
+  {id:'noir-orchid',name:'Noir Orchid',size:'50ml',price:185,quantity:1,image:'/assets/images/noor.svg'},
+  {id:'velvet-rose',name:'Velvet Rose',size:'50ml',price:165,quantity:1,image:'/assets/images/velvet-dusk.svg'}
+ ];
+ const formatCartPrice=value=>'Rs. '+new Intl.NumberFormat('en-PK',{maximumFractionDigits:0}).format(value);
+ let cartItems=cartDemoItems.map(item=>({...item}));
+ let cartReturnFocus=null;
+ const renderCartDrawer=()=>{
+  if(!cartContent)return;
+  const count=cartItems.reduce((total,item)=>total+item.quantity,0);
+  const subtotal=cartItems.reduce((total,item)=>total+item.price*item.quantity,0);
+  if(cartCount)cartCount.textContent=String(count);
+  if(cartSubtotal){
+   const nextValue=formatCartPrice(subtotal);
+   if(cartSubtotal.textContent!==nextValue){
+    cartSubtotal.textContent=nextValue;
+    cartSubtotal.classList.remove('is-updating');
+    void cartSubtotal.offsetWidth;
+    cartSubtotal.classList.add('is-updating');
+   }
+  }
+  if(cartFooter)cartFooter.hidden=cartItems.length===0;
+  if(!cartItems.length){
+   cartContent.innerHTML='<div class="cart-drawer-empty"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 22h36l3 34H11l3-34Z"/><path d="M23 24v-7a9 9 0 0 1 18 0v7"/></svg><h3>Your bag is empty</h3><a class="cart-drawer-empty-cta" href="/shop.php">Explore Collection <span aria-hidden="true">↗</span></a></div>';
+   return;
+  }
+  cartContent.innerHTML=cartItems.map(item=>'<article class="cart-drawer-item" data-cart-item="'+item.id+'"><div class="cart-drawer-thumb"><img src="'+item.image+'" alt=""></div><div class="cart-drawer-item-details"><div class="cart-drawer-item-top"><div><h3>'+item.name+'</h3><p>'+item.size+'</p></div><button type="button" class="cart-drawer-remove" data-cart-remove="'+item.id+'" aria-label="Remove '+item.name+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></svg></button></div><div class="cart-drawer-item-bottom"><div class="cart-quantity"><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="-1" aria-label="Decrease '+item.name+' quantity">−</button><span>'+item.quantity+'</span><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="1" aria-label="Increase '+item.name+' quantity">+</button></div><strong>'+formatCartPrice(item.price*item.quantity)+'</strong></div></div></article>').join('');
+ };
+ const openCartDrawer=()=>{
+  if(!cartDrawer||!cartBackdrop)return;
+  cartReturnFocus=document.activeElement;
+  renderCartDrawer();
+  cartDrawer.classList.add('is-open');
+  cartBackdrop.classList.add('is-visible');
+  cartDrawer.setAttribute('aria-hidden','false');
+  cartBackdrop.setAttribute('aria-hidden','false');
+  document.body.classList.add('cart-drawer-open');
+  if(cartClose)cartClose.focus();
+ };
+ const closeCartDrawer=()=>{
+  if(!cartDrawer||!cartBackdrop)return;
+  cartDrawer.classList.remove('is-open');
+  cartBackdrop.classList.remove('is-visible');
+  cartDrawer.setAttribute('aria-hidden','true');
+  cartBackdrop.setAttribute('aria-hidden','true');
+  document.body.classList.remove('cart-drawer-open');
+  if(cartReturnFocus&&typeof cartReturnFocus.focus==='function')cartReturnFocus.focus();
+ };
+ if(bagTrigger&&cartDrawer){
+  bagTrigger.addEventListener('click',event=>{event.preventDefault();openCartDrawer();});
+  cartClose?.addEventListener('click',closeCartDrawer);
+  cartBackdrop?.addEventListener('click',closeCartDrawer);
+  cartContinue?.addEventListener('click',closeCartDrawer);
+  cartDrawer.addEventListener('click',event=>{
+   const quantityButton=event.target.closest('[data-cart-quantity]');
+   const removeButton=event.target.closest('[data-cart-remove]');
+   if(removeButton){
+    cartItems=cartItems.filter(item=>item.id!==removeButton.dataset.cartRemove);
+    renderCartDrawer();
+   }else if(quantityButton){
+    const item=cartItems.find(entry=>entry.id===quantityButton.dataset.cartQuantity);
+    if(item){item.quantity=Math.max(1,Math.min(10,item.quantity+Number(quantityButton.dataset.quantityChange)));renderCartDrawer();}
+   }
+  });
+  cartContent?.addEventListener('click',event=>{
+   if(event.target.closest('.cart-drawer-empty-cta'))closeCartDrawer();
+  });
+  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&cartDrawer.classList.contains('is-open'))closeCartDrawer();});
+  renderCartDrawer();
+ }
+
  // === PAGE-TO-PAGE TRANSITIONS: DELEGATED INTERNAL NAVIGATION ===
  const transitionDuration=300;
  let pageNavigationPending=false;
@@ -85,7 +166,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  document.addEventListener('click',event=>{
   if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
   const link=event.target.closest('a[href]');
-  if(!link||link.hasAttribute('download')||(link.target&&link.target!=='_self'))return;
+  if(!link||link.hasAttribute('data-cart-drawer-trigger')||link.hasAttribute('download')||(link.target&&link.target!=='_self'))return;
   const rawHref=link.getAttribute('href')||'';
   if(/^(?:mailto:|tel:|javascript:)/i.test(rawHref))return;
   let destination;
