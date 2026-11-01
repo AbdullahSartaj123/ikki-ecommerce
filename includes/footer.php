@@ -46,5 +46,5 @@
  </div>
 </footer>
 <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" title="Back to top"><span>↑</span></button>
-<script src="/assets/js/app.js?v=20261101-22" defer></script>
+<script src="/assets/js/app.js?v=20261101-23" defer></script>
 </body></html>
