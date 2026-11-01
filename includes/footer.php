@@ -1,12 +1,1 @@
-</main>
-<footer class="site-footer">
-  <div class="footer-main">
-    <div><a class="wordmark footer-mark" href="/">ikki<span>.</span></a><p>Fragrance, thoughtfully composed.</p></div>
-    <div><h3>Explore</h3><a href="/shop.php">The Collection</a><a href="/#story">Our Story</a><a href="/contact.php">Contact</a></div>
-    <div><h3>Information</h3><a href="/shipping.php">Shipping</a><a href="/returns.php">Returns</a><a href="/privacy.php">Privacy</a></div>
-    <div><h3>Connect</h3><a href="https://wa.me/923094733789" target="_blank" rel="noopener">WhatsApp</a><a href="mailto:hello@ikki.pk">Email us</a></div>
-  </div>
-  <div class="footer-bottom"><span>© <?= date('Y') ?> Ikki. All rights reserved.</span><span>Made for moments that stay.</span></div>
-</footer>
-<script src="/assets/js/app.js" defer></script>
-</body></html>
+</main><footer class="site-footer"><div class="footer-top"><div class="footer-brand"><a class="wordmark" href="/">ikki<span>®</span></a><p>Fragrance is the invisible detail<br>that makes a moment yours.</p><a class="footer-social" href="https://wa.me/923094733789" target="_blank" rel="noopener">Speak to our team <span>↗</span></a></div><div class="footer-column"><h3>Discover</h3><a href="/shop.php">All fragrances</a><a href="/#story">Our philosophy</a><a href="/contact.php">Get in touch</a></div><div class="footer-column"><h3>Customer care</h3><a href="/shipping.php">Delivery information</a><a href="/returns.php">Returns & support</a><a href="/privacy.php">Privacy</a></div><div class="footer-note"><span class="eyebrow">A note from Ikki</span><p>Wear what words cannot say.</p><span class="footer-location">PAKISTAN · EST. 2026</span></div></div><div class="footer-bottom"><span>© <?=date('Y')?> IKKI. ALL RIGHTS RESERVED.</span><span>CRAFTED FOR YOUR EVERYDAY EXTRAORDINARY.</span><a href="#top" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">BACK TO TOP ↑</a></div></footer><script src="/assets/js/app.js" defer></script></body></html>
