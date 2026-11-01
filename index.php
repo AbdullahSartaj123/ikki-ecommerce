@@ -117,6 +117,21 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
+<section class="home-instagram" aria-labelledby="instagram-title">
+ <div class="home-instagram-heading home-reveal">
+  <h2 id="instagram-title">Follow Our Journey</h2>
+  <a href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer">@maisonperfume <span aria-hidden="true">↗</span></a>
+ </div>
+ <div class="home-instagram-gallery" aria-label="Ikki fragrance lifestyle gallery">
+  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80" alt="Luxury perfume bottle in warm light" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
+  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80" alt="Perfume bottle and fragrance details" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
+  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Artful fragrance bottle composition" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
+  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80" alt="Elegant perfume and beauty arrangement" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
+  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80" alt="Minimal fragrance still life" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
+  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=600&q=80" alt="Perfume bottle in an editorial setting" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
+ </div>
+</section>
+
 <section class="home-newsletter" aria-labelledby="newsletter-title">
  <div class="home-newsletter-inner home-reveal"><span class="home-kicker">A LETTER FROM IKKI</span><h2 id="newsletter-title">A little note.<br><em>Now and then.</em></h2><p>Be the first to hear about new scents, thoughtful stories and notes from our world.</p>
   <form class="home-newsletter-form" action="/contact.php" method="get">
