@@ -422,6 +422,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    });
    fieldGrid.hidden=false;fieldGrid.classList.remove('is-fading-out');successPanel.hidden=true;successPanel.classList.remove('is-visible');
    if(note){note.hidden=false;note.classList.remove('is-fading-out');}
+   contactForm.closest('.contact-form-column').classList.remove('is-sending');
    submitButton.disabled=false;submitButton.classList.remove('is-loading','is-success');
    submitButton.innerHTML='Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>';
    feedback.classList.remove('is-visible','is-error');feedback.textContent='';
@@ -461,7 +462,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     firstInvalid.focus();return;
    }
    feedback.classList.remove('is-visible','is-error');feedback.textContent='';
-   isSubmitting=true;submitButton.disabled=true;submitButton.classList.add('is-loading');
+   isSubmitting=true;contactForm.closest('.contact-form-column').classList.add('is-sending');submitButton.disabled=true;submitButton.classList.add('is-loading');
    submitButton.innerHTML='<span class="contact-loading-ring" aria-hidden="true"></span><span>Sending</span>';
    window.setTimeout(showSuccess,1200);
   });
