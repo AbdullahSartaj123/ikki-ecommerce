@@ -68,6 +68,37 @@ document.addEventListener('DOMContentLoaded',()=>{
   }));
  }
 
+
+
+ // Contact form front-end validation. No message is transmitted until a delivery service is connected.
+ const contactForm=document.querySelector('#ikki-contact-form');
+ if(contactForm){
+  const feedback=document.querySelector('#contact-form-feedback');
+  const emailPattern=/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+  const fields=[...contactForm.querySelectorAll('input[required],textarea[required]')];
+  const clearField=field=>{const wrap=field.closest('.contact-field');wrap.classList.remove('is-invalid');wrap.querySelector('.field-error').textContent='';};
+  fields.forEach(field=>field.addEventListener('input',()=>clearField(field)));
+  contactForm.addEventListener('submit',event=>{
+   event.preventDefault();
+   let firstInvalid=null;
+   fields.forEach(field=>{
+    clearField(field);
+    const value=field.value.trim();
+    let message='';
+    if(!value)message='Please complete this field.';
+    else if(field.type==='email'&&!emailPattern.test(value))message='Please enter a valid email address.';
+    if(message){const wrap=field.closest('.contact-field');wrap.classList.add('is-invalid');wrap.querySelector('.field-error').textContent=message;if(!firstInvalid)firstInvalid=field;}
+   });
+   feedback.classList.add('is-visible');
+   if(firstInvalid){
+    feedback.classList.add('is-error');feedback.textContent='Please review the highlighted fields and try again.';firstInvalid.focus();return;
+   }
+   feedback.classList.remove('is-error');
+   feedback.textContent='Thank you. Your details passed validation, but this form is not connected to email delivery yet. Please send your enquiry directly through our WhatsApp contact link.';
+   contactForm.reset();
+  });
+ }
+
  // Existing product-variant price update.
  const variant=document.querySelector('#variant');
  const price=document.querySelector('.detail-price');
