@@ -48,6 +48,26 @@ document.addEventListener('DOMContentLoaded',()=>{
   reveal.forEach(el=>observer.observe(el));
  }
 
+ // Collection category filters.
+ const collectionFilters=document.querySelectorAll('[data-filter]');
+ const collectionCards=document.querySelectorAll('.collection-card[data-category]');
+ const collectionCount=document.querySelector('.collection-count b');
+ const noCollectionResults=document.querySelector('#collection-no-results');
+ if(collectionFilters.length&&collectionCards.length){
+  collectionFilters.forEach(button=>button.addEventListener('click',()=>{
+   const selected=button.dataset.filter;
+   collectionFilters.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});
+   let visible=0;
+   collectionCards.forEach(card=>{
+    const show=selected==='all'||card.dataset.category===selected;
+    card.hidden=!show;
+    if(show)visible++;
+   });
+   if(collectionCount)collectionCount.textContent=String(visible);
+   if(noCollectionResults)noCollectionResults.hidden=visible!==0;
+  }));
+ }
+
  // Existing product-variant price update.
  const variant=document.querySelector('#variant');
  const price=document.querySelector('.detail-price');
