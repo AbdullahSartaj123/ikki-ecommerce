@@ -9,7 +9,7 @@
     <span>Speak to our team <b>↗</b></span>
    </a>
   </div>
-  <div class="footer-column"><h3>Discover</h3><a href="/">Home</a><a href="/shop.php">The collection</a><a href="/our-story.php">Our story</a><a href="/contact.php">Contact us</a></div>
+  <div class="footer-column"><h3>Discover</h3><a href="/">Home</a><a href="/shop.php">The collection</a><a href="/#our-world">Our story</a><a href="/contact.php">Contact us</a></div>
   <div class="footer-column"><h3>Customer care</h3><a href="/shipping.php">Delivery information</a><a href="/returns.php">Returns &amp; support</a><a href="/privacy.php">Privacy</a></div>
   <div class="footer-note"><span class="eyebrow">A note from Ikki</span><p>Wear what words cannot say.</p><span class="footer-location">PAKISTAN · EST. 2026</span></div>
  </div>
