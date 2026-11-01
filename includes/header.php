@@ -61,6 +61,8 @@ $navItems=[
  },progressTime);
 })();
 </script>
+<div class="ikki-cursor-dot" data-ikki-cursor-dot aria-hidden="true"></div>
+<div class="ikki-cursor-ring" data-ikki-cursor-ring aria-hidden="true"></div>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
 <header class="site-header<?= $isHomePage?' is-home-header':'' ?>" data-site-header>
 <a class="maison-brand" href="/" aria-label="Ikki home"><span class="maison-monogram" aria-hidden="true">M</span><span class="maison-wordmark">MAISON</span></a>
