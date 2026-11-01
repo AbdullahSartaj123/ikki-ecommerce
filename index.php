@@ -57,17 +57,35 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
-<section class="home-values" aria-labelledby="values-title">
- <div class="home-values-heading home-reveal"><span class="home-kicker">03 / THE IKKI PROMISE</span><h2 id="values-title">The details<br>make the <em>difference.</em></h2><p>Every part of the experience deserves intention.</p></div>
- <article class="home-value home-reveal">
-  <span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 37 24 8l16 29H8Z"/><path d="M15 25h18M18 31h12M24 8v29"/></svg></span><span class="home-value-number">01 / THE MAKING</span><h3>Considered craftsmanship</h3><p>Thoughtful presentation, careful details and a point of view that feels unmistakably Ikki.</p>
- </article>
- <article class="home-value home-reveal">
-  <span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 40S8 30 8 18a8 8 0 0 1 16-2 8 8 0 0 1 16 2c0 12-16 22-16 22Z"/><path d="M24 16c-4 7-4 13 0 19"/></svg></span><span class="home-value-number">02 / THE FORMULA</span><h3>Quality-led ingredients</h3><p>We value balanced scent compositions and a considered selection of fragrance ingredients.</p>
- </article>
- <article class="home-value home-reveal">
-  <span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11l15-6Z"/><path d="M17 24l5 5 10-11"/></svg></span><span class="home-value-number">03 / THE IMPRESSION</span><h3>Made to linger</h3><p>Distinctive fragrance experiences designed to leave a memorable impression.</p>
- </article>
+<section class="home-perfumery" aria-labelledby="perfumery-title">
+ <div class="home-perfumery-heading home-reveal">
+  <span class="home-kicker">THE SCIENCE OF SCENT</span>
+  <h2 id="perfumery-title">The Art of Perfumery</h2>
+  <p>Where nature, expertise and time come together to create something unforgettable.</p>
+ </div>
+ <div class="home-perfumery-grid">
+  <article class="home-perfumery-item home-reveal">
+   <span class="home-perfumery-icon" aria-hidden="true">
+    <svg viewBox="0 0 48 48"><path d="M24 26c-5-4-8-9-5-13 3-4 7-2 5 2 0-6 5-8 8-4 3 4-1 10-8 15Z"/><path d="M24 26c-7-2-13-1-14 4-1 4 4 7 7 3-2 5 2 9 6 6 4-3 4-9 1-13ZM24 26c7-2 13-1 14 4 1 4-4 7-7 3 2 5-2 9-6 6"/><path d="M24 26v15M19 41h10"/></svg>
+   </span>
+   <h3>Premium Ingredients</h3>
+   <p>Exceptional raw materials, thoughtfully selected for their character, depth and beauty.</p>
+  </article>
+  <article class="home-perfumery-item home-reveal">
+   <span class="home-perfumery-icon" aria-hidden="true">
+    <svg viewBox="0 0 48 48"><path d="M12 25 8 21a3 3 0 0 1 4-4l7 6"/><path d="m19 23-5-7a3 3 0 0 1 5-3l7 8"/><path d="m26 21-3-8a3 3 0 0 1 6-2l4 10"/><path d="m33 21 1-5a3 3 0 0 1 6 1l-2 13c-1 7-6 11-13 11h-4c-5 0-8-3-11-8l-4-7a3 3 0 0 1 5-3l5 6"/></svg>
+   </span>
+   <h3>Master Perfumers</h3>
+   <p>Artistry and precision unite in the hands of those who understand the language of scent.</p>
+  </article>
+  <article class="home-perfumery-item home-reveal">
+   <span class="home-perfumery-icon" aria-hidden="true">
+    <svg viewBox="0 0 48 48"><path d="M16 7h16M16 41h16M18 7c0 8 2 11 6 17-4 6-6 9-6 17M30 7c0 8-2 11-6 17 4 6 6 9 6 17"/><path d="M19 17h10M19 31h10M20 34l4-3 4 3"/></svg>
+   </span>
+   <h3>Lasting Elegance</h3>
+   <p>Beautifully balanced compositions designed to unfold gracefully and linger in memory.</p>
+  </article>
+ </div>
 </section>
 
 <section class="home-newsletter" aria-labelledby="newsletter-title">
