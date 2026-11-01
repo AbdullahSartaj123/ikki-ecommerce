@@ -1772,3 +1772,31 @@ body.cart-drawer-open{overflow:hidden}
 .ikki-error-copy p{max-width:500px;margin:0 auto 30px;color:#96918a;font:300 13px/1.9 Montserrat,sans-serif}
 .ikki-error-copy .ikki-btn{display:inline-flex;align-items:center;justify-content:center;gap:18px;min-height:50px;padding:0 28px}
 @media(prefers-reduced-motion:reduce){.ikki-error-content{animation:none}}
+
+
+/* ACCESSIBILITY AUDIT — consistent keyboard focus and reduced motion */
+:where(a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"]),summary):focus-visible{
+ outline:2px solid #e3cb97!important;
+ outline-offset:2px!important;
+ box-shadow:none;
+}
+:where(a[href],button,input,select,textarea,[tabindex]:not([tabindex="-1"]),summary):focus:not(:focus-visible){
+ outline:none;
+}
+@media(prefers-reduced-motion:reduce){
+ html:focus-within{scroll-behavior:auto!important}
+ *,*::before,*::after{
+  animation:none!important;
+  animation-duration:0.01ms!important;
+  animation-iteration-count:1!important;
+  transition:none!important;
+  scroll-behavior:auto!important;
+ }
+ .fade-up,.fade-in,.scale-in,.slide-left,.slide-right,.reveal,.home-reveal,
+ .home-reveal.is-visible,.reveal.visible,.page-transition-in,.page-transition-out{
+  opacity:1!important;
+  transform:none!important;
+ }
+ .story-mission-word,.story-timeline-item,.story-timeline-marker,
+ .story-timeline-track::after{opacity:1!important;transform:none!important}
+}
