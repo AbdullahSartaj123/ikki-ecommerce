@@ -96,6 +96,26 @@ document.addEventListener('DOMContentLoaded',()=>{
   handlePageTransition(destination);
  });
 
+ // === GLOBAL SCROLL PROGRESS: RAF-THROTTLED ===
+ const scrollProgress=document.querySelector('[data-ikki-scroll-progress] > span');
+ if(scrollProgress){
+  let progressFrame=0;
+  const updateScrollProgress=()=>{
+   const scrollableHeight=document.documentElement.scrollHeight-window.innerHeight;
+   const progress=scrollableHeight>0?Math.min(100,Math.max(0,(window.scrollY/scrollableHeight)*100)):0;
+   scrollProgress.style.transform='scaleX('+(progress/100)+')';
+   progressFrame=0;
+  };
+  const requestProgressUpdate=()=>{
+   if(progressFrame)return;
+   progressFrame=requestAnimationFrame(updateScrollProgress);
+  };
+  window.addEventListener('scroll',requestProgressUpdate,{passive:true});
+  window.addEventListener('resize',requestProgressUpdate,{passive:true});
+  window.addEventListener('load',requestProgressUpdate,{once:true});
+  requestProgressUpdate();
+ }
+
  // One delegated smooth-scroll handler for every same-page anchor.
  document.addEventListener('click',event=>{
   const link=event.target.closest('a[href*="#"]');
