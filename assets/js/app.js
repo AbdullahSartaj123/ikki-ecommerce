@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  // Collection filtering, empty state, shimmer loading and client-side sorting.
  const collectionFilters=[...document.querySelectorAll('[data-filter]')];
- const collectionCards=[...document.querySelectorAll('.collection-card[data-category]')];
+ let collectionCards=[...document.querySelectorAll('.collection-card[data-category]')];
  const collectionRevealObserver=('IntersectionObserver'in window)?new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const card=entry.target;card.classList.add('is-revealed');collectionRevealObserver.unobserve(card);}),{threshold:.12,rootMargin:'0px 0px -30px 0px'}):null;
  collectionCards.forEach((card,index)=>{card.style.transitionDelay=(index*100)+'ms';if(collectionRevealObserver)collectionRevealObserver.observe(card);else card.classList.add('is-revealed');});
  const collectionCount=document.querySelector('.collection-count b');
@@ -202,6 +202,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     return Number(a.dataset.originalIndex)-Number(b.dataset.originalIndex);
    });
    sorted.forEach(card=>card.parentElement.appendChild(card));
+   collectionCards=sorted;
   };
   collectionCards.forEach((card,index)=>card.dataset.originalIndex=String(index));
   const matchesFilter=(card,selected)=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
@@ -279,6 +280,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   sortSelect?.addEventListener('change',sortCards);
   positionIndicator(collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0]);
+  revealPage('all',false); // Progressive enhancement: show the first perPage products on initial load.
+  if(collectionCount)collectionCount.textContent=String(collectionCards.length);
   window.addEventListener('resize',()=>positionIndicator(collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0]));
   const toolbarSentinel=document.querySelector('.collection-toolbar-sentinel');
   if(toolbarSentinel&&'IntersectionObserver'in window){
