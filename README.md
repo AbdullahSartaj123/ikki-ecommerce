@@ -9,8 +9,13 @@ Private PHP/MySQL e-commerce project for Ikki, a curated own-brand fragrance sto
 - Hosting target: InfinityFree
 - Checkout: Save order in MySQL, then open WhatsApp with a prefilled order summary. Customer must press Send; this is not automatic WhatsApp delivery.
 
-## Initial build
-This repository contains the first application foundation: storefront, product catalogue, cart, server-side checkout/order creation, WhatsApp handoff, initial admin login/dashboard, schema and documentation. CMS modules will be built iteratively.
+## Storefront and launch collection
+The storefront now includes an editorial luxury homepage, collection grid, product detail pages, cart, checkout, order handoff, contact, delivery, returns and privacy pages. The visual system uses a black/charcoal palette, warm gold accents, Italiana/Manrope typography, responsive layouts, custom SVG bottle concept artwork and reduced-motion-aware reveal effects.
+
+Four proposed launch concepts are included: Noor, Sahra, Velvet Dusk and Azure 04. Their fragrance notes, descriptions and PKR prices are illustrative concept content, not verified formula or retail information. Confirm final product names, compositions, pricing, photography and stock before taking live orders.
+
+## Seed the four sample products
+After importing `database/schema.sql`, import `database/seed-products.sql` into the same database. This creates the four proposed products, one 50 ml variant per product and local SVG concept artwork references. Review and change sample prices and stock in the admin dashboard before launch. The seed script is designed to be re-runnable without duplicating the same slugs/SKUs.
 
 ## Setup
 1. Create a MySQL database and import `database/schema.sql`.
