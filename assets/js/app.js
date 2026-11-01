@@ -31,11 +31,18 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('resize',()=>{if(window.innerWidth>700)closeMenu();});
  }
 
- // Consistent back-to-top behavior.
- document.querySelectorAll('[data-back-to-top]').forEach(link=>link.addEventListener('click',event=>{
-  event.preventDefault();
-  window.scrollTo({top:0,behavior:reducedMotion?'auto':'smooth'});
- }));
+ // Shared floating back-to-top control.
+ const backToTop=document.querySelector('[data-back-to-top]');
+ if(backToTop){
+  const updateBackToTop=()=>backToTop.classList.toggle('is-visible',window.scrollY>420);
+  updateBackToTop();
+  window.addEventListener('scroll',updateBackToTop,{passive:true});
+  backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:reducedMotion?'auto':'smooth'}));
+ }
+ // Lazy-load non-critical imagery while keeping hero and main product artwork eager.
+ document.querySelectorAll('img:not([loading])').forEach(img=>{
+  if(!img.closest('.home-hero')&&!img.closest('.product-visual'))img.loading='lazy';
+ });
 
  // Existing editorial reveal behavior.
  const reveal=document.querySelectorAll('.reveal, .home-reveal');
