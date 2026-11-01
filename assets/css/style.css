@@ -1277,7 +1277,12 @@ body.mobile-menu-open{overflow:hidden;touch-action:none}
 .page-banner-breadcrumb [aria-current="page"]{color:#b7b0a4}
 .page-banner h1{margin:0 0 15px;color:#f5f1eb;font:400 clamp(38px,4vw,48px)/1.15 'Playfair Display',Georgia,serif;letter-spacing:-.015em}
 .page-banner p{max-width:620px;margin:0 auto;color:#aaa49a;font:400 16px/1.7 'Montserrat',sans-serif}
-.page-banner-story:before{background:radial-gradient(ellipse at 50% 48%,rgba(167,131,75,.18),transparent 35%),linear-gradient(135deg,#211d16,#0a0a0a 65%,#1b160f)}
+.page-banner-story:before{background-image:linear-gradient(90deg,rgba(8,7,6,.88) 0%,rgba(8,7,6,.66) 42%,rgba(8,7,6,.24) 100%),linear-gradient(0deg,rgba(8,7,6,.22),rgba(8,7,6,.12)),url('https://cdn.shopify.com/s/files/1/0957/4826/0120/files/Bespoke-Parf-m-Kons-ltasyonu-Ki-ye-zel-Parf-m-Hizmeti-Synthese-Atelier-de-Parfum-42601508798744.png?v=1770981135');background-size:cover;background-position:center 48%;background-repeat:no-repeat}
+.page-banner-story:after{opacity:.28;background:linear-gradient(90deg,rgba(0,0,0,.22),transparent 70%),repeating-linear-gradient(118deg,transparent 0 90px,rgba(201,168,106,.025) 91px,transparent 92px 180px)}
+.page-banner-story .page-banner-copy{width:min(100%,900px);margin:0 auto;text-align:left}
+.page-banner-story .page-banner-breadcrumb{justify-content:flex-start}
+.page-banner-story .page-banner p{margin:0;max-width:690px;color:#e1d8ca;font-family:'Playfair Display',Georgia,serif;font-size:clamp(17px,2vw,22px);font-style:italic}
+@media(max-width:700px){.page-banner-story:before{background-position:58% center}.page-banner-story .page-banner-copy{width:100%}.page-banner-story .page-banner p{font-size:16px;max-width:100%}}
 .page-banner-contact:before{background:radial-gradient(ellipse at 50% 45%,rgba(140,105,55,.17),transparent 38%),linear-gradient(135deg,#211e17,#0a0a0a 60%,#1d1912)}
 @media(max-width:700px){
  .page-banner{height:45vh;min-height:320px;max-height:430px;padding:54px 22px}
