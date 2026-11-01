@@ -1463,3 +1463,30 @@ body.quick-view-open{overflow:hidden}
 .collection-all-viewed{color:#938b7e;font:400 12px 'Montserrat',sans-serif;letter-spacing:.06em}
 @keyframes collectionButtonSpin{to{transform:rotate(360deg)}}
 @media(prefers-reduced-motion:reduce){.collection-button-spinner{animation:none}}
+
+
+/* Our Story — reusable alternating narrative blocks */
+.story-narrative{padding:clamp(78px,9vw,128px) var(--gutter);background:#191814}
+.story-narrative-block{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(42px,7vw,100px);max-width:1440px;margin:0 auto;padding:0 0 clamp(82px,10vw,138px)}
+.story-narrative-block:last-child{padding-bottom:0}
+.story-narrative-visual{min-width:0;aspect-ratio:4/5;overflow:hidden;background:#211e18;border:1px solid #c7a8751c}
+.story-narrative-visual img{display:block;width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1),filter .8s;filter:saturate(.82) brightness(.9)}
+.story-narrative-visual:hover img{transform:scale(1.035);filter:saturate(1) brightness(1)}
+.story-narrative-copy{width:100%;max-width:480px;justify-self:center}
+.story-narrative-block.is-reversed .story-narrative-visual{order:2}
+.story-narrative-block.is-reversed .story-narrative-copy{order:1}
+.story-narrative-eyebrow{display:block;color:var(--gold);font:500 9px/1.5 var(--sans);letter-spacing:.23em}
+.story-narrative-rule{display:block;width:48px;height:1px;margin:22px 0 24px;background:var(--gold)}
+.story-narrative-copy h2{margin:0 0 25px;color:#f0e9dd;font:400 clamp(30px,3vw,32px)/1.2 var(--serif);letter-spacing:-.012em}
+.story-narrative-copy h2 em{color:var(--gold);font-weight:400}
+.story-narrative-copy p{margin:0 0 17px;color:#aaa397;font-size:11px;line-height:2.1}
+.story-narrative-copy p:last-child{margin-bottom:0}
+@media(max-width:700px){
+ .story-narrative{padding:68px 23px}
+ .story-narrative-block,.story-narrative-block.is-reversed{grid-template-columns:minmax(0,1fr);gap:48px;padding-bottom:78px}
+ .story-narrative-block:last-child{padding-bottom:0}
+ .story-narrative-block .story-narrative-visual,.story-narrative-block.is-reversed .story-narrative-visual{order:1;aspect-ratio:4/5}
+ .story-narrative-block .story-narrative-copy,.story-narrative-block.is-reversed .story-narrative-copy{order:2;justify-self:start;max-width:480px}
+ .story-narrative-copy h2{font-size:32px}
+}
+@media(prefers-reduced-motion:reduce){.story-narrative-visual img{transition:none}}
