@@ -54,6 +54,7 @@ $navItems=[
  window.setTimeout(function(){
   overlay.classList.add('is-finished');
   document.body.classList.remove('is-loading');
+  document.body.classList.add('page-transition-in');
   document.dispatchEvent(new CustomEvent('ikki:preloader-finished'));
   window.setTimeout(function(){
    if(overlay.parentNode)overlay.remove();
