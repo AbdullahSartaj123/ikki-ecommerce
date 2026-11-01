@@ -377,7 +377,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   quickDialog.addEventListener('close',()=>{document.body.classList.remove('quick-view-open');quickDialog.classList.remove('is-visible','is-closing');});
   quickForm.addEventListener('submit',event=>{if(!variantInput.value){event.preventDefault();addButton.disabled=true;}});
  }
- // Contact form validation and simulated submission states (front-end only).
+ // === CONTACT PAGE: FORM VALIDATION ===
+ // Client-side validation only; this form does not send or store messages.
  const contactForm=document.querySelector('#ikki-contact-form');
  if(contactForm){
   const feedback=document.querySelector('#contact-form-feedback');
@@ -389,6 +390,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   const emailPattern=/^[A-Z0-9.!#$%&'*+/=?^`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)+$/i;
   const fields=[...contactForm.querySelectorAll('#contact-name,#contact-email,#contact-subject,#contact-message')];
   let isSubmitting=false,resetTimer=null;
+  // Validate one field and keep inline error/ARIA state in sync.
   const validateField=field=>{
    const value=field.value.trim();
    let message='';
@@ -411,6 +413,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    field.addEventListener('change',()=>{if(field.id==='contact-subject'&&wrapHasError(field))validateField(field);});
   });
   function wrapHasError(field){return field.closest('.contact-field').classList.contains('is-invalid');}
+  // Reset form fields, feedback, success panel and the 1.2s progress line.
   const resetForm=()=>{
    if(resetTimer){window.clearTimeout(resetTimer);resetTimer=null;}
    contactForm.reset();
@@ -429,6 +432,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(note)note.hidden=false;
    isSubmitting=false;
   };
+  // Present the demo success state after the simulated sending delay.
   const showSuccess=()=>{
    submitButton.classList.remove('is-loading');submitButton.classList.add('is-success');
    submitButton.innerHTML='<svg class="contact-button-check" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Message Sent</span>';
@@ -444,6 +448,7 @@ document.addEventListener('DOMContentLoaded',()=>{
    resetTimer=window.setTimeout(resetForm,5000);
   };
   sendAnother.addEventListener('click',resetForm);
+  // Submit lifecycle: validate → animate progress → show demo confirmation.
   contactForm.addEventListener('submit',event=>{
    event.preventDefault();
    if(isSubmitting||submitButton.classList.contains('is-success'))return;
