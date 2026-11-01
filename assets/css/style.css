@@ -1026,3 +1026,31 @@ img{height:auto}.footer-bottom{flex-wrap:wrap;gap:12px 22px}
         will-change: auto;
     }
 }
+
+
+/* IKKI SCROLL REVEAL ANIMATIONS */
+.fade-up,.fade-in,.scale-in,.slide-left,.slide-right {
+    opacity: 0;
+    transition-property: opacity, transform;
+    transition-duration: .8s;
+    transition-timing-function: cubic-bezier(.25, .1, .25, 1);
+    will-change: opacity, transform;
+}
+.fade-up { transform: translateY(30px); }
+.fade-in { transform: none; }
+.scale-in { transform: scale(.9); }
+.slide-left { transform: translateX(60px); }
+.slide-right { transform: translateX(-60px); }
+.fade-up.in-view,.fade-in.in-view,.scale-in.in-view,.slide-left.in-view,.slide-right.in-view {
+    opacity: 1;
+    transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    .fade-up,.fade-in,.scale-in,.slide-left,.slide-right,
+    .fade-up.in-view,.fade-in.in-view,.scale-in.in-view,.slide-left.in-view,.slide-right.in-view {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        will-change: auto;
+    }
+}
