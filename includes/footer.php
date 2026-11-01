@@ -1,20 +1,50 @@
 </main>
-<footer class="site-footer">
- <div class="footer-top">
-  <div class="footer-brand">
-   <a class="wordmark" href="/" aria-label="Ikki home">ikki<span>®</span></a>
-   <p>Fragrance is the invisible detail<br>that makes a moment yours.</p>
-   <a class="footer-social" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer" aria-label="Contact Ikki on WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4ZM8.8 7.7c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.1 3c.1.2 2 3.2 5 4.3 2.5 1 3 .8 3.6.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.1-1.4-.1-.1-.3-.2-.6-.4l-1.9-.9c-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.8-1.9Z"/></svg>
-    <span>Speak to our team <b>↗</b></span>
-   </a>
-  </div>
-  <div class="footer-column"><h3>Discover</h3><a href="/">Home</a><a href="/shop.php">The collection</a><a href="/our-story.php">Our story</a><a href="/contact.php">Contact us</a></div>
-  <div class="footer-column"><h3>Customer care</h3><a href="/shipping.php">Delivery information</a><a href="/returns.php">Returns &amp; support</a><a href="/privacy.php">Privacy</a></div>
-  <div class="footer-note"><span class="eyebrow">A note from Ikki</span><p>Wear what words cannot say.</p><span class="footer-location">PAKISTAN · EST. 2026</span></div>
+<footer class="site-footer ikki-footer">
+ <div class="ikki-footer-main">
+  <section class="ikki-footer-column ikki-footer-brand" data-footer-accordion>
+   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-brand-content"><span class="ikki-footer-brand-mark">ikki<span>®</span></span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
+   <div class="ikki-footer-panel" id="footer-brand-content">
+    <p class="ikki-footer-tagline">Crafted fragrances for the modern connoisseur</p>
+    <div class="ikki-footer-socials" aria-label="Follow Ikki">
+     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle class="social-dot" cx="18" cy="6.5" r="1"></circle></svg></a>
+     <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="social-fill" d="M13.5 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.3V13h2.8v8z"></path></svg></a>
+     <a href="https://www.pinterest.com/" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="social-fill" d="M12 2a10 10 0 0 0-3.6 19.3c0-.8 0-1.8.2-2.7l1.3-5.4s-.3-.6-.3-1.5c0-1.4.8-2.5 1.9-2.5.9 0 1.3.7 1.3 1.5 0 .9-.6 2.3-.9 3.6-.3 1.1.5 2 1.6 2 1.9 0 3.3-2.4 3.3-5.2 0-2.1-1.4-3.7-3.9-3.7-2.8 0-4.5 2.1-4.5 4.4 0 .8.2 1.5.6 2 .2.2.2.3.1.6l-.2.8c-.1.3-.3.4-.6.3-1.3-.5-1.9-1.9-1.9-3.5 0-2.6 2.2-5.8 6.6-5.8 3.5 0 5.8 2.5 5.8 5.2 0 3.6-2 6.3-4.9 6.3-1 0-2-.6-2.4-1.2l-.7 2.8c-.2 1-.8 1.9-1.2 2.6A10 10 0 1 0 12 2z"></path></svg></a>
+     <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="social-fill" d="M19.6 7.2a5.6 5.6 0 0 1-3.5-1.2v7.8a5.8 5.8 0 1 1-5-5.7v3.2a2.7 2.7 0 1 0 1.8 2.5V2h3.2c.2 2 1.6 3.6 3.5 3.9z"></path></svg></a>
+    </div>
+   </div>
+  </section>
+  <section class="ikki-footer-column" data-footer-accordion>
+   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-shop-content"><span>Shop</span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
+   <div class="ikki-footer-panel" id="footer-shop-content">
+    <a href="/shop.php">Collection</a><a href="/shop.php?sort=newest">New Arrivals</a><a href="/shop.php?sort=best-sellers">Best Sellers</a><a href="/shop.php?category=gift-sets">Gift Sets</a>
+   </div>
+  </section>
+  <section class="ikki-footer-column" data-footer-accordion>
+   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-care-content"><span>Customer Care</span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
+   <div class="ikki-footer-panel" id="footer-care-content">
+    <a href="/contact.php">Contact</a><a href="/shipping.php">Shipping Info</a><a href="/returns.php">Returns</a><a href="/contact.php#faq">FAQ</a>
+   </div>
+  </section>
+  <section class="ikki-footer-column ikki-footer-newsletter" data-footer-accordion>
+   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-newsletter-content"><span>Newsletter</span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
+   <div class="ikki-footer-panel" id="footer-newsletter-content">
+    <p>Notes on new fragrances, considered rituals and the art of scent. Delivered occasionally.</p>
+    <form class="ikki-newsletter-form" id="ikki-newsletter-form" novalidate>
+     <label class="visually-hidden" for="ikki-newsletter-email">Email address</label>
+     <input id="ikki-newsletter-email" name="email" type="email" placeholder="Your email address" autocomplete="email" required>
+     <button type="submit" aria-label="Submit newsletter email"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"></path></svg></button>
+    </form>
+    <p class="ikki-newsletter-feedback" id="ikki-newsletter-feedback" role="status" aria-live="polite"></p>
+   </div>
+  </section>
  </div>
- <div class="footer-bottom"><span>© <?=date('Y')?> IKKI. ALL RIGHTS RESERVED.</span><span>CRAFTED FOR YOUR EVERYDAY EXTRAORDINARY.</span><a href="#top" data-back-to-top>BACK TO TOP ↑</a></div>
+ <div class="ikki-footer-bottom">
+  <span>© <?=date('Y')?> IKKI. ALL RIGHTS RESERVED.</span>
+  <div class="ikki-payment-methods" aria-label="Payment methods accepted">
+   <span>VISA</span><span>Mastercard</span><span>COD</span>
+  </div>
+ </div>
 </footer>
 <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" title="Back to top"><span>↑</span></button>
-<script src="/assets/js/app.js?v=20261101-9" defer></script>
+<script src="/assets/js/app.js?v=20261101-10" defer></script>
 </body></html>
