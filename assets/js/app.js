@@ -481,8 +481,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const milestones=[...storyTimeline.querySelectorAll('.story-timeline-item')];
   const updateTimelineProgress=()=>{
    const active=milestones.filter(item=>item.classList.contains('is-active')).length;
-   const progress=milestones.length>1?(active-1)/(milestones.length-1)*100:active?100:0;
-   storyTimeline.style.setProperty('--timeline-progress',Math.max(0,progress)+'%');
+   const progress=milestones.length>1?(active-1)/(milestones.length-1):active?1:0;
+   storyTimeline.style.setProperty('--timeline-progress',String(Math.max(0,progress)));
   };
   if('IntersectionObserver' in window){
    const milestoneObserver=new IntersectionObserver(entries=>{
