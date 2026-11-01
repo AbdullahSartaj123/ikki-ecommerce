@@ -13,7 +13,7 @@ require __DIR__.'/includes/header.php';
 
 <section class="story-narrative" aria-label="The Ikki story">
  <article class="story-narrative-block">
-  <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature Ikki fragrance bottle, representing the beginning of the house" loading="lazy"></div>
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature Ikki fragrance bottle, representing the beginning of the house" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">THE BEGINNING</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
@@ -23,7 +23,7 @@ require __DIR__.'/includes/header.php';
   </div>
  </article>
  <article class="story-narrative-block is-reversed">
-  <div class="story-narrative-visual slide-left"><img src="/assets/images/sahra.svg" alt="Sahra fragrance bottle artwork, an expression of the perfumer’s craft" loading="lazy"></div>
+  <div class="story-narrative-visual slide-left"><img src="/assets/images/sahra.svg" alt="Sahra fragrance bottle artwork, an expression of the perfumer’s craft" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">THE CRAFT</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
@@ -33,7 +33,7 @@ require __DIR__.'/includes/header.php';
   </div>
  </article>
  <article class="story-narrative-block">
-  <div class="story-narrative-visual slide-right"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle artwork, representing the Ikki collection today" loading="lazy"></div>
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle artwork, representing the Ikki collection today" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">TODAY</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
@@ -88,7 +88,7 @@ require __DIR__.'/includes/header.php';
 <section class="story-founder" aria-labelledby="story-founder-title">
  <div class="story-founder-inner">
   <div class="story-founder-portrait slide-left">
-   <img src="/assets/images/noor.svg" alt="Ikki signature fragrance bottle artwork — temporary visual pending the founder's portrait" loading="lazy">
+   <img src="/assets/images/noor.svg" alt="Ikki signature fragrance bottle artwork — temporary visual pending the founder's portrait" width="800" height="1000" loading="lazy" decoding="async">
    <span class="story-founder-corner" aria-hidden="true"></span>
   </div>
   <div class="story-founder-copy fade-up">
@@ -106,6 +106,6 @@ require __DIR__.'/includes/header.php';
 
 <section class="story-cta">
  <div class="story-cta-copy reveal"><span class="story-kicker">YOUR NEXT CHAPTER</span><h2>Discover your<br><em>signature scent.</em></h2><p>Explore the collection and find the fragrance that feels like you.</p><a class="story-cta-button" href="/shop.php">Explore Our Collection <span>↗</span></a></div>
- <div class="story-cta-art reveal"><img src="/assets/images/azure-04.svg" alt="Azure 04 fragrance bottle concept artwork" loading="lazy"><span>IKKI / THE SIGNATURE COLLECTION</span></div>
+ <div class="story-cta-art reveal"><img src="/assets/images/azure-04.svg" alt="Azure 04 fragrance bottle concept artwork" width="800" height="1000" loading="lazy" decoding="async"><span>IKKI / THE SIGNATURE COLLECTION</span></div>
 </section>
 <?php require __DIR__.'/includes/footer.php'; ?>
