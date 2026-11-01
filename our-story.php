@@ -82,6 +82,14 @@ require __DIR__.'/includes/header.php';
  </ol>
 </section>
 
+<section class="story-mission" aria-labelledby="story-mission-title">
+ <div class="story-mission-inner">
+  <span class="story-mission-rule" aria-hidden="true"></span>
+  <h2 id="story-mission-title" class="story-mission-quote" data-mission-quote aria-label="We believe fragrance is memory bottled — a single scent capable of transporting you across time and place.">“We believe fragrance is memory bottled — a single scent capable of transporting you across time and place.”</h2>
+  <span class="story-mission-rule" aria-hidden="true"></span>
+ </div>
+</section>
+
 <section class="story-manifesto">
  <span class="story-kicker reveal">THE IKKI POINT OF VIEW</span>
  <blockquote class="reveal">“We believe the most beautiful signature is the one that feels <em>entirely your own.</em>”</blockquote>
