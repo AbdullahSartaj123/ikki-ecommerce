@@ -1325,3 +1325,31 @@ body.mobile-menu-open{overflow:hidden;touch-action:none}
  .collection-count{font-size:7px}
 }
 @media(prefers-reduced-motion:reduce){.collection-filter-indicator,.collection-filter,.collection-toolbar-wrap,.collection-card{transition:none}.collection-card.is-filtering-in{animation:none}}
+
+
+/* EIGHT-SCENT COLLECTION GRID */
+.collection-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px}
+.collection-card{min-width:0;opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+.collection-card.is-revealed{opacity:1;transform:translateY(0)}
+.collection-card-image{position:relative;display:block;aspect-ratio: .82;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#393126,#171612 68%);border:1px solid rgba(201,168,106,.12)}
+.collection-card-image img{width:100%;height:100%;object-fit:contain;padding:12%;transition:transform .7s cubic-bezier(.2,.7,.2,1),filter .5s;filter:drop-shadow(0 22px 22px #0008)}
+.collection-card:hover .collection-card-image img{transform:scale(1.055);filter:drop-shadow(0 28px 27px #0009)}
+.collection-new-badge{position:absolute;z-index:2;top:14px;left:14px;padding:6px 11px;border-radius:20px;background:#c9a86a;color:#17140e;font:600 8px/1 'Montserrat',sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.collection-quick-view{position:absolute;z-index:3;top:13px;right:13px;width:37px;height:37px;display:grid;place-items:center;border:1px solid rgba(201,168,106,.55);border-radius:50%;background:rgba(10,10,10,.78);color:#e3cb97;opacity:0;transform:translateY(5px);cursor:pointer;transition:opacity .25s ease,transform .25s ease,background .25s ease}
+.collection-quick-view svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.35}
+.collection-card:hover .collection-quick-view,.collection-quick-view:focus-visible{opacity:1;transform:translateY(0)}
+.collection-quick-view:hover{background:#c9a86a;color:#111}
+.collection-card-info{padding:17px 1px 0}
+.collection-card-info h2{margin:0 0 6px;color:#f5f1eb;font:400 25px/1.15 'Playfair Display',Georgia,serif}
+.collection-card-info p{min-height:20px;margin:0 0 12px;color:#9d968b;font:italic 11px/1.6 'Montserrat',sans-serif}
+.collection-card-info strong{color:#e3cb97;font:500 12px/1 'Montserrat',sans-serif;letter-spacing:.04em}
+.collection-quick-dialog{position:fixed;inset:50% auto auto 50%;transform:translate(-50%,-50%);width:min(440px,calc(100% - 36px));padding:48px 38px 38px;border:1px solid rgba(201,168,106,.4);background:#151410;color:#f5f1eb;text-align:center;box-shadow:0 25px 100px #000b}
+.collection-quick-dialog::backdrop{background:rgba(0,0,0,.78);backdrop-filter:blur(5px)}
+.collection-dialog-close{position:absolute;top:10px;right:15px;border:0;background:none;color:#c9a86a;font:300 28px/1 sans-serif;cursor:pointer}
+.collection-quick-dialog h2{margin:18px 0 8px;font:400 34px/1.15 'Playfair Display',serif}
+.collection-dialog-notes{margin:0 0 15px;color:#aaa49a;font:italic 12px/1.7 'Montserrat',sans-serif}
+.collection-dialog-price{display:block;margin-bottom:22px;color:#e3cb97;font:500 14px 'Montserrat',sans-serif}
+.collection-dialog-link[hidden]{display:none}
+@media(max-width:1199px){.collection-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:767px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 16px}.collection-card-info h2{font-size:21px}.collection-card-info p{font-size:10px}.collection-quick-view{opacity:1;transform:none;width:33px;height:33px;top:9px;right:9px}.collection-new-badge{top:10px;left:10px}}
+@media(prefers-reduced-motion:reduce){.collection-card,.collection-card-image img,.collection-quick-view{transition:none;transform:none}.collection-card{opacity:1}}
