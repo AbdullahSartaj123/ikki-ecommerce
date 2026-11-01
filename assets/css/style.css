@@ -2,3 +2,77 @@
 
 /* Checkout, confirmation and CMS page refinements */
 .checkout-layout{max-width:1160px;margin:0 auto;padding:35px var(--gutter) 110px;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,.65fr);gap:70px}.checkout-form{max-width:none}.checkout-step{display:flex;gap:17px;align-items:start;margin:38px 0 20px;padding-top:25px;border-top:1px solid var(--line)}.checkout-step>span{font:italic 21px var(--serif);color:var(--gold)}.checkout-step h2{font:28px var(--serif);margin:0}.checkout-step p{font-size:10px;color:#918a7e;margin:3px 0}.payment-choice{display:flex;align-items:center;gap:15px;padding:18px;border:1px solid var(--gold);background:#1b1a16}.payment-icon{width:38px;height:38px;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold);font:22px var(--serif)}.payment-choice strong,.payment-choice small{display:block}.payment-choice strong{font:20px var(--serif)}.payment-choice small{font-size:9px;color:#999184}.payment-check{margin-left:auto;color:var(--gold)}.checkout-consent{font-size:9px;line-height:1.8;color:#918a7e;margin:24px 0}.checkout-submit{width:100%;cursor:pointer}.checkout-aside{align-self:start;padding:30px;background:#191813;border:1px solid var(--line);margin-top:40px}.checkout-aside h3{font:38px/1.05 var(--serif);margin:20px 0}.checkout-aside p{font-size:11px;color:#a39b8e;line-height:2;margin-bottom:25px}.order-complete{min-height:590px;padding:100px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(ellipse at 50% 40%,#413322 0,transparent 58%)}.complete-mark{width:54px;height:54px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-size:24px;margin-bottom:28px}.order-complete h1{font:400 clamp(60px,8vw,100px)/.88 var(--serif);margin:25px 0}.order-complete h1 em{color:var(--gold);font-weight:400}.order-complete>p{max-width:510px;color:#aaa397;font-size:12px;line-height:2;margin:0 auto 30px}.order-complete .text-link{margin-top:25px}.empty-state{min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px}.admin-shell{background:transparent}.admin-shell>h1{margin:10px 0 20px}.admin-shell .cart-table{margin-top:20px}.admin-shell .site-form{margin:25px 0;max-width:850px}.admin-shell textarea{width:100%;background:#1a1a16;border:1px solid #4b4437;color:var(--cream);padding:14px}.admin-shell input[type=checkbox]{accent-color:var(--gold)}.admin-shell .stat{border-radius:2px}.admin-shell .cart-table a{color:var(--gold2)}.admin-shell .cart-table a:hover{text-decoration:underline}@media(max-width:700px){.checkout-layout{grid-template-columns:1fr;padding:15px 20px 75px;gap:25px}.checkout-aside{margin-top:0;padding:24px}.checkout-step{margin-top:28px}.order-complete{min-height:520px;padding:75px 22px}.order-complete h1{font-size:65px}.checkout-submit{min-height:54px}.empty-state{min-height:260px}}
+
+
+/* IKKI shared luxury design tokens and global chrome */
+:root{
+ --color-black:#090908;
+ --color-charcoal:#151411;
+ --color-charcoal-soft:#1d1b17;
+ --color-champagne:#c8ad7c;
+ --color-champagne-light:#e6d5b3;
+ --color-ivory:#f2eee6;
+ --color-muted:#a59d90;
+ --color-border:rgba(200,173,124,.22);
+ --font-display:'Cormorant Garamond',Georgia,serif;
+ --font-body:'Montserrat',Arial,sans-serif;
+ --space-1:8px;--space-2:16px;--space-3:24px;--space-4:40px;--space-5:64px;--space-6:96px;
+ --page-gutter:clamp(22px,7.2vw,112px);
+ --content-width:1440px;
+ --ink:var(--color-charcoal);
+ --black:var(--color-black);
+ --panel:var(--color-charcoal-soft);
+ --gold:var(--color-champagne);
+ --gold2:var(--color-champagne-light);
+ --cream:var(--color-ivory);
+ --muted:var(--color-muted);
+ --line:var(--color-border);
+ --serif:var(--font-display);
+ --sans:var(--font-body);
+ --gutter:var(--page-gutter);
+}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:var(--font-body);background:var(--color-charcoal);color:var(--color-ivory)}
+.site-header{
+ position:sticky;top:0;min-height:86px;height:86px;
+ background:rgba(9,9,8,.96);border-bottom:1px solid var(--color-border);
+ -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+ transition:background .35s ease,border-color .35s ease,top .35s ease;
+}
+.site-header.is-home-header{
+ position:fixed;top:32px;left:0;right:0;width:100%;
+ background:linear-gradient(180deg,rgba(8,8,7,.54),rgba(8,8,7,.08));
+ border-bottom-color:rgba(230,213,179,.12);
+}
+.site-header.is-home-header.is-scrolled{
+ top:0;background:rgba(9,9,8,.96);border-bottom-color:var(--color-border);
+}
+.main-nav>a,.nav-group>a,.bag-link{
+ font-family:var(--font-body);font-size:10px;font-weight:500;
+ letter-spacing:.18em;color:var(--color-ivory);
+}
+.main-nav>a{position:relative;padding:10px 0}
+.main-nav>a:after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:var(--color-champagne);transition:right .3s ease}
+.main-nav>a:hover:after,.main-nav>a.active:after{right:0}
+.main-nav>a:hover,.main-nav>a.active,.bag-link:hover{color:var(--color-champagne-light)}
+.menu-toggle{cursor:pointer}
+.menu-toggle:focus-visible,.main-nav a:focus-visible,.bag-link:focus-visible,.footer-column a:focus-visible{outline:1px solid var(--color-champagne);outline-offset:5px}
+.site-footer{background:var(--color-black)}
+.footer-social{display:inline-flex;align-items:center;gap:11px;color:var(--color-champagne-light);font-size:9px;letter-spacing:.13em;text-transform:uppercase}
+.footer-social svg{width:18px;height:18px;fill:currentColor}
+.footer-social b{padding-left:10px;font-weight:400}
+.footer-bottom a{transition:color .25s ease}
+.footer-bottom a:hover{color:var(--color-champagne-light)}
+@media(max-width:700px){
+ :root{--page-gutter:22px;--gutter:22px}
+ .site-header{min-height:70px;height:70px}
+ .site-header.is-home-header{top:29px}
+ .site-header.is-home-header.is-scrolled{top:0}
+ .main-nav{z-index:25}
+ .main-nav.open{display:flex}
+ .main-nav>a.active{color:var(--color-champagne-light)}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .site-header,.main-nav a:after,.footer-bottom a{transition:none}
+}
