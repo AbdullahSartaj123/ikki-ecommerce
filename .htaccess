@@ -1,2 +1,4 @@
 DirectoryIndex index.php
-Options -Indexes\n\nErrorDocument 404 /404.php\n
+Options -Indexes
+
+ErrorDocument 404 /404.php
