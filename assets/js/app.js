@@ -76,6 +76,31 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
  }
 
+ // === PAGE-TO-PAGE TRANSITIONS: DELEGATED INTERNAL NAVIGATION ===
+ const transitionDuration=300;
+ let pageNavigationPending=false;
+ const handlePageTransition=url=>{
+  if(pageNavigationPending)return;
+  pageNavigationPending=true;
+  document.body.classList.remove('page-transition-in');
+  document.body.classList.add('page-transition-out');
+  if(reducedMotion){window.location.assign(url.href);return;}
+  window.setTimeout(()=>window.location.assign(url.href),transitionDuration);
+ };
+ document.addEventListener('click',event=>{
+  if(event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;
+  const link=event.target.closest('a[href]');
+  if(!link||link.hasAttribute('download')||(link.target&&link.target!=='_self'))return;
+  const rawHref=link.getAttribute('href')||'';
+  if(/^(?:mailto:|tel:|javascript:)/i.test(rawHref))return;
+  let destination;
+  try{destination=new URL(link.href,window.location.href);}catch(error){return;}
+  if(!['http:','https:'].includes(destination.protocol)||destination.origin!==window.location.origin)return;
+  if(destination.pathname===window.location.pathname&&destination.search===window.location.search)return;
+  event.preventDefault();
+  handlePageTransition(destination);
+ });
+
  // One delegated smooth-scroll handler for every same-page anchor.
  document.addEventListener('click',event=>{
   const link=event.target.closest('a[href*="#"]');
