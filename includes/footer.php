@@ -46,20 +46,7 @@
  </div>
 </footer>
 <div class="cart-drawer-backdrop" data-cart-drawer-backdrop aria-hidden="true"></div>
-<aside class="cart-drawer" data-cart-drawer role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true">
- <div class="cart-drawer-header">
-  <h2 id="cart-drawer-title">Your Bag (<span data-cart-count>2</span>)</h2>
-  <button class="cart-drawer-close" type="button" data-cart-drawer-close aria-label="Close shopping bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
- </div>
- <div class="cart-drawer-content" data-cart-drawer-content></div>
- <div class="cart-drawer-footer" data-cart-drawer-footer>
-  <div class="cart-drawer-subtotal"><span>Subtotal</span><strong data-cart-subtotal>Rs. 350</strong></div>
-  <a class="cart-drawer-checkout" href="/cart.php">Checkout <span aria-hidden="true">↗</span></a>
-  <button class="cart-drawer-continue" type="button" data-cart-drawer-continue>Continue Shopping</button>
- </div>
-</aside>
-<div class="cart-drawer-backdrop" data-cart-drawer-backdrop aria-hidden="true"></div>
-<aside class="cart-drawer" data-cart-drawer role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true">
+<aside class="cart-drawer" data-cart-drawer role="dialog" aria-modal="true" aria-labelledby="cart-drawer-title" aria-hidden="true" id="cart-drawer">
  <div class="cart-drawer-header">
   <h2 id="cart-drawer-title">Your Bag (<span data-cart-count>2</span>)</h2>
   <button class="cart-drawer-close" type="button" data-cart-drawer-close aria-label="Close shopping bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
