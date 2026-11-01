@@ -64,7 +64,7 @@ require __DIR__.'/includes/header.php';
    <div class="collection-card-image">
     <?php if($p['is_new']): ?><span class="collection-new-badge">New</span><?php endif; ?>
     <img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" loading="lazy">
-    <button class="collection-quick-view" type="button" data-quick-view
+    <button class="collection-quick-view" type="button" aria-label="View <?=e($p['name'])?> fragrance details" data-quick-view
      data-name="<?=e($p['name'])?>" data-notes="<?=e($p['notes'])?>" data-price="<?=e(money($p['price']))?>"
      data-image="<?=e($imagePath)?>" data-description="<?=e($modalDescription)?>"
      data-top="<?=e($topNote)?>" data-heart="<?=e($heartNote)?>" data-base="<?=e($baseNote)?>"
