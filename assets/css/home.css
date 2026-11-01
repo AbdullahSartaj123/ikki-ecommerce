@@ -319,3 +319,7 @@
  .home-best-name{font-size:18px}
 }
 @media(prefers-reduced-motion:reduce){.home-best-card,.home-best-card-image>img,.home-best-quick-add,.home-best-quick-add button,.home-best-quick-add span,.home-best-sellers-view{transition:none!important}}
+
+
+/* Reliability fallback: homepage content must remain visible if reveal JS is unavailable. */
+.home-reveal{opacity:1;transform:none}
