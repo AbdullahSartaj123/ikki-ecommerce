@@ -47,7 +47,7 @@ require __DIR__.'/includes/header.php';
 </section>
 
 <section class="home-story-teaser" aria-labelledby="story-title">
- <div class="home-story-parallax" aria-hidden="true"><img class="home-story-image" src="/assets/images/sahra.svg" alt="" loading="lazy"></div>
+ <div class="home-story-parallax" aria-hidden="true"><img class="home-story-image" src="/assets/images/sahra.svg" alt="Sahra fragrance bottle artwork displayed in the Ikki brand story" loading="lazy"></div>
  <div class="home-story-overlay" aria-hidden="true"></div>
  <div class="home-story-content home-reveal" data-story-reveal>
   <span class="home-story-eyebrow">SINCE 1998</span>
