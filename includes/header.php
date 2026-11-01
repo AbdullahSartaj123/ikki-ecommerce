@@ -6,7 +6,7 @@ $isHomePage=($currentPage==='index.php');
 $navItems=[
  ['label'=>'Home','href'=>'/','match'=>['index.php']],
  ['label'=>'Collection','href'=>'/shop.php','match'=>['shop.php']],
- ['label'=>'Our Story','href'=>'/#our-world','match'=>['our-story.php']],
+ ['label'=>'Our Story','href'=>'/our-story.php','match'=>['our-story.php']],
  ['label'=>'Contact','href'=>'/contact.php','match'=>['contact.php']]
 ];
 ?><!doctype html>
@@ -23,7 +23,7 @@ $navItems=[
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261101-4">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261101-5">
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-2"><?php endif; ?>
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?>">
