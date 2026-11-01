@@ -475,6 +475,37 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
  }
 
+ // Our Story mission statement: reveal the quotation word by word once in view.
+ const missionQuote=document.querySelector('[data-mission-quote]');
+ if(missionQuote){
+  const quoteText=missionQuote.getAttribute('aria-label')||missionQuote.textContent.trim();
+  const words=quoteText.match(/\\S+/g)||[];
+  if(reducedMotion||!('IntersectionObserver' in window)){
+   missionQuote.textContent=quoteText;
+   missionQuote.classList.add('is-visible');
+  }else{
+   missionQuote.textContent='';
+   words.forEach((word,index)=>{
+    const span=document.createElement('span');
+    span.className='story-mission-word';
+    span.style.setProperty('--word-delay',(index*50)+'ms');
+    span.textContent=word;
+    missionQuote.appendChild(span);
+    if(index<words.length-1)missionQuote.appendChild(document.createTextNode(' '));
+   });
+   const missionSection=missionQuote.closest('.story-mission');
+   const missionObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+     if(entry.isIntersecting){
+      missionSection.classList.add('is-visible');
+      missionObserver.unobserve(entry.target);
+     }
+    });
+   },{threshold:.25,rootMargin:'0px 0px -8% 0px'});
+   missionObserver.observe(missionSection);
+  }
+ }
+
  // Our Story milestone timeline: activate each milestone once as it enters view.
  const storyTimeline=document.querySelector('.story-timeline-track');
  if(storyTimeline){
