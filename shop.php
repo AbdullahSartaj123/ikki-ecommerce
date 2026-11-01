@@ -52,12 +52,25 @@ require __DIR__.'/includes/header.php';
   $dbProduct=$databaseProducts[$p['slug']]??null;
   $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
   $imagePath=$dbProduct['image_path']??'/assets/images/noor.svg';
+  $variants=[];
+  if($dbProduct){$variantQuery=db()->prepare("SELECT id,variant_name,volume_ml,price,stock_quantity FROM product_variants WHERE product_id=? AND is_active=1 ORDER BY volume_ml");$variantQuery->execute([(int)$dbProduct['id']]);$variants=$variantQuery->fetchAll();}
+  $topNote=trim(explode(',',$p['notes'])[0]??'');
+  $noteParts=array_map('trim',explode(',',$p['notes']));
+  $heartNote=$noteParts[1]??'Signature accord';
+  $baseNote=$noteParts[2]??'Warm woods';
+  $modalDescription=$p['name'].' opens with '.$topNote.', unfolds into '.$heartNote.', and settles into '.$baseNote.'. A considered scent composition for a memorable signature.';
  ?>
   <article class="collection-card collection-reveal" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
    <div class="collection-card-image">
     <?php if($p['is_new']): ?><span class="collection-new-badge">New</span><?php endif; ?>
     <img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" loading="lazy">
-    <button class="collection-quick-view" type="button" data-quick-view data-name="<?=e($p['name'])?>" data-notes="<?=e($p['notes'])?>" data-price="<?=e(money($p['price']))?>" data-url="<?=e($productUrl)?>" aria-label="Quick view <?=e($p['name'])?>">
+    <button class="collection-quick-view" type="button" data-quick-view
+     data-name="<?=e($p['name'])?>" data-notes="<?=e($p['notes'])?>" data-price="<?=e(money($p['price']))?>"
+     data-image="<?=e($imagePath)?>" data-description="<?=e($modalDescription)?>"
+     data-top="<?=e($topNote)?>" data-heart="<?=e($heartNote)?>" data-base="<?=e($baseNote)?>"
+     data-url="<?=e($productUrl)?>" data-variants="<?=e(json_encode($variants,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES))?>"
+     data-available="<?=$dbProduct&&count($variants)?'true':'false'?>"
+     aria-label="Quick view <?=e($p['name'])?>">
      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg>
     </button>
    </div>
@@ -70,10 +83,27 @@ require __DIR__.'/includes/header.php';
  <?php endforeach; ?>
  </div>
  <dialog class="collection-quick-dialog" id="collection-quick-dialog" aria-labelledby="quick-view-title">
-  <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view">×</button>
-  <span class="eyebrow">THE IKKI FRAGRANCE HOUSE</span>
-  <h2 id="quick-view-title"></h2><p class="collection-dialog-notes"></p><strong class="collection-dialog-price"></strong>
-  <a class="button-gold collection-dialog-link" href="/shop.php" hidden>View fragrance <span>↗</span></a>
+  <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  <div class="quick-view-layout">
+   <div class="quick-view-visual"><img data-quick-image src="/assets/images/noor.svg" alt=""></div>
+   <div class="quick-view-content">
+    <span class="quick-view-kicker">THE IKKI FRAGRANCE HOUSE</span>
+    <h2 id="quick-view-title"></h2>
+    <strong class="quick-view-price" data-quick-price></strong>
+    <div class="quick-view-rating" aria-label="Customer ratings are not available yet"><span aria-hidden="true">★★★★★</span><small>Customer rating coming soon</small></div>
+    <div class="quick-view-notes"><span class="quick-view-label">THE OLFACTIVE STORY</span><div class="quick-view-note-pills"><span data-note-top></span><span data-note-heart></span><span data-note-base></span></div></div>
+    <p class="quick-view-description" data-quick-description></p>
+    <form class="quick-view-purchase" method="post" action="/actions/cart-add.php" data-quick-form>
+     <?=csrf_field()?>
+     <input type="hidden" name="variant_id" value="">
+     <div class="quick-view-options" data-quick-sizes hidden><span class="quick-view-label">CHOOSE YOUR SIZE</span><div class="quick-view-size-buttons" data-size-buttons></div></div>
+     <div class="quick-view-quantity"><span class="quick-view-label">QUANTITY</span><div class="quick-view-quantity-control"><button type="button" data-quantity-minus aria-label="Decrease quantity">−</button><output data-quantity-value>1</output><button type="button" data-quantity-plus aria-label="Increase quantity">+</button></div><input type="hidden" name="quantity" value="1"></div>
+     <button class="quick-view-add" type="submit" disabled data-quick-add>Add to Cart</button>
+     <p class="quick-view-unavailable" data-quick-unavailable hidden>This fragrance is coming soon and is not available to add yet.</p>
+    </form>
+    <a class="quick-view-detail-link" data-quick-detail href="/shop.php" hidden>Explore fragrance details ↗</a>
+   </div>
+  </div>
  </dialog>
  <p class="collection-no-results" id="collection-no-results" hidden>No fragrances in this category just yet.</p>
 </section>
