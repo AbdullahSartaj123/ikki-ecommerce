@@ -5,14 +5,14 @@ $description='Get in touch with Ikki for fragrance guidance, order enquiries and
 require __DIR__.'/includes/header.php';
 ?>
 <section class="page-banner page-banner-contact" aria-labelledby="page-banner-title">
- <div class="page-banner-copy reveal">
+ <div class="page-banner-copy fade-up">
   <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Contact</span></nav>
   <h1 id="page-banner-title">Contact Us</h1>
   <p>We'd love to hear from you — reach out with any questions</p>
  </div>
 </section>
 <section class="contact-main">
- <div class="contact-form-column reveal">
+ <div class="contact-form-column slide-left">
   <span class="story-kicker">GET IN TOUCH</span>
   <h2 class="contact-form-title">Send Us a Message</h2>
   <form class="ikki-contact-form" id="ikki-contact-form" novalidate>
@@ -34,26 +34,26 @@ require __DIR__.'/includes/header.php';
    <p class="contact-form-note">This form currently provides front-end validation only. For a response, please contact us directly on WhatsApp.</p>
   </form>
  </div>
- <aside class="contact-info-column reveal">
+ <aside class="contact-info-column slide-right" data-delay="150ms">
   <div class="contact-details-list" aria-label="Contact information">
-   <div class="contact-detail-item">
+   <div class="contact-detail-item fade-up" data-delay="0ms">
     <span class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
     <div class="contact-detail-copy"><h3>Visit Us</h3><p>123 Fragrance Avenue, Lahore, Pakistan</p></div>
    </div>
-   <div class="contact-detail-item">
+   <div class="contact-detail-item fade-up" data-delay="80ms">
     <span class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 16.5v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 10.2 18a19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1.8 3.2 2 2 0 0 1 3.8 1h3a2 2 0 0 1 2 1.7l.5 3a2 2 0 0 1-.6 1.7L6.8 9.3a16 16 0 0 0 6 6l1.9-1.9a2 2 0 0 1 1.7-.6l3 .5a2 2 0 0 1 1.6 3.2Z"/></svg></span>
     <div class="contact-detail-copy"><h3>Call Us</h3><a href="tel:+923001234567">+92 300 1234567</a></div>
    </div>
-   <div class="contact-detail-item">
+   <div class="contact-detail-item fade-up" data-delay="160ms">
     <span class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 7L2 7"/></svg></span>
     <div class="contact-detail-copy"><h3>Email Us</h3><a href="mailto:hello@maisonperfume.com">hello@maisonperfume.com</a></div>
    </div>
-   <div class="contact-detail-item">
+   <div class="contact-detail-item fade-up" data-delay="240ms">
     <span class="contact-detail-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
     <div class="contact-detail-copy"><h3>Store Hours</h3><p>Mon-Sat: 10am - 8pm<br>Sun: 12pm - 6pm</p></div>
    </div>
   </div>
-  <div class="contact-social contact-info-social">
+  <div class="contact-social contact-info-social fade-up" data-delay="320ms">
    <span class="story-kicker">FOLLOW ALONG</span>
    <div class="contact-info-socials" aria-label="Follow Maison Perfume">
     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6.5" r="1"/></svg></a>
@@ -62,7 +62,7 @@ require __DIR__.'/includes/header.php';
     <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24"><path class="social-fill" d="M19.6 7.2a5.6 5.6 0 0 1-3.5-1.2v7.8a5.8 5.8 0 1 1-5-5.7v3.2a2.7 2.7 0 1 0 1.8 2.5V2h3.2c.2 2 1.6 3.6 3.5 3.9z"/></svg></a>
    </div>
   </div>
-  <div class="contact-map-wrap contact-info-map">
+  <div class="contact-map-wrap contact-info-map fade-in" data-delay="480ms">
    <div class="contact-map-heading"><span class="story-kicker">FIND US</span><span>LAHORE, PAKISTAN</span></div>
    <div class="contact-map-frame"><iframe title="Map showing 123 Fragrance Avenue, Lahore, Pakistan" src="https://www.google.com/maps?q=123%20Fragrance%20Avenue%2C%20Lahore%2C%20Pakistan&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></div>
   </div>
