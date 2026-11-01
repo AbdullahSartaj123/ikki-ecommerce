@@ -31,6 +31,51 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(reducedMotion)finishLoading();else window.setTimeout(finishLoading,450);
  }
 
+ // === CUSTOM CURSOR: DESKTOP POINTER DEVICES ONLY ===
+ const cursorDot=document.querySelector('[data-ikki-cursor-dot]');
+ const cursorRing=document.querySelector('[data-ikki-cursor-ring]');
+ const desktopPointer=window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)');
+ const hasTouch=('ontouchstart'in window)||(navigator.maxTouchPoints>0);
+ if(cursorDot&&cursorRing&&desktopPointer.matches&&!hasTouch){
+  document.body.classList.add('ikki-custom-cursor');
+  let mouseX=window.innerWidth/2,mouseY=window.innerHeight/2;
+  let ringX=mouseX,ringY=mouseY,rafId=0;
+  const lerp=(current,target,amount)=>current+(target-current)*amount;
+  const renderRing=()=>{
+   ringX=lerp(ringX,mouseX,.14);
+   ringY=lerp(ringY,mouseY,.14);
+   cursorRing.style.transform='translate3d('+ringX+'px,'+ringY+'px,0) translate3d(-50%,-50%,0)';
+   if(Math.abs(mouseX-ringX)>.1||Math.abs(mouseY-ringY)>.1)rafId=requestAnimationFrame(renderRing);
+   else rafId=0;
+  };
+  document.addEventListener('pointermove',event=>{
+   if(event.pointerType!=='mouse')return;
+   mouseX=event.clientX;mouseY=event.clientY;
+   cursorDot.style.transform='translate3d('+mouseX+'px,'+mouseY+'px,0) translate3d(-50%,-50%,0)';
+   if(!rafId)rafId=requestAnimationFrame(renderRing);
+  },{passive:true});
+  const hoverSelector='a,button,[role="button"],input[type="submit"],.ikki-product-card,.home-product-card,.product-card,.collection-card,img';
+  document.addEventListener('pointerover',event=>{
+   if(event.pointerType&&event.pointerType!=='mouse')return;
+   const target=event.target.closest(hoverSelector);
+   if(!target)return;
+   target.classList.add('cursor-hover');
+   cursorRing.classList.add('is-hover');
+  });
+  document.addEventListener('pointerout',event=>{
+   if(event.pointerType&&event.pointerType!=='mouse')return;
+   const target=event.target.closest(hoverSelector);
+   if(!target||target.contains(event.relatedTarget))return;
+   target.classList.remove('cursor-hover');
+   if(!document.querySelector('.cursor-hover'))cursorRing.classList.remove('is-hover');
+  });
+  document.addEventListener('pointerleave',()=>{cursorDot.style.opacity='0';cursorRing.style.opacity='0';});
+  document.addEventListener('pointerenter',()=>{cursorDot.style.opacity='1';cursorRing.style.opacity='1';});
+  desktopPointer.addEventListener?.('change',event=>{
+   if(!event.matches){document.body.classList.remove('ikki-custom-cursor');cursorDot.style.display='none';cursorRing.style.display='none';if(rafId)cancelAnimationFrame(rafId);}
+  });
+ }
+
  // One delegated smooth-scroll handler for every same-page anchor.
  document.addEventListener('click',event=>{
   const link=event.target.closest('a[href*="#"]');
