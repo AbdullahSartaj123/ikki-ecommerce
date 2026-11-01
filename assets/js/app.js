@@ -177,6 +177,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const sortSelect=document.querySelector('#collection-sort');
  const toolbarWrap=document.querySelector('.collection-toolbar-wrap');
  if(collectionFilters.length&&collectionCards.length){
+  let activeCollectionFilter='all';
   const positionIndicator=button=>{
    if(!filterTrack||!filterIndicator||!button)return;
    const track=filterTrack.getBoundingClientRect(),pill=button.getBoundingClientRect();
@@ -196,6 +197,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   collectionCards.forEach((card,index)=>card.dataset.originalIndex=String(index));
   const applyFilter=button=>{
    const selected=button.dataset.filter;
+   activeCollectionFilter=selected;
    collectionFilters.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});
    positionIndicator(button);
    const matches=card=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
@@ -203,8 +205,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const show=matches(card);
     if(!show&&!card.hidden){
      card.classList.add('is-filtering-out');
-     window.setTimeout(()=>{card.hidden=true;card.classList.remove('is-filtering-out');},200);
-    }else if(show&&card.hidden){
+     window.setTimeout(()=>{if(activeCollectionFilter!=='all'&&(activeCollectionFilter==='new'?card.dataset.isNew!=='true':card.dataset.category!==activeCollectionFilter))card.hidden=true;card.classList.remove('is-filtering-out');},200);
+    }else if(show&&(card.hidden||card.classList.contains('is-filtering-out'))){
      card.hidden=false;card.classList.remove('is-filtering-out');card.classList.remove('is-filtering-in');
      void card.offsetWidth;card.classList.add('is-filtering-in');
     }
