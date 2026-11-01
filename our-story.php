@@ -59,6 +59,17 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
+<section class="story-timeline" aria-labelledby="story-timeline-title">
+ <div class="story-timeline-heading"><span class="story-kicker">OUR JOURNEY</span><h2 id="story-timeline-title">A story in <em>the making.</em></h2></div>
+ <ol class="story-timeline-track">
+  <li class="story-timeline-item"><span class="story-timeline-year">1998</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Founded in a small atelier</p></li>
+  <li class="story-timeline-item"><span class="story-timeline-year">2005</span><span class="story-timeline-marker" aria-hidden="true"></span><p>First flagship boutique opens</p></li>
+  <li class="story-timeline-item"><span class="story-timeline-year">2012</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Launched signature Noir Orchid</p></li>
+  <li class="story-timeline-item"><span class="story-timeline-year">2018</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Expanded to global markets</p></li>
+  <li class="story-timeline-item"><span class="story-timeline-year">2024</span><span class="story-timeline-marker" aria-hidden="true"></span><p>1 million bottles sold</p></li>
+ </ol>
+</section>
+
 <section class="story-manifesto">
  <span class="story-kicker reveal">THE IKKI POINT OF VIEW</span>
  <blockquote class="reveal">“We believe the most beautiful signature is the one that feels <em>entirely your own.</em>”</blockquote>
