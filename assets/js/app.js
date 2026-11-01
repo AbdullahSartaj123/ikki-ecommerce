@@ -233,6 +233,35 @@ document.addEventListener('DOMContentLoaded',()=>{
   startRotation();
  }
 
+ // Homepage newsletter confirmation (front-end only; no subscription is stored).
+ const homeNewsletter=document.querySelector('[data-home-newsletter]');
+ if(homeNewsletter){
+  const success=homeNewsletter.parentElement.querySelector('[data-home-newsletter-success]');
+  const email=homeNewsletter.querySelector('input[type="email"]');
+  let resetTimer=null;
+  homeNewsletter.addEventListener('submit',event=>{
+   event.preventDefault();
+   if(!email||!email.checkValidity()){email?.reportValidity();return;}
+   if(resetTimer)window.clearTimeout(resetTimer);
+   homeNewsletter.classList.add('is-leaving');
+   window.setTimeout(()=>{
+    homeNewsletter.hidden=true;
+    success.hidden=false;
+    requestAnimationFrame(()=>success.classList.add('is-visible'));
+   },350);
+   resetTimer=window.setTimeout(()=>{
+    success.classList.remove('is-visible');
+    window.setTimeout(()=>{
+     success.hidden=true;
+     homeNewsletter.reset();
+     homeNewsletter.classList.remove('is-leaving');
+     homeNewsletter.hidden=false;
+    },350);
+    resetTimer=null;
+   },4000);
+  });
+ }
+
  // Existing product-variant price update.
  const variant=document.querySelector('#variant');
  const price=document.querySelector('.detail-price');
