@@ -234,27 +234,90 @@ document.addEventListener('DOMContentLoaded',()=>{
   stickyObserver.observe(sentinel);
  }
 
- // Product quick-view modal: variants, size, quantity and cart submission.
+ // Product quick-view modal: animated lifecycle, product data, focus trap and purchase controls.
  const quickDialog=document.querySelector('#collection-quick-dialog');
  if(quickDialog){
   const $=selector=>quickDialog.querySelector(selector);
   const quickForm=$('[data-quick-form]'),variantInput=quickForm.querySelector('[name="variant_id"]'),qtyInput=quickForm.querySelector('[name="quantity"]');
   const qtyOutput=$('[data-quantity-value]'),sizeWrap=$('[data-quick-sizes]'),sizeButtons=$('[data-size-buttons]');
   const addButton=$('[data-quick-add]'),unavailable=$('[data-quick-unavailable]');
-  let currentVariants=[];
-  const setQuantity=value=>{const qty=Math.max(1,Math.min(5,Number(value)||1));qtyInput.value=String(qty);qtyOutput.textContent=String(qty);};
+  const products=[
+   {name:'Noir Orchid',price:185,image:'/assets/images/noor.svg',top:'Dark floral',heart:'Oud',base:'Black amber',description:'A deep floral composition with oud and black amber, created for a confident, lingering signature.'},
+   {name:'Velvet Rose',price:165,image:'/assets/images/noor.svg',top:'Rose',heart:'Patchouli',base:'Vanilla',description:'Velvet rose petals meet earthy patchouli and a soft vanilla finish in an elegant floral trail.'},
+   {name:'Golden Oud',price:210,image:'/assets/images/noor.svg',top:'Oud',heart:'Saffron',base:'Sandalwood',description:'A warm, opulent blend of oud, saffron and creamy sandalwood with a smooth, enduring character.'},
+   {name:'Citrus Soleil',price:145,image:'/assets/images/noor.svg',top:'Bergamot',heart:'Neroli',base:'Musk',description:'Bright bergamot and delicate neroli settle into clean musk for a fresh, luminous everyday scent.'},
+   {name:'Amber Nights',price:195,image:'/assets/images/noor.svg',top:'Amber',heart:'Leather',base:'Tobacco',description:'Rich amber, supple leather and tobacco create a warm, atmospheric fragrance with depth.'},
+   {name:'Iron & Leather',price:175,image:'/assets/images/noor.svg',top:'Vetiver',heart:'Leather',base:'Cedarwood',description:'Earthy vetiver and leather are grounded by cedarwood in a bold, woody composition.'},
+   {name:'White Jasmine',price:155,image:'/assets/images/noor.svg',top:'Jasmine',heart:'White musk',base:'Pear',description:'Airy jasmine and pear soften into white musk for a delicate, modern floral signature.'},
+   {name:'Midnight Spice',price:220,image:'/assets/images/noor.svg',top:'Black pepper',heart:'Cardamom',base:'Oud',description:'Black pepper and cardamom add a lively opening before rich oud brings a dark, distinctive finish.'}
+  ];
+  let closing=false,returnFocus=null,closeTimer=null;
+  const moneyLabel=value=>'Rs. '+new Intl.NumberFormat('en-PK',{maximumFractionDigits:0}).format(Number(value)||0);
+  const setQuantity=value=>{const qty=Math.max(1,Math.min(10,Number(value)||1));qtyInput.value=String(qty);qtyOutput.textContent=String(qty);};
   const renderVariants=variants=>{
-   currentVariants=Array.isArray(variants)?variants:[];
-   sizeButtons.replaceChildren();sizeWrap.hidden=!currentVariants.length;
-   currentVariants.forEach((variant,index)=>{
+   sizeButtons.replaceChildren();sizeWrap.hidden=!variants.length;variantInput.value='';
+   variants.forEach((variant,index)=>{
     const button=document.createElement('button');button.type='button';
     button.textContent=variant.volume_ml?variant.volume_ml+'ml':(variant.variant_name||'Size');
-    button.setAttribute('aria-pressed',String(index===0));
-    button.disabled=Number(variant.stock_quantity)<1;
+    button.setAttribute('aria-pressed','false');button.disabled=Number(variant.stock_quantity)<1;
     button.addEventListener('click',()=>{
      sizeButtons.querySelectorAll('button').forEach(item=>item.setAttribute('aria-pressed','false'));
      button.setAttribute('aria-pressed','true');variantInput.value=String(variant.id);
-     $('[data-quick-price]').textContent=variant.price?('
+     $('[data-quick-price]').textContent=moneyLabel(variant.price);
+     addButton.disabled=false;unavailable.hidden=true;
+    });
+    sizeButtons.append(button);
+    if(index===0&&!button.disabled)button.click();
+   });
+  };
+  const openQuickView=trigger=>{
+   const product=products.find(item=>item.name===trigger.dataset.name);
+   if(!product)return;
+   returnFocus=trigger;closing=false;
+   $('#quick-view-title').textContent=product.name;
+   $('[data-quick-price]').textContent=trigger.dataset.price||moneyLabel(product.price);
+   const image=$('[data-quick-image]');image.src=trigger.dataset.image||product.image;image.alt=product.name+' fragrance bottle';
+   $('[data-quick-description]').textContent=trigger.dataset.description||product.description;
+   $('[data-note-top]').textContent=trigger.dataset.top||product.top;
+   $('[data-note-heart]').textContent=trigger.dataset.heart||product.heart;
+   $('[data-note-base]').textContent=trigger.dataset.base||product.base;
+   let variants=[];try{variants=JSON.parse(trigger.dataset.variants||'[]');}catch(error){variants=[];}
+   renderVariants(variants);setQuantity(1);
+   const available=trigger.dataset.available==='true'&&variants.some(item=>Number(item.stock_quantity)>0);
+   addButton.disabled=!available;unavailable.hidden=available;
+   const detail=$('[data-quick-detail]');detail.hidden=!trigger.dataset.url;if(trigger.dataset.url)detail.href=trigger.dataset.url;
+   quickDialog.showModal();
+   document.body.classList.add('quick-view-open');
+   requestAnimationFrame(()=>quickDialog.classList.add('is-visible'));
+   window.setTimeout(()=>{if(quickDialog.open)$('[data-quick-close]').focus();},80);
+  };
+  const closeQuickView=()=>{
+   if(!quickDialog.open||closing)return;
+   closing=true;quickDialog.classList.remove('is-visible');quickDialog.classList.add('is-closing');
+   if(closeTimer)window.clearTimeout(closeTimer);
+   closeTimer=window.setTimeout(()=>{
+    quickDialog.close();quickDialog.classList.remove('is-closing');
+    document.body.classList.remove('quick-view-open');closing=false;
+    if(returnFocus?.isConnected)returnFocus.focus();
+   },400);
+  };
+  document.querySelectorAll('[data-quick-view]').forEach(button=>button.addEventListener('click',()=>openQuickView(button)));
+  $('[data-quantity-minus]').addEventListener('click',()=>setQuantity(Number(qtyInput.value)-1));
+  $('[data-quantity-plus]').addEventListener('click',()=>setQuantity(Number(qtyInput.value)+1));
+  $('[data-quick-close]').addEventListener('click',closeQuickView);
+  quickDialog.addEventListener('click',event=>{if(event.target===quickDialog)closeQuickView();});
+  quickDialog.addEventListener('cancel',event=>{event.preventDefault();closeQuickView();});
+  document.addEventListener('keydown',event=>{
+   if(!quickDialog.open||event.key!=='Tab')return;
+   const focusable=[...quickDialog.querySelectorAll('a[href]:not([hidden]),button:not(:disabled):not([hidden]),input:not(:disabled):not([type="hidden"]):not([hidden]),select:not(:disabled),textarea:not(:disabled),[tabindex]:not([tabindex="-1"])')].filter(el=>el.getClientRects().length);
+   if(!focusable.length){event.preventDefault();return;}
+   const first=focusable[0],last=focusable[focusable.length-1];
+   if(event.shiftKey&&(document.activeElement===first||!quickDialog.contains(document.activeElement))){event.preventDefault();last.focus();}
+   else if(!event.shiftKey&&(document.activeElement===last||!quickDialog.contains(document.activeElement))){event.preventDefault();first.focus();}
+  });
+  quickDialog.addEventListener('close',()=>{document.body.classList.remove('quick-view-open');quickDialog.classList.remove('is-visible','is-closing');});
+  quickForm.addEventListener('submit',event=>{if(!variantInput.value){event.preventDefault();addButton.disabled=true;}});
+ }
  // Contact form front-end validation. No message is transmitted until a delivery service is connected.
  const contactForm=document.querySelector('#ikki-contact-form');
  if(contactForm){
