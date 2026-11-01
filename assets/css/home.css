@@ -293,8 +293,9 @@
 .home-best-card-image{position:relative;display:block;aspect-ratio:1;overflow:hidden;background:#171614;color:inherit}
 .home-best-card-image>img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .65s cubic-bezier(.2,.7,.2,1)}
 .home-best-badge{position:absolute;top:14px;left:14px;z-index:2;padding:7px 11px;border-radius:999px;background:#17130e;color:#c9a86a;font:500 9px/1 'Montserrat',sans-serif;letter-spacing:1.1px;text-transform:uppercase}
-.home-best-quick-add{position:absolute;right:14px;bottom:calc(100% - min(100vw, 1000px) * 0.0);z-index:3}
-.home-best-card-image+.home-best-quick-add{top:auto;bottom:calc(100% - 100% + 14px)}
+.home-best-card-media{position:relative;aspect-ratio:1}
+.home-best-card-media .home-best-card-image{height:100%}
+.home-best-quick-add{position:absolute;right:14px;bottom:14px;z-index:3}
 .home-best-quick-add button,.home-best-quick-add span{display:grid;place-items:center;width:38px;height:38px;padding:0;border:0;border-radius:50%;background:#c9a86a;color:#0a0a0a;font:400 24px/1 'Montserrat',sans-serif;text-decoration:none;cursor:pointer;transition:background .25s,transform .25s}
 .home-best-quick-add:hover button,.home-best-quick-add:hover span{background:#e3cb97;transform:scale(1.06)}
 .home-best-card-meta{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:17px}
