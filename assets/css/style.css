@@ -1696,3 +1696,16 @@ body.page-transition-out>header,body.page-transition-out>main,body.page-transiti
 /* Global reading progress indicator — beneath the header, above page content */
 .ikki-scroll-progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:19;pointer-events:none;background:transparent;overflow:hidden}
 .ikki-scroll-progress>span{display:block;width:100%;height:100%;background:linear-gradient(90deg,#c9a86a 0%,#e3cb97 100%);transform:scaleX(0);transform-origin:left center;will-change:transform}
+
+
+/* Refined floating back-to-top control */
+.back-to-top{right:24px;bottom:24px;width:48px;height:48px;border-radius:50%;border:1px solid #c9a86a;background:#1a1a1a;color:#c9a86a;opacity:0;visibility:hidden;transform:scale(.8);box-shadow:none;transition:opacity .25s ease,transform .25s ease,visibility .25s ease,background .25s ease,color .25s ease,box-shadow .25s ease}
+.back-to-top.is-visible{opacity:1;visibility:visible;transform:scale(1)}
+.back-to-top svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s ease}
+.back-to-top.is-bouncing svg{animation:ikkiBackToTopBounce .45s ease}
+@keyframes ikkiBackToTopBounce{0%,100%{transform:translateY(0)}35%{transform:translateY(-5px)}65%{transform:translateY(1px)}}
+@media(hover:hover) and (pointer:fine){
+ .back-to-top:hover{background:#c9a86a;color:#0a0a0a;transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.28)}
+}
+@media(max-width:767px){.back-to-top{right:24px;bottom:80px}}
+@media(prefers-reduced-motion:reduce){.back-to-top,.back-to-top svg{transition:none}.back-to-top.is-bouncing svg{animation:none}}
