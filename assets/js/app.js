@@ -221,13 +221,28 @@ document.addEventListener('DOMContentLoaded',()=>{
    newsletterForm.reset();
   });
  }
- // Shared floating back-to-top control.
+ // Shared floating back-to-top control with RAF-throttled visibility and click feedback.
  const backToTop=document.querySelector('[data-back-to-top]');
  if(backToTop){
-  const updateBackToTop=()=>backToTop.classList.toggle('is-visible',window.scrollY>420);
-  updateBackToTop();
-  window.addEventListener('scroll',updateBackToTop,{passive:true});
-  backToTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:reducedMotion?'auto':'smooth'}));
+  let backToTopFrame=0;
+  const updateBackToTop=()=>{
+   backToTop.classList.toggle('is-visible',window.scrollY>400);
+   backToTopFrame=0;
+  };
+  const requestBackToTopUpdate=()=>{
+   if(backToTopFrame)return;
+   backToTopFrame=requestAnimationFrame(updateBackToTop);
+  };
+  requestBackToTopUpdate();
+  window.addEventListener('scroll',requestBackToTopUpdate,{passive:true});
+  window.addEventListener('resize',requestBackToTopUpdate,{passive:true});
+  backToTop.addEventListener('click',()=>{
+   backToTop.classList.remove('is-bouncing');
+   void backToTop.offsetWidth;
+   backToTop.classList.add('is-bouncing');
+   window.scrollTo({top:0,behavior:reducedMotion?'auto':'smooth'});
+  });
+  backToTop.addEventListener('animationend',()=>backToTop.classList.remove('is-bouncing'));
  }
  // Lazy-load non-critical imagery while keeping hero and main product artwork eager.
  document.querySelectorAll('img:not([loading])').forEach(img=>{
