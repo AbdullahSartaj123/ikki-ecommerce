@@ -234,22 +234,284 @@ document.addEventListener('DOMContentLoaded',()=>{
   stickyObserver.observe(sentinel);
  }
 
- // Accessible quick-view dialog for collection product cards.
+ // Product quick-view modal: variants, size, quantity and cart submission.
  const quickDialog=document.querySelector('#collection-quick-dialog');
  if(quickDialog){
-  const title=quickDialog.querySelector('#quick-view-title');
-  const notes=quickDialog.querySelector('.collection-dialog-notes');
-  const price=quickDialog.querySelector('.collection-dialog-price');
-  const detailLink=quickDialog.querySelector('.collection-dialog-link');
+  const $=selector=>quickDialog.querySelector(selector);
+  const quickForm=$('[data-quick-form]'),variantInput=quickForm.querySelector('[name="variant_id"]'),qtyInput=quickForm.querySelector('[name="quantity"]');
+  const qtyOutput=$('[data-quantity-value]'),sizeWrap=$('[data-quick-sizes]'),sizeButtons=$('[data-size-buttons]');
+  const addButton=$('[data-quick-add]'),unavailable=$('[data-quick-unavailable]');
+  let currentVariants=[];
+  const setQuantity=value=>{const qty=Math.max(1,Math.min(5,Number(value)||1));qtyInput.value=String(qty);qtyOutput.textContent=String(qty);};
+  const renderVariants=variants=>{
+   currentVariants=Array.isArray(variants)?variants:[];
+   sizeButtons.replaceChildren();sizeWrap.hidden=!currentVariants.length;
+   currentVariants.forEach((variant,index)=>{
+    const button=document.createElement('button');button.type='button';
+    button.textContent=variant.volume_ml?variant.volume_ml+'ml':(variant.variant_name||'Size');
+    button.setAttribute('aria-pressed',String(index===0));
+    button.disabled=Number(variant.stock_quantity)<1;
+    button.addEventListener('click',()=>{
+     sizeButtons.querySelectorAll('button').forEach(item=>item.setAttribute('aria-pressed','false'));
+     button.setAttribute('aria-pressed','true');variantInput.value=String(variant.id);
+     $('[data-quick-price]').textContent=variant.price?('
+ // Contact form front-end validation. No message is transmitted until a delivery service is connected.
+ const contactForm=document.querySelector('#ikki-contact-form');
+ if(contactForm){
+  const feedback=document.querySelector('#contact-form-feedback');
+  const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const fields=[...contactForm.querySelectorAll('input[required]:not([type="checkbox"]),textarea[required],select[required]')];
+  const clearField=field=>{const wrap=field.closest('.contact-field');wrap.classList.remove('is-invalid');wrap.querySelector('.field-error').textContent='';};
+  fields.forEach(field=>field.addEventListener('input',()=>clearField(field)));
+  contactForm.addEventListener('submit',event=>{
+   event.preventDefault();
+   let firstInvalid=null;
+   fields.forEach(field=>{
+    clearField(field);
+    const value=field.value.trim();
+    let message='';
+    if(!value)message='Please complete this field.';
+    else if(field.type==='email'&&!emailPattern.test(value))message='Please enter a valid email address.';
+    if(message){const wrap=field.closest('.contact-field');wrap.classList.add('is-invalid');wrap.querySelector('.field-error').textContent=message;if(!firstInvalid)firstInvalid=field;}
+   });
+   feedback.classList.add('is-visible');
+   if(firstInvalid){
+    feedback.classList.add('is-error');feedback.textContent='Please review the highlighted fields and try again.';firstInvalid.focus();return;
+   }
+   feedback.classList.remove('is-error');
+   feedback.textContent='Thank you. Your details passed validation, but this form is not connected to email delivery yet. Please send your enquiry directly through our WhatsApp contact link.';
+   contactForm.reset();
+  });
+ }
+
+ // Auto-rotating customer testimonials; pause while hovered, focused or touched.
+ const testimonialRoot=document.querySelector('[data-testimonial-carousel]');
+ if(testimonialRoot){
+  const slides=[...testimonialRoot.querySelectorAll('[data-testimonial-slide]')];
+  const dots=[...testimonialRoot.querySelectorAll('[data-testimonial-dot]')];
+  let activeIndex=Math.max(0,slides.findIndex(slide=>slide.classList.contains('is-active')));
+  let rotation=null;
+  let touchPaused=false;
+  const showTestimonial=index=>{
+   activeIndex=(index+slides.length)%slides.length;
+   slides.forEach((slide,i)=>{
+    const active=i===activeIndex;
+    slide.classList.toggle('is-active',active);
+    slide.setAttribute('aria-hidden',String(!active));
+    if(active)slide.removeAttribute('inert');else slide.setAttribute('inert','');
+   });
+   dots.forEach((dot,i)=>{
+    const active=i===activeIndex;
+    dot.classList.toggle('is-active',active);
+    dot.setAttribute('aria-pressed',String(active));
+   });
+  };
+  const stopRotation=()=>{if(rotation){window.clearInterval(rotation);rotation=null;}};
+  const startRotation=()=>{
+   stopRotation();
+   if(reducedMotion||slides.length<2||document.hidden||testimonialRoot.matches(':hover')||testimonialRoot.contains(document.activeElement)||touchPaused)return;
+   rotation=window.setInterval(()=>showTestimonial(activeIndex+1),6000);
+  };
+  dots.forEach((dot,i)=>dot.addEventListener('click',()=>{showTestimonial(i);startRotation();}));
+  testimonialRoot.addEventListener('mouseenter',stopRotation);
+  testimonialRoot.addEventListener('mouseleave',startRotation);
+  testimonialRoot.addEventListener('focusin',stopRotation);
+  testimonialRoot.addEventListener('focusout',()=>window.setTimeout(startRotation,0));
+  testimonialRoot.addEventListener('touchstart',()=>{touchPaused=true;stopRotation();},{passive:true});
+  testimonialRoot.addEventListener('touchend',()=>{window.setTimeout(()=>{touchPaused=false;startRotation();},2500);},{passive:true});
+  document.addEventListener('visibilitychange',startRotation);
+  showTestimonial(activeIndex);
+  startRotation();
+ }
+
+ // Homepage newsletter confirmation (front-end only; no subscription is stored).
+ const homeNewsletter=document.querySelector('[data-home-newsletter]');
+ if(homeNewsletter){
+  const success=homeNewsletter.parentElement.querySelector('[data-home-newsletter-success]');
+  const email=homeNewsletter.querySelector('input[type="email"]');
+  let resetTimer=null;
+  homeNewsletter.addEventListener('submit',event=>{
+   event.preventDefault();
+   if(!email||!email.checkValidity()){email?.reportValidity();return;}
+   if(resetTimer)window.clearTimeout(resetTimer);
+   homeNewsletter.classList.add('is-leaving');
+   window.setTimeout(()=>{
+    homeNewsletter.hidden=true;
+    success.hidden=false;
+    requestAnimationFrame(()=>success.classList.add('is-visible'));
+   },350);
+   resetTimer=window.setTimeout(()=>{
+    success.classList.remove('is-visible');
+    window.setTimeout(()=>{
+     success.hidden=true;
+     homeNewsletter.reset();
+     homeNewsletter.classList.remove('is-leaving');
+     homeNewsletter.hidden=false;
+    },350);
+    resetTimer=null;
+   },4000);
+  });
+ }
+
+ // Existing product-variant price update.
+ const variant=document.querySelector('#variant');
+ const price=document.querySelector('.detail-price');
+ if(variant&&price){
+  const update=()=>{
+   const option=variant.options[variant.selectedIndex];
+   if(option&&option.dataset.price){
+    const amount=Number(option.dataset.price);
+    price.textContent='Rs. '+new Intl.NumberFormat('en-PK',{maximumFractionDigits:0}).format(amount);
+   }
+  };
+  variant.addEventListener('change',update);
+ }
+});
++Number(variant.price).toFixed(2)):quickDialog.dataset.basePrice;
+     addButton.disabled=button.disabled;
+    });
+    sizeButtons.append(button);
+   });
+   const first=currentVariants.find(item=>Number(item.stock_quantity)>0);
+   variantInput.value=first?String(first.id):'';
+   if(first){const chosen=[...sizeButtons.children].find(button=>button.textContent===(first.volume_ml?first.volume_ml+'ml':first.variant_name));chosen?.setAttribute('aria-pressed','true');$('[data-quick-price]').textContent=first.price?'
+ // Contact form front-end validation. No message is transmitted until a delivery service is connected.
+ const contactForm=document.querySelector('#ikki-contact-form');
+ if(contactForm){
+  const feedback=document.querySelector('#contact-form-feedback');
+  const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const fields=[...contactForm.querySelectorAll('input[required]:not([type="checkbox"]),textarea[required],select[required]')];
+  const clearField=field=>{const wrap=field.closest('.contact-field');wrap.classList.remove('is-invalid');wrap.querySelector('.field-error').textContent='';};
+  fields.forEach(field=>field.addEventListener('input',()=>clearField(field)));
+  contactForm.addEventListener('submit',event=>{
+   event.preventDefault();
+   let firstInvalid=null;
+   fields.forEach(field=>{
+    clearField(field);
+    const value=field.value.trim();
+    let message='';
+    if(!value)message='Please complete this field.';
+    else if(field.type==='email'&&!emailPattern.test(value))message='Please enter a valid email address.';
+    if(message){const wrap=field.closest('.contact-field');wrap.classList.add('is-invalid');wrap.querySelector('.field-error').textContent=message;if(!firstInvalid)firstInvalid=field;}
+   });
+   feedback.classList.add('is-visible');
+   if(firstInvalid){
+    feedback.classList.add('is-error');feedback.textContent='Please review the highlighted fields and try again.';firstInvalid.focus();return;
+   }
+   feedback.classList.remove('is-error');
+   feedback.textContent='Thank you. Your details passed validation, but this form is not connected to email delivery yet. Please send your enquiry directly through our WhatsApp contact link.';
+   contactForm.reset();
+  });
+ }
+
+ // Auto-rotating customer testimonials; pause while hovered, focused or touched.
+ const testimonialRoot=document.querySelector('[data-testimonial-carousel]');
+ if(testimonialRoot){
+  const slides=[...testimonialRoot.querySelectorAll('[data-testimonial-slide]')];
+  const dots=[...testimonialRoot.querySelectorAll('[data-testimonial-dot]')];
+  let activeIndex=Math.max(0,slides.findIndex(slide=>slide.classList.contains('is-active')));
+  let rotation=null;
+  let touchPaused=false;
+  const showTestimonial=index=>{
+   activeIndex=(index+slides.length)%slides.length;
+   slides.forEach((slide,i)=>{
+    const active=i===activeIndex;
+    slide.classList.toggle('is-active',active);
+    slide.setAttribute('aria-hidden',String(!active));
+    if(active)slide.removeAttribute('inert');else slide.setAttribute('inert','');
+   });
+   dots.forEach((dot,i)=>{
+    const active=i===activeIndex;
+    dot.classList.toggle('is-active',active);
+    dot.setAttribute('aria-pressed',String(active));
+   });
+  };
+  const stopRotation=()=>{if(rotation){window.clearInterval(rotation);rotation=null;}};
+  const startRotation=()=>{
+   stopRotation();
+   if(reducedMotion||slides.length<2||document.hidden||testimonialRoot.matches(':hover')||testimonialRoot.contains(document.activeElement)||touchPaused)return;
+   rotation=window.setInterval(()=>showTestimonial(activeIndex+1),6000);
+  };
+  dots.forEach((dot,i)=>dot.addEventListener('click',()=>{showTestimonial(i);startRotation();}));
+  testimonialRoot.addEventListener('mouseenter',stopRotation);
+  testimonialRoot.addEventListener('mouseleave',startRotation);
+  testimonialRoot.addEventListener('focusin',stopRotation);
+  testimonialRoot.addEventListener('focusout',()=>window.setTimeout(startRotation,0));
+  testimonialRoot.addEventListener('touchstart',()=>{touchPaused=true;stopRotation();},{passive:true});
+  testimonialRoot.addEventListener('touchend',()=>{window.setTimeout(()=>{touchPaused=false;startRotation();},2500);},{passive:true});
+  document.addEventListener('visibilitychange',startRotation);
+  showTestimonial(activeIndex);
+  startRotation();
+ }
+
+ // Homepage newsletter confirmation (front-end only; no subscription is stored).
+ const homeNewsletter=document.querySelector('[data-home-newsletter]');
+ if(homeNewsletter){
+  const success=homeNewsletter.parentElement.querySelector('[data-home-newsletter-success]');
+  const email=homeNewsletter.querySelector('input[type="email"]');
+  let resetTimer=null;
+  homeNewsletter.addEventListener('submit',event=>{
+   event.preventDefault();
+   if(!email||!email.checkValidity()){email?.reportValidity();return;}
+   if(resetTimer)window.clearTimeout(resetTimer);
+   homeNewsletter.classList.add('is-leaving');
+   window.setTimeout(()=>{
+    homeNewsletter.hidden=true;
+    success.hidden=false;
+    requestAnimationFrame(()=>success.classList.add('is-visible'));
+   },350);
+   resetTimer=window.setTimeout(()=>{
+    success.classList.remove('is-visible');
+    window.setTimeout(()=>{
+     success.hidden=true;
+     homeNewsletter.reset();
+     homeNewsletter.classList.remove('is-leaving');
+     homeNewsletter.hidden=false;
+    },350);
+    resetTimer=null;
+   },4000);
+  });
+ }
+
+ // Existing product-variant price update.
+ const variant=document.querySelector('#variant');
+ const price=document.querySelector('.detail-price');
+ if(variant&&price){
+  const update=()=>{
+   const option=variant.options[variant.selectedIndex];
+   if(option&&option.dataset.price){
+    const amount=Number(option.dataset.price);
+    price.textContent='Rs. '+new Intl.NumberFormat('en-PK',{maximumFractionDigits:0}).format(amount);
+   }
+  };
+  variant.addEventListener('change',update);
+ }
+});
++Number(first.price).toFixed(2):quickDialog.dataset.basePrice;}
+  };
   document.querySelectorAll('[data-quick-view]').forEach(button=>button.addEventListener('click',()=>{
-   title.textContent=button.dataset.name||'';
-   notes.textContent=button.dataset.notes||'';
-   price.textContent=button.dataset.price||'';
-   if(button.dataset.url){detailLink.href=button.dataset.url;detailLink.hidden=false;}else detailLink.hidden=true;
+   $('#quick-view-title').textContent=button.dataset.name||'';
+   $('[data-quick-price]').textContent=button.dataset.price||'';
+   $('[data-quick-image]').src=button.dataset.image||'/assets/images/noor.svg';
+   $('[data-quick-image]').alt=(button.dataset.name||'Fragrance')+' bottle';
+   $('[data-quick-description]').textContent=button.dataset.description||'';
+   $('[data-note-top]').textContent=button.dataset.top||'Top note';
+   $('[data-note-heart]').textContent=button.dataset.heart||'Heart note';
+   $('[data-note-base]').textContent=button.dataset.base||'Base note';
+   const variants=JSON.parse(button.dataset.variants||'[]');
+   renderVariants(variants);setQuantity(1);
+   const available=button.dataset.available==='true'&&variants.some(item=>Number(item.stock_quantity)>0);
+   addButton.disabled=!available;unavailable.hidden=available;
+   const detail=$('[data-quick-detail]');
+   detail.hidden=!button.dataset.url;if(button.dataset.url)detail.href=button.dataset.url;
    quickDialog.showModal();
   }));
-  quickDialog.querySelector('[data-quick-close]')?.addEventListener('click',()=>quickDialog.close());
+  $('[data-quantity-minus]').addEventListener('click',()=>setQuantity(Number(qtyInput.value)-1));
+  $('[data-quantity-plus]').addEventListener('click',()=>setQuantity(Number(qtyInput.value)+1));
+  $('[data-quick-close]').addEventListener('click',()=>quickDialog.close());
   quickDialog.addEventListener('click',event=>{if(event.target===quickDialog)quickDialog.close();});
+  quickDialog.addEventListener('close',()=>{setQuantity(1);});
+  quickForm.addEventListener('submit',event=>{if(!variantInput.value){event.preventDefault();addButton.disabled=true;}});
  }
  // Contact form front-end validation. No message is transmitted until a delivery service is connected.
  const contactForm=document.querySelector('#ikki-contact-form');
