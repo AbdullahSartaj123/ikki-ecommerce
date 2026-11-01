@@ -30,7 +30,7 @@ $navItems=[
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css?v=20261101-14">
-<?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-8"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261101-1"><?php endif; ?>
+<?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-9"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261101-1"><?php endif; ?>
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
 <div class="home-preloader" data-home-preloader role="status" aria-label="Loading Ikki"><span class="home-preloader-mark">ikki<span>.</span></span><span class="home-preloader-line"></span></div>
