@@ -1446,3 +1446,15 @@ body.quick-view-open{overflow:hidden}
 @media(max-width:1199px){.collection-skeleton-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:767px){.collection-skeleton-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 16px}.collection-no-results{min-height:270px;padding:45px 16px}.collection-no-results p{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.collection-no-results,.collection-skeleton-card span,.collection-skeleton-card i,.collection-card.is-filtering-in{animation:none;transition:none}.collection-card.is-filtering-in{opacity:1;transform:none}}
+
+
+/* Reusable Collection progressive pagination */
+.collection-pagination{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;padding:48px 0 12px}
+.collection-load-more{display:inline-flex;min-width:166px;min-height:46px;align-items:center;justify-content:center;gap:11px;padding:0 27px;border:1px solid #c9a86a;border-radius:2px;background:transparent;color:#e3cb97;font:500 9px 'Montserrat',sans-serif;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s,border-color .25s,opacity .25s}
+.collection-load-more:hover:not(:disabled){background:#c9a86a;color:#111}
+.collection-load-more:disabled{cursor:wait;opacity:.75}
+.collection-load-more[hidden],.collection-all-viewed[hidden],.collection-pagination[hidden]{display:none}
+.collection-button-spinner{width:13px;height:13px;border:1.5px solid #c9a86a55;border-top-color:#e3cb97;border-radius:50%;animation:collectionButtonSpin .65s linear infinite}
+.collection-all-viewed{color:#938b7e;font:400 12px 'Montserrat',sans-serif;letter-spacing:.06em}
+@keyframes collectionButtonSpin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.collection-button-spinner{animation:none}}
