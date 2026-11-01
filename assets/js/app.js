@@ -9,7 +9,7 @@ function initScrollAnimations(){
   if(!entry.isIntersecting)return;
   const element=entry.target;
   const delay=element.getAttribute('data-delay')||'0ms';
-  element.style.transitionDelay=['0ms','100ms','150ms','200ms','300ms','400ms'].includes(delay)?delay:'0ms';
+  element.style.transitionDelay=/^(?:0|[1-9]\\d{0,2}|1000)ms$/.test(delay)?delay:'0ms';
   reveal(element);
   observer.unobserve(element);
  }),{threshold:.12,rootMargin:'0px 0px -35px 0px'});
@@ -170,6 +170,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  // Collection filtering, animated pill indicator and client-side sorting.
  const collectionFilters=[...document.querySelectorAll('[data-filter]')];
  const collectionCards=[...document.querySelectorAll('.collection-card[data-category]')];
+ const collectionRevealObserver=('IntersectionObserver'in window)?new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const card=entry.target;card.classList.add('is-revealed');collectionRevealObserver.unobserve(card);}),{threshold:.12,rootMargin:'0px 0px -30px 0px'}):null;
+ collectionCards.forEach((card,index)=>{card.style.transitionDelay=(index*100)+'ms';if(collectionRevealObserver)collectionRevealObserver.observe(card);else card.classList.add('is-revealed');});
  const collectionCount=document.querySelector('.collection-count b');
  const noCollectionResults=document.querySelector('#collection-no-results');
  const filterTrack=document.querySelector('[data-filter-track]');
@@ -201,14 +203,17 @@ document.addEventListener('DOMContentLoaded',()=>{
    collectionFilters.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});
    positionIndicator(button);
    const matches=card=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
-   collectionCards.forEach(card=>{
+   collectionCards.forEach((card,index)=>{
     const show=matches(card);
     if(!show&&!card.hidden){
      card.classList.add('is-filtering-out');
      window.setTimeout(()=>{if(activeCollectionFilter!=='all'&&(activeCollectionFilter==='new'?card.dataset.isNew!=='true':card.dataset.category!==activeCollectionFilter))card.hidden=true;card.classList.remove('is-filtering-out');},200);
     }else if(show&&(card.hidden||card.classList.contains('is-filtering-out'))){
-     card.hidden=false;card.classList.remove('is-filtering-out');card.classList.remove('is-filtering-in');
-     void card.offsetWidth;card.classList.add('is-filtering-in');
+     card.hidden=false;card.classList.remove('is-filtering-out');card.classList.remove('is-filtering-in','is-revealed');
+     card.style.transitionDelay=(index*100)+'ms';
+     void card.offsetWidth;
+     if(collectionRevealObserver)collectionRevealObserver.observe(card);else card.classList.add('is-revealed');
+     card.classList.add('is-filtering-in');
     }
    });
    const visible=collectionCards.filter(matches).length;
@@ -229,6 +234,23 @@ document.addEventListener('DOMContentLoaded',()=>{
   stickyObserver.observe(sentinel);
  }
 
+ // Accessible quick-view dialog for collection product cards.
+ const quickDialog=document.querySelector('#collection-quick-dialog');
+ if(quickDialog){
+  const title=quickDialog.querySelector('#quick-view-title');
+  const notes=quickDialog.querySelector('.collection-dialog-notes');
+  const price=quickDialog.querySelector('.collection-dialog-price');
+  const detailLink=quickDialog.querySelector('.collection-dialog-link');
+  document.querySelectorAll('[data-quick-view]').forEach(button=>button.addEventListener('click',()=>{
+   title.textContent=button.dataset.name||'';
+   notes.textContent=button.dataset.notes||'';
+   price.textContent=button.dataset.price||'';
+   if(button.dataset.url){detailLink.href=button.dataset.url;detailLink.hidden=false;}else detailLink.hidden=true;
+   quickDialog.showModal();
+  }));
+  quickDialog.querySelector('[data-quick-close]')?.addEventListener('click',()=>quickDialog.close());
+  quickDialog.addEventListener('click',event=>{if(event.target===quickDialog)quickDialog.close();});
+ }
  // Contact form front-end validation. No message is transmitted until a delivery service is connected.
  const contactForm=document.querySelector('#ikki-contact-form');
  if(contactForm){
