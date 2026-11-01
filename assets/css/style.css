@@ -1526,3 +1526,14 @@ body.quick-view-open{overflow:hidden}
  .story-timeline-item p{grid-column:2;grid-row:2;max-width:none;margin:0}
 }
 @media(prefers-reduced-motion:reduce){.story-timeline-item.is-active .story-timeline-marker{animation:none}.story-timeline-track:after,.story-timeline-marker,.story-timeline-year,.story-timeline-item p{transition:none}}
+
+
+/* Our Story — full-bleed mission statement */
+.story-mission{display:flex;align-items:center;justify-content:center;min-height:50vh;padding:clamp(86px,11vw,150px) var(--gutter);background:#0a0a0a;text-align:center;overflow:hidden}
+.story-mission-inner{display:flex;flex-direction:column;align-items:center;width:100%;max-width:1100px;margin:0 auto}
+.story-mission-rule{display:block;width:40px;height:2px;flex:0 0 2px;background:var(--gold);opacity:.9}
+.story-mission-quote{max-width:900px;margin:clamp(30px,4vw,48px) auto;color:#f1eee8;font:italic 400 clamp(1.8rem,4vw,3rem)/1.38 var(--serif);letter-spacing:-.018em;text-wrap:balance}
+.story-mission-word{display:inline-block;opacity:0;transform:translateY(9px);transition:opacity .65s ease,transform .65s cubic-bezier(.2,.7,.2,1);transition-delay:var(--word-delay,0ms)}
+.story-mission.is-visible .story-mission-word{opacity:1;transform:translateY(0)}
+@media(max-width:700px){.story-mission{min-height:50vh;padding:80px 24px}.story-mission-quote{line-height:1.42;margin:30px auto}}
+@media(prefers-reduced-motion:reduce){.story-mission-word{opacity:1;transform:none;transition:none}}
