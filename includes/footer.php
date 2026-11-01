@@ -15,5 +15,6 @@
  </div>
  <div class="footer-bottom"><span>© <?=date('Y')?> IKKI. ALL RIGHTS RESERVED.</span><span>CRAFTED FOR YOUR EVERYDAY EXTRAORDINARY.</span><a href="#top" data-back-to-top>BACK TO TOP ↑</a></div>
 </footer>
-<script src="/assets/js/app.js?v=20261101-3" defer></script>
+<button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" title="Back to top"><span>↑</span></button>
+<script src="/assets/js/app.js?v=20261101-6" defer></script>
 </body></html>
