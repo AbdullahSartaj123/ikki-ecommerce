@@ -21,8 +21,8 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   foreach($catalogue as $p){
    $product->execute([$cat,$p[0],$p[1],$p[2],$p[3],$p[4],$p[5],$p[6],$p[7],$p[8],$p[9]]);
    $q=db()->prepare("SELECT id FROM products WHERE slug=?");$q->execute([$p[1]]);$pid=(int)$q->fetchColumn();
-   $variant->execute([$pid,'IKK-'.strtoupper(str_replace('-','',$p[1])).'-50',$p[10]]);
-   $image->execute([$pid,$p[11]]);if(!$image->fetch())$addImage->execute([$pid,$p[11],'Ikki '.$p[0].' signature bottle concept']);
+   $variant->execute([$pid,'IKK-'.strtoupper(str_replace('-','',$p[1])).'-50',$p[9]]);
+   $image->execute([$pid,$p[10]]);if(!$image->fetch())$addImage->execute([$pid,$p[10],'Ikki '.$p[0].' signature bottle concept']);
   }
   db()->commit();$done=true;
  }catch(Throwable $ex){if(db()->inTransaction())db()->rollBack();$error='Could not install the collection: '.$ex->getMessage();}
@@ -32,7 +32,7 @@ $pageTitle='Install launch collection — Ikki';require __DIR__.'/../includes/he
 <div class="admin-shell"><span class="eyebrow">CATALOGUE SETUP</span><h1 class="page-title">The launch collection.</h1><nav class="admin-nav"><a href="/admin/">Overview</a><a href="/admin/products.php">Products</a><a href="/admin/orders.php">Orders</a><a href="/admin/settings.php">Settings</a></nav>
 <?php if($done):?><div class="notice">The four concept fragrances have been added or refreshed. Visit the storefront to preview them.</div><?php elseif($error):?><div class="notice"><?=e($error)?></div><?php endif;?>
 <p class="muted">Install four proposed fragrance concepts with custom local SVG bottle artwork and one 50 ml variant each. This can be safely run again without duplicating products.</p>
-<div class="stats"><?php foreach($catalogue as $n=>$p):?><div class="stat"><span class="muted">0<?=($n+1)?> / PROPOSED</span><b style="font-size:30px"><?=e($p[0])?></b><span class="muted"><?=money($p[10])?> · 50 ml</span></div><?php endforeach;?></div>
+<div class="stats"><?php foreach($catalogue as $n=>$p):?><div class="stat"><span class="muted">0<?=($n+1)?> / PROPOSED</span><b style="font-size:30px"><?=e($p[0])?></b><span class="muted"><?=money($p[9])?> · 50 ml</span></div><?php endforeach;?></div>
 <div class="notice">These are sample product concepts, notes, prices and starter stock—not confirmed manufactured goods or final retail prices. Review every product and set actual inventory before accepting customer orders.</div>
 <form method="post" class="site-form"><?=csrf_field()?><button class="button-gold" type="submit">Install / refresh four concepts ↗</button></form>
 <p><a class="text-link" href="/admin/products.php">Open product manager ↗</a></p></div>
