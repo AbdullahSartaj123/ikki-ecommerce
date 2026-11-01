@@ -88,6 +88,35 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
+<section class="home-testimonials" aria-labelledby="testimonials-title" data-testimonial-carousel>
+ <div class="home-testimonials-inner">
+  <span class="home-testimonials-quote-mark" aria-hidden="true">“</span>
+  <h2 id="testimonials-title" class="visually-hidden">Words from our customers</h2>
+  <div class="home-testimonial-slides" aria-live="polite" aria-atomic="true">
+   <article class="home-testimonial-slide is-active" data-testimonial-slide aria-hidden="false">
+    <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“The Noir Orchid has become my signature scent. Compliments every single day.”</blockquote>
+    <p class="home-testimonial-author">Sarah M.</p><p class="home-testimonial-detail">Loyal Customer</p>
+   </article>
+   <article class="home-testimonial-slide" data-testimonial-slide aria-hidden="true" inert>
+    <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“Exceptional quality and the bottles themselves are works of art.”</blockquote>
+    <p class="home-testimonial-author">James R.</p><p class="home-testimonial-detail">Verified Buyer</p>
+   </article>
+   <article class="home-testimonial-slide" data-testimonial-slide aria-hidden="true" inert>
+    <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
+    <blockquote>“I've never experienced such longevity in a fragrance. Worth every penny.”</blockquote>
+    <p class="home-testimonial-author">Amara K.</p><p class="home-testimonial-detail">Verified Buyer</p>
+   </article>
+  </div>
+  <div class="home-testimonial-dots" role="group" aria-label="Choose a customer testimonial">
+   <button class="is-active" type="button" data-testimonial-dot="0" aria-label="Show testimonial 1" aria-pressed="true"></button>
+   <button type="button" data-testimonial-dot="1" aria-label="Show testimonial 2" aria-pressed="false"></button>
+   <button type="button" data-testimonial-dot="2" aria-label="Show testimonial 3" aria-pressed="false"></button>
+  </div>
+ </div>
+</section>
+
 <section class="home-newsletter" aria-labelledby="newsletter-title">
  <div class="home-newsletter-inner home-reveal"><span class="home-kicker">A LETTER FROM IKKI</span><h2 id="newsletter-title">A little note.<br><em>Now and then.</em></h2><p>Be the first to hear about new scents, thoughtful stories and notes from our world.</p>
   <form class="home-newsletter-form" action="/contact.php" method="get">
