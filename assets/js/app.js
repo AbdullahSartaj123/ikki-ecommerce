@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(!cartContent)return;
   const count=cartItems.reduce((total,item)=>total+item.quantity,0);
   const subtotal=cartItems.reduce((total,item)=>total+item.price*item.quantity,0);
-  if(cartCount)cartCount.textContent=String(count);
+  if(cartCount)cartCount.textContent=String(count);\n  const bagBadge=document.querySelector('.header-bag-link .bag-count');\n  const bagLink=document.querySelector('[data-cart-drawer-trigger]');\n  if(bagBadge)bagBadge.textContent=String(count);\n  if(bagLink)bagLink.setAttribute('aria-label','Shopping bag, '+count+' items');
   if(cartSubtotal){
    const nextValue=formatCartPrice(subtotal);
    if(cartSubtotal.textContent!==nextValue){
