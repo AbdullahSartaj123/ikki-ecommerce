@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  const toggle=document.querySelector('.menu-toggle');
  const nav=document.querySelector('#primary-navigation');
  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- initScrollAnimations();
+ // Start page entrance/reveal animations only after the global preloader exits.
+ document.addEventListener('ikki:preloader-finished',initScrollAnimations,{once:true});
 
  // Keep the branded preloader above the page until the DOM is ready.
  const preloader=document.querySelector('[data-home-preloader]');
