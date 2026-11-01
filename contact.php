@@ -6,9 +6,9 @@ require __DIR__.'/includes/header.php';
 ?>
 <section class="page-banner page-banner-contact" aria-labelledby="page-banner-title">
  <div class="page-banner-copy reveal">
-  <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Contact Us</span></nav>
+  <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Contact</span></nav>
   <h1 id="page-banner-title">Contact Us</h1>
-  <p>A question, a thought, or a little help finding your signature scent. We would love to hear from you.</p>
+  <p>We'd love to hear from you — reach out with any questions</p>
  </div>
 </section>
 <section class="contact-main">
