@@ -167,27 +167,65 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('scroll',updateStoryParallax,{passive:true});
   window.addEventListener('resize',updateStoryParallax);
  }
- // Collection category filters.
- const collectionFilters=document.querySelectorAll('[data-filter]');
- const collectionCards=document.querySelectorAll('.collection-card[data-category]');
+ // Collection filtering, animated pill indicator and client-side sorting.
+ const collectionFilters=[...document.querySelectorAll('[data-filter]')];
+ const collectionCards=[...document.querySelectorAll('.collection-card[data-category]')];
  const collectionCount=document.querySelector('.collection-count b');
  const noCollectionResults=document.querySelector('#collection-no-results');
+ const filterTrack=document.querySelector('[data-filter-track]');
+ const filterIndicator=filterTrack?.querySelector('.collection-filter-indicator');
+ const sortSelect=document.querySelector('#collection-sort');
+ const toolbarWrap=document.querySelector('.collection-toolbar-wrap');
  if(collectionFilters.length&&collectionCards.length){
-  collectionFilters.forEach(button=>button.addEventListener('click',()=>{
+  const positionIndicator=button=>{
+   if(!filterTrack||!filterIndicator||!button)return;
+   const track=filterTrack.getBoundingClientRect(),pill=button.getBoundingClientRect();
+   filterIndicator.style.width=pill.width+'px';
+   filterIndicator.style.transform='translateX('+(pill.left-track.left)+'px)';
+  };
+  const sortCards=()=>{
+   const mode=sortSelect?.value||'featured';
+   const sorted=[...collectionCards].sort((a,b)=>{
+    if(mode==='price-asc')return Number(a.dataset.price)-Number(b.dataset.price);
+    if(mode==='price-desc')return Number(b.dataset.price)-Number(a.dataset.price);
+    if(mode==='newest')return Number(b.dataset.productId)-Number(a.dataset.productId);
+    return Number(a.dataset.originalIndex)-Number(b.dataset.originalIndex);
+   });
+   sorted.forEach(card=>card.parentElement.appendChild(card));
+  };
+  collectionCards.forEach((card,index)=>card.dataset.originalIndex=String(index));
+  const applyFilter=button=>{
    const selected=button.dataset.filter;
    collectionFilters.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});
-   let visible=0;
+   positionIndicator(button);
+   const matches=card=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
    collectionCards.forEach(card=>{
-    const show=selected==='all'||card.dataset.category===selected;
-    card.hidden=!show;
-    if(show)visible++;
+    const show=matches(card);
+    if(!show&&!card.hidden){
+     card.classList.add('is-filtering-out');
+     window.setTimeout(()=>{card.hidden=true;card.classList.remove('is-filtering-out');},200);
+    }else if(show&&card.hidden){
+     card.hidden=false;card.classList.remove('is-filtering-out');card.classList.remove('is-filtering-in');
+     void card.offsetWidth;card.classList.add('is-filtering-in');
+    }
    });
+   const visible=collectionCards.filter(matches).length;
    if(collectionCount)collectionCount.textContent=String(visible);
    if(noCollectionResults)noCollectionResults.hidden=visible!==0;
-  }));
+  };
+  collectionFilters.forEach(button=>button.addEventListener('click',()=>applyFilter(button)));
+  sortSelect?.addEventListener('change',sortCards);
+  positionIndicator(collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0]);
+  window.addEventListener('resize',()=>positionIndicator(collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0]));
+  sortCards();
  }
-
-
+ if(toolbarWrap&&'IntersectionObserver'in window){
+  const sentinel=document.createElement('span');
+  sentinel.className='collection-sticky-sentinel';sentinel.setAttribute('aria-hidden','true');
+  toolbarWrap.before(sentinel);
+  const stickyObserver=new IntersectionObserver(([entry])=>toolbarWrap.classList.toggle('is-stuck',!entry.isIntersecting),{threshold:0,rootMargin:'-70px 0px 0px 0px'});
+  stickyObserver.observe(sentinel);
+ }
 
  // Contact form front-end validation. No message is transmitted until a delivery service is connected.
  const contactForm=document.querySelector('#ikki-contact-form');
