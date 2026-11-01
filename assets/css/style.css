@@ -1424,3 +1424,25 @@ body.quick-view-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
  .collection-quick-dialog,.collection-quick-dialog::backdrop,.collection-quick-dialog[open].is-closing,.collection-quick-dialog[open].is-closing::backdrop{animation:none;transition:none}
 }
+
+
+/* Collection empty state and premium filter skeletons */
+.collection-no-results{min-height:330px;padding:65px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:19px;text-align:center;opacity:0;transform:translateY(12px);transition:opacity .35s ease,transform .35s ease}
+.collection-no-results[hidden],.collection-skeleton-grid[hidden]{display:none}
+.collection-no-results.is-visible{opacity:1;transform:translateY(0)}
+.collection-no-results svg{width:43px;height:43px;fill:none;stroke:#c9a86a;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round}
+.collection-no-results p{margin:0;color:#aaa49a;font:400 16px/1.5 'Montserrat',sans-serif}
+.collection-empty-reset{min-height:43px;padding:0 25px;border:1px solid #c9a86a;border-radius:2px;background:transparent;color:#e3cb97;font:500 9px 'Montserrat',sans-serif;letter-spacing:.13em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s}
+.collection-empty-reset:hover{background:#c9a86a;color:#111}
+.collection-skeleton-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px;opacity:0;transition:opacity .2s ease}
+.collection-skeleton-grid.is-visible{opacity:1}
+.collection-skeleton-card{min-width:0;display:flex;flex-direction:column;gap:13px}
+.collection-skeleton-card span{display:block;aspect-ratio:1/1;background:linear-gradient(110deg,#1c1b19 8%,#302d27 18%,#1c1b19 33%);background-size:200% 100%;animation:collectionShimmer 1.25s linear infinite}
+.collection-skeleton-card i{display:block;width:68%;height:10px;background:linear-gradient(110deg,#24221f 8%,#39352d 18%,#24221f 33%);background-size:200% 100%;animation:collectionShimmer 1.25s linear infinite;font-style:normal}
+.collection-skeleton-card i:last-child{width:35%;height:8px}
+@keyframes collectionShimmer{to{background-position-x:-200%}}
+.collection-card.is-filtering-in{animation:collectionCardReveal .32s ease both}
+@keyframes collectionCardReveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1199px){.collection-skeleton-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:767px){.collection-skeleton-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 16px}.collection-no-results{min-height:270px;padding:45px 16px}.collection-no-results p{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.collection-no-results,.collection-skeleton-card span,.collection-skeleton-card i,.collection-card.is-filtering-in{animation:none;transition:none}.collection-card.is-filtering-in{opacity:1;transform:none}}
