@@ -1,6 +1,1 @@
-<?php
-require_once __DIR__.'/config/bootstrap.php';
-$pageTitle='Order reference — Ikki';require __DIR__.'/includes/header.php';
-?>
-<div class="page-wrap" style="text-align:center"><span class="eyebrow">Thank you</span><h1 class="page-title">Your order has been recorded.</h1><p class="muted">Your order reference is <?= e((string)($_SESSION['last_order_number']??'')) ?>. Please send the prefilled WhatsApp message to complete the handoff. Our team will confirm your order.</p><a class="btn" href="https://wa.me/<?= e(setting('whatsapp_number','923094733789')) ?>" target="_blank" rel="noopener">Open WhatsApp</a></div>
-<?php require __DIR__.'/includes/footer.php'; ?>
+<?php require_once __DIR__.'/config/bootstrap.php';$pageTitle='Thank you — Ikki';$orderNo=(string)($_SESSION['last_order_number']??'');require __DIR__.'/includes/header.php';?><section class="order-complete"><span class="complete-mark">✳</span><span class="eyebrow">A MOMENT TO REMEMBER</span><h1>Your order<br>is <em>on its way.</em></h1><p>Your order request has been recorded<?php if($orderNo):?> under reference <strong><?=e($orderNo)?></strong><?php endif;?>. To complete the handoff, send the prepared message to our team on WhatsApp. We will confirm your order details.</p><a class="button-gold" href="https://wa.me/<?=e(setting('whatsapp_number','923094733789'))?>" target="_blank" rel="noopener">Continue to WhatsApp <span>↗</span></a><a class="text-link" href="/shop.php">Return to the collection</a></section><?php require __DIR__.'/includes/footer.php';?>
