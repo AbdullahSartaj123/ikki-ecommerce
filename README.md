@@ -15,7 +15,7 @@ This repository contains the first application foundation: storefront, product c
 ## Setup
 1. Create a MySQL database and import `database/schema.sql`.
 2. Copy `config/database.example.php` to `config/database.php` and add hosting credentials.
-3. Set a strong `IKKI_ADMIN_SETUP_KEY` in your environment/config before using the one-time admin setup endpoint.
+3. In `config/database.php`, define a long random `IKKI_ADMIN_SETUP_KEY` constant (or set it as an environment variable) before using the one-time admin setup endpoint.
 4. Upload to PHP hosting with HTTPS enabled.
 5. Ensure `storage/uploads` is writable and cannot execute scripts.
 6. Open `/admin/setup.php?key=YOUR_SETUP_KEY` once to create the first admin, then remove/disable setup.php.
