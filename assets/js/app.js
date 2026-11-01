@@ -44,6 +44,61 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
   window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMenu();});
  }
+ // Footer accordions: collapsed by default on small screens, expanded on desktop.
+ const footerColumns=[...document.querySelectorAll('[data-footer-accordion]')];
+ const setFooterAccordionMode=()=>{
+  const mobile=window.innerWidth<=768;
+  footerColumns.forEach(column=>{
+   const button=column.querySelector('.ikki-footer-heading');
+   const panel=column.querySelector('.ikki-footer-panel');
+   if(!button||!panel)return;
+   if(mobile){
+    button.setAttribute('aria-expanded','false');
+    column.classList.remove('is-expanded');
+    panel.style.maxHeight='0px';
+   }else{
+    button.setAttribute('aria-expanded','true');
+    column.classList.add('is-expanded');
+    panel.style.maxHeight='none';
+   }
+  });
+ };
+ if(footerColumns.length){
+  setFooterAccordionMode();
+  footerColumns.forEach(column=>{
+   const button=column.querySelector('.ikki-footer-heading');
+   const panel=column.querySelector('.ikki-footer-panel');
+   if(!button||!panel)return;
+   button.addEventListener('click',()=>{
+    if(window.innerWidth>768)return;
+    const expanded=button.getAttribute('aria-expanded')==='true';
+    button.setAttribute('aria-expanded',String(!expanded));
+    column.classList.toggle('is-expanded',!expanded);
+    panel.style.maxHeight=expanded?'0px':panel.scrollHeight+'px';
+   });
+  });
+  window.addEventListener('resize',setFooterAccordionMode);
+ }
+
+ // Newsletter email feedback. The subscription endpoint is not connected yet.
+ const newsletterForm=document.querySelector('#ikki-newsletter-form');
+ if(newsletterForm){
+  const email=newsletterForm.querySelector('input[type="email"]');
+  const feedback=document.querySelector('#ikki-newsletter-feedback');
+  newsletterForm.addEventListener('submit',event=>{
+   event.preventDefault();
+   feedback.classList.remove('is-visible','is-error');
+   if(!email||!email.value.trim()||!email.checkValidity()){
+    feedback.textContent='Please enter a valid email address.';
+    feedback.classList.add('is-visible','is-error');
+    if(email)email.focus();
+    return;
+   }
+   feedback.textContent='Thank you for your interest. Our newsletter is coming soon.';
+   feedback.classList.add('is-visible');
+   newsletterForm.reset();
+  });
+ }
  // Shared floating back-to-top control.
  const backToTop=document.querySelector('[data-back-to-top]');
  if(backToTop){
