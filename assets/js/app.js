@@ -475,6 +475,32 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
  }
 
+ // Our Story milestone timeline: activate each milestone once as it enters view.
+ const storyTimeline=document.querySelector('.story-timeline-track');
+ if(storyTimeline){
+  const milestones=[...storyTimeline.querySelectorAll('.story-timeline-item')];
+  const updateTimelineProgress=()=>{
+   const active=milestones.filter(item=>item.classList.contains('is-active')).length;
+   const progress=milestones.length>1?(active-1)/(milestones.length-1)*100:active?100:0;
+   storyTimeline.style.setProperty('--timeline-progress',Math.max(0,progress)+'%');
+  };
+  if('IntersectionObserver' in window){
+   const milestoneObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+     if(entry.isIntersecting){
+      entry.target.classList.add('is-active');
+      milestoneObserver.unobserve(entry.target);
+      updateTimelineProgress();
+     }
+    });
+   },{root:null,rootMargin:'0px 0px -18% 0px',threshold:.45});
+   milestones.forEach(item=>milestoneObserver.observe(item));
+  }else{
+   milestones.forEach(item=>item.classList.add('is-active'));
+   updateTimelineProgress();
+  }
+ }
+
  // Existing product-variant price update.
  const variant=document.querySelector('#variant');
  const price=document.querySelector('.detail-price');
