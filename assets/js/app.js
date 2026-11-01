@@ -377,36 +377,94 @@ document.addEventListener('DOMContentLoaded',()=>{
   quickDialog.addEventListener('close',()=>{document.body.classList.remove('quick-view-open');quickDialog.classList.remove('is-visible','is-closing');});
   quickForm.addEventListener('submit',event=>{if(!variantInput.value){event.preventDefault();addButton.disabled=true;}});
  }
- // Contact form front-end validation. No message is transmitted until a delivery service is connected.
+ // Contact form validation and simulated submission states (front-end only).
  const contactForm=document.querySelector('#ikki-contact-form');
  if(contactForm){
   const feedback=document.querySelector('#contact-form-feedback');
-  const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const fields=[...contactForm.querySelectorAll('input[required]:not([type="checkbox"]),textarea[required],select[required]')];
-  const clearField=field=>{const wrap=field.closest('.contact-field');wrap.classList.remove('is-invalid');wrap.querySelector('.field-error').textContent='';};
-  fields.forEach(field=>field.addEventListener('input',()=>clearField(field)));
+  const fieldGrid=contactForm.querySelector('.contact-form-grid');
+  const submitButton=contactForm.querySelector('.contact-submit');
+  const successPanel=document.querySelector('#contact-success-panel');
+  const sendAnother=document.querySelector('#contact-send-another');
+  const note=contactForm.querySelector('.contact-form-note');
+  const emailPattern=/^[A-Z0-9.!#$%&'*+/=?^`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)+$/i;
+  const fields=[...contactForm.querySelectorAll('#contact-name,#contact-email,#contact-subject,#contact-message')];
+  let isSubmitting=false,resetTimer=null;
+  const validateField=field=>{
+   const value=field.value.trim();
+   let message='';
+   if(field.id==='contact-name'&&value.length<2)message=value?'Name must be at least 2 characters.':'Please enter your full name.';
+   else if(field.id==='contact-email'&&!value)message='Please enter your email address.';
+   else if(field.id==='contact-email'&&!emailPattern.test(value))message='Please enter a valid email address.';
+   else if(field.id==='contact-subject'&&!value)message='Please select a subject.';
+   else if(field.id==='contact-message'&&value.length<10)message=value?'Message must be at least 10 characters.':'Please enter your message.';
+   const wrap=field.closest('.contact-field');
+   wrap.classList.toggle('is-invalid',Boolean(message));
+   const error=wrap.querySelector('.field-error');
+   if(error)error.textContent=message;
+   field.setAttribute('aria-invalid',String(Boolean(message)));
+   return !message;
+  };
+  const clearShake=wrap=>{wrap.classList.remove('is-shaking');void wrap.offsetWidth;};
+  fields.forEach(field=>{
+   field.addEventListener('blur',()=>{if(!isSubmitting)validateField(field);});
+   field.addEventListener('input',()=>{if(wrapHasError(field))validateField(field);});
+   field.addEventListener('change',()=>{if(field.id==='contact-subject'&&wrapHasError(field))validateField(field);});
+  });
+  function wrapHasError(field){return field.closest('.contact-field').classList.contains('is-invalid');}
+  const resetForm=()=>{
+   if(resetTimer){window.clearTimeout(resetTimer);resetTimer=null;}
+   contactForm.reset();
+   fields.forEach(field=>{
+    const wrap=field.closest('.contact-field');
+    wrap.classList.remove('is-invalid','is-shaking');
+    const error=wrap.querySelector('.field-error');if(error)error.textContent='';
+    field.removeAttribute('aria-invalid');
+   });
+   fieldGrid.hidden=false;successPanel.hidden=true;successPanel.classList.remove('is-visible');
+   submitButton.disabled=false;submitButton.classList.remove('is-loading','is-success');
+   submitButton.innerHTML='Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>';
+   feedback.classList.remove('is-visible','is-error');feedback.textContent='';
+   if(note)note.hidden=false;
+   isSubmitting=false;
+  };
+  const showSuccess=()=>{
+   submitButton.classList.remove('is-loading');submitButton.classList.add('is-success');
+   submitButton.innerHTML='<svg class="contact-button-check" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Message Sent</span>';
+   submitButton.disabled=true;
+   fieldGrid.classList.add('is-fading-out');
+   if(note)note.classList.add('is-fading-out');
+   window.setTimeout(()=>{
+    fieldGrid.hidden=true;
+    if(note)note.hidden=true;
+    successPanel.hidden=false;
+    requestAnimationFrame(()=>successPanel.classList.add('is-visible'));
+   },320);
+   resetTimer=window.setTimeout(resetForm,5000);
+  };
+  sendAnother.addEventListener('click',resetForm);
   contactForm.addEventListener('submit',event=>{
    event.preventDefault();
+   if(isSubmitting||submitButton.classList.contains('is-success'))return;
    let firstInvalid=null;
    fields.forEach(field=>{
-    clearField(field);
-    const value=field.value.trim();
-    let message='';
-    if(!value)message='Please complete this field.';
-    else if(field.type==='email'&&!emailPattern.test(value))message='Please enter a valid email address.';
-    else if(field.id==='contact-message'&&value.length<10)message='Please enter at least 10 characters.';
-    if(message){const wrap=field.closest('.contact-field');wrap.classList.add('is-invalid');wrap.querySelector('.field-error').textContent=message;if(!firstInvalid)firstInvalid=field;}
+    const valid=validateField(field);
+    if(!valid){
+     const wrap=field.closest('.contact-field');
+     clearShake(wrap);wrap.classList.add('is-shaking');
+     if(!firstInvalid)firstInvalid=field;
+    }
    });
-   feedback.classList.add('is-visible');
    if(firstInvalid){
-    feedback.classList.add('is-error');feedback.textContent='Please review the highlighted fields and try again.';firstInvalid.focus();return;
+    feedback.classList.add('is-visible','is-error');
+    feedback.textContent='Please correct the highlighted fields before sending.';
+    firstInvalid.focus();return;
    }
-   feedback.classList.remove('is-error');
-   feedback.textContent='Thank you. Your details passed validation, but this form is not connected to email delivery yet. Please send your enquiry directly through our WhatsApp contact link.';
-   contactForm.reset();
+   feedback.classList.remove('is-visible','is-error');feedback.textContent='';
+   isSubmitting=true;submitButton.disabled=true;submitButton.classList.add('is-loading');
+   submitButton.innerHTML='<span class="contact-loading-ring" aria-hidden="true"></span><span>Sending</span>';
+   window.setTimeout(showSuccess,1200);
   });
  }
-
  // Auto-rotating customer testimonials; pause while hovered, focused or touched.
  const testimonialRoot=document.querySelector('[data-testimonial-carousel]');
  if(testimonialRoot){
