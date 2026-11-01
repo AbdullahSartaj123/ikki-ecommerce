@@ -16,10 +16,11 @@ require __DIR__.'/includes/header.php';
   <p class="contact-intro">Fill in the details below and our team will be glad to help.</p>
   <form class="ikki-contact-form" id="ikki-contact-form" novalidate>
    <div class="contact-form-grid">
-    <label class="contact-field"><span>Your name</span><input type="text" name="name" autocomplete="name" placeholder="Name" required><small class="field-error" aria-live="polite"></small></label>
-    <label class="contact-field"><span>Email address</span><input type="email" name="email" autocomplete="email" placeholder="you@example.com" required><small class="field-error" aria-live="polite"></small></label>
-    <label class="contact-field contact-field-full"><span>Subject</span><input type="text" name="subject" placeholder="What can we help you with?" required><small class="field-error" aria-live="polite"></small></label>
-    <label class="contact-field contact-field-full"><span>Your message</span><textarea name="message" rows="5" placeholder="Write your message here..." required></textarea><small class="field-error" aria-live="polite"></small></label>
+    <div class="contact-field contact-field-full ikki-form-field"><input id="contact-name" type="text" name="name" autocomplete="name" placeholder=" " required><label for="contact-name">Your name</label><small class="field-error" aria-live="polite"></small></div>
+    <div class="contact-field ikki-form-field"><input id="contact-email" type="email" name="email" autocomplete="email" placeholder=" " required><label for="contact-email">Email address</label><small class="field-error" aria-live="polite"></small></div>
+    <div class="contact-field ikki-form-field ikki-form-select"><select id="contact-subject" name="subject" required><option value="" selected disabled hidden></option><option value="Order enquiry">Order enquiry</option><option value="Product guidance">Product guidance</option><option value="Delivery support">Delivery support</option><option value="Other">Other</option></select><label for="contact-subject">How can we help?</label><small class="field-error" aria-live="polite"></small></div>
+    <div class="contact-field contact-field-full ikki-form-field"><textarea id="contact-message" name="message" rows="5" placeholder=" " required></textarea><label for="contact-message">Your message</label><small class="field-error" aria-live="polite"></small></div>
+    <div class="contact-field contact-field-full"><label class="ikki-form-checkbox"><input type="checkbox" name="whatsapp_consent" value="yes"><span class="ikki-form-checkbox__box" aria-hidden="true"></span><span>You may contact me about this enquiry on WhatsApp.</span></label></div>
    </div>
    <button class="contact-submit" type="submit">Send your message <span>↗</span></button>
    <p class="contact-form-feedback" id="contact-form-feedback" role="status" aria-live="polite"></p>
