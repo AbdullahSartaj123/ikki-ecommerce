@@ -420,7 +420,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     const error=wrap.querySelector('.field-error');if(error)error.textContent='';
     field.removeAttribute('aria-invalid');
    });
-   fieldGrid.hidden=false;successPanel.hidden=true;successPanel.classList.remove('is-visible');
+   fieldGrid.hidden=false;fieldGrid.classList.remove('is-fading-out');successPanel.hidden=true;successPanel.classList.remove('is-visible');
+   if(note){note.hidden=false;note.classList.remove('is-fading-out');}
    submitButton.disabled=false;submitButton.classList.remove('is-loading','is-success');
    submitButton.innerHTML='Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>';
    feedback.classList.remove('is-visible','is-error');feedback.textContent='';
