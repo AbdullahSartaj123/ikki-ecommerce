@@ -4,10 +4,12 @@ $pageTitle='Contact Us — Ikki';
 $description='Get in touch with Ikki for fragrance guidance, order enquiries and customer care.';
 require __DIR__.'/includes/header.php';
 ?>
-<section class="contact-hero">
- <div class="contact-hero-glow"></div>
- <div class="contact-hero-copy reveal"><span class="story-kicker">WE ARE HERE FOR YOU</span><h1>Contact <em>Us.</em></h1><p>A question, a thought, or a little help finding your signature scent. We would love to hear from you.</p></div>
- <span class="contact-hero-foot">IKKI CUSTOMER CARE · PAKISTAN</span>
+<section class="page-banner page-banner-contact" aria-labelledby="page-banner-title">
+ <div class="page-banner-copy reveal">
+  <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Contact Us</span></nav>
+  <h1 id="page-banner-title">Contact Us</h1>
+  <p>A question, a thought, or a little help finding your signature scent. We would love to hear from you.</p>
+ </div>
 </section>
 <section class="contact-main">
  <div class="contact-form-column reveal">
