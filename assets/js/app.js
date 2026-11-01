@@ -167,7 +167,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('scroll',updateStoryParallax,{passive:true});
   window.addEventListener('resize',updateStoryParallax);
  }
- // Collection filtering, empty state, shimmer loading and client-side sorting.
+ // === Collection Page: Filtering ===
+ // Category filters, sorting, empty state and skeleton transitions.
  const collectionFilters=[...document.querySelectorAll('[data-filter]')];
  let collectionCards=[...document.querySelectorAll('.collection-card[data-category]')];
  const collectionRevealObserver=('IntersectionObserver'in window)?new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const card=entry.target;card.classList.add('is-revealed');collectionRevealObserver.unobserve(card);}),{threshold:.12,rootMargin:'0px 0px -30px 0px'}):null;
@@ -257,6 +258,8 @@ document.addEventListener('DOMContentLoaded',()=>{
    };
    filterTimer=window.setTimeout(revealResults,showLoading?480:0);
   };
+  // === Collection Page: Load More ===
+  // Progressive batches use perPage; new products are picked up automatically.
   loadMoreButton?.addEventListener('click',()=>{
    if(loadMoreBusy)return;
    const total=collectionCards.filter(card=>matchesFilter(card,activeCollectionFilter)).length;
@@ -289,7 +292,8 @@ document.addEventListener('DOMContentLoaded',()=>{
    stickyObserver.observe(toolbarSentinel);
   }
  }
- // Product quick-view modal: animated lifecycle, product data, focus trap and purchase controls.
+ // === Collection Page: Quick View Modal ===
+ // Hidden native dialog; product content and purchase options are populated on trigger.
  const quickDialog=document.querySelector('#collection-quick-dialog');
  if(quickDialog){
   const $=selector=>quickDialog.querySelector(selector);
