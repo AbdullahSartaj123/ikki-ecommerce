@@ -82,6 +82,8 @@ require __DIR__.'/includes/header.php';
   </article>
  <?php endforeach; ?>
  </div>
+ 
+ <div class="collection-pagination" id="collection-pagination"><button type="button" class="collection-load-more" id="collection-load-more">Load More</button><span class="collection-all-viewed" id="collection-all-viewed" hidden>You’ve viewed our full collection</span></div>
  <dialog class="collection-quick-dialog" id="collection-quick-dialog" aria-labelledby="quick-view-title">
   <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   <div class="quick-view-layout">
@@ -105,7 +107,6 @@ require __DIR__.'/includes/header.php';
    </div>
   </div>
  </dialog>
- <div class="collection-pagination" id="collection-pagination"><button type="button" class="collection-load-more" id="collection-load-more">Load More</button><span class="collection-all-viewed" id="collection-all-viewed" hidden>You’ve viewed our full collection</span></div>
  <div class="collection-no-results" id="collection-no-results" role="status" aria-live="polite" hidden><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M19 5h10m-8 0v8l-7 8v19h22V21l-7-8V5M14 21h20M18 29h12"/></svg><p>No products found in this category</p><button type="button" class="collection-empty-reset" data-reset-filter>View All Products</button></div><div class="collection-skeleton-grid" id="collection-skeleton" aria-hidden="true" hidden><div class="collection-skeleton-card"><span></span><i></i><i></i></div><div class="collection-skeleton-card"><span></span><i></i><i></i></div><div class="collection-skeleton-card"><span></span><i></i><i></i></div><div class="collection-skeleton-card"><span></span><i></i><i></i></div></div>
 </section>
 <?php require __DIR__.'/includes/footer.php'; ?>
