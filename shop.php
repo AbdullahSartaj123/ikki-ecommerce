@@ -87,7 +87,7 @@ require __DIR__.'/includes/header.php';
  <dialog class="collection-quick-dialog" id="collection-quick-dialog" role="dialog" aria-modal="true" aria-labelledby="quick-view-title">
   <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   <div class="quick-view-layout">
-   <div class="quick-view-visual"><img data-quick-image src="/assets/images/noor.svg" alt="Ikki fragrance bottle artwork for the selected scent"></div>
+   <div class="quick-view-visual"><img data-quick-image src="/assets/images/noor.svg" alt="Ikki fragrance bottle artwork for the selected scent" width="800" height="1000" loading="lazy" decoding="async"></div>
    <div class="quick-view-content">
     <span class="quick-view-kicker">THE IKKI FRAGRANCE HOUSE</span>
     <h2 id="quick-view-title"></h2>
