@@ -1,17 +1,1 @@
-<?php
-require_once __DIR__ . '/config/bootstrap.php';
-$pageTitle='The Collection — Ikki';
-$products=[];
-$catalogueAvailable=true;
-try {
-    $sql="SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) AS price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order ASC LIMIT 1) AS image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name";
-    $products=db()->query($sql)->fetchAll();
-} catch (Throwable $ex) {
-    $catalogueAvailable=false;
-    error_log('[Ikki shop] Product catalogue query failed: '.$ex->getMessage());
-}
-require __DIR__ . '/includes/header.php';
-?>
-<div class="page-wrap"><div class="page-intro"><span class="eyebrow">A considered collection</span><h1 class="page-title">The fragrances</h1><p class="muted">Discover the Ikki signature collection.</p></div>
-<?php if($products): ?><div class="product-grid"><?php foreach($products as $p): ?><a class="product-card reveal" href="/product.php?slug=<?= e($p['slug']) ?>"><div class="product-image"><img loading="lazy" src="<?= e($p['image_path'] ?: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=80') ?>" alt="<?= e($p['name']) ?>"></div><div class="product-info"><h3><?= e($p['name']) ?></h3><p><?= e($p['short_description'] ?? '') ?></p><div class="product-price"><?= $p['price']!==null?money($p['price']):'View details' ?></div></div></a><?php endforeach; ?></div><?php else: ?><div class="notice"><?= $catalogueAvailable?'No fragrances are published yet. Add products from the admin dashboard.':'The collection is temporarily unavailable while we complete the store setup.' ?></div><?php endif; ?></div>
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require_once __DIR__.'/config/bootstrap.php';$pageTitle='The Collection — Ikki';$products=[];try{$products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name")->fetchAll();}catch(Throwable $ex){error_log('[Ikki collection] '.$ex->getMessage());}require __DIR__.'/includes/header.php';?><section class="collection-hero"><span class="eyebrow">THE IKKI FRAGRANCE HOUSE / 01—04</span><h1>Objects of <em>desire.</em></h1><p>Four scent stories. Four different ways to be remembered.</p></section><div class="shop-toolbar"><span><?=count($products)?> FRAGRANCES</span><span>COMPOSED IN CHARACTER · WORN YOUR WAY</span></div><section class="shop-grid"><?php if($products):foreach($products as $n=>$p):?><a class="editorial-product reveal" href="/product.php?slug=<?=e($p['slug'])?>"><div class="editorial-image"><span class="product-number">0<?=($n+1)?></span><img src="<?=e($p['image_path']?:'/assets/images/noor.svg')?>" alt="<?=e($p['name'])?>" loading="lazy"><span class="quick-view">DISCOVER SCENT ↗</span></div><div class="editorial-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An Ikki signature fragrance')?></p></div><strong><?=$p['price']!==null?money($p['price']):'ENQUIRE'?></strong></div></a><?php endforeach;else:?><p class="empty-state">The collection is being prepared. Please check back shortly.</p><?php endif;?></section><?php require __DIR__.'/includes/footer.php';?>
