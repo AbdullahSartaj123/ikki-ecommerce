@@ -6,12 +6,19 @@ $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.gender,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name")->fetchAll();
 }catch(Throwable $ex){error_log('[Ikki collection] '.$ex->getMessage());}
-$newArrivalIds=[];\nif($products){$newest=$products;usort($newest,static fn($a,$b)=>(int)$b['id']<=>(int)$a['id']);$newArrivalIds=array_column(array_slice($newest,0,4),'id');}\n$genderLabel=static function($gender){
- $value=strtolower(trim((string)$gender));
- if(in_array($value,['female','women','woman','for her'],true))return 'For Her';
- if(in_array($value,['male','men','man','for him'],true))return 'For Him';
- return 'Unisex';
-};
+$catalog=[
+ ['name'=>'Noir Orchid','slug'=>'noir-orchid','notes'=>'Dark floral, oud, black amber','price'=>185,'category'=>'her','is_new'=>false],
+ ['name'=>'Velvet Rose','slug'=>'velvet-rose','notes'=>'Rose, patchouli, vanilla','price'=>165,'category'=>'her','is_new'=>false],
+ ['name'=>'Golden Oud','slug'=>'golden-oud','notes'=>'Oud, saffron, sandalwood','price'=>210,'category'=>'unisex','is_new'=>false],
+ ['name'=>'Citrus Soleil','slug'=>'citrus-soleil','notes'=>'Bergamot, neroli, musk','price'=>145,'category'=>'unisex','is_new'=>false],
+ ['name'=>'Amber Nights','slug'=>'amber-nights','notes'=>'Amber, leather, tobacco','price'=>195,'category'=>'him','is_new'=>false],
+ ['name'=>'Iron & Leather','slug'=>'iron-leather','notes'=>'Vetiver, leather, cedarwood','price'=>175,'category'=>'him','is_new'=>false],
+ ['name'=>'White Jasmine','slug'=>'white-jasmine','notes'=>'Jasmine, white musk, pear','price'=>155,'category'=>'her','is_new'=>true],
+ ['name'=>'Midnight Spice','slug'=>'midnight-spice','notes'=>'Black pepper, cardamom, oud','price'=>220,'category'=>'him','is_new'=>true],
+];
+$databaseProducts=[];
+foreach($products as $product){$databaseProducts[$product['slug']]=$product;}
+$products=$catalog;
 require __DIR__.'/includes/header.php';
 ?>
 <section class="page-banner page-banner-collection" aria-labelledby="page-banner-title">
@@ -41,25 +48,33 @@ require __DIR__.'/includes/header.php';
  </div>
  </div>
  <div class="collection-grid" id="collection-grid">
- <?php if($products): foreach($products as $n=>$p):
-  $category=$genderLabel($p['gender']??'Unisex');
-  $filterKey=$category==='For Her'?'her':($category==='For Him'?'him':'unisex');\n  $isNew=in_array((int)$p['id'],$newArrivalIds,true);
+ <?php foreach($products as $n=>$p):
+  $dbProduct=$databaseProducts[$p['slug']]??null;
+  $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
+  $imagePath=$dbProduct['image_path']??'/assets/images/noor.svg';
  ?>
-  <article class="collection-card reveal" data-category="<?=e($filterKey)?>" data-is-new="<?= $isNew?'true':'false' ?>" data-price="<?=e((string)($p['price']??0)) ?>" data-product-id="<?=e((string)$p['id']) ?>">
-   <a class="collection-card-image" href="/product.php?slug=<?=e($p['slug'])?>" aria-label="View <?=e($p['name'])?>">
-    <span class="collection-card-index"><?=str_pad((string)($n+1),2,'0',STR_PAD_LEFT)?></span>
-    <img src="<?=e($p['image_path']?:'/assets/images/noor.svg')?>" alt="<?=e($p['name'])?> fragrance bottle" loading="lazy">
-    <span class="collection-card-discover">DISCOVER THIS SCENT <b>↗</b></span>
-   </a>
+  <article class="collection-card collection-reveal" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
+   <div class="collection-card-image">
+    <?php if($p['is_new']): ?><span class="collection-new-badge">New</span><?php endif; ?>
+    <img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" loading="lazy">
+    <button class="collection-quick-view" type="button" data-quick-view data-name="<?=e($p['name'])?>" data-notes="<?=e($p['notes'])?>" data-price="<?=e(money($p['price']))?>" data-url="<?=e($productUrl)?>" aria-label="Quick view <?=e($p['name'])?>">
+     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12s3.4-6 9.5-6 9.5 6 9.5 6-3.4 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.7"/></svg>
+    </button>
+   </div>
    <div class="collection-card-info">
-    <div class="collection-card-heading"><span><?=e(strtoupper($category))?></span><h2><?=e($p['name'])?></h2><p><?=e($p['short_description']??'A signature fragrance by Ikki.')?></p></div>
-    <div class="collection-card-bottom"><strong><?=$p['price']!==null?money($p['price']):'PRICE ON REQUEST'?></strong><a href="/product.php?slug=<?=e($p['slug'])?>">VIEW DETAILS <span>↗</span></a></div>
+    <h2><?=e($p['name'])?></h2>
+    <p><?=e($p['notes'])?></p>
+    <strong><?=money($p['price'])?></strong>
    </div>
   </article>
- <?php endforeach; else: ?>
-  <div class="collection-empty"><span class="eyebrow">A MOMENT OF ANTICIPATION</span><h2>Something beautiful<br>is being <em>composed.</em></h2><p>Our fragrances will be here soon. In the meantime, we'd love to hear from you.</p><a class="button-gold" href="/contact.php">Contact Ikki <span>↗</span></a></div>
- <?php endif; ?>
+ <?php endforeach; ?>
  </div>
+ <dialog class="collection-quick-dialog" id="collection-quick-dialog" aria-labelledby="quick-view-title">
+  <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view">×</button>
+  <span class="eyebrow">THE IKKI FRAGRANCE HOUSE</span>
+  <h2 id="quick-view-title"></h2><p class="collection-dialog-notes"></p><strong class="collection-dialog-price"></strong>
+  <a class="button-gold collection-dialog-link" href="/shop.php" hidden>View fragrance <span>↗</span></a>
+ </dialog>
  <p class="collection-no-results" id="collection-no-results" hidden>No fragrances in this category just yet.</p>
 </section>
 <?php require __DIR__.'/includes/footer.php'; ?>
