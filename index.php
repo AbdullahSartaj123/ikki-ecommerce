@@ -47,10 +47,14 @@ require __DIR__.'/includes/header.php';
 </section>
 
 <section class="home-story-teaser" aria-labelledby="story-title">
- <img class="home-story-image" src="/assets/images/sahra.svg" alt="" loading="lazy">
- <div class="home-story-overlay"></div>
- <div class="home-story-content home-reveal"><span class="home-kicker">02 / THE WORLD OF IKKI</span><h2 id="story-title">A story told<br><em>without words.</em></h2><p>We believe fragrance is more than a finishing touch. It is memory, mood and quiet self-expression — composed into something entirely your own.</p><a class="home-button" href="/our-story.php">Discover our story <span>↗</span></a></div>
- <span class="home-story-caption">THE ART OF PRESENCE · IKKI</span>
+ <div class="home-story-parallax" aria-hidden="true"><img class="home-story-image" src="/assets/images/sahra.svg" alt="" loading="lazy"></div>
+ <div class="home-story-overlay" aria-hidden="true"></div>
+ <div class="home-story-content home-reveal" data-story-reveal>
+  <span class="home-story-eyebrow">SINCE 1998</span>
+  <h2 id="story-title">A Legacy of Craftsmanship</h2>
+  <p><em>Every fragrance begins with an idea, takes shape through thoughtful composition, and becomes part of a story only you can tell. Discover the art behind the scent.</em></p>
+  <a class="ikki-btn ikki-btn--secondary home-story-button" href="/our-story.php">Discover Our Story <span aria-hidden="true">↗</span></a>
+ </div>
 </section>
 
 <section class="home-values" aria-labelledby="values-title">
