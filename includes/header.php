@@ -33,23 +33,32 @@ $navItems=[
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-9"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261101-1"><?php endif; ?>
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
-<div class="home-preloader" data-home-preloader role="status" aria-label="Loading Ikki"><span class="home-preloader-mark">ikki<span>.</span></span><span class="home-preloader-line"></span></div>
+<div class="home-preloader" data-home-preloader role="status" aria-label="Loading Ikki">
+ <div class="home-preloader-content"><span class="home-preloader-mark" aria-label="Ikki">ikki<span>.</span></span><span class="home-preloader-track" aria-hidden="true"><span class="home-preloader-progress"></span></span></div>
+</div>
 <script>
-/* Fail-safe: never leave the storefront covered if the deferred application script fails. */
+/* Global, session-aware preloader: 1.5s progress + 0.5s exit; 0.3s on repeat visits. */
 (function(){
- var dismissed=false;
- function dismissPreloader(){
-  if(dismissed)return;
-  dismissed=true;
-  var loader=document.querySelector('[data-home-preloader]');
-  if(loader){
-   loader.classList.add('is-finished');
-   if(document.body)document.body.classList.remove('is-loading');
-   window.setTimeout(function(){if(loader.parentNode)loader.remove();},650);
-  }
- }
- window.addEventListener('load',function(){window.setTimeout(dismissPreloader,350);},{once:true});
- window.setTimeout(dismissPreloader,2500);
+ var overlay=document.querySelector('[data-home-preloader]');
+ if(!overlay)return;
+ var repeatVisit=false;
+ try{
+  repeatVisit=sessionStorage.getItem('ikki-preloader-seen')==='1';
+  if(!repeatVisit)sessionStorage.setItem('ikki-preloader-seen','1');
+ }catch(error){/* Storage may be unavailable; play the full intro safely. */}
+ var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ var fast=repeatVisit||reduced;
+ if(fast)overlay.classList.add('is-fast');
+ var progressTime=fast?0:1500;
+ var exitTime=fast?300:500;
+ window.setTimeout(function(){
+  overlay.classList.add('is-finished');
+  window.setTimeout(function(){
+   if(overlay.parentNode)overlay.remove();
+   document.body.classList.remove('is-loading');
+   document.dispatchEvent(new CustomEvent('ikki:preloader-finished'));
+  },exitTime);
+ },progressTime);
 })();
 </script>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
