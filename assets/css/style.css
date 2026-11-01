@@ -1646,3 +1646,25 @@ body.quick-view-open{overflow:hidden}
  .contact-form-column:before{transition:none}
  .contact-form-column.is-sending:before{transform:scaleX(1)}
 }
+
+
+/* Global Ikki preloader — shared by Home, Collection, Our Story and Contact */
+.home-preloader{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:#0a0a0a;opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;transition:opacity .5s ease,transform .5s ease,visibility .5s ease}
+.home-preloader-content{display:flex;flex-direction:column;align-items:center;gap:28px}
+.home-preloader-mark{display:block;color:#f5f1eb;font:400 42px/1 'Playfair Display',Georgia,serif;letter-spacing:.08em;opacity:0;transform:scale(.8);animation:ikkiPreloaderLogo .8s cubic-bezier(.2,.7,.2,1) .05s forwards}
+.home-preloader-mark span{color:#c9a86a}
+.home-preloader-track{position:relative;display:block;width:200px;height:1px;overflow:hidden;background:#262626}
+.home-preloader-progress{position:absolute;inset:0;display:block;background:#c9a86a;transform:scaleX(0);transform-origin:left;animation:ikkiPreloaderFill 1.5s linear forwards}
+.home-preloader.is-finished{opacity:0;visibility:hidden;transform:translateY(-20px);pointer-events:none}
+.home-preloader.is-finished .home-preloader-progress{transform:scaleX(1)}
+.home-preloader.is-fast{transition-duration:.3s}
+.home-preloader.is-fast .home-preloader-mark{animation-duration:.3s;animation-delay:0s}
+.home-preloader.is-fast .home-preloader-progress{animation:none;transform:scaleX(1)}
+@keyframes ikkiPreloaderLogo{to{opacity:1;transform:scale(1)}}
+@keyframes ikkiPreloaderFill{to{transform:scaleX(1)}}
+body.is-loading{overflow:hidden}
+@media(prefers-reduced-motion:reduce){
+ .home-preloader,.home-preloader-mark,.home-preloader-progress{animation:none;transition-duration:.3s}
+ .home-preloader-mark{opacity:1;transform:none}
+ .home-preloader-progress{transform:scaleX(1)}
+}
