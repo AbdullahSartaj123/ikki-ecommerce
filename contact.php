@@ -13,18 +13,17 @@ require __DIR__.'/includes/header.php';
 </section>
 <section class="contact-main">
  <div class="contact-form-column reveal">
-  <span class="story-kicker">SEND US A NOTE</span>
-  <h2>Let's start a<br><em>conversation.</em></h2>
-  <p class="contact-intro">Fill in the details below and our team will be glad to help.</p>
+  <span class="story-kicker">GET IN TOUCH</span>
+  <h2 class="contact-form-title">Send Us a Message</h2>
   <form class="ikki-contact-form" id="ikki-contact-form" novalidate>
    <div class="contact-form-grid">
-    <div class="contact-field contact-field-full ikki-form-field"><input id="contact-name" type="text" name="name" autocomplete="name" placeholder=" " required><label for="contact-name">Your name</label><small class="field-error" aria-live="polite"></small></div>
-    <div class="contact-field ikki-form-field"><input id="contact-email" type="email" name="email" autocomplete="email" placeholder=" " required><label for="contact-email">Email address</label><small class="field-error" aria-live="polite"></small></div>
-    <div class="contact-field ikki-form-field ikki-form-select"><select id="contact-subject" name="subject" required><option value="" selected disabled hidden></option><option value="Order enquiry">Order enquiry</option><option value="Product guidance">Product guidance</option><option value="Delivery support">Delivery support</option><option value="Other">Other</option></select><label for="contact-subject">How can we help?</label><small class="field-error" aria-live="polite"></small></div>
-    <div class="contact-field contact-field-full ikki-form-field"><textarea id="contact-message" name="message" rows="5" placeholder=" " required></textarea><label for="contact-message">Your message</label><small class="field-error" aria-live="polite"></small></div>
+    <div class="contact-field contact-field-full ikki-form-field"><input id="contact-name" type="text" name="name" autocomplete="name" placeholder=" " required><label for="contact-name">Full Name</label><small class="field-error" aria-live="polite"></small></div>
+    <div class="contact-field ikki-form-field"><input id="contact-email" type="email" name="email" autocomplete="email" placeholder=" " required><label for="contact-email">Email Address</label><small class="field-error" aria-live="polite"></small></div>
+    <div class="contact-field ikki-form-field ikki-form-select"><select id="contact-subject" name="subject" required><option value="" selected disabled hidden></option><option value="General Inquiry">General Inquiry</option><option value="Order Support">Order Support</option><option value="Wholesale">Wholesale</option><option value="Press">Press</option><option value="Other">Other</option></select><label for="contact-subject">Subject</label><small class="field-error" aria-live="polite"></small></div>
+    <div class="contact-field contact-field-full ikki-form-field"><textarea id="contact-message" name="message" rows="5" minlength="10" placeholder=" " required></textarea><label for="contact-message">Message</label><small class="field-error" aria-live="polite"></small></div>
     <div class="contact-field contact-field-full"><label class="ikki-form-checkbox"><input type="checkbox" name="whatsapp_consent" value="yes"><span class="ikki-form-checkbox__box" aria-hidden="true"></span><span>You may contact me about this enquiry on WhatsApp.</span></label></div>
    </div>
-   <button class="contact-submit" type="submit">Send your message <span>↗</span></button>
+   <button class="contact-submit" type="submit">Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button>
    <p class="contact-form-feedback" id="contact-form-feedback" role="status" aria-live="polite"></p>
    <p class="contact-form-note">This form currently provides front-end validation only. For a response, please contact us directly on WhatsApp.</p>
   </form>
