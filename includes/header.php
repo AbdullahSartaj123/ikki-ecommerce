@@ -32,8 +32,8 @@ $navItems=[
 <link rel="stylesheet" href="/assets/css/style.css?v=20261101-10">
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-8"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261101-1"><?php endif; ?>
 </head>
-<body class="<?= $isHomePage?'has-home-hero is-loading':'' ?> page-enter">
-<?php if($isHomePage): ?><div class="home-preloader" data-home-preloader role="status" aria-label="Loading Ikki"><span class="home-preloader-mark">ikki<span>.</span></span><span class="home-preloader-line"></span></div><?php endif; ?>
+<body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter">
+<div class="home-preloader" data-home-preloader role="status" aria-label="Loading Ikki"><span class="home-preloader-mark">ikki<span>.</span></span><span class="home-preloader-line"></span></div>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
 <header class="site-header<?= $isHomePage?' is-home-header':'' ?>" data-site-header>
 <a class="maison-brand" href="/" aria-label="Ikki home"><span class="maison-monogram" aria-hidden="true">M</span><span class="maison-wordmark">MAISON</span></a>
