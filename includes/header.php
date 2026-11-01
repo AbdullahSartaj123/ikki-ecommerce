@@ -78,7 +78,7 @@ $navItems=[
 <a class="header-icon-link header-search-link" href="/shop.php" aria-label="Explore and search the collection" title="Explore collection">
 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 4.5 4.5"></path></svg>
 </a>
-<a class="header-icon-link header-bag-link" href="/cart.php" data-cart-drawer-trigger aria-label="Shopping bag, <?=cart_count()?> items" title="Shopping bag">
+<a class="header-icon-link header-bag-link" href="/cart.php" data-cart-drawer-trigger aria-label="Shopping bag, <?=cart_count()?> items" aria-haspopup="dialog" aria-controls="cart-drawer" aria-expanded="false" title="Shopping bag">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
 <span class="bag-count"><?=cart_count()?></span>
 </a>
