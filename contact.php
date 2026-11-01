@@ -23,6 +23,12 @@ require __DIR__.'/includes/header.php';
     <div class="contact-field contact-field-full ikki-form-field"><textarea id="contact-message" name="message" rows="5" minlength="10" placeholder=" " required></textarea><label for="contact-message">Message</label><small class="field-error" aria-live="polite"></small></div>
     <div class="contact-field contact-field-full"><label class="ikki-form-checkbox"><input type="checkbox" name="whatsapp_consent" value="yes"><span class="ikki-form-checkbox__box" aria-hidden="true"></span><span>You may contact me about this enquiry on WhatsApp.</span></label></div>
    </div>
+   <div class="contact-success-panel" id="contact-success-panel" hidden role="status" aria-live="polite">
+    <span class="contact-success-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="21" stroke="currentColor" stroke-width="1.5"/><path d="m14 24 7 7 14-15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <h3>Thank you for reaching out.</h3>
+    <p>Your message has been validated successfully. This is a demo confirmation; no message has been sent.</p>
+    <button class="contact-send-another" type="button" id="contact-send-another">Send another message</button>
+   </div>
    <button class="contact-submit" type="submit">Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button>
    <p class="contact-form-feedback" id="contact-form-feedback" role="status" aria-live="polite"></p>
    <p class="contact-form-note">This form currently provides front-end validation only. For a response, please contact us directly on WhatsApp.</p>
