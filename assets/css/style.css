@@ -275,3 +275,202 @@ img{height:auto}.footer-bottom{flex-wrap:wrap;gap:12px 22px}
 @media(max-width:700px){.collection-page-hero{padding:80px 22px 65px}.collection-page-hero h1{font-size:clamp(58px,13vw,78px)}.collection-catalog{padding:55px 20px 75px}.collection-filters{gap:8px}.collection-filter{padding:10px 12px;font-size:8px}.collection-card-info{padding:13px 0}.collection-card-heading h2{font-size:25px}.collection-card-bottom{align-items:flex-start;gap:10px;flex-direction:column}.story-hero{min-height:430px}.story-hero-copy{padding:65px 22px}.story-hero-copy h1{font-size:clamp(66px,15vw,88px)}.story-intro-copy h2,.story-values-heading h2{font-size:clamp(52px,12vw,68px)}.story-chapter-image{min-height:320px}.story-chapter-copy{padding:48px 23px}.story-chapter-copy h2{font-size:clamp(48px,11vw,64px)}.story-value-grid{grid-template-columns:1fr;gap:0}.story-value-card{padding:25px 0}.story-manifesto{padding:80px 22px}.story-manifesto blockquote{font-size:clamp(36px,9vw,52px)}.story-cta-copy h2{font-size:clamp(52px,12vw,68px)}.footer-top{grid-template-columns:1fr 1fr;gap:30px 22px;padding:55px 23px}.footer-brand,.footer-note{grid-column:1/-1}.footer-bottom{padding:20px 23px;font-size:7px}.product-detail{grid-template-columns:1fr;padding:55px 22px;gap:35px}.product-visual>img{max-height:520px;object-fit:contain}.notes-row{grid-template-columns:1fr;gap:15px}.product-facts{grid-template-columns:1fr;gap:12px}}
 @media(max-width:430px){.collection-grid{grid-template-columns:1fr;gap:32px}.collection-card-image{aspect-ratio:.95}.collection-card-bottom{flex-direction:row;align-items:center}.footer-top{grid-template-columns:1fr}.footer-brand,.footer-note{grid-column:auto}.footer-column{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px}.footer-column h3{grid-column:1/-1}.back-to-top{width:42px;height:42px;right:14px;bottom:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}body.page-enter{animation:none}.back-to-top,.main-nav a,.footer-column a,.footer-social,.home-button,.story-cta-button,.button-gold,.text-link,.collection-card-bottom a,.collection-filter{transition:none}}
+
+/* IKKI LUXURY BUTTON SYSTEM — PRIMARY / OUTLINE / TEXT / ICON */
+:root {
+    --ikki-btn-gold: #c9a86a;
+    --ikki-btn-gold-hover: #e3cb97;
+    --ikki-btn-charcoal: #1a1a1a;
+    --ikki-btn-black: #0a0a0a;
+    --ikki-btn-transition: .4s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Shared foundation */
+.ikki-btn {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 0;
+    padding: 16px 40px;
+    overflow: hidden;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background: transparent;
+    color: var(--ikki-btn-gold);
+    font-family: "Montserrat", var(--sans, Arial, sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: 1.5px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+        color var(--ikki-btn-transition),
+        background-color var(--ikki-btn-transition),
+        border-color var(--ikki-btn-transition),
+        box-shadow var(--ikki-btn-transition),
+        transform var(--ikki-btn-transition);
+}
+
+.ikki-btn--small {
+    padding: 14px 32px;
+    font-size: 12px;
+}
+
+/* 1. Primary — solid champagne gold */
+.ikki-btn--primary {
+    border-color: var(--ikki-btn-gold);
+    background: var(--ikki-btn-gold);
+    color: var(--ikki-btn-black);
+}
+
+.ikki-btn--primary:hover {
+    transform: translateY(-2px);
+    border-color: var(--ikki-btn-gold-hover);
+    background: var(--ikki-btn-gold-hover);
+    box-shadow:
+        0 7px 22px rgba(201, 168, 106, .22),
+        0 0 14px rgba(201, 168, 106, .12);
+}
+
+.ikki-btn--primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(201, 168, 106, .14);
+}
+
+/* 2. Secondary — genuine left-to-right pseudo-element fill */
+.ikki-btn--secondary {
+    border-color: var(--ikki-btn-gold);
+    background: transparent;
+    color: var(--ikki-btn-gold);
+}
+
+.ikki-btn--secondary::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+    background: var(--ikki-btn-gold);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform var(--ikki-btn-transition);
+}
+
+.ikki-btn--secondary:hover::before,
+.ikki-btn--secondary:focus-visible::before {
+    transform: scaleX(1);
+}
+
+.ikki-btn--secondary:hover,
+.ikki-btn--secondary:focus-visible {
+    border-color: var(--ikki-btn-gold);
+    color: var(--ikki-btn-black);
+}
+
+/* 3. Text link — underline grows from its center */
+.ikki-btn--text {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 0;
+    padding: 8px 0;
+    overflow: visible;
+    border: 0;
+    background: transparent;
+    color: var(--ikki-btn-gold);
+}
+
+.ikki-btn--text::after {
+    position: absolute;
+    right: 50%;
+    bottom: 2px;
+    left: 50%;
+    height: 1px;
+    content: "";
+    background: var(--ikki-btn-gold-hover);
+    transition: left var(--ikki-btn-transition), right var(--ikki-btn-transition);
+}
+
+.ikki-btn--text:hover {
+    color: var(--ikki-btn-gold-hover);
+}
+
+.ikki-btn--text:hover::after,
+.ikki-btn--text:focus-visible::after {
+    right: 0;
+    left: 0;
+}
+
+/* 4. Icon — fixed 44px circular control */
+.ikki-btn--icon {
+    display: inline-flex;
+    flex: 0 0 44px;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    min-height: 44px;
+    padding: 0;
+    border: 1px solid #30302d;
+    border-radius: 50%;
+    background: var(--ikki-btn-charcoal);
+    color: var(--ikki-btn-gold);
+    letter-spacing: 0;
+}
+
+.ikki-btn--icon svg,
+.ikki-btn--icon i {
+    display: block;
+    width: 18px;
+    height: 18px;
+    transition: transform var(--ikki-btn-transition);
+}
+
+.ikki-btn--icon:hover {
+    transform: scale(1.1);
+    border-color: var(--ikki-btn-gold);
+    background: var(--ikki-btn-charcoal);
+    color: var(--ikki-btn-gold-hover);
+}
+
+.ikki-btn--icon:hover svg,
+.ikki-btn--icon:hover i {
+    transform: rotate(15deg);
+}
+
+/* Keyboard access, disabled state and motion preferences */
+.ikki-btn:focus-visible {
+    outline: 2px solid var(--ikki-btn-gold-hover);
+    outline-offset: 4px;
+}
+
+.ikki-btn:disabled,
+.ikki-btn[aria-disabled="true"] {
+    opacity: .45;
+    cursor: not-allowed;
+    pointer-events: none;
+    transform: none;
+    box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .ikki-btn,
+    .ikki-btn::before,
+    .ikki-btn::after,
+    .ikki-btn svg,
+    .ikki-btn i {
+        transition: none !important;
+    }
+
+    .ikki-btn:hover {
+        transform: none;
+    }
+}
+
