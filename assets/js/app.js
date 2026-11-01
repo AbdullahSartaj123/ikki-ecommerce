@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded',()=>{
  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  initScrollAnimations();
 
- // Keep the homepage header transparent over the hero, then give it a solid surface.
- if(header&&header.classList.contains('is-home-header')){
-  const updateHeader=()=>header.classList.toggle('is-scrolled',window.scrollY>24);
+ // Header transitions to its compact glass surface after 80px of scrolling.
+ if(header){
+  const updateHeader=()=>header.classList.toggle('is-scrolled',window.scrollY>80);
   updateHeader();
   window.addEventListener('scroll',updateHeader,{passive:true});
  }
