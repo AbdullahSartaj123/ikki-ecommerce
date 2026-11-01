@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  if(contactForm){
   const feedback=document.querySelector('#contact-form-feedback');
   const emailPattern=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const fields=[...contactForm.querySelectorAll('input[required],textarea[required]')];
+  const fields=[...contactForm.querySelectorAll('input[required]:not([type="checkbox"]),textarea[required],select[required]')];
   const clearField=field=>{const wrap=field.closest('.contact-field');wrap.classList.remove('is-invalid');wrap.querySelector('.field-error').textContent='';};
   fields.forEach(field=>field.addEventListener('input',()=>clearField(field)));
   contactForm.addEventListener('submit',event=>{
