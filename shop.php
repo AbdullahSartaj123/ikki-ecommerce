@@ -84,10 +84,10 @@ require __DIR__.'/includes/header.php';
  </div>
  
  <div class="collection-pagination" id="collection-pagination"><button type="button" class="collection-load-more" id="collection-load-more">Load More</button><span class="collection-all-viewed" id="collection-all-viewed" hidden>You’ve viewed our full collection</span></div>
- <dialog class="collection-quick-dialog" id="collection-quick-dialog" aria-labelledby="quick-view-title">
+ <dialog class="collection-quick-dialog" id="collection-quick-dialog" role="dialog" aria-modal="true" aria-labelledby="quick-view-title">
   <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   <div class="quick-view-layout">
-   <div class="quick-view-visual"><img data-quick-image src="/assets/images/noor.svg" alt=""></div>
+   <div class="quick-view-visual"><img data-quick-image src="/assets/images/noor.svg" alt="Ikki fragrance bottle artwork for the selected scent"></div>
    <div class="quick-view-content">
     <span class="quick-view-kicker">THE IKKI FRAGRANCE HOUSE</span>
     <h2 id="quick-view-title"></h2>
