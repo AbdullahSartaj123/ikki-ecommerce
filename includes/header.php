@@ -33,6 +33,7 @@ $navItems=[
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-9"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261101-1"><?php endif; ?>
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
+<div class="ikki-scroll-progress" data-ikki-scroll-progress aria-hidden="true"><span></span></div>
 <div class="home-preloader" data-home-preloader role="status" aria-label="Loading Ikki">
  <div class="home-preloader-content"><span class="home-preloader-mark" aria-label="Ikki">ikki<span>.</span></span><span class="home-preloader-track" aria-hidden="true"><span class="home-preloader-progress"></span></span></div>
 </div>
