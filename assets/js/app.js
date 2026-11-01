@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }));
 
  // Existing editorial reveal behavior.
- const reveal=document.querySelectorAll('.reveal');
+ const reveal=document.querySelectorAll('.reveal, .home-reveal');
  if(reducedMotion||!('IntersectionObserver'in window)){
   reveal.forEach(el=>el.classList.add('visible'));
  }else{
