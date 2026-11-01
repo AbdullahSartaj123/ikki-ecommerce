@@ -14,26 +14,36 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('scroll',updateHeader,{passive:true});
  }
 
- // Accessible mobile navigation.
- if(toggle&&nav){
+ // Accessible full-screen mobile navigation with scroll lock and reversible overlay motion.
+ const mobileOverlay=document.querySelector('#mobile-navigation');
+ const mobileClose=mobileOverlay?.querySelector('.mobile-menu-close');
+ if(toggle&&mobileOverlay){
+  const mobileLinks=mobileOverlay.querySelectorAll('.mobile-menu-links a');
+  const openMenu=()=>{
+   mobileOverlay.classList.add('is-open');
+   mobileOverlay.setAttribute('aria-hidden','false');
+   document.body.classList.add('mobile-menu-open');
+   toggle.setAttribute('aria-expanded','true');
+   toggle.setAttribute('aria-label','Close navigation');
+   mobileLinks.forEach(link=>{link.style.animation='none';void link.offsetWidth;link.style.animation='';});
+   if(mobileClose)mobileClose.focus();
+  };
   const closeMenu=()=>{
-   nav.classList.remove('open');
+   if(!mobileOverlay.classList.contains('is-open'))return;
+   mobileOverlay.classList.remove('is-open');
+   mobileOverlay.setAttribute('aria-hidden','true');
+   document.body.classList.remove('mobile-menu-open');
    toggle.setAttribute('aria-expanded','false');
    toggle.setAttribute('aria-label','Open navigation');
+   toggle.focus();
   };
-  toggle.addEventListener('click',()=>{
-   const isOpen=nav.classList.toggle('open');
-   toggle.setAttribute('aria-expanded',String(isOpen));
-   toggle.setAttribute('aria-label',isOpen?'Close navigation':'Open navigation');
-  });
-  nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+  toggle.addEventListener('click',()=>mobileOverlay.classList.contains('is-open')?closeMenu():openMenu());
+  if(mobileClose)mobileClose.addEventListener('click',closeMenu);
+  mobileOverlay.addEventListener('click',event=>{if(event.target===mobileOverlay)closeMenu();});
+  mobileLinks.forEach(link=>link.addEventListener('click',closeMenu));
   document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
-  document.addEventListener('click',event=>{
-   if(nav.classList.contains('open')&&!nav.contains(event.target)&&!toggle.contains(event.target))closeMenu();
-  });
-  window.addEventListener('resize',()=>{if(window.innerWidth>700)closeMenu();});
+  window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMenu();});
  }
-
  // Shared floating back-to-top control.
  const backToTop=document.querySelector('[data-back-to-top]');
  if(backToTop){
