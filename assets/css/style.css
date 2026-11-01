@@ -1606,3 +1606,30 @@ body.quick-view-open{overflow:hidden}
 .contact-send-another{margin-top:22px;padding:10px 0;border:0;border-bottom:1px solid #c9a86a88;background:transparent;color:var(--gold2);font:500 9px var(--sans);letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
 .contact-send-another:hover{color:#fff}
 @media(prefers-reduced-motion:reduce){.contact-field.is-shaking{animation:none}.contact-loading-ring{animation-duration:1.5s}.contact-field .field-error,.contact-success-panel,.contact-form-grid,.contact-form-note{transition:none}}
+
+
+/* Contact page — right-hand contact details panel */
+.contact-info-column{display:flex;flex-direction:column;align-self:start;gap:36px;min-width:0}
+.contact-details-list{display:flex;flex-direction:column}
+.contact-detail-item{display:flex;align-items:flex-start;gap:17px;padding:0 0 25px;margin:0 0 25px;border-bottom:1px solid #262626}
+.contact-detail-item:last-child{margin-bottom:0}
+.contact-detail-icon{flex:0 0 40px;width:40px;height:40px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold);background:transparent}
+.contact-detail-icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}
+.contact-detail-copy{min-width:0;padding-top:1px}
+.contact-detail-copy h3{margin:0 0 7px;color:#f0e9dd;font:400 19px/1.25 var(--serif)}
+.contact-detail-copy p,.contact-detail-copy a{margin:0;color:#aaa397;font:400 12px/1.8 var(--sans);letter-spacing:.015em;text-decoration:none;overflow-wrap:anywhere}
+.contact-detail-copy a{transition:color .2s ease}
+.contact-detail-copy a:hover{color:var(--gold2)}
+.contact-info-social{display:flex;flex-direction:column;gap:15px}
+.contact-info-socials{display:flex;align-items:center;gap:10px}
+.contact-info-socials a{width:38px;height:38px;display:grid;place-items:center;border:1px solid #4a4030;border-radius:50%;color:#b8a98f;background:transparent;transition:background .25s ease,border-color .25s ease,color .25s ease,transform .25s ease}
+.contact-info-socials a:hover{background:var(--gold);border-color:var(--gold);color:#0a0a0a;transform:translateY(-2px)}
+.contact-info-socials svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.contact-info-socials svg .social-fill{fill:currentColor;stroke:none}
+.contact-map-wrap{display:flex;flex-direction:column;gap:14px}
+.contact-map-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.contact-map-heading>span:last-child{color:#81796c;font:500 9px var(--sans);letter-spacing:.14em}
+.contact-map-frame{height:300px;overflow:hidden;border:1px solid var(--gold);border-radius:8px;background:#151515}
+.contact-map-frame iframe{display:block;width:100%;height:100%;border:0;filter:grayscale(1) invert(.9) contrast(.85) brightness(.78)}
+@media(max-width:950px){.contact-info-column{width:100%;max-width:720px}}
+@media(max-width:700px){.contact-info-column{gap:32px}.contact-detail-item{padding-bottom:21px;margin-bottom:21px}.contact-map-frame{height:260px}}
