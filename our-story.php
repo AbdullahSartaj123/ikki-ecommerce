@@ -49,13 +49,25 @@ require __DIR__.'/includes/header.php';
  </article>
 </section>
 
-<section class="story-values">
- <div class="story-values-heading reveal"><span class="story-kicker">WHAT GUIDES US</span><h2>Our <em>values.</em></h2><p>The principles behind every choice we make.</p></div>
+<section class="story-values" aria-labelledby="story-values-title">
+ <div class="story-values-heading reveal"><span class="story-kicker">WHAT GUIDES US</span><h2 id="story-values-title">Our <em>values.</em></h2><p>The principles behind every choice we make.</p></div>
  <div class="story-value-grid">
-  <article class="story-value-card reveal"><span>01</span><div class="story-value-symbol">✳</div><h3>Individuality</h3><p>Your fragrance should feel like you. We celebrate personal expression over passing trends.</p></article>
-  <article class="story-value-card reveal"><span>02</span><div class="story-value-symbol">◇</div><h3>Intention</h3><p>Thoughtful choices shape a better experience, from scent discovery to the smallest detail.</p></article>
-  <article class="story-value-card reveal"><span>03</span><div class="story-value-symbol">⌁</div><h3>Curiosity</h3><p>We stay open to new ideas, unexpected combinations and the art of continual refinement.</p></article>
-  <article class="story-value-card reveal"><span>04</span><div class="story-value-symbol">∞</div><h3>Connection</h3><p>Fragrance brings moments closer. We create for the memories and impressions that remain.</p></article>
+  <article class="story-value-card reveal" style="--value-delay:0ms">
+   <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 28 17 40 12 31 23 43 29 29 29 25 43 20 29 6 34 16 23 7 15 20 18Z"/><circle cx="24" cy="24" r="5"/></svg></span>
+   <h3>Craftsmanship</h3><p>Every bottle is a testament to meticulous artistry</p>
+  </article>
+  <article class="story-value-card reveal" style="--value-delay:100ms">
+   <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 42S7 32 7 19C7 11 17 6 24 15 31 6 41 11 41 19c0 13-17 23-17 23Z"/><path d="M24 15c-3 7-3 14 0 21M15 25c3-1 6-1 9 0m0 0c3-1 6-1 9 0"/></svg></span>
+   <h3>Sustainability</h3><p>Ethically sourced ingredients, responsibly packaged</p>
+  </article>
+  <article class="story-value-card reveal" style="--value-delay:200ms">
+   <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 39 13.5V30.5L24 39 9 30.5V13.5Z"/><path d="m16 23 5 5 11-12"/><path d="M24 39v5"/></svg></span>
+   <h3>Authenticity</h3><p>No shortcuts. No compromises. Only genuine quality</p>
+  </article>
+  <article class="story-value-card reveal" style="--value-delay:300ms">
+   <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 29 18 43 18 32 27 36 41 24 33 12 41 16 27 5 18 19 18Z"/><circle cx="24" cy="24" r="4"/></svg></span>
+   <h3>Exclusivity</h3><p>Limited batches ensure rarity and distinction</p>
+  </article>
  </div>
 </section>
 
