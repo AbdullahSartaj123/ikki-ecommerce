@@ -167,19 +167,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('scroll',updateStoryParallax,{passive:true});
   window.addEventListener('resize',updateStoryParallax);
  }
- // Collection filtering, animated pill indicator and client-side sorting.
+ // Collection filtering, empty state, shimmer loading and client-side sorting.
  const collectionFilters=[...document.querySelectorAll('[data-filter]')];
  const collectionCards=[...document.querySelectorAll('.collection-card[data-category]')];
  const collectionRevealObserver=('IntersectionObserver'in window)?new IntersectionObserver(entries=>entries.forEach(entry=>{if(!entry.isIntersecting)return;const card=entry.target;card.classList.add('is-revealed');collectionRevealObserver.unobserve(card);}),{threshold:.12,rootMargin:'0px 0px -30px 0px'}):null;
  collectionCards.forEach((card,index)=>{card.style.transitionDelay=(index*100)+'ms';if(collectionRevealObserver)collectionRevealObserver.observe(card);else card.classList.add('is-revealed');});
  const collectionCount=document.querySelector('.collection-count b');
  const noCollectionResults=document.querySelector('#collection-no-results');
+ const skeleton=document.querySelector('#collection-skeleton');
+ const resetFilter=document.querySelector('[data-reset-filter]');
  const filterTrack=document.querySelector('[data-filter-track]');
  const filterIndicator=filterTrack?.querySelector('.collection-filter-indicator');
  const sortSelect=document.querySelector('#collection-sort');
  const toolbarWrap=document.querySelector('.collection-toolbar-wrap');
  if(collectionFilters.length&&collectionCards.length){
-  let activeCollectionFilter='all';
+  let activeCollectionFilter='all',filterTimer=null,filterRun=0;
   const positionIndicator=button=>{
    if(!filterTrack||!filterIndicator||!button)return;
    const track=filterTrack.getBoundingClientRect(),pill=button.getBoundingClientRect();
@@ -197,43 +199,57 @@ document.addEventListener('DOMContentLoaded',()=>{
    sorted.forEach(card=>card.parentElement.appendChild(card));
   };
   collectionCards.forEach((card,index)=>card.dataset.originalIndex=String(index));
-  const applyFilter=button=>{
+  const matchesFilter=(card,selected)=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
+  const applyFilter=(button,showLoading=true)=>{
    const selected=button.dataset.filter;
    activeCollectionFilter=selected;
+   const run=++filterRun;
+   if(filterTimer)window.clearTimeout(filterTimer);
    collectionFilters.forEach(item=>{const active=item===button;item.classList.toggle('is-active',active);item.setAttribute('aria-pressed',String(active));});
    positionIndicator(button);
-   const matches=card=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
-   collectionCards.forEach((card,index)=>{
-    const show=matches(card);
-    if(!show&&!card.hidden){
-     card.classList.add('is-filtering-out');
-     window.setTimeout(()=>{if(activeCollectionFilter!=='all'&&(activeCollectionFilter==='new'?card.dataset.isNew!=='true':card.dataset.category!==activeCollectionFilter))card.hidden=true;card.classList.remove('is-filtering-out');},200);
-    }else if(show&&(card.hidden||card.classList.contains('is-filtering-out'))){
-     card.hidden=false;card.classList.remove('is-filtering-out');card.classList.remove('is-filtering-in','is-revealed');
-     card.style.transitionDelay=(index*100)+'ms';
-     void card.offsetWidth;
-     if(collectionRevealObserver)collectionRevealObserver.observe(card);else card.classList.add('is-revealed');
-     card.classList.add('is-filtering-in');
+   const matches=collectionCards.filter(card=>matchesFilter(card,selected));
+   if(collectionCount)collectionCount.textContent=String(matches.length);
+   if(noCollectionResults){noCollectionResults.hidden=true;noCollectionResults.classList.remove('is-visible');}
+   if(showLoading&&skeleton){
+    collectionCards.forEach(card=>{card.hidden=true;card.classList.remove('is-filtering-out','is-filtering-in');});
+    skeleton.hidden=false;skeleton.classList.remove('is-visible');
+    void skeleton.offsetWidth;skeleton.classList.add('is-visible');
+   }
+   const revealResults=()=>{
+    if(run!==filterRun)return;
+    if(skeleton){skeleton.classList.remove('is-visible');skeleton.hidden=true;}
+    collectionCards.forEach((card,index)=>{
+     const show=matchesFilter(card,selected);
+     card.hidden=!show;
+     card.classList.remove('is-filtering-out','is-filtering-in','is-revealed');
+     if(show){
+      card.style.transitionDelay=(index*65)+'ms';
+      void card.offsetWidth;
+      if(collectionRevealObserver)collectionRevealObserver.observe(card);else card.classList.add('is-revealed');
+      card.classList.add('is-filtering-in');
+     }
+    });
+    if(noCollectionResults&&matches.length===0){
+     noCollectionResults.hidden=false;
+     requestAnimationFrame(()=>noCollectionResults.classList.add('is-visible'));
     }
-   });
-   const visible=collectionCards.filter(matches).length;
-   if(collectionCount)collectionCount.textContent=String(visible);
-   if(noCollectionResults)noCollectionResults.hidden=visible!==0;
+   };
+   filterTimer=window.setTimeout(revealResults,showLoading?480:0);
   };
-  collectionFilters.forEach(button=>button.addEventListener('click',()=>applyFilter(button)));
+  collectionFilters.forEach(button=>button.addEventListener('click',()=>applyFilter(button,true)));
+  resetFilter?.addEventListener('click',()=>{
+   const allButton=collectionFilters.find(button=>button.dataset.filter==='all');
+   if(allButton)applyFilter(allButton,true);
+  });
   sortSelect?.addEventListener('change',sortCards);
   positionIndicator(collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0]);
   window.addEventListener('resize',()=>positionIndicator(collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0]));
-  sortCards();
+  const toolbarSentinel=document.querySelector('.collection-toolbar-sentinel');
+  if(toolbarSentinel&&'IntersectionObserver'in window){
+   const stickyObserver=new IntersectionObserver(([entry])=>toolbarWrap?.classList.toggle('is-stuck',!entry.isIntersecting),{threshold:0});
+   stickyObserver.observe(toolbarSentinel);
+  }
  }
- if(toolbarWrap&&'IntersectionObserver'in window){
-  const sentinel=document.createElement('span');
-  sentinel.className='collection-sticky-sentinel';sentinel.setAttribute('aria-hidden','true');
-  toolbarWrap.before(sentinel);
-  const stickyObserver=new IntersectionObserver(([entry])=>toolbarWrap.classList.toggle('is-stuck',!entry.isIntersecting),{threshold:0,rootMargin:'-70px 0px 0px 0px'});
-  stickyObserver.observe(sentinel);
- }
-
  // Product quick-view modal: animated lifecycle, product data, focus trap and purchase controls.
  const quickDialog=document.querySelector('#collection-quick-dialog');
  if(quickDialog){
