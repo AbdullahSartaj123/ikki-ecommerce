@@ -3,11 +3,12 @@ $pageTitle='Our Story — The World of Ikki';
 $description='The thinking, philosophy and craft behind Ikki — a fragrance house shaped by memory, mood and self-expression.';
 require __DIR__.'/includes/header.php';
 ?>
-<section class="story-hero" aria-labelledby="story-title">
- <div class="story-hero-art" aria-hidden="true"></div>
- <div class="story-hero-shade"></div>
- <div class="story-hero-copy reveal"><span class="story-kicker">THE WORLD OF IKKI / EST. WITH INTENTION</span><h1 id="story-title">Our <em>Story.</em></h1><p>A fragrance is never just a fragrance. It is a feeling, a memory, a way of being remembered.</p></div>
- <span class="story-hero-foot">A STUDY IN SCENT · CHAPTER 01</span>
+<section class="page-banner page-banner-story" aria-labelledby="page-banner-title">
+ <div class="page-banner-copy reveal">
+  <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Our Story</span></nav>
+  <h1 id="page-banner-title">Our Story</h1>
+  <p>A fragrance is never just a fragrance. It is a feeling, a memory, a way of being remembered.</p>
+ </div>
 </section>
 
 <section class="story-intro">
