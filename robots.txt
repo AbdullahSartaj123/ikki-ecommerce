@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /actions/
+Disallow: /config/
+Sitemap: https://ikki.gt.tc/sitemap.xml
