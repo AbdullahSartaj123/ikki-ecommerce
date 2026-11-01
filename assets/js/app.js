@@ -116,7 +116,9 @@ document.addEventListener('DOMContentLoaded',()=>{
   cartDrawer.classList.add('is-open');
   cartBackdrop.classList.add('is-visible');
   cartDrawer.setAttribute('aria-hidden','false');
+  cartDrawer.setAttribute('aria-modal','true');
   cartBackdrop.setAttribute('aria-hidden','false');
+  if(bagTrigger)bagTrigger.setAttribute('aria-expanded','true');
   document.body.classList.add('cart-drawer-open');
   if(cartClose)cartClose.focus();
  };
@@ -126,6 +128,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   cartBackdrop.classList.remove('is-visible');
   cartDrawer.setAttribute('aria-hidden','true');
   cartBackdrop.setAttribute('aria-hidden','true');
+  if(bagTrigger)bagTrigger.setAttribute('aria-expanded','false');
   document.body.classList.remove('cart-drawer-open');
   if(cartReturnFocus&&typeof cartReturnFocus.focus==='function')cartReturnFocus.focus();
  };
@@ -148,7 +151,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   cartContent?.addEventListener('click',event=>{
    if(event.target.closest('.cart-drawer-empty-cta'))closeCartDrawer();
   });
-  document.addEventListener('keydown',event=>{if(event.key==='Escape'&&cartDrawer.classList.contains('is-open'))closeCartDrawer();});
+  document.addEventListener('keydown',event=>{
+   if(!cartDrawer.classList.contains('is-open'))return;
+   if(event.key==='Escape'){event.preventDefault();closeCartDrawer();return;}
+   if(event.key!=='Tab')return;
+   const focusable=[...cartDrawer.querySelectorAll('a[href]:not([hidden]),button:not(:disabled):not([hidden]),input:not(:disabled):not([type="hidden"]):not([hidden]),select:not(:disabled),textarea:not(:disabled),[tabindex]:not([tabindex="-1"])')].filter(el=>el.getClientRects().length);
+   if(!focusable.length){event.preventDefault();return;}
+   const first=focusable[0],last=focusable[focusable.length-1];
+   if(event.shiftKey&&(document.activeElement===first||!cartDrawer.contains(document.activeElement))){event.preventDefault();last.focus();}
+   else if(!event.shiftKey&&(document.activeElement===last||!cartDrawer.contains(document.activeElement))){event.preventDefault();first.focus();}
+  });
   renderCartDrawer();
  }
 
