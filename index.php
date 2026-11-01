@@ -3,7 +3,9 @@ require_once __DIR__.'/config/bootstrap.php';
 $pageTitle='Ikki — Leave a little mystery.';
 $description='Discover Ikki, a modern fragrance house in Pakistan. Find a signature scent that feels unmistakably yours.';
 $products=[];
-try{$products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.id LIMIT 4")->fetchAll();}catch(Throwable $ex){error_log('[Ikki home] '.$ex->getMessage());}
+try{
+ $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.id LIMIT 4")->fetchAll();
+}catch(Throwable $ex){error_log('[Ikki home] '.$ex->getMessage());}
 if(!$products){$products=[
  ['name'=>'Noor','slug'=>'noor','short_description'=>'Light, made lasting.','price'=>null,'image_path'=>'/assets/images/noor.svg'],
  ['name'=>'Sahra','slug'=>'sahra','short_description'=>'Warmth after sunset.','price'=>null,'image_path'=>'/assets/images/sahra.svg'],
@@ -12,14 +14,14 @@ if(!$products){$products=[
 ];}
 require __DIR__.'/includes/header.php';
 ?>
-<section class="home-hero">
+<section class="home-hero" aria-labelledby="home-title">
  <div class="home-hero-backdrop" aria-hidden="true"></div>
  <div class="home-hero-copy">
   <span class="home-kicker"><i></i> AN INDEPENDENT FRAGRANCE HOUSE · PAKISTAN</span>
   <p class="home-overline">THE ART OF BEING REMEMBERED</p>
-  <h1>Leave a little<br><em>mystery.</em></h1>
+  <h1 id="home-title">Leave a little<br><em>mystery.</em></h1>
   <p class="home-lead">Some things are better felt than explained. Discover a fragrance that says everything, without a word.</p>
-  <div class="home-hero-actions"><a class="home-button" href="/shop.php">Explore the collection <span>↗</span></a><a class="home-quiet-link" href="#our-world">Discover our world <span>↓</span></a></div>
+  <div class="home-hero-actions"><a class="home-button" href="/shop.php">Explore the collection <span>↗</span></a><a class="home-quiet-link" href="#signature-scents">Discover your scent <span>↓</span></a></div>
   <div class="home-hero-foot"><span>01 / THE SIGNATURE COLLECTION</span><span>SCENT IS A LANGUAGE</span></div>
  </div>
  <div class="home-hero-visual" aria-label="Ikki Noor fragrance bottle">
@@ -29,29 +31,48 @@ require __DIR__.'/includes/header.php';
   <div class="home-visual-stamp"><span>IKKI / Nº 01</span><strong>NOOR</strong><small>LIGHT, MADE LASTING</small></div>
   <span class="home-vertical-note">A STUDY IN SCENT · VOL. 01</span>
  </div>
- <a class="home-scroll-cue" href="#our-world"><span></span> SCROLL TO DISCOVER</a>
+ <a class="home-scroll-cue" href="#signature-scents"><span></span> SCROLL TO DISCOVER</a>
 </section>
-<div class="home-marquee" aria-label="Ikki fragrance philosophy"><div>FRAGRANCE, COMPOSED <b>✳</b> A SIGNATURE IS PERSONAL <b>✳</b> THE ART OF PRESENCE <b>✳</b> FRAGRANCE, COMPOSED <b>✳</b> A SIGNATURE IS PERSONAL <b>✳</b></div></div>
-<section class="home-philosophy" id="our-world">
- <div class="home-section-index">01 / OUR WORLD</div>
- <div class="home-philosophy-title"><span class="home-kicker">MORE THAN A FINISHING TOUCH</span><h2>A scent can say<br>what words <em>never could.</em></h2></div>
- <div class="home-philosophy-copy"><p>Fragrance is a feeling, a memory in the making, a quiet signature that arrives before you and lingers after. Ikki is for the moments that become yours — and the details that make them unforgettable.</p><a class="home-text-link" href="/contact.php">A little more about Ikki <span>↗</span></a></div>
+
+<section class="home-collection" id="signature-scents" aria-labelledby="signature-title">
+ <div class="home-section-heading home-reveal"><div><span class="home-kicker">01 / FIND YOUR SIGNATURE</span><h2 id="signature-title">Our signature<br><em>scents.</em></h2></div><a class="home-text-link" href="/shop.php">VIEW THE COLLECTION <span>↗</span></a></div>
+ <div class="home-products">
+ <?php foreach($products as $n=>$p): ?>
+  <a class="home-product home-reveal" href="/product.php?slug=<?=e($p['slug'])?>">
+   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image_path']?:'/assets/images/noor.svg')?>" alt="<?=e($p['name'])?> fragrance bottle" loading="lazy"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div>
+   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An Ikki signature')?></p></div><strong><?=$p['price']!==null?money($p['price']):'DISCOVER'?></strong></div>
+  </a>
+ <?php endforeach; ?>
+ </div>
+ <p class="home-collection-note home-reveal">Distinct expressions. One unmistakable point of view.</p>
 </section>
-<section class="home-collection" id="collection">
- <div class="home-section-heading"><div><span class="home-kicker">02 / FIND YOUR SIGNATURE</span><h2>The signature<br><em>collection.</em></h2></div><a class="home-text-link" href="/shop.php">VIEW ALL FRAGRANCES <span>↗</span></a></div>
- <div class="home-products"><?php foreach($products as $n=>$p):?><a class="home-product home-reveal" href="/product.php?slug=<?=e($p['slug'])?>"><div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image_path']?:'/assets/images/noor.svg')?>" alt="<?=e($p['name'])?> fragrance bottle" loading="lazy"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div><div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An Ikki signature')?></p></div><strong><?=$p['price']!==null?money($p['price']):'DISCOVER'?></strong></div></a><?php endforeach;?></div>
- <p class="home-collection-note">Four individual expressions. One unmistakable point of view.</p>
+
+<section class="home-story-teaser" aria-labelledby="story-title">
+ <img class="home-story-image" src="/assets/images/sahra.svg" alt="" loading="lazy">
+ <div class="home-story-overlay"></div>
+ <div class="home-story-content home-reveal"><span class="home-kicker">02 / THE WORLD OF IKKI</span><h2 id="story-title">A story told<br><em>without words.</em></h2><p>We believe fragrance is more than a finishing touch. It is memory, mood and quiet self-expression — composed into something entirely your own.</p><a class="home-button" href="/our-story.php">Discover our story <span>↗</span></a></div>
+ <span class="home-story-caption">THE ART OF PRESENCE · IKKI</span>
 </section>
-<section class="home-feature">
- <div class="home-feature-art"><img src="/assets/images/sahra.svg" alt="Ikki Sahra warm amber fragrance concept" loading="lazy"><span>THE MOOD OF SAHRA / 02</span></div>
- <div class="home-feature-copy"><span class="home-kicker">03 / A MOMENT, BOTTLED</span><h2>Golden hour<br>has a <em>feeling.</em></h2><p>Warm. Intimate. Unhurried. Sahra is imagined in the glow of the last light — a fragrance story with warmth at its heart.</p><a class="home-outline-button" href="/product.php?slug=sahra">Meet Sahra <span>↗</span></a></div>
+
+<section class="home-values" aria-labelledby="values-title">
+ <div class="home-values-heading home-reveal"><span class="home-kicker">03 / THE IKKI PROMISE</span><h2 id="values-title">The details<br>make the <em>difference.</em></h2><p>Every part of the experience deserves intention.</p></div>
+ <article class="home-value home-reveal">
+  <span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M8 37 24 8l16 29H8Z"/><path d="M15 25h18M18 31h12M24 8v29"/></svg></span><span class="home-value-number">01 / THE MAKING</span><h3>Considered craftsmanship</h3><p>Thoughtful presentation, careful details and a point of view that feels unmistakably Ikki.</p>
+ </article>
+ <article class="home-value home-reveal">
+  <span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 40S8 30 8 18a8 8 0 0 1 16-2 8 8 0 0 1 16 2c0 12-16 22-16 22Z"/><path d="M24 16c-4 7-4 13 0 19"/></svg></span><span class="home-value-number">02 / THE FORMULA</span><h3>Quality-led ingredients</h3><p>We value balanced scent compositions and a considered selection of fragrance ingredients.</p>
+ </article>
+ <article class="home-value home-reveal">
+  <span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 5 39 11v11c0 10-6 17-15 21C15 39 9 32 9 22V11l15-6Z"/><path d="M17 24l5 5 10-11"/></svg></span><span class="home-value-number">03 / THE IMPRESSION</span><h3>Made to linger</h3><p>Distinctive fragrance experiences designed to leave a memorable impression.</p>
+ </article>
 </section>
-<section class="home-values">
- <div class="home-values-heading"><span class="home-kicker">04 / THE IKKI PROMISE</span><h2>Considered in every<br><em>detail.</em></h2></div>
- <div class="home-value"><span>01</span><div><h3>Find your feeling</h3><p>Explore scent stories and choose the character that feels like you.</p></div></div>
- <div class="home-value"><span>02</span><div><h3>Made for your moments</h3><p>A considered fragrance experience, from first impression to final note.</p></div></div>
- <div class="home-value"><span>03</span><div><h3>Here for you</h3><p>Our team is available for fragrance and order enquiries across Pakistan.</p></div></div>
+
+<section class="home-newsletter" aria-labelledby="newsletter-title">
+ <div class="home-newsletter-inner home-reveal"><span class="home-kicker">A LETTER FROM IKKI</span><h2 id="newsletter-title">A little note.<br><em>Now and then.</em></h2><p>Be the first to hear about new scents, thoughtful stories and notes from our world.</p>
+  <form class="home-newsletter-form" action="/contact.php" method="get">
+   <label class="visually-hidden" for="newsletter-email">Your email address</label><input id="newsletter-email" type="email" name="email" placeholder="Your email address" autocomplete="email" required><button type="submit" aria-label="Continue to contact Ikki">Join us <span>↗</span></button>
+  </form>
+  <small>By joining, you agree to hear from Ikki. You can opt out at any time.</small>
+ </div>
 </section>
-<section class="home-manifesto"><span class="home-kicker">THE IKKI POINT OF VIEW</span><p>The most memorable thing about you might be the thing <em>no one can see.</em></p><span>— THE IKKI PHILOSOPHY</span></section>
-<section class="home-final-cta"><span class="home-kicker">YOUR NEXT SIGNATURE STARTS HERE</span><h2>Make it <em>memorable.</em></h2><a class="home-button" href="/shop.php">Discover Ikki <span>↗</span></a></section>
-<?php require __DIR__.'/includes/footer.php';?>
+<?php require __DIR__.'/includes/footer.php'; ?>
