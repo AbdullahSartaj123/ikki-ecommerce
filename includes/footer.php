@@ -45,6 +45,6 @@
   </div>
  </div>
 </footer>
-<button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" title="Back to top"><span>↑</span></button>
+<button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></button>
 <script src="/assets/js/app.js?v=20261101-25" defer></script>
 </body></html>
