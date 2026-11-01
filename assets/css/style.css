@@ -279,13 +279,15 @@ body{font-family:var(--font-body);background:var(--color-charcoal);color:var(--c
 .story-values-heading{text-align:center;margin:0 auto 55px}
 .story-values-heading h2{margin:18px 0;font-size:clamp(58px,7vw,83px)}
 .story-values-heading p{color:#9e9689;font-size:10px}
-.story-value-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
-.story-value-card{position:relative;min-height:255px;padding:25px 23px 28px;border:1px solid #c7a87535;background:linear-gradient(145deg,#24221c,#191814);transition:transform .35s,border-color .35s,background .35s}
-.story-value-card:hover{transform:translateY(-6px);border-color:#c7a8759c;background:linear-gradient(145deg,#2a261e,#1b1a15)}
-.story-value-card>span{color:#9c8968;font:italic 16px var(--serif)}
-.story-value-symbol{margin:24px 0 17px;color:var(--gold);font:32px var(--serif)}
-.story-value-card h3{margin:0 0 11px;color:#eee7db;font:400 27px var(--serif)}
-.story-value-card p{margin:0;color:#9e9689;font-size:9px;line-height:1.95}
+.story-value-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.story-value-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;min-height:245px;padding:30px 25px;border:1px solid #ffffff0d;background:#1a1a1a;transition:transform .35s ease,border-color .35s ease,background .35s ease;transition-delay:0ms}
+.story-value-card.reveal{transition:opacity .75s ease,transform .75s cubic-bezier(.2,.7,.2,1),border-color .35s ease,background .35s ease}
+.story-value-card.reveal{transition-delay:var(--value-delay,0ms)}
+.story-value-card:hover{transform:translateY(-6px);border-color:#c7a87565;background:#20201d}
+.story-value-symbol{display:block;width:48px;height:48px;margin:0 0 24px;color:var(--gold)}
+.story-value-symbol svg{display:block;width:48px;height:48px}
+.story-value-card h3{margin:0 0 12px;color:#eee7db;font:400 20px/1.25 var(--serif)}
+.story-value-card p{max-width:260px;margin:0;color:#aaa397;font-size:14px;line-height:1.75}
 .story-manifesto{padding:clamp(90px,12vw,160px) 24px;text-align:center;background:radial-gradient(ellipse at 50% 50%,#49372155,transparent 65%),#0c0c0a}
 .story-manifesto blockquote{max-width:1050px;margin:35px auto;color:#f0e9dd;font:italic 400 clamp(39px,6.5vw,79px)/1.08 var(--serif);letter-spacing:-.015em}
 .story-manifesto-credit{color:#8e8576;font-size:7px;letter-spacing:.22em}
@@ -311,7 +313,9 @@ body{font-family:var(--font-body);background:var(--color-charcoal);color:var(--c
  .story-values{padding:75px 23px}
  .story-values-heading{margin-bottom:35px}
  .story-values-heading h2{font-size:65px}
- .story-value-grid{grid-template-columns:1fr;gap:12px}
+ .story-value-grid{grid-template-columns:1fr;gap:14px}
+ .story-value-card{min-height:0;padding:27px 23px}
+ .story-value-card p{max-width:100%}
  .story-value-card{min-height:0;padding:22px}
  .story-value-symbol{margin:14px 0 10px}
  .story-manifesto{padding:85px 23px}
