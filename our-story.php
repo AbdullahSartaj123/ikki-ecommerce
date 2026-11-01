@@ -11,11 +11,6 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
-<section class="story-intro">
- <div class="story-intro-index reveal"><span class="story-kicker">A NOTE FROM US</span><span class="story-index-line"></span><small>01 — THE BEGINNING</small></div>
- <div class="story-intro-copy reveal"><h2>It begins with<br>a <em>feeling.</em></h2><p>Ikki was imagined around a simple idea: the most memorable things do not need to announce themselves. They stay with you quietly — in a familiar note, a passing moment, a feeling you cannot quite put into words.</p><p>We set out to create a fragrance house for those moments. A place where scent becomes a personal signature, and every composition has room for its own story.</p></div>
-</section>
-
 <section class="story-narrative" aria-label="The Ikki story">
  <article class="story-narrative-block">
   <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature Ikki fragrance bottle, representing the beginning of the house" loading="lazy"></div>
@@ -49,6 +44,17 @@ require __DIR__.'/includes/header.php';
  </article>
 </section>
 
+<section class="story-timeline" aria-labelledby="story-timeline-title">
+ <div class="story-timeline-heading"><span class="story-kicker">OUR JOURNEY</span><h2 id="story-timeline-title">A story in <em>the making.</em></h2></div>
+ <ol class="story-timeline-track">
+  <li class="story-timeline-item"><span class="story-timeline-year">1998</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Founded in a small atelier</p></li>
+  <li class="story-timeline-item"><span class="story-timeline-year">2005</span><span class="story-timeline-marker" aria-hidden="true"></span><p>First flagship boutique opens</p></li>
+  <li class="story-timeline-item"><span class="story-timeline-year">2012</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Launched signature Noir Orchid</p></li>
+  <li class="story-timeline-item"><span class="story-timeline-year">2018</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Expanded to global markets</p></li>
+  <li class="story-timeline-item"><span class="story-timeline-year">2024</span><span class="story-timeline-marker" aria-hidden="true"></span><p>1 million bottles sold</p></li>
+ </ol>
+</section>
+
 <section class="story-values" aria-labelledby="story-values-title">
  <div class="story-values-heading reveal"><span class="story-kicker">WHAT GUIDES US</span><h2 id="story-values-title">Our <em>values.</em></h2><p>The principles behind every choice we make.</p></div>
  <div class="story-value-grid">
@@ -71,17 +77,6 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
-<section class="story-timeline" aria-labelledby="story-timeline-title">
- <div class="story-timeline-heading"><span class="story-kicker">OUR JOURNEY</span><h2 id="story-timeline-title">A story in <em>the making.</em></h2></div>
- <ol class="story-timeline-track">
-  <li class="story-timeline-item"><span class="story-timeline-year">1998</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Founded in a small atelier</p></li>
-  <li class="story-timeline-item"><span class="story-timeline-year">2005</span><span class="story-timeline-marker" aria-hidden="true"></span><p>First flagship boutique opens</p></li>
-  <li class="story-timeline-item"><span class="story-timeline-year">2012</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Launched signature Noir Orchid</p></li>
-  <li class="story-timeline-item"><span class="story-timeline-year">2018</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Expanded to global markets</p></li>
-  <li class="story-timeline-item"><span class="story-timeline-year">2024</span><span class="story-timeline-marker" aria-hidden="true"></span><p>1 million bottles sold</p></li>
- </ol>
-</section>
-
 <section class="story-mission" aria-labelledby="story-mission-title">
  <div class="story-mission-inner">
   <span class="story-mission-rule" aria-hidden="true"></span>
@@ -90,14 +85,27 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
-<section class="story-manifesto">
- <span class="story-kicker reveal">THE IKKI POINT OF VIEW</span>
- <blockquote class="reveal">“We believe the most beautiful signature is the one that feels <em>entirely your own.</em>”</blockquote>
- <span class="story-manifesto-credit reveal">THE PHILOSOPHY OF IKKI</span>
+<section class="story-founder" aria-labelledby="story-founder-title">
+ <div class="story-founder-inner">
+  <div class="story-founder-portrait slide-left">
+   <img src="/assets/images/noor.svg" alt="Ikki signature fragrance bottle artwork — temporary visual pending the founder's portrait" loading="lazy">
+   <span class="story-founder-corner" aria-hidden="true"></span>
+  </div>
+  <div class="story-founder-copy fade-up">
+   <span class="story-narrative-eyebrow">MEET THE FOUNDER</span>
+   <span class="story-narrative-rule" aria-hidden="true"></span>
+   <h2 id="story-founder-title">A vision shaped by <em>fragrance.</em></h2>
+   <span class="story-founder-role">FOUNDER &amp; CREATIVE VISION</span>
+   <p>Ikki is built around a belief in the personal power of fragrance — its ability to express individuality, evoke emotion and become part of the moments we carry with us.</p>
+   <p>That point of view guides the house: a curiosity for scent, an appreciation for thoughtful composition and a commitment to making fragrance feel meaningful, personal and lasting.</p>
+   <blockquote>“A fragrance should feel like a memory waiting to happen.”</blockquote>
+   <span class="story-founder-note">Editorial brand statement — founder identity and personal biography to be added.</span>
+  </div>
+ </div>
 </section>
 
 <section class="story-cta">
- <div class="story-cta-copy reveal"><span class="story-kicker">THE NEXT CHAPTER IS YOURS</span><h2>Find the scent<br>that feels like <em>you.</em></h2><p>Explore the collection and discover a fragrance to make your own.</p><a class="story-cta-button" href="/shop.php">Explore the collection <span>↗</span></a></div>
+ <div class="story-cta-copy reveal"><span class="story-kicker">YOUR NEXT CHAPTER</span><h2>Discover your<br><em>signature scent.</em></h2><p>Explore the collection and find the fragrance that feels like you.</p><a class="story-cta-button" href="/shop.php">Explore Our Collection <span>↗</span></a></div>
  <div class="story-cta-art reveal"><img src="/assets/images/azure-04.svg" alt="Azure 04 fragrance bottle concept artwork" loading="lazy"><span>IKKI / THE SIGNATURE COLLECTION</span></div>
 </section>
 <?php require __DIR__.'/includes/footer.php'; ?>
