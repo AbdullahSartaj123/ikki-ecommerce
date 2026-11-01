@@ -15,23 +15,22 @@ if(!$products){$products=[
 require __DIR__.'/includes/header.php';
 ?>
 <section class="home-hero" aria-labelledby="home-title">
- <div class="home-hero-backdrop" aria-hidden="true"></div>
  <div class="home-hero-copy">
-  <span class="home-kicker"><i></i> AN INDEPENDENT FRAGRANCE HOUSE · PAKISTAN</span>
-  <p class="home-overline">THE ART OF BEING REMEMBERED</p>
-  <h1 id="home-title">Leave a little<br><em>mystery.</em></h1>
-  <p class="home-lead">Some things are better felt than explained. Discover a fragrance that says everything, without a word.</p>
-  <div class="home-hero-actions"><a class="home-button" href="/shop.php">Explore the collection <span>↗</span></a><a class="home-quiet-link" href="#signature-scents">Discover your scent <span>↓</span></a></div>
-  <div class="home-hero-foot"><span>01 / THE SIGNATURE COLLECTION</span><span>SCENT IS A LANGUAGE</span></div>
+  <span class="home-hero-eyebrow">NEW FRAGRANCE</span>
+  <h1 id="home-title">The Essence<br>of <em>Elegance</em></h1>
+  <p class="home-hero-subtext">A fragrance that speaks before you do. Discover a considered expression of character, crafted for the moments that become memories.</p>
+  <div class="home-hero-actions">
+   <a class="ikki-btn ikki-btn--primary" href="/shop.php">Shop Collection <span aria-hidden="true">↗</span></a>
+   <a class="ikki-btn ikki-btn--secondary" href="/our-story.php">Our Story <span aria-hidden="true">↗</span></a>
+  </div>
  </div>
- <div class="home-hero-visual" aria-label="Ikki Noor fragrance bottle">
-  <div class="home-visual-glow"></div><div class="home-ring home-ring-a"></div><div class="home-ring home-ring-b"></div>
-  <div class="home-bottle-shadow"></div>
-  <img class="home-hero-bottle" src="/assets/images/noor.svg" alt="Ikki Noor fragrance bottle concept artwork">
-  <div class="home-visual-stamp"><span>IKKI / Nº 01</span><strong>NOOR</strong><small>LIGHT, MADE LASTING</small></div>
-  <span class="home-vertical-note">A STUDY IN SCENT · VOL. 01</span>
+ <div class="home-hero-visual" role="img" aria-label="Ikki Noor fragrance bottle">
+  <div class="home-visual-glow" aria-hidden="true"></div>
+  <div class="home-hero-orbit" aria-hidden="true"></div>
+  <img class="home-hero-bottle" src="/assets/images/noor.svg" alt="Ikki Noor fragrance bottle">
+  <span class="home-hero-edition" aria-hidden="true">IKKI · Nº 01<br><strong>NOOR</strong></span>
  </div>
- <a class="home-scroll-cue" href="#signature-scents"><span></span> SCROLL TO DISCOVER</a>
+ <a class="home-scroll-cue" href="#signature-scents" aria-label="Scroll to discover"><span></span></a>
 </section>
 
 <section class="home-collection" id="signature-scents" aria-labelledby="signature-title">
