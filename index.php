@@ -133,11 +133,19 @@ require __DIR__.'/includes/header.php';
 </section>
 
 <section class="home-newsletter" aria-labelledby="newsletter-title">
- <div class="home-newsletter-inner home-reveal"><span class="home-kicker">A LETTER FROM IKKI</span><h2 id="newsletter-title">A little note.<br><em>Now and then.</em></h2><p>Be the first to hear about new scents, thoughtful stories and notes from our world.</p>
-  <form class="home-newsletter-form" action="/contact.php" method="get">
-   <label class="visually-hidden" for="newsletter-email">Your email address</label><input id="newsletter-email" type="email" name="email" placeholder="Your email address" autocomplete="email" required><button type="submit" aria-label="Continue to contact Ikki">Join us <span>↗</span></button>
+ <div class="home-newsletter-inner home-reveal">
+  <span class="home-newsletter-eyebrow">JOIN THE INNER CIRCLE</span>
+  <h2 id="newsletter-title">Get 15% Off Your First Order</h2>
+  <p>Discover considered scents, exclusive offers and notes from our world.</p>
+  <form class="home-newsletter-form" data-home-newsletter novalidate>
+   <label class="visually-hidden" for="newsletter-email">Your email address</label>
+   <input id="newsletter-email" type="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
+   <button type="submit">Subscribe <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></button>
   </form>
-  <small>By joining, you agree to hear from Ikki. You can opt out at any time.</small>
+  <div class="home-newsletter-success" data-home-newsletter-success role="status" aria-live="polite" hidden>
+   <span class="home-newsletter-check" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21"/><path d="m13 24 8 8 15-17"/></svg></span>
+   <p>You're on the list. Welcome to the inner circle.</p>
+  </div>
  </div>
 </section>
 <?php require __DIR__.'/includes/footer.php'; ?>
