@@ -595,3 +595,185 @@ img{height:auto}.footer-bottom{flex-wrap:wrap;gap:12px 22px}
     }
 }
 
+
+
+/* IKKI LUXURY FORM SYSTEM — FLOATING LABELS / SELECTS / CHECKBOXES */
+.ikki-form-field {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding-top: 18px;
+}
+.ikki-form-field input:not([type="checkbox"]),
+.ikki-form-field textarea,
+.ikki-form-field select {
+    display: block;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 0 9px;
+    border: 0;
+    border-bottom: 1px solid var(--color-gray, #8a8a8a);
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--color-white, #f5f1eb);
+    font: 400 14px/1.6 var(--font-body, "Montserrat", sans-serif);
+    transition: border-color .3s ease, border-width .3s ease, color .3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.ikki-form-field textarea {
+    min-height: 120px;
+    padding-top: 17px;
+    resize: vertical;
+}
+.ikki-form-field input::placeholder,
+.ikki-form-field textarea::placeholder {
+    color: rgba(138, 138, 138, .6);
+    opacity: 1;
+}
+.ikki-form-field select {
+    padding-right: 34px;
+    cursor: pointer;
+}
+.ikki-form-field select option {
+    background: #1a1a1a;
+    color: #f5f1eb;
+}
+.ikki-form-field > label {
+    position: absolute;
+    top: 29px;
+    left: 0;
+    z-index: 1;
+    color: #8a8a8a;
+    font: 400 12px/1.2 var(--font-body, "Montserrat", sans-serif);
+    pointer-events: none;
+    transform-origin: left top;
+    transition: top .3s ease, color .3s ease, transform .3s ease;
+}
+.ikki-form-field input:not([type="checkbox"]):focus,
+.ikki-form-field textarea:focus,
+.ikki-form-field select:focus {
+    border-bottom: 2px solid #c9a86a;
+}
+.ikki-form-field input:not([type="checkbox"]):focus + label,
+.ikki-form-field input:not([type="checkbox"]):not(:placeholder-shown) + label,
+.ikki-form-field textarea:focus + label,
+.ikki-form-field textarea:not(:placeholder-shown) + label,
+.ikki-form-field select:focus + label,
+.ikki-form-field select:valid + label {
+    top: 0;
+    color: #c9a86a;
+    transform: scale(.85);
+}
+.ikki-form-field select:invalid {
+    color: transparent;
+}
+.ikki-form-field select:valid {
+    color: var(--color-white, #f5f1eb);
+}
+.ikki-form-field select:focus option {
+    color: var(--color-white, #f5f1eb);
+}
+.ikki-form-select::after {
+    position: absolute;
+    top: 35px;
+    right: 3px;
+    width: 9px;
+    height: 9px;
+    border-right: 1.5px solid #c9a86a;
+    border-bottom: 1.5px solid #c9a86a;
+    content: "";
+    pointer-events: none;
+    transform: rotate(45deg);
+    transition: transform .3s ease, top .3s ease;
+}
+.ikki-form-select:focus-within::after {
+    top: 39px;
+    transform: rotate(225deg);
+}
+.ikki-form-field.is-invalid input:not([type="checkbox"]),
+.ikki-form-field.is-invalid textarea,
+.ikki-form-field.is-invalid select {
+    border-bottom: 2px solid #a85c5c;
+}
+.ikki-form-field.is-invalid > label {
+    color: #a85c5c;
+}
+.ikki-form-field .field-error {
+    display: block;
+    min-height: 0;
+    margin-top: 6px;
+    color: #a85c5c;
+    font: 400 11px/1.45 var(--font-body, "Montserrat", sans-serif);
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: opacity .25s ease, transform .25s ease;
+}
+.ikki-form-field.is-invalid .field-error {
+    opacity: 1;
+    transform: translateY(0);
+}
+.ikki-form-checkbox {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 11px;
+    color: #c7c0b5;
+    font: 400 12px/1.6 var(--font-body, "Montserrat", sans-serif);
+    cursor: pointer;
+}
+.ikki-form-checkbox input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+.ikki-form-checkbox__box {
+    position: relative;
+    display: inline-grid;
+    flex: 0 0 18px;
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+    place-items: center;
+    border: 1px solid #8a8a8a;
+    background: transparent;
+    transition: border-color .25s ease, background-color .25s ease;
+}
+.ikki-form-checkbox__box::after {
+    width: 5px;
+    height: 9px;
+    border-right: 1.5px solid #0a0a0a;
+    border-bottom: 1.5px solid #0a0a0a;
+    content: "";
+    opacity: 0;
+    transform: scale(.35) rotate(45deg);
+    transition: opacity .2s ease, transform .25s cubic-bezier(.4, 0, .2, 1);
+}
+.ikki-form-checkbox input:checked + .ikki-form-checkbox__box {
+    border-color: #c9a86a;
+    background: #c9a86a;
+}
+.ikki-form-checkbox input:checked + .ikki-form-checkbox__box::after {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+}
+.ikki-form-checkbox input:focus-visible + .ikki-form-checkbox__box {
+    outline: 2px solid #e3cb97;
+    outline-offset: 3px;
+}
+.ikki-form-checkbox input:disabled + .ikki-form-checkbox__box {
+    opacity: .45;
+    cursor: not-allowed;
+}
+@media (prefers-reduced-motion: reduce) {
+    .ikki-form-field *,
+    .ikki-form-checkbox__box,
+    .ikki-form-checkbox__box::after {
+        transition: none !important;
+    }
+}
