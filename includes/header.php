@@ -34,6 +34,24 @@ $navItems=[
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
 <div class="home-preloader" data-home-preloader role="status" aria-label="Loading Ikki"><span class="home-preloader-mark">ikki<span>.</span></span><span class="home-preloader-line"></span></div>
+<script>
+/* Fail-safe: never leave the storefront covered if the deferred application script fails. */
+(function(){
+ var dismissed=false;
+ function dismissPreloader(){
+  if(dismissed)return;
+  dismissed=true;
+  var loader=document.querySelector('[data-home-preloader]');
+  if(loader){
+   loader.classList.add('is-finished');
+   if(document.body)document.body.classList.remove('is-loading');
+   window.setTimeout(function(){if(loader.parentNode)loader.remove();},650);
+  }
+ }
+ window.addEventListener('load',function(){window.setTimeout(dismissPreloader,350);},{once:true});
+ window.setTimeout(dismissPreloader,2500);
+})();
+</script>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
 <header class="site-header<?= $isHomePage?' is-home-header':'' ?>" data-site-header>
 <a class="maison-brand" href="/" aria-label="Ikki home"><span class="maison-monogram" aria-hidden="true">M</span><span class="maison-wordmark">MAISON</span></a>
