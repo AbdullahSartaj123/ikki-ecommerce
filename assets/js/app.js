@@ -686,6 +686,24 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
 
 
+
+ // Numbered homepage section markers: reveal the index and its gold connector once in view.
+ const sectionMarkers=[...document.querySelectorAll('.home-section-marker')];
+ if(sectionMarkers.length){
+  if(reducedMotion||!('IntersectionObserver' in window)){
+   sectionMarkers.forEach(marker=>marker.classList.add('is-number-visible'));
+  }else{
+   const markerObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+     if(!entry.isIntersecting)return;
+     entry.target.classList.add('is-number-visible');
+     markerObserver.unobserve(entry.target);
+    });
+   },{threshold:.35,rootMargin:'0px 0px -8% 0px'});
+   sectionMarkers.forEach(marker=>markerObserver.observe(marker));
+  }
+ }
+
  // Homepage-only depth motion: restrained pointer tilt and RAF-coalesced image drift.
  const homeHero=document.querySelector('.home-hero--editorial');
  if(homeHero&&!reducedMotion){
