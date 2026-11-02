@@ -13,12 +13,12 @@ require __DIR__.'/includes/header.php';
 
 <section class="story-narrative" aria-label="The IKKI story">
  <article class="story-narrative-block">
-  <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature Ikki fragrance bottle, representing the beginning of the house" width="800" height="1000" loading="lazy" decoding="async"></div>
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature IKKI fragrance bottle, representing the beginning of the house" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">THE BEGINNING</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
    <h2>Born from a <em>Single Scent</em></h2>
-   <p>Every fragrance house begins with a moment of inspiration. For Ikki, that beginning is rooted in the belief that a single scent can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered.</p>
+   <p>Every fragrance house begins with a moment of inspiration. For IKKI, that beginning is rooted in the belief that a single scent can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered.</p>
    <p>That first spark grew into a wider ambition: to create fragrances with character, depth and a sense of individuality. The story continues with the same curiosity that started it — following the notes, moods and moments that make scent personal.</p>
   </div>
  </article>
@@ -33,7 +33,7 @@ require __DIR__.'/includes/header.php';
   </div>
  </article>
  <article class="story-narrative-block">
-  <div class="story-narrative-visual slide-right"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle artwork, representing the Ikki collection today" width="800" height="1000" loading="lazy" decoding="async"></div>
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle artwork, representing the IKKI collection today" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">TODAY</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
