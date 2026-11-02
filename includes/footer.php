@@ -1,8 +1,8 @@
 </main>
 <footer class="site-footer ikki-footer">
  <div class="ikki-footer-main">
-  <section class="ikki-footer-column ikki-footer-brand" data-footer-accordion>
-   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-brand-content"><span class="ikki-footer-brand-mark">IKKI<span>®</span></span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
+  <section class="ikki-footer-column ikki-footer-brand">
+   <div class="ikki-footer-heading ikki-footer-brand-heading"><span class="ikki-footer-brand-mark">IKKI<span>®</span></span></div>
    <div class="ikki-footer-panel" id="footer-brand-content">
     <p class="ikki-footer-tagline">Crafted fragrances for the modern connoisseur</p>
     <div class="ikki-footer-socials" aria-label="Contact IKKI">
