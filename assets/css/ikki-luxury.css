@@ -1511,3 +1511,111 @@ p,.home-hero-subtext,.home-philosophy-copy p,.home-feature-copy p,
 @media(prefers-reduced-motion:reduce){
  .home-hero-copy,.home-hero-visual,.home-hero-bottle{animation:none!important;transform:none!important}
 }
+
+
+/* IKKI balanced element sizing — use the available viewport without oversized blocks */
+:root{
+ --ikki-content-width:1240px;
+ --ikki-wide-width:1360px;
+ --ikki-side-space:clamp(16px,3.2vw,48px);
+ --ikki-section-space:clamp(48px,5.5vw,76px);
+}
+body{width:100%;min-width:320px}
+main>section,main>div{min-width:0}
+main>section:not(.home-hero):not(.home-marquee):not(.page-banner):not(.ikki-catalog-hero){
+ padding-left:max(var(--ikki-side-space),calc((100vw - var(--ikki-wide-width))/2))!important;
+ padding-right:max(var(--ikki-side-space),calc((100vw - var(--ikki-wide-width))/2))!important;
+}
+.home-hero{
+ grid-template-columns:minmax(0,1fr) minmax(0,.92fr)!important;
+ gap:clamp(20px,3vw,42px)!important;
+ padding-left:max(var(--ikki-side-space),calc((100vw - var(--ikki-wide-width))/2))!important;
+ padding-right:max(var(--ikki-side-space),calc((100vw - var(--ikki-wide-width))/2))!important;
+}
+.home-hero-copy{width:100%;max-width:570px!important}
+.home-hero h1{font-size:clamp(56px,6.1vw,88px)!important;max-width:10ch}
+.home-hero-visual{width:100%;max-width:620px;justify-self:center;min-height:0!important}
+.home-hero-bottle{width:100%;height:clamp(360px,39vw,510px)!important;object-fit:contain}
+.home-philosophy,.home-feature,.home-values,.home-contact-cta,
+.story-narrative,.story-mission,.story-cta,.contact-main,
+.ikki-product-layout,.ikki-catalog-hero,.page-banner{
+ padding-top:var(--ikki-section-space)!important;
+ padding-bottom:var(--ikki-section-space)!important;
+}
+.home-section-heading,.home-products,.home-philosophy-inner,
+.home-feature-inner,.home-values-inner,.story-narrative-block,
+.story-values-heading,.story-value-grid,.story-mission-inner,
+.contact-main-inner,.ikki-product-layout>*{
+ width:100%;max-width:var(--ikki-content-width);margin-inline:auto;
+}
+.home-products{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:clamp(12px,1.5vw,20px)!important}
+.home-product{min-width:0}
+.home-product-meta{min-width:0}
+.home-product-meta h3{font-size:clamp(18px,1.8vw,25px)!important}
+.home-product-meta p{font-size:clamp(10px,.85vw,12px)!important}
+.home-feature{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important}
+.home-feature-art{min-width:0;min-height:0!important;aspect-ratio:1.05}
+.home-feature-art img{width:100%;height:100%;object-fit:cover}
+.home-value-grid,.home-values-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:clamp(12px,2vw,24px)!important}
+.home-value{min-width:0;padding:clamp(18px,2vw,28px)!important}
+.home-manifesto p{max-width:850px;margin-inline:auto}
+.home-final-cta>*{max-width:760px;margin-inline:auto}
+.ikki-signature-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:clamp(14px,2vw,24px)!important}
+.collection-catalog,.collection-toolbar-wrap,.ikki-signature-grid{width:100%}
+.story-value-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.contact-main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(280px,.8fr)}
+.ikki-product-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.9fr);gap:clamp(24px,4vw,56px)!important}
+img,video,svg{max-width:100%}
+button,.ikki-btn,.btn,.contact-submit{max-width:100%;white-space:normal}
+input,select,textarea{max-width:100%;min-width:0}
+@media(max-width:1100px){
+ :root{--ikki-side-space:24px}
+ .home-hero{grid-template-columns:minmax(0,1fr) minmax(0,.85fr)!important}
+ .home-hero h1{font-size:clamp(54px,6.5vw,72px)!important}
+ .home-hero-bottle{height:410px!important}
+ .home-products{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ .ikki-signature-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:760px){
+ :root{--ikki-side-space:20px;--ikki-section-space:48px}
+ main>section:not(.home-hero):not(.home-marquee):not(.page-banner):not(.ikki-catalog-hero){
+  padding-left:20px!important;padding-right:20px!important
+ }
+ .home-hero{grid-template-columns:minmax(0,1fr)!important;padding:38px 20px 42px!important;gap:8px!important}
+ .home-hero-copy{max-width:100%!important}
+ .home-hero h1{font-size:clamp(52px,12vw,76px)!important;max-width:11ch;line-height:.94!important}
+ .home-hero-visual{width:100%;max-width:440px;min-height:0!important;margin:0 auto!important}
+ .home-hero-bottle{height:clamp(270px,78vw,370px)!important;width:100%!important}
+ .home-hero-actions{display:flex;flex-wrap:wrap;gap:9px!important}
+ .home-hero-actions .ikki-btn{flex:0 1 auto;min-height:44px!important;padding:11px 14px!important;font-size:9px!important}
+ .home-hero-foot{margin-top:20px!important;line-height:1.7!important}
+ .home-products{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:18px 12px!important}
+ .home-product-art{aspect-ratio: .82!important}
+ .home-product-meta{padding:12px 2px!important}
+ .home-product-meta h3{font-size:clamp(17px,4.8vw,22px)!important}
+ .home-product-meta p{font-size:10px!important;line-height:1.55!important}
+ .home-feature{grid-template-columns:minmax(0,1fr)!important;gap:22px!important}
+ .home-feature-art{width:100%;aspect-ratio:1.12;min-height:0!important}
+ .home-value-grid,.home-values-grid,.story-value-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .ikki-signature-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;padding:0 16px 48px!important}
+ .contact-main{grid-template-columns:minmax(0,1fr)!important}
+ .ikki-product-layout{grid-template-columns:minmax(0,1fr)!important;padding:12px 16px 56px!important}
+ .page-banner,.ikki-catalog-hero{padding:42px 20px!important;min-height:0!important}
+ .home-manifesto p{font-size:clamp(32px,8vw,48px)!important;line-height:1.12!important}
+ .home-final-cta h2{font-size:clamp(38px,9vw,58px)!important}
+ .site-footer,.ikki-footer{overflow:hidden}
+}
+@media(max-width:420px){
+ :root{--ikki-side-space:16px}
+ .home-hero{padding-inline:16px!important}
+ .home-hero h1{font-size:clamp(48px,12.5vw,58px)!important}
+ .home-hero-actions .ikki-btn{font-size:8px!important;padding-inline:11px!important}
+ .home-products,.ikki-signature-grid{gap:15px 9px!important}
+ .home-product-meta h3{font-size:17px!important}
+ .home-value-grid,.home-values-grid,.story-value-grid{grid-template-columns:minmax(0,1fr)!important}
+ .ikki-signature-grid{padding-inline:12px!important}
+ .contact-main{padding-inline:16px!important}
+}
+@media(min-width:1500px){
+ .home-hero h1{font-size:clamp(84px,5.8vw,104px)!important}
+}
