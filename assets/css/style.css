@@ -6,11 +6,7 @@
     --color-gold: #c9a86a;
     --color-gold-light: #e3cb97;
     --color-gold-dark: #9c7d47;
-    --color-white: #f5f1eb;
-    --color-white-pure: #ffffff;
-    --color-gray: #8a8a8a;
-    --color-success: #6b8f71;
-    --color-error: #a85c5c;
+    --color-white:#ffffff;--color-cream:#f5efe4;--color-gold:#b8935f;--color-gold-light:#b8935f;--color-gold-dark:#b8935f;--color-black:#2a2a2a;--color-gray:#7a756c;--color-gray-light:rgba(122,117,108,.22);--color-success:#7a9b7e;--color-error:#b85c5c;
 
     /* Typography */
     --font-heading: "Playfair Display", serif;
