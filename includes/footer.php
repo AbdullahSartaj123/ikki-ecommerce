@@ -2,7 +2,7 @@
 <footer class="site-footer ikki-footer">
  <div class="ikki-footer-main">
   <section class="ikki-footer-column ikki-footer-brand" data-footer-accordion>
-   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-brand-content"><span class="ikki-footer-brand-mark">ikki<span>®</span></span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
+   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-brand-content"><span class="ikki-footer-brand-mark">IKKI<span>®</span></span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
    <div class="ikki-footer-panel" id="footer-brand-content">
     <p class="ikki-footer-tagline">Crafted fragrances for the modern connoisseur</p>
     <div class="ikki-footer-socials" aria-label="Contact IKKI">
@@ -38,5 +38,5 @@
  </div>
 </footer>
 <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></button>
-<script src="/assets/js/app.js?v=20261101-31" defer></script>
+<script src="/assets/js/app.js?v=20261102-1" defer></script>
 </body></html>
