@@ -1,8 +1,6 @@
 /* IKKI Luxury Design System — white, cream and champagne gold */
 :root{
- --color-white:#ffffff;--color-cream:#faf7f2;--color-gold:#b8935f;--color-gold-light:#d4b483;
- --color-gold-dark:#8f6f45;--color-black:#1a1a1a;--color-gray:#6b6b6b;
- --color-gray-light:#e8e3da;--color-success:#7a9b7e;--color-error:#b85c5c;
+ --color-white:#ffffff;--color-cream:#f5efe4;--color-gold:#b8935f;--color-gold-light:#b8935f;--color-gold-dark:#b8935f;--color-black:#2a2a2a;--color-gray:#7a756c;--color-gray-light:rgba(122,117,108,.22);--color-success:#7a9b7e;--color-error:#b85c5c;
  --font-heading:'Playfair Display',Georgia,serif;--font-body:'Montserrat',Arial,sans-serif;
  --font-size-h1:clamp(2.5rem,5vw,4.5rem);--font-size-h2:clamp(2rem,4vw,3rem);
  --font-size-h3:clamp(1.5rem,3vw,2rem);--font-size-body:16px;--line-height-body:1.7;
@@ -1618,4 +1616,96 @@ input,select,textarea{max-width:100%;min-width:0}
 }
 @media(min-width:1500px){
  .home-hero h1{font-size:clamp(84px,5.8vw,104px)!important}
+}
+
+
+/* =========================================================
+   IKKI CANONICAL BRAND SYSTEM — single palette + section rhythm
+   ========================================================= */
+:root{
+ --color-white:#ffffff;
+ --color-cream:#f5efe4;
+ --color-gold:#b8935f;
+ --color-gold-light:#b8935f;
+ --color-gold-dark:#b8935f;
+ --color-black:#2a2a2a;
+ --color-gray:#7a756c;
+ --color-gray-light:rgba(122,117,108,.22);
+ --ink:#2a2a2a;--black:#2a2a2a;--panel:#ffffff;
+ --gold:#b8935f;--gold2:#b8935f;--cream:#f5efe4;--muted:#7a756c;
+ --ikki-ivory:#f5efe4;--ikki-paper:#f5efe4;--ikki-champagne:#b8935f;
+ --ikki-metal:#b8935f;--ikki-antique-gold:#b8935f;--ikki-antique-gold-deep:#b8935f;
+ --ikki-ink:#2a2a2a;--ikki-text:#2a2a2a;--ikki-muted:#7a756c;--ikki-body:#7a756c;
+ --ikki-rule:rgba(122,117,108,.22);
+ --ikki-section-space:120px;--ikki-layout-section:120px;--section-space:120px;
+}
+body{background:var(--color-cream)!important;color:#2a2a2a!important}
+main{background:var(--color-cream)}
+h1,h2,h3,h4,h5,h6,.home-product-meta h3,.collection-card-info h2{color:#2a2a2a}
+p,.home-philosophy-copy p,.home-feature-copy p,.home-values-heading p,.home-value p,
+.home-product-meta p,.home-concept-description,.home-collection-note,
+.collection-card-info p,.story-narrative-copy p{color:#7a756c}
+a,.home-text-link,.text-link,.home-product-meta strong,.collection-card-info strong,
+.ikki-card-discover,.home-kicker,.eyebrow{--accent-color:#b8935f}
+.ikki-btn--primary,.button-gold,.btn,.home-outline-button{
+ background:#b8935f!important;border-color:#b8935f!important;
+}
+.ikki-btn--secondary,.button-outline,.text-link,.home-text-link{color:#b8935f!important}
+.home-marquee,.ticker{background:#b8935f!important}
+.home-philosophy,.home-values,.home-feature,.home-manifesto,.home-final-cta,
+.home-collection{color:#2a2a2a!important}
+.home-philosophy,.home-values,.home-feature,.home-manifesto,.home-final-cta{background:#ffffff!important}
+.home-collection{background:#f5efe4!important}
+.home-manifesto{background:#ffffff!important}
+.home-manifesto>p,.home-final-cta h2,.home-section-heading h2,
+.home-philosophy-title h2,.home-feature-copy h2,.home-values-heading h2{color:#2a2a2a!important}
+.home-manifesto>span:last-child,.home-product-meta strong,.home-concept-label,
+.home-value-number,.home-value-icon{color:#b8935f!important}
+.home-value{background:#ffffff!important;border-color:rgba(122,117,108,.22)!important}
+.home-product{background:#ffffff!important;border-color:rgba(122,117,108,.22)!important}
+.home-product-art{background:linear-gradient(145deg,#f5efe4 0%,#ffffff 100%)!important}
+.collection-card{background:#ffffff!important;border-color:rgba(122,117,108,.22)!important}
+.collection-card-image,.product-card__media,.product-card__image-wrap{
+ background:linear-gradient(145deg,#f5efe4 0%,#ffffff 100%)!important
+}
+.product-card,.ikki-signature-card{background:#ffffff!important}
+.ikki-signature-card .collection-card-image{
+ background:linear-gradient(145deg,#f5efe4 0%,#ffffff 100%)!important
+}
+/* Same product-card gradient geometry; category hue is the only variable. */
+.home-product-art:before,.ikki-signature-card .collection-card-image:before{
+ content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+ background:radial-gradient(ellipse at 50% 39%,var(--product-halo,rgba(184,147,95,.18)) 0%,transparent 66%),
+ linear-gradient(145deg,#f5efe4 0%,#ffffff 100%);
+}
+.home-product-art img,.ikki-signature-card .collection-card-image img{position:relative;z-index:1}
+.home-product-art:after{z-index:2}
+.home-product-art:has(img[src*="noor.svg"]),.ikki-signature-card:has(img[src*="noor.svg"]){--product-halo:rgba(184,147,95,.23)}
+.home-product-art:has(img[src*="sahra.svg"]),.ikki-signature-card:has(img[src*="sahra.svg"]),
+.home-product-art:has(img[src*="garma"]),.ikki-signature-card:has(img[src*="garma"]){--product-halo:rgba(190,139,77,.24)}
+.home-product-art:has(img[src*="velvet-dusk.svg"]),.ikki-signature-card:has(img[src*="velvet-dusk.svg"]),
+.home-product-art:has(img[src*="violet"]),.ikki-signature-card:has(img[src*="violet"]){--product-halo:rgba(153,139,157,.22)}
+.home-product-art:has(img[src*="azure"]),.ikki-signature-card:has(img[src*="azure"]),
+.home-product-art:has(img[src*="aether.svg"]),.ikki-signature-card:has(img[src*="aether.svg"]){--product-halo:rgba(132,160,143,.23)}
+.home-product-art:has(img[src*="rose-veil.svg"]),.ikki-signature-card:has(img[src*="rose-veil.svg"]){--product-halo:rgba(190,145,151,.2)}
+.home-product-art:has(img[src*="oud-elan.svg"]),.ikki-signature-card:has(img[src*="oud-elan.svg"]){--product-halo:rgba(155,128,98,.22)}
+/* One exact vertical rhythm for every homepage content section. */
+body.has-home-hero main>section.home-philosophy,
+body.has-home-hero main>section.home-collection,
+body.has-home-hero main>section.home-feature,
+body.has-home-hero main>section.home-values,
+body.has-home-hero main>section.home-manifesto,
+body.has-home-hero main>section.home-final-cta{
+ padding-top:120px!important;padding-bottom:120px!important;
+}
+@media(max-width:760px){
+ :root{--ikki-section-space:64px;--ikki-layout-section:64px;--section-space:64px}
+ body.has-home-hero main>section.home-philosophy,
+ body.has-home-hero main>section.home-collection,
+ body.has-home-hero main>section.home-feature,
+ body.has-home-hero main>section.home-values,
+ body.has-home-hero main>section.home-manifesto,
+ body.has-home-hero main>section.home-final-cta{
+  padding-top:64px!important;padding-bottom:64px!important;
+ }
 }
