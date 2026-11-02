@@ -56,13 +56,13 @@ require __DIR__.'/includes/header.php';
    $image=$p['image_path']??'';
    if($image==='' || preg_match('/\.svg(?:$|\?)/i',$image)) $image=$editorialImages[$n%count($editorialImages)];
  ?>
-  <a class="home-product home-reveal" href="/product.php?slug=<?=e($p['slug'])?>">
+  <a class="home-product" href="/product.php?slug=<?=e($p['slug'])?>">
    <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance editorial photograph" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div>
    <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong><?=$p['price']!==null?money($p['price']):'DISCOVER'?></strong></div>
   </a>
  <?php endforeach; else: foreach($conceptProducts as $n=>$p): ?>
   <a class="home-product home-reveal home-product--concept" href="/shop.php">
-   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image'])?>" alt="<?=e($p['name'])?> IKKI fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">EXPLORE THE COLLECTION ↗</span><span class="home-concept-label">VISUAL CONCEPT</span></div>
+   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image'])?>" alt="<?=e($p['name'])?> IKKI fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">EXPLORE THE COLLECTION ↗</span></div>
    <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['family'])?></p></div><strong>COMING SOON</strong></div>
    <p class="home-concept-description"><?=e($p['description'])?></p>
   </a>
