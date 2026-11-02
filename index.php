@@ -26,7 +26,7 @@ require __DIR__.'/includes/header.php';
  <div class="home-hero-copy">
   <span class="home-hero-eyebrow">IKKI <i></i> THE ART OF FRAGRANCE</span>
   <p class="home-overline">A PERSONAL EXPRESSION, BEAUTIFULLY COMPOSED</p>
-  <h1 id="home-title">Wear your<br><em>own story.</em></h1>
+  <h1 id="home-title"><span class="hero-title-line hero-title-line--first">Wear your</span><span class="hero-title-line hero-title-line--second"><em>own story.</em></span></h1>
   <p class="home-hero-subtext">Fragrance is the quietest form of self-expression. Discover refined scent stories made to linger long after the moment has passed.</p>
   <div class="home-hero-actions">
    <a class="ikki-btn ikki-btn--primary" href="/shop.php">Explore the collection <span aria-hidden="true">↗</span></a>
