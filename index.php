@@ -71,8 +71,8 @@ require __DIR__.'/includes/header.php';
    <span class="home-perfumery-icon" aria-hidden="true">
     <svg viewBox="0 0 48 48"><path d="M12 25 8 21a3 3 0 0 1 4-4l7 6"/><path d="m19 23-5-7a3 3 0 0 1 5-3l7 8"/><path d="m26 21-3-8a3 3 0 0 1 6-2l4 10"/><path d="m33 21 1-5a3 3 0 0 1 6 1l-2 13c-1 7-6 11-13 11h-4c-5 0-8-3-11-8l-4-7a3 3 0 0 1 5-3l5 6"/></svg>
    </span>
-   <h3>Master Perfumers</h3>
-   <p>Artistry and precision unite in the hands of those who understand the language of scent.</p>
+   <h3>The Art of Blending</h3>
+   <p>Thoughtful composition brings individual notes together in a balanced fragrance story.</p>
   </article>
   <article class="home-perfumery-item home-reveal">
    <span class="home-perfumery-icon" aria-hidden="true">
