@@ -6,6 +6,18 @@ $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.description,p.gender,p.top_notes,p.heart_notes,p.base_notes,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name LIMIT 7")->fetchAll();
 }catch(Throwable $ex){error_log('[IKKI collection] '.$ex->getMessage());}
+/*
+ * Keep the editorial collection visible even before the live catalogue is populated.
+ * These are non-purchasable concept previews: no price, stock or cart variant is implied.
+ */
+if(!$products){
+ $products=[
+  ['name'=>'Noor','slug'=>'noor','short_description'=>'A luminous floral-amber concept with a soft, golden finish.','description'=>'Noor is imagined as first light across warm stone: bright, graceful and quietly memorable. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Bergamot, pear accord','heart_notes'=>'Jasmine, orange blossom accord','base_notes'=>'Soft amber, musk accord','price'=>null,'image_path'=>'/assets/images/noor.svg'],
+  ['name'=>'Sahra','slug'=>'sahra','short_description'=>'Warm woods and amber-inspired character, made for golden-hour moods.','description'=>'Sahra takes its cue from the last light of the day: a warm, enveloping fragrance concept with a confident woody character. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Saffron accord, mandarin','heart_notes'=>'Rose accord, cedar','base_notes'=>'Amber accord, sandalwood','price'=>null,'image_path'=>'/assets/images/sahra.svg'],
+  ['name'=>'Velvet Dusk','slug'=>'velvet-dusk','short_description'=>'A deep, smooth evening concept with a modern, velvety mood.','description'=>'Velvet Dusk is a study in contrast: dark fruit-like brightness meets a soft, textured woody base. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Blackcurrant accord, pink pepper','heart_notes'=>'Iris accord, rose','base_notes'=>'Vanilla, patchouli accord','price'=>null,'image_path'=>'/assets/images/velvet-dusk.svg'],
+  ['name'=>'Azure 04','slug'=>'azure-04','short_description'=>'A fresh, airy aromatic concept with a clean, modern finish.','description'=>'Azure 04 evokes open air after rain: crisp citrus, aromatic clarity and a calm woody foundation. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Bergamot, marine accord','heart_notes'=>'Neroli, aromatic herbs','base_notes'=>'Cedar, clean musk accord','price'=>null,'image_path'=>'/assets/images/azure-04.svg']
+ ];
+}
 $catalog=[];
 $databaseProducts=[];
 foreach($products as $product){
@@ -16,7 +28,7 @@ foreach($products as $product){
   'name'=>$product['name'],'slug'=>$product['slug'],
   'notes'=>trim((string)($product['short_description']??''))?:'An IKKI signature fragrance',
   'top_notes'=>(string)($product['top_notes']??''),'heart_notes'=>(string)($product['heart_notes']??''),'base_notes'=>(string)($product['base_notes']??''),'description'=>(string)($product['description']??''),
-  'price'=>$product['price']!==null?(float)$product['price']:null,
+  'price'=>$product['price']!==null?(float)$product['price']:null,'image_path'=>$product['image_path']??null,
   'category'=>$category,'is_new'=>false
  ];
 }
@@ -53,12 +65,12 @@ require __DIR__.'/includes/header.php';
   </div>
  </div>
  </div>
- <div class="ikki-catalog-intro"><span>THE IKKI SIGNATURE EDIT</span><p>Each fragrance tells its own story. Take your time, explore the notes, and find your signature.</p></div>
+ <div class="ikki-catalog-intro"><span>THE IKKI SIGNATURE EDIT</span><p>Each fragrance tells its own story. Take your time, explore the notes, and find your signature.</p><?php if(empty($databaseProducts)): ?><small class="ikki-preview-note">COLLECTION PREVIEW · FRAGRANCES AND PRICING WILL BE CONFIRMED BEFORE ORDERS OPEN</small><?php endif; ?></div>
  <div class="collection-grid ikki-signature-grid" id="collection-grid">
  <?php if($products): foreach($products as $n=>$p):
   $dbProduct=$databaseProducts[$p['slug']]??null;
   $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
-  $imagePath=$dbProduct['image_path']??'/assets/images/noor.svg';
+  $imagePath=$dbProduct['image_path']??($p['image_path']??'/assets/images/noor.svg');
   $variants=[];
   if($dbProduct){$variantQuery=db()->prepare("SELECT id,variant_name,volume_ml,price,stock_quantity FROM product_variants WHERE product_id=? AND is_active=1 ORDER BY volume_ml");$variantQuery->execute([(int)$dbProduct['id']]);$variants=$variantQuery->fetchAll();}
   $topNote=trim((string)($p['top_notes']??''))?:'Opening notes';
