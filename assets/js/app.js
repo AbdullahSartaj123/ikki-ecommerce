@@ -191,6 +191,28 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
   window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMenu();});
  }
+ // Inline header search and live shopping-bag drawer.
+ const searchPanel=document.querySelector('[data-search-panel]');
+ const searchInput=document.querySelector('[data-header-search-input]');
+ const searchToggles=document.querySelectorAll('[data-search-toggle]');
+ const closeSearch=()=>{searchPanel?.classList.remove('is-open');searchPanel?.setAttribute('aria-hidden','true')};
+ searchToggles.forEach(btn=>btn.addEventListener('click',()=>{if(!searchPanel)return;searchPanel.classList.add('is-open');searchPanel.setAttribute('aria-hidden','false');window.setTimeout(()=>searchInput?.focus(),310)}));
+ document.querySelector('[data-search-close]')?.addEventListener('click',closeSearch);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSearch()});
+ const drawer=document.querySelector('[data-cart-drawer]'),scrim=document.querySelector('[data-cart-scrim]'),drawerContent=document.querySelector('[data-cart-content]');
+ const closeDrawer=()=>{drawer?.classList.remove('is-open');scrim?.classList.remove('is-open');drawer?.setAttribute('aria-hidden','true');document.body.classList.remove('cart-drawer-open')};
+ const refreshBag=async()=>{if(!drawerContent)return;drawerContent.innerHTML='<p class="muted">Loading your selection…</p>';try{const response=await fetch('/actions/cart-summary.php',{headers:{'Accept':'application/json'}});if(!response.ok)throw new Error('Cart unavailable');const data=await response.json();document.querySelectorAll('[data-bag-count]').forEach(el=>el.textContent=data.count);const count=document.querySelector('[data-drawer-count]');if(count)count.textContent=' ('+data.count+')';if(!data.items.length){drawerContent.innerHTML='<div class="ikki-cart-empty"><p>Your next signature awaits.</p><a href="/shop.php" class="ikki-btn--primary">EXPLORE THE COLLECTION ↗</a></div>';return;}drawerContent.innerHTML=data.items.map(item=>'<article class="ikki-cart-line"><img src="'+item.image+'" alt=""><div class="ikki-cart-line-info"><strong>'+item.name+'</strong><span>'+item.variant+'</span><small>'+item.price+' × '+item.quantity+'</small></div><b>'+item.line_total+'</b></article>').join('')+'<div class="ikki-cart-subtotal"><span>Subtotal</span><strong>'+data.subtotal+'</strong></div><a class="ikki-btn--primary ikki-cart-checkout" href="/checkout.php">CHECKOUT ↗</a><a class="ikki-cart-view" href="/cart.php">VIEW / EDIT BAG</a>';}catch(error){drawerContent.innerHTML='<p class="muted">Your bag could not be loaded. <a href="/cart.php">View your bag</a>.</p>';}};
+ const openDrawer=()=>{if(!drawer)return;drawer.classList.add('is-open');scrim?.classList.add('is-open');drawer.setAttribute('aria-hidden','false');document.body.classList.add('cart-drawer-open');refreshBag();};
+ document.querySelectorAll('[data-cart-drawer-trigger]').forEach(btn=>btn.addEventListener('click',e=>{e.preventDefault();openDrawer()}));
+ document.querySelector('[data-cart-close]')?.addEventListener('click',closeDrawer);scrim?.addEventListener('click',closeDrawer);
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDrawer()});
+ document.querySelectorAll('.ikki-product-purchase').forEach(form=>form.addEventListener('submit',async e=>{
+  e.preventDefault();const button=form.querySelector('[type=submit]');if(button)button.disabled=true;
+  try{const response=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json','X-Requested-With':'XMLHttpRequest'}});const data=await response.json();if(!response.ok||!data.success)throw new Error(data.message||'Unable to add this item');
+   document.querySelectorAll('[data-bag-count]').forEach(el=>{el.textContent=data.count;el.classList.remove('is-pulsing');void el.offsetWidth;el.classList.add('is-pulsing')});openDrawer();
+  }catch(error){form.submit()}finally{if(button)button.disabled=false;}
+ }));
+
  // Footer accordions: collapsed by default on small screens, expanded on desktop.
  const footerColumns=[...document.querySelectorAll('[data-footer-accordion]')];
  const setFooterAccordionMode=()=>{
