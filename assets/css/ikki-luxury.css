@@ -1998,3 +1998,47 @@ h1 .accent-italic,
  .home-text-link:before,.ikki-card-discover:before,.ikki-product-after>a:before,
  .ikki-footer-contact-link:before{transition:none}
 }
+
+
+/* IKKI ambient fragrance ticker — seamless, subdued, and motion-accessible */
+.home-marquee{
+ width:100%!important;min-height:42px!important;height:42px!important;
+ display:flex!important;align-items:center!important;overflow:hidden!important;
+ padding:0!important;background:#f5efe4!important;
+ color:rgba(184,147,95,.78)!important;
+ border:0!important;border-block:1px solid rgba(184,147,95,.13)!important;
+ letter-spacing:0!important;
+}
+.home-marquee .home-marquee-track{
+ display:flex!important;align-items:center!important;flex:0 0 max-content!important;
+ width:max-content!important;min-width:max-content!important;
+ animation:ikkiAmbientTicker 40s linear infinite!important;
+ will-change:transform;
+}
+.home-marquee .home-marquee-track>span{
+ display:flex!important;align-items:center!important;flex:0 0 auto!important;
+ gap:22px!important;padding:0 22px!important;white-space:nowrap!important;
+ color:rgba(135,105,65,.76)!important;
+ font:500 9px/1.2 Montserrat,Arial,sans-serif!important;
+ letter-spacing:.19em!important;text-transform:uppercase!important;
+}
+.home-marquee .home-marquee-track b{
+ color:rgba(184,147,95,.72)!important;font-size:10px!important;font-weight:400!important;
+}
+@keyframes ikkiAmbientTicker{
+ from{transform:translate3d(0,0,0)}
+ to{transform:translate3d(-50%,0,0)}
+}
+@media(hover:hover) and (pointer:fine){
+ .home-marquee:hover .home-marquee-track{animation-play-state:paused!important}
+}
+@media(max-width:640px){
+ .home-marquee{min-height:38px!important;height:38px!important}
+ .home-marquee .home-marquee-track>span{gap:15px!important;padding-inline:15px!important;font-size:8px!important;letter-spacing:.15em!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-marquee{overflow-x:auto!important;scrollbar-width:none}
+ .home-marquee::-webkit-scrollbar{display:none}
+ .home-marquee .home-marquee-track{animation:none!important;transform:none!important}
+ .home-marquee .home-marquee-track>span[aria-hidden="true"]{display:none!important}
+}
