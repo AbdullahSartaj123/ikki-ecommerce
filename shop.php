@@ -123,7 +123,7 @@ require __DIR__.'/includes/header.php';
      <input type="hidden" name="variant_id" value="">
      <div class="quick-view-options" data-quick-sizes hidden><span class="quick-view-label">CHOOSE YOUR SIZE</span><div class="quick-view-size-buttons" data-size-buttons></div></div>
      <div class="quick-view-quantity"><span class="quick-view-label">QUANTITY</span><div class="quick-view-quantity-control"><button type="button" data-quantity-minus aria-label="Decrease quantity">−</button><output data-quantity-value>1</output><button type="button" data-quantity-plus aria-label="Increase quantity">+</button></div><input type="hidden" name="quantity" value="1"></div>
-     <button class="quick-view-add" type="submit" disabled data-quick-add>Add to Cart</button>
+     <button class="quick-view-add ikki-btn--primary" type="submit" disabled data-quick-add>Add to Cart <span aria-hidden="true">↗</span></button>
      <p class="quick-view-unavailable" data-quick-unavailable hidden>This fragrance is coming soon and is not available to add yet.</p>
     </form>
     <a class="quick-view-detail-link" data-quick-detail href="/shop.php" hidden>Explore fragrance details ↗</a>
