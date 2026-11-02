@@ -295,6 +295,32 @@ document.addEventListener('DOMContentLoaded',()=>{
  const sortSelect=document.querySelector('#collection-sort');
  const collectionSearch=document.querySelector('#collection-search');
  let collectionSearchTerm='';
+
+ // Collection toolbar: fade-up entrance and sticky-state shadow, RAF-throttled.
+ const collectionToolbar=document.querySelector('[data-collection-toolbar]');
+ const collectionToolbarWrap=document.querySelector('.collection-toolbar-wrap');
+ const siteHeader=document.querySelector('[data-site-header]');
+ if(collectionToolbar&&collectionToolbarWrap){
+  const revealToolbar=()=>collectionToolbar.classList.add('is-toolbar-visible');
+  if(reducedMotion||!('IntersectionObserver'in window))revealToolbar();
+  else{const toolbarObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){revealToolbar();toolbarObserver.disconnect();}}),{threshold:.08});toolbarObserver.observe(collectionToolbar);}
+  const updateToolbarStickyOffset=()=>{
+   const headerHeight=siteHeader?Math.round(siteHeader.getBoundingClientRect().height):68;
+   document.documentElement.style.setProperty('--ikki-toolbar-sticky-top',headerHeight+'px');
+  };
+  let toolbarScrollFrame=0;
+  const updateToolbarStuck=()=>{
+   const headerHeight=siteHeader?siteHeader.getBoundingClientRect().height:68;
+   const stuck=collectionToolbarWrap.getBoundingClientRect().top<=headerHeight+1;
+   collectionToolbarWrap.classList.toggle('is-stuck',stuck);
+   toolbarScrollFrame=0;
+  };
+  const requestToolbarUpdate=()=>{if(toolbarScrollFrame)return;toolbarScrollFrame=requestAnimationFrame(updateToolbarStuck);};
+  updateToolbarStickyOffset();requestToolbarUpdate();
+  window.addEventListener('scroll',requestToolbarUpdate,{passive:true});
+  window.addEventListener('resize',()=>{updateToolbarStickyOffset();requestToolbarUpdate();},{passive:true});
+ }
+
  const toolbarWrap=document.querySelector('.collection-toolbar-wrap');
  const loadMoreButton=document.querySelector('#collection-load-more');
  const allViewedMessage=document.querySelector('#collection-all-viewed');
