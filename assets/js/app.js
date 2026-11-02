@@ -228,24 +228,6 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
 
  // Newsletter email feedback. The subscription endpoint is not connected yet.
- const newsletterForm=document.querySelector('#ikki-newsletter-form');
- if(newsletterForm){
-  const email=newsletterForm.querySelector('input[type="email"]');
-  const feedback=document.querySelector('#ikki-newsletter-feedback');
-  newsletterForm.addEventListener('submit',event=>{
-   event.preventDefault();
-   feedback.classList.remove('is-visible','is-error');
-   if(!email||!email.value.trim()||!email.checkValidity()){
-    feedback.textContent='Please enter a valid email address.';
-    feedback.classList.add('is-visible','is-error');
-    if(email)email.focus();
-    return;
-   }
-   feedback.textContent='Thank you for your interest. Our newsletter is coming soon.';
-   feedback.classList.add('is-visible');
-   newsletterForm.reset();
-  });
- }
  // Shared floating back-to-top control with RAF-throttled visibility and click feedback.
  const backToTop=document.querySelector('[data-back-to-top]');
  if(backToTop){
@@ -682,7 +664,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
 
  // === CART MODULE ===
- // Header bag opens the cart drawer rather than navigating away.
+ // Shopping bag navigation uses the server-backed cart page.
   // Desktop-only half-speed parallax for the full-bleed story artwork.
  const storyParallax=document.querySelector('.home-story-parallax');
  if(storyParallax&&!reducedMotion&&window.matchMedia('(min-width: 769px)').matches){
