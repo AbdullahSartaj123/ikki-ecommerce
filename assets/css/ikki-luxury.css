@@ -236,3 +236,113 @@ img{max-width:100%;height:auto}
  .mobile-menu-links{gap:24px}
  .mobile-menu-links a{font-size:30px}
 }
+
+
+/* IKKI editorial homepage refresh — retain the white, cream and champagne-gold identity */
+.home-hero{
+ min-height:clamp(650px,calc(100svh - 116px),900px)!important;
+ grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr)!important;
+ padding:clamp(66px,7vw,112px) clamp(28px,7.2vw,112px) 88px!important;
+ background:radial-gradient(ellipse at 76% 48%,rgba(184,147,95,.16),transparent 42%),linear-gradient(115deg,#fff 0%,#faf7f2 100%)!important;
+}
+.home-hero:after{opacity:.025!important}
+.home-hero-copy{max-width:650px}
+.home-hero-eyebrow{color:var(--color-gold-dark)!important;font-size:11px!important;letter-spacing:2.4px!important}
+.home-overline{color:var(--color-gray)!important;font-size:9px!important;letter-spacing:2px!important}
+.home-hero h1{color:var(--color-black)!important;font:400 clamp(3.5rem,6.3vw,6.2rem)/.98 var(--font-heading)!important;letter-spacing:-2px!important}
+.home-hero h1 em,.home-philosophy-title h2 em,.home-feature-copy h2 em,.home-values-heading h2 em,.home-manifesto p em,.home-final-cta h2 em{color:var(--color-gold-dark)!important}
+.home-hero-subtext{max-width:460px;color:var(--color-gray)!important;font-size:15px!important;line-height:1.95!important}
+.home-hero-foot{color:var(--color-gray)!important;font-size:8px!important;letter-spacing:1.3px!important}
+.home-hero-visual{min-height:clamp(480px,68vw,690px)!important}
+.home-hero-bottle{filter:drop-shadow(0 28px 35px rgba(50,38,20,.16))!important}
+.home-hero-orbit,.home-ring{border-color:rgba(184,147,95,.24)!important}
+.home-visual-glow{background:radial-gradient(circle,rgba(184,147,95,.22),rgba(184,147,95,.07) 46%,transparent 72%)!important}
+.home-visual-stamp{color:var(--color-gold-dark)!important}
+.home-vertical-note{color:var(--color-gray)!important}
+.home-scroll-cue{color:var(--color-gray)!important}
+.home-scroll-cue span{background:var(--color-gold)!important}
+.home-marquee{background:var(--color-gold)!important;color:#fff!important}
+.home-marquee div{font-size:10px!important;letter-spacing:2px!important}
+.home-marquee b{color:#fff!important}
+.home-philosophy{grid-template-columns:.7fr 1.55fr 1fr!important;gap:30px!important;padding:clamp(78px,9vw,130px) var(--gutter)!important;background:var(--color-white)!important}
+.home-section-index{color:var(--color-gold-dark)!important}
+.home-philosophy-title h2,.home-section-heading h2,.home-feature-copy h2,.home-values-heading h2{color:var(--color-black)!important;font-family:var(--font-heading)!important}
+.home-philosophy-copy{padding-top:57px}
+.home-philosophy-copy p,.home-feature-copy p{color:var(--color-gray)!important}
+.home-text-link{color:var(--color-gold-dark)!important;border-color:rgba(184,147,95,.5)!important}
+.home-collection{background:var(--color-cream)!important}
+.home-collection .home-section-heading h2{color:var(--color-black)!important}
+.home-collection .home-product-art{background:#f1ece3!important}
+.home-collection .home-product-art:after{background:linear-gradient(180deg,rgba(255,255,255,.04),transparent 55%,rgba(26,26,26,.08))!important}
+.home-collection .home-product-open{background:rgba(143,111,69,.94)!important;color:#fff!important}
+.home-collection .home-product-number{color:var(--color-gold-dark)!important}
+.home-collection .home-product-meta h3{color:var(--color-black)!important}
+.home-collection .home-product-meta p{color:var(--color-gray)!important}
+.home-collection .home-product-meta strong{color:var(--color-gold-dark)!important}
+.home-collection .home-collection-note{color:var(--color-gray)!important}
+.home-feature{grid-template-columns:1fr 1fr!important;background:var(--color-white)!important}
+.home-feature-art{background:var(--color-cream)!important}
+.home-feature-art img{object-fit:contain!important;padding:clamp(25px,5vw,70px)!important}
+.home-feature-art>span{color:var(--color-gold-dark)!important}
+.home-feature-copy{background:var(--color-white)!important}
+.home-feature-copy h2{font-size:clamp(48px,5.8vw,78px)!important}
+.home-outline-button{border-color:var(--color-gold)!important;background:transparent!important;color:var(--color-gold-dark)!important}
+.home-outline-button:hover{background:var(--color-gold)!important;color:#fff!important}
+.home-values{grid-template-columns:1.15fr repeat(3,minmax(0,1fr))!important;gap:30px!important;padding:clamp(75px,9vw,110px) var(--gutter)!important;background:var(--color-cream)!important}
+.home-values-heading p,.home-value p{color:var(--color-gray)!important}
+.home-value{border-color:rgba(184,147,95,.42)!important}
+.home-value-icon{border-color:rgba(184,147,95,.55)!important;color:var(--color-gold-dark)!important}
+.home-value-number{color:var(--color-gold-dark)!important}
+.home-value h3{color:var(--color-black)!important;font-family:var(--font-heading)!important}
+.home-manifesto{padding:clamp(75px,9vw,115px) 22px!important;background:var(--color-white)!important;border-top:1px solid var(--color-gray-light);border-bottom:1px solid var(--color-gray-light)}
+.home-manifesto>p{color:var(--color-black)!important;font-family:var(--font-heading)!important}
+.home-manifesto>span:last-child{color:var(--color-gold-dark)!important}
+.home-final-cta,.home-contact-cta{background:var(--color-cream)!important}
+.home-final-cta h2,.home-contact-cta h2{color:var(--color-black)!important;font-family:var(--font-heading)!important}
+.home-final-cta p,.home-contact-cta p{color:var(--color-gray)!important}
+.home-final-actions{justify-content:center}
+.home-final-cta .ikki-btn--secondary{color:var(--color-gold-dark)!important}
+@media(max-width:1050px){
+ .home-hero{grid-template-columns:1fr 1fr!important;padding-inline:5vw!important}
+ .home-philosophy{grid-template-columns:.5fr 1.4fr 1fr!important}
+ .home-values{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ .home-values-heading{grid-column:1/-1}
+}
+@media(max-width:800px){
+ .home-hero{grid-template-columns:1fr!important;min-height:0!important;padding:62px 28px 64px!important}
+ .home-hero-copy{padding:0!important}
+ .home-hero-visual{min-height:440px!important;margin-top:20px}
+ .home-hero-bottle{height:440px!important;max-height:440px!important}
+ .home-philosophy{display:block!important;padding:76px 26px!important}
+ .home-section-index{display:block;margin-bottom:25px}
+ .home-philosophy-copy{padding-top:25px!important;margin-left:auto}
+ .home-feature{grid-template-columns:1fr!important}
+ .home-feature-art{height:420px;min-height:420px}
+ .home-feature-copy{padding:55px 28px 65px!important}
+}
+@media(max-width:700px){
+ .home-hero{padding:55px 23px 56px!important}
+ .home-hero h1{font-size:clamp(65px,15vw,94px)!important}
+ .home-hero-subtext{font-size:13px!important}
+ .home-hero-foot{gap:12px!important;margin-top:35px!important}
+ .home-hero-visual{min-height:360px!important}
+ .home-hero-bottle{height:370px!important;max-height:370px!important}
+ .home-marquee{padding:13px 0!important}
+ .home-philosophy-title h2,.home-section-heading h2{font-size:clamp(52px,12vw,68px)!important}
+ .home-feature-art{height:360px;min-height:360px}
+ .home-feature-art img{padding:24px!important}
+ .home-feature-copy h2{font-size:clamp(52px,12vw,68px)!important}
+ .home-values{grid-template-columns:1fr!important;padding:72px 23px!important}
+ .home-values-heading{grid-column:auto!important}
+ .home-value{display:grid;grid-template-columns:52px 1fr;column-gap:15px}
+ .home-value-icon{grid-row:1/4;margin:0;width:45px;height:45px}
+ .home-value-number{margin:0 0 8px}
+ .home-value h3{font-size:24px;margin:0 0 8px}
+ .home-manifesto>p{font-size:clamp(38px,9vw,52px)!important}
+ .home-final-cta{padding:76px 20px 82px!important}
+ .home-final-cta h2{font-size:clamp(48px,11vw,64px)!important}
+ .home-final-actions{align-items:center}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-hero-copy,.home-hero-bottle,.home-marquee div{animation:none!important;opacity:1!important;transform:none!important}
+}
