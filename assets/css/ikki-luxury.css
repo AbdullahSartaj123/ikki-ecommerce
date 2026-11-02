@@ -1916,3 +1916,85 @@ h1 .accent-italic,
 @media(max-width:360px){
  .site-header .maison-brand-tagline{font-size:7px!important;letter-spacing:.35px!important}
 }
+
+
+/* =========================================================
+   IKKI CTA SYSTEM — exactly two visual variants
+   Primary: solid champagne gold | Secondary: outlined gold sweep
+   ========================================================= */
+:root{--ikki-cta-gold:#b8935f;--ikki-cta-gold-hover:#9c7d47}
+.ikki-btn--primary,.button-gold,.button-gold:hover,
+.story-cta-button,.contact-submit,.quick-view-add,.ikki-product-add,
+.ikki-product-not-found .button-gold,
+.home-hero-actions .ikki-btn--primary{
+ position:relative;isolation:isolate;overflow:hidden;
+ display:inline-flex;align-items:center;justify-content:center;gap:12px;
+ min-height:52px;padding:14px 26px;
+ border:1px solid var(--ikki-cta-gold)!important;border-radius:0;
+ background:var(--ikki-cta-gold)!important;color:#fff!important;
+ font:500 10px/1.25 var(--font-body)!important;letter-spacing:1.25px!important;
+ text-transform:uppercase;text-decoration:none!important;
+ box-shadow:0 7px 20px rgba(137,103,57,.12);
+ transition:background .28s ease,border-color .28s ease,color .28s ease,transform .28s ease,box-shadow .28s ease;
+}
+.ikki-btn--primary:hover,.button-gold:hover,.story-cta-button:hover,
+.contact-submit:hover,.quick-view-add:not(:disabled):hover,.ikki-product-add:hover,
+.ikki-product-not-found .button-gold:hover,.home-hero-actions .ikki-btn--primary:hover{
+ background:var(--ikki-cta-gold-hover)!important;border-color:var(--ikki-cta-gold-hover)!important;
+ color:#fff!important;transform:translateY(-2px);
+ box-shadow:0 10px 23px rgba(80,60,33,.17);
+}
+.ikki-btn--secondary,.button-outline,.home-outline-button,
+.home-text-link,.ikki-card-discover,.ikki-product-after>a,
+.ikki-footer-contact-link{
+ position:relative;isolation:isolate;overflow:hidden;
+ display:inline-flex;align-items:center;justify-content:center;gap:12px;
+ min-height:48px;padding:12px 24px;
+ border:1px solid var(--ikki-cta-gold)!important;border-radius:0;
+ background:#fff!important;color:var(--ikki-cta-gold-hover)!important;
+ font:500 10px/1.25 var(--font-body)!important;letter-spacing:1.15px!important;
+ text-transform:uppercase;text-decoration:none!important;
+ transition:color .32s ease,border-color .32s ease,transform .28s ease;
+}
+.ikki-btn--secondary:before,.button-outline:before,.home-outline-button:before,
+.home-text-link:before,.ikki-card-discover:before,.ikki-product-after>a:before,
+.ikki-footer-contact-link:before{
+ content:"";position:absolute;inset:0;z-index:-1;background:var(--ikki-cta-gold);
+ transform:scaleX(0);transform-origin:left;transition:transform .42s cubic-bezier(.2,.7,.2,1);
+}
+.ikki-btn--secondary:hover,.button-outline:hover,.home-outline-button:hover,
+.home-text-link:hover,.ikki-card-discover:hover,.ikki-product-after>a:hover,
+.ikki-footer-contact-link:hover{
+ background:#fff!important;color:#fff!important;border-color:var(--ikki-cta-gold)!important;
+}
+.ikki-btn--secondary:hover:before,.button-outline:hover:before,.home-outline-button:hover:before,
+.home-text-link:hover:before,.ikki-card-discover:hover:before,.ikki-product-after>a:hover:before,
+.ikki-footer-contact-link:hover:before{transform:scaleX(1)}
+.ikki-btn--primary>span,.button-gold>span,.story-cta-button>span,
+.ikki-product-add>span,.quick-view-add>span,.ikki-btn--secondary>span,
+.button-outline>span,.home-outline-button>span,.home-text-link>span,
+.ikki-card-discover>span,.ikki-product-after>a>span,
+.ikki-footer-contact-link>span,.contact-submit svg{
+ position:relative;z-index:1;display:inline-block;transition:transform .28s ease;
+}
+.ikki-btn--primary:hover>span,.button-gold:hover>span,.story-cta-button:hover>span,
+.ikki-product-add:hover>span,.quick-view-add:not(:disabled):hover>span,
+.ikki-btn--secondary:hover>span,.button-outline:hover>span,.home-outline-button:hover>span,
+.home-text-link:hover>span,.ikki-card-discover:hover>span,
+.ikki-product-after>a:hover>span,.ikki-footer-contact-link:hover>span,
+.contact-submit:hover svg{transform:translateX(3px)}
+.ikki-btn--primary:focus-visible,.ikki-btn--secondary:focus-visible,
+.button-gold:focus-visible,.button-outline:focus-visible,
+.story-cta-button:focus-visible,.contact-submit:focus-visible{
+ outline:2px solid var(--ikki-cta-gold-hover);outline-offset:3px;
+}
+.quick-view-add:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+@media(prefers-reduced-motion:reduce){
+ .ikki-btn--primary,.button-gold,.story-cta-button,.contact-submit,
+ .quick-view-add,.ikki-product-add,.ikki-btn--secondary,.button-outline,
+ .home-outline-button,.home-text-link,.ikki-card-discover,.ikki-product-after>a,
+ .ikki-footer-contact-link{transition:none}
+ .ikki-btn--secondary:before,.button-outline:before,.home-outline-button:before,
+ .home-text-link:before,.ikki-card-discover:before,.ikki-product-after>a:before,
+ .ikki-footer-contact-link:before{transition:none}
+}
