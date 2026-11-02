@@ -143,3 +143,18 @@ img{max-width:100%;height:auto}
 .collection-search input::placeholder{color:var(--color-gray)}
 .collection-search input:focus{border-color:var(--color-gold);outline:2px solid rgba(184,147,95,.18);outline-offset:1px}
 @media(max-width:640px){.collection-toolbar-controls{flex-wrap:wrap}.collection-search{width:100%;min-width:100%}}
+
+/* IKKI mobile navigation: readable links, clear layering and reliable close control */
+@media(max-width:900px){
+ .site-header{z-index:100!important}
+ .site-header .menu-toggle{z-index:101!important;display:flex!important;cursor:pointer;touch-action:manipulation}
+ .mobile-menu-overlay{z-index:110!important;background:var(--color-white)!important;color:var(--color-black)!important;isolation:isolate}
+ .mobile-menu-overlay.is-open{pointer-events:auto}
+ .mobile-menu-close{z-index:2;top:18px;right:18px;width:48px;height:48px;cursor:pointer;touch-action:manipulation}
+ .mobile-menu-close span{background:var(--color-gold-dark)!important}
+ .mobile-menu-links a{color:var(--color-black)!important;text-shadow:none!important}
+ .mobile-menu-links a:hover,.mobile-menu-links a:focus-visible,.mobile-menu-links a.active{color:var(--color-gold-dark)!important}
+ .mobile-menu-links a.active:after{background:var(--color-gold)!important}
+ .mobile-menu-social{color:var(--color-gray)!important}
+ .mobile-menu-social a{color:var(--color-gold-dark)!important;border-color:var(--color-gold)!important}
+}
