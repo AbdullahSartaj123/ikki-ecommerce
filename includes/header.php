@@ -1,6 +1,6 @@
 <?php
-$pageTitle=$pageTitle??'Ikki — Fragrance, composed.';
-$description=$description??'Discover Ikki: a modern fragrance house creating expressive scent stories in Pakistan.';
+$pageTitle=$pageTitle??'IKKI — Fragrance, composed.';
+$description=$description??'Discover IKKI: a modern fragrance house creating expressive scent stories in Pakistan.';
 $currentPage=basename($_SERVER['SCRIPT_NAME']??'');
 $isHomePage=($currentPage==='index.php');
 $navItems=[
@@ -16,7 +16,7 @@ $navItems=[
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#ffffff">
 <meta name="color-scheme" content="light">
-<meta property="og:site_name" content="Ikki">
+<meta property="og:site_name" content="IKKI">
 <meta property="og:locale" content="en_PK">
 <meta name="robots" content="index,follow">
 <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
@@ -35,8 +35,8 @@ $navItems=[
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
 <div class="ikki-scroll-progress" data-ikki-scroll-progress aria-hidden="true"><span></span></div>
-<div class="home-preloader" data-home-preloader role="status" aria-label="Loading Ikki">
- <div class="home-preloader-content"><span class="home-preloader-mark" aria-label="Ikki">ikki<span>.</span></span><span class="home-preloader-track" aria-hidden="true"><span class="home-preloader-progress"></span></span></div>
+<div class="home-preloader" data-home-preloader role="status" aria-label="Loading IKKI">
+ <div class="home-preloader-content"><span class="home-preloader-mark" aria-label="IKKI">ikki<span>.</span></span><span class="home-preloader-track" aria-hidden="true"><span class="home-preloader-progress"></span></span></div>
 </div>
 <script>
 /* Global, session-aware preloader: 1.5s progress + 0.5s exit; 0.3s on repeat visits. */
@@ -93,7 +93,7 @@ $navItems=[
  <?php endforeach; ?>
  </nav>
  <div class="mobile-menu-social">
-  <a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer" aria-label="Contact Ikki on WhatsApp">
+  <a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer" aria-label="Contact IKKI on WhatsApp">
    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.8a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.3-4.7a8.5 8.5 0 1 1 16.2-4ZM8.8 7.7c-.2-.5-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.4 1 2.8 1.1 3c.1.2 2 3.2 5 4.3 2.5 1 3 .8 3.6.7.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.1-1.4-.1-.1-.3-.2-.6-.4l-1.9-.9c-.3-.1-.5-.2-.7.2-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.5.1-.6l.4-.5.3-.5c.1-.2 0-.4 0-.5l-.8-1.9Z"/></svg>
   </a>
   <span>CONNECT WITH US</span>
