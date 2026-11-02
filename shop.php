@@ -1,23 +1,24 @@
 <?php
 require_once __DIR__.'/config/bootstrap.php';
-$pageTitle='Our Collection — Ikki';
-$description='Explore the Ikki fragrance collection: individual scent stories, composed to become part of your signature.';
+$pageTitle='Collection — IKKI';
+$description='Explore the IKKI fragrance collection: individual scent stories, composed to become part of your signature.';
 $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.gender,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name")->fetchAll();
 }catch(Throwable $ex){error_log('[Ikki collection] '.$ex->getMessage());}
-$catalog=[
- ['name'=>'Noir Orchid','slug'=>'noir-orchid','notes'=>'Dark floral, oud, black amber','price'=>185,'category'=>'her','is_new'=>false],
- ['name'=>'Velvet Rose','slug'=>'velvet-rose','notes'=>'Rose, patchouli, vanilla','price'=>165,'category'=>'her','is_new'=>false],
- ['name'=>'Golden Oud','slug'=>'golden-oud','notes'=>'Oud, saffron, sandalwood','price'=>210,'category'=>'unisex','is_new'=>false],
- ['name'=>'Citrus Soleil','slug'=>'citrus-soleil','notes'=>'Bergamot, neroli, musk','price'=>145,'category'=>'unisex','is_new'=>false],
- ['name'=>'Amber Nights','slug'=>'amber-nights','notes'=>'Amber, leather, tobacco','price'=>195,'category'=>'him','is_new'=>false],
- ['name'=>'Iron & Leather','slug'=>'iron-leather','notes'=>'Vetiver, leather, cedarwood','price'=>175,'category'=>'him','is_new'=>false],
- ['name'=>'White Jasmine','slug'=>'white-jasmine','notes'=>'Jasmine, white musk, pear','price'=>155,'category'=>'her','is_new'=>true],
- ['name'=>'Midnight Spice','slug'=>'midnight-spice','notes'=>'Black pepper, cardamom, oud','price'=>220,'category'=>'him','is_new'=>true],
-];
+$catalog=[];
 $databaseProducts=[];
-foreach($products as $product){$databaseProducts[$product['slug']]=$product;}
+foreach($products as $product){
+ $databaseProducts[$product['slug']]=$product;
+ $gender=strtolower(trim((string)($product['gender']??'')));
+ $category=in_array($gender,['female','women','woman','her'],true)?'her':(in_array($gender,['male','men','man','him'],true)?'him':'unisex');
+ $catalog[]=[
+  'name'=>$product['name'],'slug'=>$product['slug'],
+  'notes'=>trim((string)($product['short_description']??''))?:'An IKKI signature fragrance',
+  'price'=>$product['price']!==null?(float)$product['price']:null,
+  'category'=>$category,'is_new'=>false
+ ];
+}
 $products=$catalog;
 require __DIR__.'/includes/header.php';
 ?>
@@ -37,7 +38,6 @@ require __DIR__.'/includes/header.php';
    <button class="collection-filter" type="button" data-filter="her" aria-pressed="false">For Her</button>
    <button class="collection-filter" type="button" data-filter="him" aria-pressed="false">For Him</button>
    <button class="collection-filter" type="button" data-filter="unisex" aria-pressed="false">Unisex</button>
-   <button class="collection-filter" type="button" data-filter="new" aria-pressed="false">New Arrivals</button>
   </div>
   <div class="collection-toolbar-controls">
    <span class="collection-count"><b><?=count($products)?></b> FRAGRANCES</span>
@@ -48,7 +48,7 @@ require __DIR__.'/includes/header.php';
  </div>
  </div>
  <div class="collection-grid" id="collection-grid">
- <?php foreach($products as $n=>$p):
+ <?php if($products): foreach($products as $n=>$p):
   $dbProduct=$databaseProducts[$p['slug']]??null;
   $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
   $imagePath=$dbProduct['image_path']??'/assets/images/noor.svg';
@@ -77,7 +77,7 @@ require __DIR__.'/includes/header.php';
    <div class="collection-card-info">
     <h2><?=e($p['name'])?></h2>
     <p><?=e($p['notes'])?></p>
-    <strong><?=money($p['price'])?></strong>
+    <strong><?=$p['price']!==null?money($p['price']):'Price on request'?></strong>
    </div>
   </article>
  <?php endforeach; ?>
