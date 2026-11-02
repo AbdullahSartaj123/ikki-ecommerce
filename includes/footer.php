@@ -26,7 +26,7 @@
    <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-newsletter-content"><span>Need Help?</span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
    <div class="ikki-footer-panel" id="footer-newsletter-content">
     <p>Questions about a fragrance or an order? Speak with the IKKI team directly.</p>
-    <a class="ikki-footer-contact-link" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">CHAT WITH US ON WHATSAPP ↗</a>
+    <a class="ikki-footer-contact-link ikki-btn--secondary" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">CHAT WITH US ON WHATSAPP ↗</a>
    </div>
   </section>
  </div>
