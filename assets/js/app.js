@@ -9,7 +9,7 @@ function initScrollAnimations(){
   if(!entry.isIntersecting)return;
   const element=entry.target;
   const delay=element.getAttribute('data-delay')||'0ms';
-  element.style.transitionDelay=/^(?:0|[1-9]\\d{0,2}|1000)ms$/.test(delay)?delay:'0ms';
+  element.style.transitionDelay=/^(?:0|[1-9]\d{0,2}|1000)ms$/.test(delay)?delay:'0ms';
   reveal(element);
   observer.unobserve(element);
  }),{threshold:.12,rootMargin:'0px 0px -35px 0px'});
@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const toggle=document.querySelector('.menu-toggle');
  const nav=document.querySelector('#primary-navigation');
  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(window.location.hash==='#collection-search')document.querySelector('#collection-search')?.focus({preventScroll:true});
  // === PRELOADER MODULE ===
  // Start page entrance/reveal animations only after the global preloader exits.
  document.addEventListener('ikki:preloader-finished',initScrollAnimations,{once:true});
@@ -178,7 +179,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(mobileClose)mobileClose.addEventListener('click',closeMenu);
   mobileOverlay.addEventListener('click',event=>{if(event.target===mobileOverlay)closeMenu();});
   mobileLinks.forEach(link=>link.addEventListener('click',closeMenu));
-  document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
+  document.addEventListener('keydown',event=>{
+   if(!mobileOverlay.classList.contains('is-open'))return;
+   if(event.key==='Escape'){closeMenu();return;}
+   if(event.key!=='Tab')return;
+   const focusable=[...mobileOverlay.querySelectorAll('a[href],button:not(:disabled)')].filter(el=>el.getClientRects().length);
+   if(!focusable.length)return;
+   const first=focusable[0],last=focusable[focusable.length-1];
+   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  });
   window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMenu();});
  }
  // Footer accordions: collapsed by default on small screens, expanded on desktop.
@@ -218,24 +228,6 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
 
  // Newsletter email feedback. The subscription endpoint is not connected yet.
- const newsletterForm=document.querySelector('#ikki-newsletter-form');
- if(newsletterForm){
-  const email=newsletterForm.querySelector('input[type="email"]');
-  const feedback=document.querySelector('#ikki-newsletter-feedback');
-  newsletterForm.addEventListener('submit',event=>{
-   event.preventDefault();
-   feedback.classList.remove('is-visible','is-error');
-   if(!email||!email.value.trim()||!email.checkValidity()){
-    feedback.textContent='Please enter a valid email address.';
-    feedback.classList.add('is-visible','is-error');
-    if(email)email.focus();
-    return;
-   }
-   feedback.textContent='Thank you for your interest. Our newsletter is coming soon.';
-   feedback.classList.add('is-visible');
-   newsletterForm.reset();
-  });
- }
  // Shared floating back-to-top control with RAF-throttled visibility and click feedback.
  const backToTop=document.querySelector('[data-back-to-top]');
  if(backToTop){
@@ -262,6 +254,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  // Lazy-load non-critical imagery while keeping hero and main product artwork eager.
  document.querySelectorAll('img:not([loading])').forEach(img=>{
   if(!img.closest('.home-hero')&&!img.closest('.product-visual'))img.loading='lazy';
+ });
 
  // === COLLECTION FILTERING MODULE ===
  // === Collection Page: Filtering ===
@@ -277,6 +270,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  const filterTrack=document.querySelector('[data-filter-track]');
  const filterIndicator=filterTrack?.querySelector('.collection-filter-indicator');
  const sortSelect=document.querySelector('#collection-sort');
+ const collectionSearch=document.querySelector('#collection-search');
+ let collectionSearchTerm='';
  const toolbarWrap=document.querySelector('.collection-toolbar-wrap');
  const loadMoreButton=document.querySelector('#collection-load-more');
  const allViewedMessage=document.querySelector('#collection-all-viewed');
@@ -303,7 +298,11 @@ document.addEventListener('DOMContentLoaded',()=>{
    collectionCards=sorted;
   };
   collectionCards.forEach((card,index)=>card.dataset.originalIndex=String(index));
-  const matchesFilter=(card,selected)=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
+  const matchesFilter=(card,selected)=>{
+   const categoryMatch=selected==='all'||card.dataset.category===selected;
+   const haystack=(card.textContent||'').toLocaleLowerCase();
+   return categoryMatch&&(!collectionSearchTerm||haystack.includes(collectionSearchTerm));
+  };
   const updatePagination=(matchingCount)=>{
    const hasMore=matchingCount>visibleLimit;
    if(loadMoreButton){loadMoreButton.hidden=!hasMore;loadMoreButton.disabled=loadMoreBusy||!hasMore;loadMoreButton.setAttribute('aria-busy',String(loadMoreBusy));}
@@ -379,6 +378,11 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(allButton)applyFilter(allButton,true);
   });
   sortSelect?.addEventListener('change',sortCards);
+  collectionSearch?.addEventListener('input',()=>{
+   collectionSearchTerm=collectionSearch.value.trim().toLocaleLowerCase();
+   const activeButton=collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0];
+   if(activeButton)applyFilter(activeButton,false);
+  });
   positionIndicator(collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0]);
   revealPage('all',false); // Progressive enhancement: show the first perPage products on initial load.
   if(collectionCount)collectionCount.textContent=String(collectionCards.length);
@@ -398,16 +402,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   const quickForm=$('[data-quick-form]'),variantInput=quickForm.querySelector('[name="variant_id"]'),qtyInput=quickForm.querySelector('[name="quantity"]');
   const qtyOutput=$('[data-quantity-value]'),sizeWrap=$('[data-quick-sizes]'),sizeButtons=$('[data-size-buttons]');
   const addButton=$('[data-quick-add]'),unavailable=$('[data-quick-unavailable]');
-  const products=[
-   {name:'Noir Orchid',price:185,image:'/assets/images/noor.svg',top:'Dark floral',heart:'Oud',base:'Black amber',description:'A deep floral composition with oud and black amber, created for a confident, lingering signature.'},
-   {name:'Velvet Rose',price:165,image:'/assets/images/noor.svg',top:'Rose',heart:'Patchouli',base:'Vanilla',description:'Velvet rose petals meet earthy patchouli and a soft vanilla finish in an elegant floral trail.'},
-   {name:'Golden Oud',price:210,image:'/assets/images/noor.svg',top:'Oud',heart:'Saffron',base:'Sandalwood',description:'A warm, opulent blend of oud, saffron and creamy sandalwood with a smooth, enduring character.'},
-   {name:'Citrus Soleil',price:145,image:'/assets/images/noor.svg',top:'Bergamot',heart:'Neroli',base:'Musk',description:'Bright bergamot and delicate neroli settle into clean musk for a fresh, luminous everyday scent.'},
-   {name:'Amber Nights',price:195,image:'/assets/images/noor.svg',top:'Amber',heart:'Leather',base:'Tobacco',description:'Rich amber, supple leather and tobacco create a warm, atmospheric fragrance with depth.'},
-   {name:'Iron & Leather',price:175,image:'/assets/images/noor.svg',top:'Vetiver',heart:'Leather',base:'Cedarwood',description:'Earthy vetiver and leather are grounded by cedarwood in a bold, woody composition.'},
-   {name:'White Jasmine',price:155,image:'/assets/images/noor.svg',top:'Jasmine',heart:'White musk',base:'Pear',description:'Airy jasmine and pear soften into white musk for a delicate, modern floral signature.'},
-   {name:'Midnight Spice',price:220,image:'/assets/images/noor.svg',top:'Black pepper',heart:'Cardamom',base:'Oud',description:'Black pepper and cardamom add a lively opening before rich oud brings a dark, distinctive finish.'}
-  ];
   let closing=false,returnFocus=null,closeTimer=null;
   const moneyLabel=value=>'Rs. '+new Intl.NumberFormat('en-PK',{maximumFractionDigits:0}).format(Number(value)||0);
   const setQuantity=value=>{const qty=Math.max(1,Math.min(10,Number(value)||1));qtyInput.value=String(qty);qtyOutput.textContent=String(qty);};
@@ -428,16 +422,16 @@ document.addEventListener('DOMContentLoaded',()=>{
    });
   };
   const openQuickView=trigger=>{
-   const product=products.find(item=>item.name===trigger.dataset.name);
-   if(!product)return;
+   const productName=trigger.dataset.name||'';
+   if(!productName)return;
    returnFocus=trigger;closing=false;
-   $('#quick-view-title').textContent=product.name;
-   $('[data-quick-price]').textContent=trigger.dataset.price||moneyLabel(product.price);
-   const image=$('[data-quick-image]');image.src=trigger.dataset.image||product.image;image.alt=product.name+' fragrance bottle';image.width=800;image.height=1000;image.loading='lazy';image.decoding='async';
-   $('[data-quick-description]').textContent=trigger.dataset.description||product.description;
-   $('[data-note-top]').textContent=trigger.dataset.top||product.top;
-   $('[data-note-heart]').textContent=trigger.dataset.heart||product.heart;
-   $('[data-note-base]').textContent=trigger.dataset.base||product.base;
+   $('#quick-view-title').textContent=productName;
+   $('[data-quick-price]').textContent=trigger.dataset.price||'Price on request';
+   const image=$('[data-quick-image]');image.src=trigger.dataset.image||'/assets/images/noor.svg';image.alt=productName+' fragrance bottle';image.width=800;image.height=1000;image.loading='lazy';image.decoding='async';
+   $('[data-quick-description]').textContent=trigger.dataset.description||'Discover the olfactive story of this IKKI fragrance.';
+   $('[data-note-top]').textContent=trigger.dataset.top||'Opening notes';
+   $('[data-note-heart]').textContent=trigger.dataset.heart||'Heart notes';
+   $('[data-note-base]').textContent=trigger.dataset.base||'Base notes';
    let variants=[];try{variants=JSON.parse(trigger.dataset.variants||'[]');}catch(error){variants=[];}
    renderVariants(variants);setQuantity(1);
    const available=trigger.dataset.available==='true'&&variants.some(item=>Number(item.stock_quantity)>0);
@@ -477,101 +471,59 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  // === FORMS MODULE ===
  // === CONTACT PAGE: FORM VALIDATION ===
- // Client-side validation only; this form does not send or store messages.
+ // Contact enquiries are validated and handed off to the official IKKI WhatsApp number.
  const contactForm=document.querySelector('#ikki-contact-form');
  if(contactForm){
   const feedback=document.querySelector('#contact-form-feedback');
-  const fieldGrid=contactForm.querySelector('.contact-form-grid');
   const submitButton=contactForm.querySelector('.contact-submit');
-  const successPanel=document.querySelector('#contact-success-panel');
-  const sendAnother=document.querySelector('#contact-send-another');
-  const note=contactForm.querySelector('.contact-form-note');
-  const emailPattern=/^[A-Z0-9.!#$%&'*+/=?^`{|}~-]+@[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?(?:\\.[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?)+$/i;
   const fields=[...contactForm.querySelectorAll('#contact-name,#contact-email,#contact-subject,#contact-message')];
-  let isSubmitting=false,resetTimer=null;
-  // Validate one field and keep inline error/ARIA state in sync.
-  const validateField=field=>{
+  const validate=field=>{
    const value=field.value.trim();
    let message='';
-   if(field.id==='contact-name'&&value.length<2)message=value?'Name must be at least 2 characters.':'Please enter your full name.';
-   else if(field.id==='contact-email'&&!value)message='Please enter your email address.';
-   else if(field.id==='contact-email'&&!emailPattern.test(value))message='Please enter a valid email address.';
+   if(field.id==='contact-name'&&value.length<2)message='Please enter your name (at least 2 characters).';
+   else if(field.id==='contact-email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value))message='Please enter a valid email address.';
    else if(field.id==='contact-subject'&&!value)message='Please select a subject.';
-   else if(field.id==='contact-message'&&value.length<10)message=value?'Message must be at least 10 characters.':'Please enter your message.';
+   else if(field.id==='contact-message'&&value.length<10)message='Please enter at least 10 characters.';
    const wrap=field.closest('.contact-field');
-   wrap.classList.toggle('is-invalid',Boolean(message));
-   const error=wrap.querySelector('.field-error');
+   wrap?.classList.toggle('is-invalid',Boolean(message));
+   const error=wrap?.querySelector('.field-error');
    if(error)error.textContent=message;
    field.setAttribute('aria-invalid',String(Boolean(message)));
    return !message;
   };
-  const clearShake=wrap=>{wrap.classList.remove('is-shaking');void wrap.offsetWidth;};
   fields.forEach(field=>{
-   field.addEventListener('blur',()=>{if(!isSubmitting)validateField(field);});
-   field.addEventListener('input',()=>{if(wrapHasError(field))validateField(field);});
-   field.addEventListener('change',()=>{if(field.id==='contact-subject'&&wrapHasError(field))validateField(field);});
+   field.addEventListener('blur',()=>validate(field));
+   field.addEventListener('input',()=>{if(field.getAttribute('aria-invalid')==='true')validate(field);});
+   field.addEventListener('change',()=>{if(field.getAttribute('aria-invalid')==='true')validate(field);});
   });
-  function wrapHasError(field){return field.closest('.contact-field').classList.contains('is-invalid');}
-  // Reset form fields, feedback, success panel and the 1.2s progress line.
-  const resetForm=()=>{
-   if(resetTimer){window.clearTimeout(resetTimer);resetTimer=null;}
-   contactForm.reset();
-   fields.forEach(field=>{
-    const wrap=field.closest('.contact-field');
-    wrap.classList.remove('is-invalid','is-shaking');
-    const error=wrap.querySelector('.field-error');if(error)error.textContent='';
-    field.removeAttribute('aria-invalid');
-   });
-   fieldGrid.hidden=false;fieldGrid.classList.remove('is-fading-out');successPanel.hidden=true;successPanel.classList.remove('is-visible');
-   if(note){note.hidden=false;note.classList.remove('is-fading-out');}
-   contactForm.closest('.contact-form-column').classList.remove('is-sending');
-   submitButton.disabled=false;submitButton.classList.remove('is-loading','is-success');
-   submitButton.innerHTML='Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>';
-   feedback.classList.remove('is-visible','is-error');feedback.textContent='';
-   if(note)note.hidden=false;
-   isSubmitting=false;
-  };
-  // Present the demo success state after the simulated sending delay.
-  const showSuccess=()=>{
-   submitButton.classList.remove('is-loading');submitButton.classList.add('is-success');
-   submitButton.innerHTML='<svg class="contact-button-check" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"/></svg><span>Message Sent</span>';
-   submitButton.disabled=true;
-   fieldGrid.classList.add('is-fading-out');
-   if(note)note.classList.add('is-fading-out');
-   window.setTimeout(()=>{
-    fieldGrid.hidden=true;
-    if(note)note.hidden=true;
-    successPanel.hidden=false;
-    requestAnimationFrame(()=>successPanel.classList.add('is-visible'));
-   },320);
-   resetTimer=window.setTimeout(resetForm,5000);
-  };
-  sendAnother.addEventListener('click',resetForm);
-  // Submit lifecycle: validate → animate progress → show demo confirmation.
   contactForm.addEventListener('submit',event=>{
    event.preventDefault();
-   if(isSubmitting||submitButton.classList.contains('is-success'))return;
    let firstInvalid=null;
-   fields.forEach(field=>{
-    const valid=validateField(field);
-    if(!valid){
-     const wrap=field.closest('.contact-field');
-     clearShake(wrap);wrap.classList.add('is-shaking');
-     if(!firstInvalid)firstInvalid=field;
-    }
-   });
+   fields.forEach(field=>{if(!validate(field)&&!firstInvalid)firstInvalid=field;});
    if(firstInvalid){
+    feedback.textContent='Please correct the highlighted fields.';
     feedback.classList.add('is-visible','is-error');
-    feedback.textContent='Please correct the highlighted fields before sending.';
-    firstInvalid.focus();return;
+    firstInvalid.focus();
+    return;
    }
-   feedback.classList.remove('is-visible','is-error');feedback.textContent='';
-   isSubmitting=true;contactForm.closest('.contact-form-column').classList.add('is-sending');submitButton.disabled=true;submitButton.classList.add('is-loading');
-   submitButton.innerHTML='<span class="contact-loading-ring" aria-hidden="true"></span><span>Sending</span>';
-   window.setTimeout(showSuccess,1200);
+   const data=new FormData(contactForm);
+   const message=[
+    'IKKI WEBSITE ENQUIRY',
+    'Name: '+String(data.get('name')||'').trim(),
+    'Email: '+String(data.get('email')||'').trim(),
+    'Subject: '+String(data.get('subject')||'').trim(),
+    'Message: '+String(data.get('message')||'').trim(),
+    data.get('whatsapp_consent')?'WhatsApp contact consent: Yes':''
+   ].filter(Boolean).join('\n');
+   const whatsappUrl='https://wa.me/923094733789?text='+encodeURIComponent(message);
+   feedback.textContent='Opening WhatsApp. Review your message there and press Send to submit your enquiry.';
+   feedback.classList.add('is-visible');
+   submitButton.disabled=true;
+   submitButton.textContent='Continue to WhatsApp ↗';
+   window.location.assign(whatsappUrl);
   });
  }
- // Auto-rotating customer testimonials; pause while hovered, focused or touched.
+ // Auto-rotating customer testimonials; // Auto-rotating customer testimonials; pause while hovered, focused or touched.
  const testimonialRoot=document.querySelector('[data-testimonial-carousel]');
  if(testimonialRoot){
   const slides=[...testimonialRoot.querySelectorAll('[data-testimonial-slide]')];
@@ -644,7 +596,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const missionQuote=document.querySelector('[data-mission-quote]');
  if(missionQuote){
   const quoteText=missionQuote.getAttribute('aria-label')||missionQuote.textContent.trim();
-  const words=quoteText.match(/\\S+/g)||[];
+  const words=quoteText.match(/\S+/g)||[];
   if(reducedMotion||!('IntersectionObserver' in window)){
    missionQuote.textContent=quoteText;
    missionQuote.classList.add('is-visible');
@@ -712,104 +664,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
 
  // === CART MODULE ===
- // Header bag opens the cart drawer rather than navigating away.
- const bagTrigger=document.querySelector('[data-cart-drawer-trigger]');
- const cartDrawer=document.querySelector('[data-cart-drawer]');
- const cartBackdrop=document.querySelector('[data-cart-drawer-backdrop]');
- const cartContent=document.querySelector('[data-cart-drawer-content]');
- const cartFooter=document.querySelector('[data-cart-drawer-footer]');
- const cartCount=document.querySelector('[data-cart-count]');
- const cartSubtotal=document.querySelector('[data-cart-subtotal]');
- const cartClose=document.querySelector('[data-cart-drawer-close]');
- const cartContinue=document.querySelector('[data-cart-drawer-continue]');
- const cartDemoItems=[
-  {id:'noir-orchid',name:'Noir Orchid',size:'50ml',price:185,quantity:1,image:'/assets/images/noor.svg'},
-  {id:'velvet-rose',name:'Velvet Rose',size:'50ml',price:165,quantity:1,image:'/assets/images/velvet-dusk.svg'}
- ];
- const formatCartPrice=value=>'Rs. '+new Intl.NumberFormat('en-PK',{maximumFractionDigits:0}).format(value);
- let cartItems=cartDemoItems.map(item=>({...item}));
- let cartReturnFocus=null;
- const renderCartDrawer=()=>{
-  if(!cartContent)return;
-  const count=cartItems.reduce((total,item)=>total+item.quantity,0);
-  const subtotal=cartItems.reduce((total,item)=>total+item.price*item.quantity,0);
-  if(cartCount)cartCount.textContent=String(count);
-  const bagBadge=document.querySelector('.header-bag-link .bag-count');\n  const bagLink=document.querySelector('[data-cart-drawer-trigger]');\n  if(bagBadge)bagBadge.textContent=String(count);\n  if(bagLink)bagLink.setAttribute('aria-label','Shopping bag, '+count+' items');
-  if(cartSubtotal){
-   const nextValue=formatCartPrice(subtotal);
-   if(cartSubtotal.textContent!==nextValue){
-    cartSubtotal.textContent=nextValue;
-    cartSubtotal.classList.remove('is-updating');
-    void cartSubtotal.offsetWidth;
-    cartSubtotal.classList.add('is-updating');
-   }
-  }
-  if(cartFooter)cartFooter.hidden=cartItems.length===0;
-  if(!cartItems.length){
-   cartContent.innerHTML='<div class="cart-drawer-empty"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 22h36l3 34H11l3-34Z"/><path d="M23 24v-7a9 9 0 0 1 18 0v7"/></svg><h3>Your bag is empty</h3><a class="cart-drawer-empty-cta" href="/shop.php">Explore Collection <span aria-hidden="true">↗</span></a></div>';
-   return;
-  }
-  cartContent.innerHTML=cartItems.map(item=>'<article class="cart-drawer-item" data-cart-item="'+item.id+'"><div class="cart-drawer-thumb"><img src="'+item.image+'" alt="'+item.name+' perfume bottle, '+item.size+'" width="800" height="1000" loading="lazy" decoding="async"></div><div class="cart-drawer-item-details"><div class="cart-drawer-item-top"><div><h3>'+item.name+'</h3><p>'+item.size+'</p></div><button type="button" class="cart-drawer-remove" data-cart-remove="'+item.id+'" aria-label="Remove '+item.name+'"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m4 4v5m4-5v5"/></svg></button></div><div class="cart-drawer-item-bottom"><div class="cart-quantity"><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="-1" aria-label="Decrease '+item.name+' quantity">−</button><span>'+item.quantity+'</span><button type="button" data-cart-quantity="'+item.id+'" data-quantity-change="1" aria-label="Increase '+item.name+' quantity">+</button></div><strong>'+formatCartPrice(item.price*item.quantity)+'</strong></div></div></article>').join('');
- };
- const openCartDrawer=()=>{
-  if(!cartDrawer||!cartBackdrop)return;
-  cartReturnFocus=document.activeElement;
-  renderCartDrawer();
-  cartDrawer.classList.add('is-open');
-  cartBackdrop.classList.add('is-visible');
-  cartDrawer.setAttribute('aria-hidden','false');
-  cartDrawer.setAttribute('aria-modal','true');
-  cartBackdrop.setAttribute('aria-hidden','false');
-  if(bagTrigger)bagTrigger.setAttribute('aria-expanded','true');
-  document.body.classList.add('cart-drawer-open');
-  if(cartClose)cartClose.focus();
- };
- const closeCartDrawer=()=>{
-  if(!cartDrawer||!cartBackdrop)return;
-  cartDrawer.classList.remove('is-open');
-  cartBackdrop.classList.remove('is-visible');
-  cartDrawer.setAttribute('aria-hidden','true');
-  cartBackdrop.setAttribute('aria-hidden','true');
-  if(bagTrigger)bagTrigger.setAttribute('aria-expanded','false');
-  document.body.classList.remove('cart-drawer-open');
-  if(cartReturnFocus&&typeof cartReturnFocus.focus==='function')cartReturnFocus.focus();
- };
- if(bagTrigger&&cartDrawer){
-  bagTrigger.addEventListener('click',event=>{event.preventDefault();openCartDrawer();});
-  cartClose?.addEventListener('click',closeCartDrawer);
-  cartBackdrop?.addEventListener('click',closeCartDrawer);
-  cartContinue?.addEventListener('click',closeCartDrawer);
-  cartDrawer.addEventListener('click',event=>{
-   const quantityButton=event.target.closest('[data-cart-quantity]');
-   const removeButton=event.target.closest('[data-cart-remove]');
-   if(removeButton){
-    cartItems=cartItems.filter(item=>item.id!==removeButton.dataset.cartRemove);
-    renderCartDrawer();
-   }else if(quantityButton){
-    const item=cartItems.find(entry=>entry.id===quantityButton.dataset.cartQuantity);
-    if(item){item.quantity=Math.max(1,Math.min(10,item.quantity+Number(quantityButton.dataset.quantityChange)));renderCartDrawer();}
-   }
-  });
-  cartContent?.addEventListener('click',event=>{
-   if(event.target.closest('.cart-drawer-empty-cta'))closeCartDrawer();
-  });
-  document.addEventListener('keydown',event=>{
-   if(!cartDrawer.classList.contains('is-open'))return;
-   if(event.key==='Escape'){event.preventDefault();closeCartDrawer();return;}
-   if(event.key!=='Tab')return;
-   const focusable=[...cartDrawer.querySelectorAll('a[href]:not([hidden]),button:not(:disabled):not([hidden]),input:not(:disabled):not([type="hidden"]):not([hidden]),select:not(:disabled),textarea:not(:disabled),[tabindex]:not([tabindex="-1"])')].filter(el=>el.getClientRects().length);
-   if(!focusable.length){event.preventDefault();return;}
-   const first=focusable[0],last=focusable[focusable.length-1];
-   if(event.shiftKey&&(document.activeElement===first||!cartDrawer.contains(document.activeElement))){event.preventDefault();last.focus();}
-   else if(!event.shiftKey&&(document.activeElement===last||!cartDrawer.contains(document.activeElement))){event.preventDefault();first.focus();}
-  });
-  renderCartDrawer();
- }
-
-
- });
-
- // Desktop-only half-speed parallax for the full-bleed story artwork.
+ // Shopping bag navigation uses the server-backed cart page.
+  // Desktop-only half-speed parallax for the full-bleed story artwork.
  const storyParallax=document.querySelector('.home-story-parallax');
  if(storyParallax&&!reducedMotion&&window.matchMedia('(min-width: 769px)').matches){
   let storyFrame=0;

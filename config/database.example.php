@@ -10,7 +10,7 @@ define('DB_NAME', 'YOUR_DATABASE_NAME');
 define('DB_USER', 'YOUR_DATABASE_USER');
 define('DB_PASS', 'YOUR_DATABASE_PASSWORD');
 
-define('APP_NAME', 'Ikki');
+define('APP_NAME', 'IKKI');
 define('APP_URL', 'https://ikki.pk');
 define('APP_CURRENCY', 'PKR');
 define('WHATSAPP_NUMBER', '923094733789');

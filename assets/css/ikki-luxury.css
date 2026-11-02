@@ -1,0 +1,238 @@
+/* IKKI Luxury Design System — white, cream and champagne gold */
+:root{
+ --color-white:#ffffff;--color-cream:#faf7f2;--color-gold:#b8935f;--color-gold-light:#d4b483;
+ --color-gold-dark:#8f6f45;--color-black:#1a1a1a;--color-gray:#6b6b6b;
+ --color-gray-light:#e8e3da;--color-success:#7a9b7e;--color-error:#b85c5c;
+ --font-heading:'Playfair Display',Georgia,serif;--font-body:'Montserrat',Arial,sans-serif;
+ --font-size-h1:clamp(2.5rem,5vw,4.5rem);--font-size-h2:clamp(2rem,4vw,3rem);
+ --font-size-h3:clamp(1.5rem,3vw,2rem);--font-size-body:16px;--line-height-body:1.7;
+ --space-1:4px;--space-2:8px;--space-3:16px;--space-4:24px;--space-5:32px;
+ --space-6:48px;--space-7:64px;--space-8:96px;--space-9:120px;
+ --container-max:1400px;--container-gutter:24px;--section-space:clamp(64px,8vw,120px);
+ --transition-fast:180ms ease;--transition-base:300ms ease;
+ --transition-slow:600ms cubic-bezier(.2,.65,.3,1);
+ /* Existing component aliases */
+ --ink:var(--color-white);--black:var(--color-black);--panel:var(--color-cream);
+ --gold:var(--color-gold);--gold2:var(--color-gold-light);--cream:var(--color-cream);
+ --muted:var(--color-gray);--line:var(--color-gray-light);--serif:var(--font-heading);
+ --sans:var(--font-body);--gutter:clamp(24px,4.6vw,64px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--color-white)!important;color:var(--color-black)!important;font:300 16px/1.7 var(--font-body)}
+h1,h2,h3,h4{color:var(--color-black);font-family:var(--font-heading);font-weight:400;line-height:1.15}
+p{color:var(--color-gray)}
+img{max-width:100%;height:auto}
+.container{width:min(100% - (var(--container-gutter)*2),var(--container-max));margin-inline:auto;padding-inline:0}
+.eyebrow,.home-kicker,.story-kicker,.story-narrative-eyebrow,.home-hero-eyebrow,.home-story-eyebrow{
+ color:var(--color-gold-dark);font:500 12px/1.5 var(--font-body);letter-spacing:2px;text-transform:uppercase
+}
+.announcement{background:var(--color-cream);color:var(--color-gray);border-bottom:1px solid var(--color-gray-light)}
+.site-header{position:sticky;top:0;z-index:100;height:82px;padding-inline:var(--gutter);background:rgba(255,255,255,.97)!important;border-bottom:1px solid var(--color-gray-light);backdrop-filter:blur(12px)}
+.maison-brand{display:flex;align-items:center;color:var(--color-black)!important}
+.maison-wordmark{color:var(--color-black)!important;font:600 30px/1 var(--font-heading);letter-spacing:.16em}
+.maison-monogram{display:none}
+.main-nav>a,.header-icon-link{color:var(--color-black)!important}
+.main-nav>a{font-size:11px;letter-spacing:1.5px}
+.main-nav>a:hover,.main-nav>a.active{color:var(--color-gold-dark)!important}
+.header-bag-link .bag-count{background:var(--color-gold);color:#fff}
+.menu-toggle span{background:var(--color-black)}
+.mobile-menu-overlay{background:var(--color-white)!important;color:var(--color-black)}
+.mobile-menu-links a{color:var(--color-black)!important}
+.mobile-menu-social span{color:var(--color-gold-dark)}
+/* Shared buttons */
+.ikki-btn,.contact-submit,.story-cta-button,.collection-load-more,.quick-view-add,.btn{
+ display:inline-flex;min-height:50px;align-items:center;justify-content:center;gap:12px;padding:13px 28px;
+ border:1px solid var(--color-gold);border-radius:0;background:var(--color-gold);color:#fff;
+ font:500 11px/1.2 var(--font-body);letter-spacing:1.5px;text-transform:uppercase;
+ transition:background var(--transition-base),color var(--transition-base),border-color var(--transition-base),transform var(--transition-base)
+}
+.ikki-btn--primary:hover,.contact-submit:hover,.story-cta-button:hover,.quick-view-add:hover,.btn--primary:hover{background:var(--color-gold-dark);border-color:var(--color-gold-dark);color:#fff;transform:translateY(-2px)}
+.ikki-btn--secondary,.btn--secondary{background:transparent;color:var(--color-gold-dark)}
+.ikki-btn--secondary:hover,.btn--secondary:hover{background:var(--color-gold);color:#fff}
+.home-text-link,.home-best-sellers-view,.text-link{color:var(--color-gold-dark);text-decoration:none}
+/* Home */
+.home-hero{background:var(--color-cream)!important;color:var(--color-black);min-height:min(760px,calc(100vh - 114px))}
+.home-hero h1,.home-hero h1 em{color:var(--color-black)}
+.home-hero h1 em,.home-story-content h2 em,.home-section-heading h2 em{color:var(--color-gold-dark)}
+.home-hero-subtext,.home-perfumery-heading p,.home-perfumery-item p{color:var(--color-gray)}
+.home-hero-visual{background:radial-gradient(ellipse at center,rgba(184,147,95,.16),transparent 68%)}
+.home-hero-edition{color:var(--color-gold-dark)}
+.home-collection,.home-perfumery,.story-values,.contact-main,.collection-catalog{background:var(--color-white)!important;color:var(--color-black)}
+.home-collection h2,.home-perfumery h2,.home-perfumery h3,.home-section-heading h2{color:var(--color-black)}
+.home-product{background:var(--color-white);border:1px solid transparent}
+.home-product:hover{border-color:var(--color-gold-light)}
+.home-product-art{background:var(--color-cream)}
+.home-product-meta h3{color:var(--color-black)}
+.home-product-meta p{color:var(--color-gray)}
+.home-product-meta strong{color:var(--color-gold-dark)}
+.home-story-teaser{background:var(--color-cream)!important;color:var(--color-black)}
+.home-story-overlay{background:linear-gradient(90deg,rgba(250,247,242,.96),rgba(250,247,242,.78),rgba(250,247,242,.08))!important}
+.home-story-content h2,.home-story-content p{color:var(--color-black)}
+.home-perfumery-item{border-color:var(--color-gray-light)!important}
+.home-perfumery-icon{color:var(--color-gold-dark)}
+.home-contact-cta{padding:var(--section-space) 24px;background:var(--color-cream)!important;text-align:center}
+.home-contact-cta .home-instagram-heading{max-width:700px;margin:auto}
+.home-contact-cta h2{color:var(--color-black)}
+/* Collection */
+.page-banner{background:var(--color-cream)!important;color:var(--color-black)}
+.page-banner h1,.page-banner p,.page-banner a{color:var(--color-black)}
+.page-banner-breadcrumb{color:var(--color-gray)}
+.collection-toolbar-wrap{background:var(--color-white);border-color:var(--color-gray-light)}
+.collection-filter{color:var(--color-gray)}
+.collection-filter.is-active{color:var(--color-gold-dark)}
+.collection-card{background:var(--color-white);border:1px solid var(--color-gray-light);transition:border-color var(--transition-base),box-shadow var(--transition-base),transform var(--transition-base)}
+.collection-card:hover{border-color:var(--color-gold-light);box-shadow:0 12px 36px rgba(26,26,26,.07);transform:translateY(-3px)}
+.collection-card-image{background:var(--color-cream)}
+.collection-card-info h2{color:var(--color-black)}
+.collection-card-info p{color:var(--color-gray)}
+.collection-card-info strong,.collection-new-badge{color:var(--color-gold-dark)}
+.collection-quick-dialog,.quick-view-content{background:var(--color-white);color:var(--color-black)}
+.quick-view-content h2,.quick-view-price{color:var(--color-black)}
+.quick-view-label,.quick-view-kicker{color:var(--color-gold-dark)}
+.quick-view-add:disabled{background:var(--color-gray-light);border-color:var(--color-gray-light);color:var(--color-gray)}
+.collection-empty-message{grid-column:1/-1;padding:48px 20px;text-align:center;color:var(--color-gray)}
+/* Story and contact */
+.story-narrative,.story-mission,.story-cta{background:var(--color-cream)!important;color:var(--color-black)}
+.story-narrative-copy h2,.story-values h2,.story-mission-quote,.story-cta h2{color:var(--color-black)}
+.story-narrative-copy p,.story-values p,.story-cta p{color:var(--color-gray)}
+.story-values{padding-block:var(--section-space)}
+.story-value-card{background:var(--color-white);border:1px solid var(--color-gray-light)}
+.story-value-card h3{color:var(--color-black)}
+.story-value-symbol,.story-narrative-rule,.story-mission-rule{color:var(--color-gold)}
+.story-cta-button{color:#fff!important}
+.contact-form-title,.contact-detail-copy h3{color:var(--color-black)}
+.contact-field input,.contact-field textarea,.contact-field select,.form-control{background:var(--color-white);color:var(--color-black);border:1px solid var(--color-gray-light)}
+.contact-field label{color:var(--color-gray)}
+.contact-field input:focus,.contact-field textarea:focus,.contact-field select:focus{border-color:var(--color-gold);outline:none}
+.contact-detail-item{border-color:var(--color-gray-light)}
+.contact-detail-copy p,.contact-detail-copy a{color:var(--color-gray)}
+.contact-detail-copy a:hover{color:var(--color-gold-dark)}
+.contact-form-feedback.is-error,.field-error{color:var(--color-error)}
+.contact-form-note{color:var(--color-gray)}
+/* Footer */
+.site-footer,.ikki-footer{background:var(--color-cream)!important;color:var(--color-black)!important;border-top:1px solid var(--color-gray-light)}
+.ikki-footer p,.ikki-footer a,.ikki-footer-heading{color:var(--color-gray)!important}
+.ikki-footer-heading span:first-child,.ikki-footer-brand-mark{color:var(--color-black)!important}
+.ikki-footer-brand-mark span{color:var(--color-gold)}
+.ikki-footer-panel a:hover,.ikki-footer a:hover{color:var(--color-gold-dark)!important}
+.ikki-footer-bottom{border-color:var(--color-gray-light);color:var(--color-gray)}
+.ikki-footer-contact-link{display:inline-flex;margin-top:12px;color:var(--color-gold-dark)!important;font-size:11px;font-weight:500;letter-spacing:1.3px}
+.back-to-top{background:var(--color-gold);color:#fff}
+/* Reusable product card and text link */
+.product-card{overflow:hidden;border:1px solid transparent;background:var(--color-white);transition:border-color var(--transition-base),box-shadow var(--transition-base),transform var(--transition-base)}
+.product-card:hover{border-color:var(--color-gold-light);box-shadow:0 12px 36px rgba(26,26,26,.07);transform:translateY(-3px)}
+.product-card__media{overflow:hidden;aspect-ratio:4/5;background:var(--color-cream)}
+.product-card__image{width:100%;height:100%;object-fit:cover;transition:transform var(--transition-slow)}
+.product-card:hover .product-card__image{transform:scale(1.055)}
+.product-card__content{padding:24px;text-align:center}
+.product-card__name{margin:0 0 8px;color:var(--color-black);font:400 clamp(1.15rem,2vw,1.45rem)/1.2 var(--font-heading)}
+.product-card__price{display:block;margin:12px 0 20px;color:var(--color-gold-dark);font-weight:500}
+.product-card__action{width:100%}
+.text-link{position:relative;display:inline-flex;padding-bottom:5px;color:var(--color-gold-dark)}
+.text-link:after{position:absolute;right:50%;bottom:0;left:50%;height:1px;background:currentColor;content:"";transition:left var(--transition-base),right var(--transition-base)}
+.text-link:hover:after{right:0;left:0}
+@media(min-width:1200px){:root{--container-gutter:64px}}
+@media(max-width:900px){.site-header{height:72px}.main-nav{display:none}.menu-toggle{display:flex}.home-hero{grid-template-columns:1fr;gap:24px}.home-hero-copy{padding-block:50px 10px}.home-hero-visual{min-height:360px}.home-hero-bottle{max-height:420px}.home-story-overlay{background:rgba(250,247,242,.82)!important}}
+@media(max-width:640px){.home-hero{padding:34px 24px 60px}.home-hero-visual{min-height:300px}.home-hero-bottle{max-height:350px}.collection-card-info h2{font-size:1.3rem}.contact-main{padding-inline:24px}.site-footer__bottom{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Collection search and keyboard interaction polish */
+.collection-search{display:inline-flex;align-items:center;min-width:min(240px,40vw)}
+.collection-search input{width:100%;min-height:40px;padding:8px 12px;border:1px solid var(--color-gray-light);border-radius:0;background:var(--color-white);color:var(--color-black);font:400 12px var(--font-body)}
+.collection-search input::placeholder{color:var(--color-gray)}
+.collection-search input:focus{border-color:var(--color-gold);outline:2px solid rgba(184,147,95,.18);outline-offset:1px}
+@media(max-width:640px){.collection-toolbar-controls{flex-wrap:wrap}.collection-search{width:100%;min-width:100%}}
+
+/* IKKI mobile navigation: readable links, clear layering and reliable close control */
+@media(max-width:900px){
+ .site-header{z-index:100!important}
+ .site-header .menu-toggle{z-index:101!important;display:flex!important;cursor:pointer;touch-action:manipulation}
+ .mobile-menu-overlay{z-index:110!important;background:var(--color-white)!important;color:var(--color-black)!important;isolation:isolate}
+ .mobile-menu-overlay.is-open{pointer-events:auto}
+ .mobile-menu-close{z-index:2;top:18px;right:18px;width:48px;height:48px;cursor:pointer;touch-action:manipulation}
+ .mobile-menu-close span{background:var(--color-gold-dark)!important}
+ .mobile-menu-links a{color:var(--color-black)!important;text-shadow:none!important}
+ .mobile-menu-links a:hover,.mobile-menu-links a:focus-visible,.mobile-menu-links a.active{color:var(--color-gold-dark)!important}
+ .mobile-menu-links a.active:after{background:var(--color-gold)!important}
+ .mobile-menu-social{color:var(--color-gray)!important}
+ .mobile-menu-social a{color:var(--color-gold-dark)!important;border-color:var(--color-gold)!important}
+}
+
+
+/* IKKI header and navigation layout hardening — overrides legacy theme rules */
+.site-header,
+.site-header.is-home-header,
+.site-header.is-home-header.is-scrolled{
+ display:grid!important;
+ grid-template-columns:minmax(150px,1fr) auto minmax(120px,1fr)!important;
+ align-items:center!important;
+ column-gap:clamp(18px,3vw,48px)!important;
+ width:100%;
+ min-height:82px;
+ height:82px;
+ padding-inline:clamp(22px,4.6vw,64px)!important;
+ position:sticky;
+ top:0;
+ left:auto;
+ right:auto;
+ z-index:100!important;
+ background:rgba(255,255,255,.97)!important;
+ border-bottom:1px solid var(--color-gray-light)!important;
+ box-shadow:0 4px 18px rgba(26,26,26,.035);
+}
+.site-header .maison-brand{grid-column:1;grid-row:1;justify-self:start;min-width:0}
+.site-header .main-nav{
+ grid-column:2;grid-row:1;display:flex!important;position:static!important;
+ align-items:center;justify-content:center;gap:clamp(18px,3vw,42px);
+ width:auto;height:auto;padding:0;margin:0;background:transparent!important;
+ border:0;box-shadow:none;z-index:auto;
+}
+.site-header .main-nav>a{
+ display:inline-flex;align-items:center;white-space:nowrap;
+ color:var(--color-black)!important;text-decoration:none;
+ font:500 10px/1.2 var(--font-body);letter-spacing:1.35px;text-transform:uppercase;
+ padding:12px 0;border:0;
+}
+.site-header .main-nav>a:hover,.site-header .main-nav>a.active{color:var(--color-gold-dark)!important}
+.site-header .header-actions{
+ grid-column:3;grid-row:1;justify-self:end;display:flex!important;
+ align-items:center;gap:20px;min-width:0;
+}
+.site-header .header-icon-link{display:inline-flex;align-items:center;justify-content:center}
+.site-header .menu-toggle{display:none!important}
+@media(max-width:1024px){
+ .site-header,.site-header.is-home-header,.site-header.is-home-header.is-scrolled{
+  grid-template-columns:1fr auto!important;min-height:72px;height:72px;
+  padding-inline:22px!important;
+ }
+ .site-header .maison-brand{grid-column:1;grid-row:1}
+ .site-header .main-nav{display:none!important}
+ .site-header .menu-toggle{
+  grid-column:2;grid-row:1;display:flex!important;position:static!important;
+  justify-self:end;align-self:center;transform:none!important;
+  width:46px;height:46px;padding:12px;margin:0;
+  flex-direction:column;align-items:center;justify-content:center;gap:6px;
+  border:1px solid var(--color-gray-light);background:var(--color-white);
+  z-index:111!important;cursor:pointer;touch-action:manipulation;
+ }
+ .site-header .menu-toggle span{display:block;width:20px;height:1.5px;background:var(--color-black)!important}
+ .site-header .header-actions{display:none!important}
+ .mobile-menu-overlay{
+  position:fixed!important;inset:0!important;z-index:110!important;
+  display:flex!important;opacity:0;visibility:hidden;pointer-events:none;
+  background:var(--color-white)!important;color:var(--color-black)!important;
+ }
+ .mobile-menu-overlay.is-open{opacity:1;visibility:visible;pointer-events:auto;transform:none}
+ .mobile-menu-links a{color:var(--color-black)!important}
+ .mobile-menu-close{z-index:2;top:18px;right:18px;width:48px;height:48px}
+ .mobile-menu-close span{background:var(--color-gold-dark)!important}
+}
+@media(max-width:480px){
+ .site-header,.site-header.is-home-header,.site-header.is-home-header.is-scrolled{
+  min-height:68px;height:68px;padding-inline:18px!important;
+ }
+ .site-header .maison-wordmark{font-size:24px;letter-spacing:.12em}
+ .mobile-menu-links{gap:24px}
+ .mobile-menu-links a{font-size:30px}
+}

@@ -1,24 +1,24 @@
 <?php
-$pageTitle='Our Story — The World of Ikki';
-$description='The thinking, philosophy and craft behind Ikki — a fragrance house shaped by memory, mood and self-expression.';
+$pageTitle='Our Story — IKKI';
+$description='The thinking, philosophy and craft behind IKKI — a fragrance house shaped by memory, mood and self-expression.';
 require __DIR__.'/includes/header.php';
 ?>
 <section class="page-banner page-banner-story" aria-labelledby="page-banner-title">
  <div class="page-banner-copy reveal">
   <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Our Story</span></nav>
   <h1 id="page-banner-title">Our Story</h1>
-  <p>Three decades of passion, craft, and devotion to the art of fragrance</p>
+  <p>A considered point of view on the art of fragrance</p>
  </div>
 </section>
 
-<section class="story-narrative" aria-label="The Ikki story">
+<section class="story-narrative" aria-label="The IKKI story">
  <article class="story-narrative-block">
-  <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature Ikki fragrance bottle, representing the beginning of the house" width="800" height="1000" loading="lazy" decoding="async"></div>
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature IKKI fragrance bottle, representing the beginning of the house" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">THE BEGINNING</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
    <h2>Born from a <em>Single Scent</em></h2>
-   <p>Every fragrance house begins with a moment of inspiration. For Ikki, that beginning is rooted in the belief that a single scent can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered.</p>
+   <p>Every fragrance house begins with a moment of inspiration. For IKKI, that beginning is rooted in the belief that a single scent can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered.</p>
    <p>That first spark grew into a wider ambition: to create fragrances with character, depth and a sense of individuality. The story continues with the same curiosity that started it — following the notes, moods and moments that make scent personal.</p>
   </div>
  </article>
@@ -33,26 +33,15 @@ require __DIR__.'/includes/header.php';
   </div>
  </article>
  <article class="story-narrative-block">
-  <div class="story-narrative-visual slide-right"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle artwork, representing the Ikki collection today" width="800" height="1000" loading="lazy" decoding="async"></div>
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle artwork, representing the IKKI collection today" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">TODAY</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
-   <h2>A Global House of <em>Fragrance</em></h2>
-   <p>Today, Ikki continues to shape a fragrance house guided by curiosity, considered design and the belief that scent is deeply individual. Each fragrance is an invitation to discover a mood, express a point of view and make a moment your own.</p>
+   <h2>A World of <em>Fragrance</em></h2>
+   <p>Today, IKKI continues to shape a fragrance house guided by curiosity, considered design and the belief that scent is deeply individual. Each fragrance is an invitation to discover a mood, express a point of view and make a moment your own.</p>
    <p>Our outlook is open to the world, while our focus remains personal: creating a welcoming experience, celebrating distinctive scent identities and making the art of fragrance part of everyday life.</p>
   </div>
  </article>
-</section>
-
-<section class="story-timeline" aria-labelledby="story-timeline-title">
- <div class="story-timeline-heading"><span class="story-kicker">OUR JOURNEY</span><h2 id="story-timeline-title">A story in <em>the making.</em></h2></div>
- <ol class="story-timeline-track">
-  <li class="story-timeline-item"><span class="story-timeline-year">1998</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Founded in a small atelier</p></li>
-  <li class="story-timeline-item"><span class="story-timeline-year">2005</span><span class="story-timeline-marker" aria-hidden="true"></span><p>First flagship boutique opens</p></li>
-  <li class="story-timeline-item"><span class="story-timeline-year">2012</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Launched signature Noir Orchid</p></li>
-  <li class="story-timeline-item"><span class="story-timeline-year">2018</span><span class="story-timeline-marker" aria-hidden="true"></span><p>Expanded to global markets</p></li>
-  <li class="story-timeline-item"><span class="story-timeline-year">2024</span><span class="story-timeline-marker" aria-hidden="true"></span><p>1 million bottles sold</p></li>
- </ol>
 </section>
 
 <section class="story-values" aria-labelledby="story-values-title">
@@ -64,7 +53,7 @@ require __DIR__.'/includes/header.php';
   </article>
   <article class="story-value-card reveal" style="--value-delay:100ms">
    <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 42S7 32 7 19C7 11 17 6 24 15 31 6 41 11 41 19c0 13-17 23-17 23Z"/><path d="M24 15c-3 7-3 14 0 21M15 25c3-1 6-1 9 0m0 0c3-1 6-1 9 0"/></svg></span>
-   <h3>Sustainability</h3><p>Ethically sourced ingredients, responsibly packaged</p>
+   <h3>Thoughtful Design</h3><p>Every detail is considered, from the fragrance to its presentation.</p>
   </article>
   <article class="story-value-card reveal" style="--value-delay:200ms">
    <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 39 13.5V30.5L24 39 9 30.5V13.5Z"/><path d="m16 23 5 5 11-12"/><path d="M24 39v5"/></svg></span>
@@ -72,7 +61,7 @@ require __DIR__.'/includes/header.php';
   </article>
   <article class="story-value-card reveal" style="--value-delay:300ms">
    <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 29 18 43 18 32 27 36 41 24 33 12 41 16 27 5 18 19 18Z"/><circle cx="24" cy="24" r="4"/></svg></span>
-   <h3>Exclusivity</h3><p>Limited batches ensure rarity and distinction</p>
+   <h3>Individuality</h3><p>Distinctive fragrance expressions for personal style.</p>
   </article>
  </div>
 </section>
@@ -82,25 +71,6 @@ require __DIR__.'/includes/header.php';
   <span class="story-mission-rule" aria-hidden="true"></span>
   <h2 id="story-mission-title" class="story-mission-quote" data-mission-quote aria-label="We believe fragrance is memory bottled — a single scent capable of transporting you across time and place.">“We believe fragrance is memory bottled — a single scent capable of transporting you across time and place.”</h2>
   <span class="story-mission-rule" aria-hidden="true"></span>
- </div>
-</section>
-
-<section class="story-founder" aria-labelledby="story-founder-title">
- <div class="story-founder-inner">
-  <div class="story-founder-portrait slide-left">
-   <img src="/assets/images/noor.svg" alt="Ikki signature fragrance bottle artwork — temporary visual pending the founder's portrait" width="800" height="1000" loading="lazy" decoding="async">
-   <span class="story-founder-corner" aria-hidden="true"></span>
-  </div>
-  <div class="story-founder-copy fade-up">
-   <span class="story-narrative-eyebrow">MEET THE FOUNDER</span>
-   <span class="story-narrative-rule" aria-hidden="true"></span>
-   <h2 id="story-founder-title">A vision shaped by <em>fragrance.</em></h2>
-   <span class="story-founder-role">FOUNDER &amp; CREATIVE VISION</span>
-   <p>Ikki is built around a belief in the personal power of fragrance — its ability to express individuality, evoke emotion and become part of the moments we carry with us.</p>
-   <p>That point of view guides the house: a curiosity for scent, an appreciation for thoughtful composition and a commitment to making fragrance feel meaningful, personal and lasting.</p>
-   <blockquote>“A fragrance should feel like a memory waiting to happen.”</blockquote>
-   <span class="story-founder-note">Editorial brand statement — founder identity and personal biography to be added.</span>
-  </div>
  </div>
 </section>
 

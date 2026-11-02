@@ -17,7 +17,7 @@ try{
  foreach($lines as $r)$itemStmt->execute([$orderId,$r['product_id'],$r['id'],$r['name'],$r['variant_name'],$r['sku'],$r['price'],$r['quantity'],$r['line_total']]);
  db()->prepare("INSERT INTO order_status_history(order_id,new_status,note) VALUES(?,'awaiting_whatsapp_confirmation','Order created; WhatsApp handoff initiated.')")->execute([$orderId]);
  db()->commit();unset($_SESSION['cart']);
- $msg=["*New Ikki Order*","Order: ".$orderNo,"","*Customer*",$name,"Phone: ".$phone,"WhatsApp: ".($wa?:$phone),"Address: ".$address.", ".$city.", ".$province,"","*Items*"];
+ $msg=["*New IKKI Order*","Order: ".$orderNo,"","*Customer*",$name,"Phone: ".$phone,"WhatsApp: ".($wa?:$phone),"Address: ".$address.", ".$city.", ".$province,"","*Items*"];
  foreach($lines as $r)$msg[]=$r['name'].' — '.$r['variant_name'].' x '.$r['quantity'].' | '.money($r['line_total']);
  $msg[]="";$msg[]="Subtotal: ".money($subtotal);$msg[]="Delivery: ".money($fee);$msg[]="*Total: ".money($total)."*";$msg[]="Payment: Cash on Delivery";if($instructions)$msg[]="Instructions: ".$instructions;
  $_SESSION['last_order_number']=$orderNo;$number=preg_replace('/\D/','',setting('whatsapp_number','923094733789'));
