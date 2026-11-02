@@ -43,7 +43,7 @@ require __DIR__.'/includes/header.php';
     <input type="hidden" name="product_id" value="<?=(int)$product['id']?>">
     <label class="ikki-product-label" for="variant">CHOOSE YOUR SIZE</label>
     <div class="ikki-product-select-wrap"><select id="variant" name="variant_id" required><?php foreach($variants as $index=>$variant): ?><option value="<?=(int)$variant['id']?>" data-price="<?=e((string)$variant['price'])?>" <?=$index===0?'selected':''?>><?=e($variant['variant_name'])?> · <?=money($variant['price'])?></option><?php endforeach; ?></select><span aria-hidden="true">⌄</span></div>
-    <div class="ikki-product-purchase-row"><label class="ikki-product-quantity">QUANTITY <input type="number" name="quantity" value="1" min="1" max="5" inputmode="numeric"></label><button class="ikki-product-add" type="submit">ADD TO BAG <span>↗</span></button></div>
+    <div class="ikki-product-purchase-row"><label class="ikki-product-quantity">QUANTITY <input type="number" name="quantity" value="1" min="1" max="5" inputmode="numeric"></label><button class="ikki-product-add ikki-btn--primary" type="submit">ADD TO BAG <span>↗</span></button></div>
    </form>
    <?php else: ?><div class="ikki-product-unavailable">Currently unavailable. <a href="/contact.php">Contact us for availability.</a></div><?php endif; ?>
    <div class="ikki-product-notes">
@@ -62,7 +62,7 @@ require __DIR__.'/includes/header.php';
    <p class="ikki-product-disclaimer">Fragrance notes and characteristics are presented as product descriptions. Please refer to the final product packaging for ingredient and formulation details.</p>
   </div>
  </section>
- <section class="ikki-product-after"><span class="eyebrow">THE IKKI SIGNATURE COLLECTION</span><h2>One more scent<br><em>to discover.</em></h2><a href="/shop.php">EXPLORE THE COLLECTION <span>↗</span></a></section>
+ <section class="ikki-product-after"><span class="eyebrow">THE IKKI SIGNATURE COLLECTION</span><h2>One more scent<br><em>to discover.</em></h2><a class="ikki-btn--secondary" href="/shop.php">EXPLORE THE COLLECTION <span>↗</span></a></section>
 </main>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
