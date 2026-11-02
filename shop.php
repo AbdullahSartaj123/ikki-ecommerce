@@ -40,6 +40,7 @@ require __DIR__.'/includes/header.php';
    <button class="collection-filter" type="button" data-filter="unisex" aria-pressed="false">Unisex</button>
   </div>
   <div class="collection-toolbar-controls">
+   <label class="collection-search"><span class="visually-hidden">Search fragrances</span><input id="collection-search" type="search" placeholder="Search fragrances" autocomplete="off"></label>
    <span class="collection-count"><b><?=count($products)?></b> FRAGRANCES</span>
    <label class="collection-sort"><span>Sort by</span>
     <span class="collection-sort-select"><select id="collection-sort" aria-label="Sort fragrances"><option value="featured">Featured</option><option value="price-asc">Price: Low–High</option><option value="price-desc">Price: High–Low</option><option value="newest">Newest</option></select><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 5.75 4.5 4.5 4.5-4.5"/></svg></span>
