@@ -1258,3 +1258,125 @@ main{width:100%;min-width:0}
   animation:none!important;transition:none!important
  }
 }
+
+
+/* IKKI CLEAN FIT PASS — consistent page gutters, content widths and section rhythm */
+:root{
+ --ikki-layout-max:1320px;
+ --ikki-layout-gutter:clamp(20px,4.2vw,64px);
+ --ikki-layout-section:clamp(64px,7vw,100px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{max-width:100%;overflow-x:clip}
+body{margin:0}
+main{width:100%;max-width:100%;overflow:clip}
+main>section,main>.home-marquee{min-width:0}
+main>section:not(.home-hero):not(.ikki-catalog-hero):not(.page-banner){
+ scroll-margin-top:100px
+}
+/* Homepage: remove excess vertical and horizontal whitespace */
+.home-hero{
+ width:100%;max-width:none!important;min-height:clamp(590px,calc(100svh - 120px),740px)!important;
+ padding:clamp(48px,5.2vw,76px) max(var(--ikki-layout-gutter),calc((100vw - var(--ikki-layout-max))/2)) 58px!important;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+ gap:clamp(24px,4vw,58px)!important;
+}
+.home-hero-copy{min-width:0;max-width:610px!important;padding:0!important}
+.home-hero h1{font-size:clamp(68px,7.3vw,104px)!important;line-height:.92!important;margin:18px 0 22px!important}
+.home-overline{margin-top:34px!important}
+.home-hero-subtext{max-width:440px!important;font-size:13px!important;line-height:1.9!important}
+.home-hero-actions{margin-top:26px!important}
+.home-hero-foot{margin-top:42px!important;gap:10px 20px!important;flex-wrap:wrap}
+.home-hero-visual{min-width:0;min-height:480px!important}
+.home-hero-bottle{height:clamp(440px,39vw,570px)!important;max-width:100%;object-fit:contain}
+.home-hero-visual:before{width:min(82%,520px)}
+.home-hero-photo-caption{left:5%!important;bottom:5%!important}
+.home-scroll-cue{bottom:22px!important}
+.home-marquee{min-height:46px!important;padding:12px 0!important}
+.home-philosophy,.home-collection,.home-feature,.home-values{
+ padding-left:max(var(--ikki-layout-gutter),calc((100vw - var(--ikki-layout-max))/2))!important;
+ padding-right:max(var(--ikki-layout-gutter),calc((100vw - var(--ikki-layout-max))/2))!important;
+}
+.home-philosophy{padding-top:var(--ikki-layout-section)!important;padding-bottom:var(--ikki-layout-section)!important;grid-template-columns:.7fr 1fr 1fr!important;gap:clamp(24px,3.5vw,52px)!important}
+.home-collection{padding-top:var(--ikki-layout-section)!important;padding-bottom:var(--ikki-layout-section)!important}
+.home-section-heading{max-width:var(--ikki-layout-max)!important;margin:0 auto 34px!important}
+.home-products{max-width:var(--ikki-layout-max)!important;gap:clamp(14px,1.8vw,24px)!important}
+.home-product-art{aspect-ratio:.82!important;overflow:hidden}
+.home-product-art img{width:100%;height:100%;object-fit:contain}
+.home-feature{padding-top:var(--ikki-layout-section)!important;padding-bottom:var(--ikki-layout-section)!important;gap:clamp(34px,5vw,72px)!important}
+.home-feature-art{min-height:440px!important}
+.home-values{padding-top:var(--ikki-layout-section)!important;padding-bottom:var(--ikki-layout-section)!important}
+.home-manifesto{padding:var(--ikki-layout-section) 24px!important}
+.home-final-cta{padding:var(--ikki-layout-section) 24px!important}
+/* Collection and inner-page containers share one alignment grid */
+.ikki-catalog-hero{padding-left:max(var(--ikki-layout-gutter),calc((100vw - var(--ikki-layout-max))/2))!important;padding-right:max(var(--ikki-layout-gutter),calc((100vw - var(--ikki-layout-max))/2))!important;min-height:390px!important}
+.collection-catalog{width:100%;max-width:var(--ikki-layout-max);margin-inline:auto}
+.collection-toolbar-wrap{padding-left:var(--ikki-layout-gutter)!important;padding-right:var(--ikki-layout-gutter)!important}
+.ikki-signature-grid{max-width:var(--ikki-layout-max)!important;margin-inline:auto!important;padding-left:var(--ikki-layout-gutter)!important;padding-right:var(--ikki-layout-gutter)!important;gap:22px!important}
+.page-banner{min-height:300px!important;padding:56px var(--ikki-layout-gutter)!important}
+.page-banner-copy{width:100%;max-width:var(--ikki-layout-max);margin-inline:auto}
+.story-narrative,.story-values,.story-mission,.story-cta{padding-left:var(--ikki-layout-gutter)!important;padding-right:var(--ikki-layout-gutter)!important}
+.story-narrative-block{width:100%;max-width:var(--ikki-layout-max)!important;margin-inline:auto!important;gap:clamp(32px,5vw,72px)!important}
+.story-values-heading,.story-value-grid,.story-mission-inner{width:100%;max-width:var(--ikki-layout-max);margin-inline:auto}
+.contact-main{width:100%;max-width:var(--ikki-layout-max)!important;margin-inline:auto!important;padding:var(--ikki-layout-section) var(--ikki-layout-gutter)!important;gap:clamp(32px,5vw,72px)!important}
+.ikki-product-layout{width:100%;max-width:var(--ikki-layout-max)!important;margin-inline:auto!important;padding:32px var(--ikki-layout-gutter) 90px!important}
+.ikki-footer{padding-left:max(var(--ikki-layout-gutter),calc((100vw - var(--ikki-layout-max))/2))!important;padding-right:max(var(--ikki-layout-gutter),calc((100vw - var(--ikki-layout-max))/2))!important}
+.ikki-footer-main{max-width:var(--ikki-layout-max);margin-inline:auto}
+.ikki-footer-bottom{max-width:var(--ikki-layout-max);margin:38px auto 0}
+/* Tablet */
+@media(max-width:1000px){
+ .home-hero{min-height:0!important;padding:58px var(--ikki-layout-gutter) 64px!important;gap:22px!important}
+ .home-hero h1{font-size:clamp(62px,7.8vw,82px)!important}
+ .home-hero-visual{min-height:420px!important}
+ .home-hero-bottle{height:460px!important}
+ .home-philosophy{grid-template-columns:1fr 1.2fr!important}
+ .home-section-index{grid-column:1/-1}
+ .home-feature{gap:34px!important}
+ .ikki-product-layout{gap:34px!important}
+}
+/* Mobile: consistent 20–24px safe gutters and no oversized blank sections */
+@media(max-width:700px){
+ :root{--ikki-layout-gutter:20px;--ikki-layout-section:58px}
+ .home-hero{padding:42px 20px 48px!important;gap:8px!important;min-height:0!important}
+ .home-hero:before{inset:8px}
+ .home-hero-copy{padding:0!important}
+ .home-overline{margin-top:28px!important}
+ .home-hero h1{font-size:clamp(62px,14.8vw,82px)!important;margin:15px 0 18px!important;line-height:.9!important}
+ .home-hero-subtext{font-size:12px!important;line-height:1.85!important;max-width:100%!important}
+ .home-hero-actions{margin-top:22px!important;gap:9px!important}
+ .home-hero-actions .ikki-btn{min-height:46px!important;padding-inline:15px!important;font-size:9px!important}
+ .home-hero-foot{margin-top:28px!important;font-size:7px!important;gap:8px 15px!important}
+ .home-hero-visual{min-height:310px!important;margin:0!important}
+ .home-hero-bottle{height:340px!important;max-height:none!important}
+ .home-hero-visual:before{width:82%}
+ .home-hero-photo-caption{bottom:2%!important}
+ .home-hero-photo-caption strong{font-size:21px!important}
+ .home-scroll-cue{display:none!important}
+ .home-marquee{min-height:40px!important}
+ .home-philosophy{padding:58px 20px!important;grid-template-columns:1fr!important;gap:18px!important}
+ .home-section-index{grid-column:auto}
+ .home-collection{padding:60px 20px!important}
+ .home-section-heading{margin-bottom:24px!important;gap:10px!important}
+ .home-products{gap:20px 12px!important}
+ .home-product-art{aspect-ratio:.78!important}
+ .home-feature{padding:60px 20px!important;gap:24px!important}
+ .home-feature-art{min-height:300px!important}
+ .home-values{padding:60px 20px!important}
+ .home-manifesto{padding:60px 20px!important}
+ .home-final-cta{padding:60px 20px!important}
+ .ikki-catalog-hero{padding:44px 20px!important;min-height:0!important}
+ .ikki-catalog-hero-side{max-width:230px!important}
+ .ikki-signature-grid{padding:8px 16px 56px!important;gap:16px 10px!important}
+ .page-banner{min-height:240px!important;padding:42px 20px!important}
+ .story-narrative,.story-values,.story-mission,.story-cta{padding:58px 20px!important}
+ .story-narrative-block{gap:22px!important}
+ .contact-main{padding:58px 20px!important;gap:32px!important}
+ .ikki-product-layout{padding:16px 16px 64px!important;gap:26px!important}
+ .ikki-footer{padding:48px 20px 20px!important}
+}
+@media(max-width:380px){
+ .home-hero h1{font-size:60px!important}
+ .home-hero-actions{align-items:stretch}
+ .home-hero-actions .ikki-btn{padding-inline:12px!important}
+ .home-products,.ikki-signature-grid{grid-template-columns:1fr!important}
+}
