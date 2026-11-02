@@ -45,13 +45,12 @@ require __DIR__.'/includes/header.php';
 <div class="home-marquee" aria-label="IKKI fragrance philosophy"><div>THE ART OF FRAGRANCE <b>✳</b> ELEGANCE IN EVERY DETAIL <b>✳</b> FIND YOUR SIGNATURE <b>✳</b> THE ART OF FRAGRANCE <b>✳</b> ELEGANCE IN EVERY DETAIL <b>✳</b> FIND YOUR SIGNATURE <b>✳</b></div></div>
 
 <section class="home-philosophy" id="home-philosophy" aria-labelledby="philosophy-title">
- <span class="home-section-index">01 / THE IKKI POINT OF VIEW</span>
- <div class="home-philosophy-title"><span class="home-kicker">MORE THAN A FRAGRANCE</span><h2 id="philosophy-title">A signature<br>is <em>personal.</em></h2></div>
+ <div class="home-philosophy-title"><div class="home-section-marker"><span class="home-section-number">01</span><span class="home-kicker">MORE THAN A FRAGRANCE</span></div><h2 id="philosophy-title">A signature<br>is <em>personal.</em></h2></div>
  <div class="home-philosophy-copy"><p>A fragrance is more than the notes that compose it. It is a feeling, a memory, a quiet expression of who you are. IKKI invites you to discover the scent that becomes part of your story.</p><a class="home-text-link" href="/our-story.php">THE IKKI STORY <span>↗</span></a></div>
 </section>
 
 <section class="home-collection" id="signature-scents" aria-labelledby="signature-title">
- <div class="home-section-heading home-reveal"><div><span class="home-kicker">02 / FIND YOUR SIGNATURE</span><h2 id="signature-title">The signature<br><em>collection.</em></h2></div><a class="home-text-link" href="/shop.php">VIEW THE COLLECTION <span>↗</span></a></div>
+ <div class="home-section-heading home-reveal"><div><div class="home-section-marker"><span class="home-section-number">02</span><span class="home-kicker">FIND YOUR SIGNATURE</span></div><h2 id="signature-title">The signature<br><em>collection.</em></h2></div><a class="home-text-link" href="/shop.php">VIEW THE COLLECTION <span>↗</span></a></div>
  <div class="home-products home-products--editorial">
  <?php if($products): foreach($products as $n=>$p):
    $image=$p['image_path']??'';
@@ -74,19 +73,19 @@ require __DIR__.'/includes/header.php';
 
 <section class="home-feature" aria-labelledby="home-feature-title">
  <div class="home-feature-art"><img src="<?=e($editorialImages[1])?>" alt="Perfume styled in a soft, warm editorial setting" width="1000" height="1100" loading="lazy" decoding="async"><span>IKKI · A STUDY IN SCENT</span></div>
- <div class="home-feature-copy home-reveal"><span class="home-kicker">03 / THE EXPERIENCE</span><h2 id="home-feature-title">Find a scent<br>that feels like <em>you.</em></h2><p>From the first impression to the final lingering note, discover a fragrance that complements your individuality and makes every moment feel your own.</p><a class="home-outline-button" href="/shop.php">Explore the fragrances <span>↗</span></a></div>
+ <div class="home-feature-copy home-reveal"><div class="home-section-marker"><span class="home-section-number">03</span><span class="home-kicker">THE EXPERIENCE</span></div><h2 id="home-feature-title">Find a scent<br>that feels like <em>you.</em></h2><p>From the first impression to the final lingering note, discover a fragrance that complements your individuality and makes every moment feel your own.</p><a class="home-outline-button" href="/shop.php">Explore the fragrances <span>↗</span></a></div>
 </section>
 
 <section class="home-values" aria-labelledby="home-values-title">
- <div class="home-values-heading home-reveal"><span class="home-kicker">04 / THE IKKI APPROACH</span><h2 id="home-values-title">The details<br>make the <em>difference.</em></h2><p>A thoughtful approach to choosing, wearing and enjoying fragrance.</p></div>
+ <div class="home-values-heading home-reveal"><div class="home-section-marker"><span class="home-section-number">04</span><span class="home-kicker">THE IKKI APPROACH</span></div><h2 id="home-values-title">The details<br>make the <em>difference.</em></h2><p>A thoughtful approach to choosing, wearing and enjoying fragrance.</p></div>
  <article class="home-value home-reveal"><span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 7c-6 8-12 14-12 22a12 12 0 0 0 24 0C36 21 30 15 24 7Z"/><path d="M18 30c1 4 3 6 7 7"/></svg></span><span class="home-value-number">01 / DISCOVERY</span><h3>Explore with curiosity</h3><p>Discover different fragrance profiles and find the notes that speak to you.</p></article>
  <article class="home-value home-reveal"><span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6 29 18 42 19 32 28 35 41 24 34 13 41 16 28 6 19 19 18Z"/></svg></span><span class="home-value-number">02 / EXPRESSION</span><h3>Make it personal</h3><p>Choose a scent that reflects your mood, your style and your own point of view.</p></article>
  <article class="home-value home-reveal"><span class="home-value-icon" aria-hidden="true"><svg viewBox="0 0 48 48"><path d="M24 6v36M6 24h36M11 11l26 26M37 11 11 37"/><circle cx="24" cy="24" r="15"/></svg></span><span class="home-value-number">03 / MOMENTS</span><h3>Wear the memory</h3><p>Let fragrance become part of the moments and memories that matter to you.</p></article>
 </section>
 
-<section class="home-manifesto" aria-label="IKKI brand statement"><span class="home-kicker">THE IKKI SIGNATURE</span><p>“Elegance is not simply seen. It is <em>felt.</em>”</p><span>IKKI · THE ART OF FRAGRANCE</span></section>
+<section class="home-manifesto" aria-label="IKKI brand statement"><div class="home-section-marker"><span class="home-section-number">05</span><span class="home-kicker">THE IKKI SIGNATURE</span></div><p>“Elegance is not simply seen. It is <em>felt.</em>”</p><span>IKKI · THE ART OF FRAGRANCE</span></section>
 
 <section class="home-final-cta home-contact-cta" aria-labelledby="home-contact-title">
- <div class="home-instagram-heading home-reveal"><span class="home-kicker">YOUR NEXT SIGNATURE STARTS HERE</span><h2 id="home-contact-title">A fragrance that feels like <em>you.</em></h2><p>Explore the IKKI collection or speak with us for help choosing your fragrance.</p><div class="home-hero-actions home-final-actions"><a class="ikki-btn ikki-btn--primary" href="/shop.php">Shop the Collection <span aria-hidden="true">↗</span></a><a class="ikki-btn ikki-btn--secondary" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">Chat with IKKI <span aria-hidden="true">↗</span></a></div></div>
+ <div class="home-instagram-heading home-reveal"><div class="home-section-marker"><span class="home-section-number">06</span><span class="home-kicker">YOUR NEXT SIGNATURE STARTS HERE</span></div><h2 id="home-contact-title">A fragrance that feels like <em>you.</em></h2><p>Explore the IKKI collection or speak with us for help choosing your fragrance.</p><div class="home-hero-actions home-final-actions"><a class="ikki-btn ikki-btn--primary" href="/shop.php">Shop the Collection <span aria-hidden="true">↗</span></a><a class="ikki-btn ikki-btn--secondary" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">Chat with IKKI <span aria-hidden="true">↗</span></a></div></div>
 </section>
 <?php require __DIR__.'/includes/footer.php'; ?>
