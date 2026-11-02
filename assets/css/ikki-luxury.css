@@ -1828,3 +1828,53 @@ h1 .accent-italic,
     font-size:clamp(2.5rem,5vw,4.5rem)!important;
   }
 }
+
+
+/* Numbered homepage section marker: one aligned label + animated index + connector. */
+.home-section-marker{
+ display:flex;align-items:flex-start;gap:14px;margin:0 0 22px;min-width:0;
+}
+.home-section-number{
+ flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+ min-width:25px;padding-top:1px;color:#b8935f;
+ font:500 12px/1.5 Montserrat,Arial,sans-serif;letter-spacing:1.5px;
+ opacity:0;transform:scale(.8);transform-origin:center;
+}
+.home-section-marker .home-kicker{
+ margin:0!important;padding:0!important;
+}
+.home-section-marker:after{
+ content:"";position:absolute;display:block;
+}
+.home-section-marker{
+ position:relative;
+}
+.home-section-marker:before{
+ content:"";position:absolute;left:12px;top:25px;width:1px;height:40px;
+ background:#b8935f;opacity:.72;transform-origin:top;
+}
+.home-section-marker .home-section-number{position:relative;z-index:1}
+.home-section-marker .home-kicker{padding-left:0}
+.home-section-marker.is-number-visible .home-section-number{
+ animation:ikkiSectionNumberIn .65s cubic-bezier(.2,.75,.25,1) both;
+}
+@keyframes ikkiSectionNumberIn{
+ from{opacity:0;transform:scale(.8)}
+ to{opacity:1;transform:scale(1)}
+}
+.home-section-marker:before{transform:scaleY(0);transition:transform .55s ease .16s}
+.home-section-marker.is-number-visible:before{transform:scaleY(1)}
+.home-section-marker .home-kicker{padding-top:1px}
+.home-manifesto>.home-section-marker{max-width:1240px;margin:0 auto 24px}
+.home-manifesto>.home-section-marker .home-kicker{color:#b8935f!important}
+.home-final-cta .home-section-marker{justify-content:center}
+.home-final-cta .home-section-marker:before{left:12px}
+@media(max-width:760px){
+ .home-section-marker{gap:12px;margin-bottom:18px}
+ .home-section-marker:before{height:32px;top:23px}
+ .home-section-number{font-size:11px;min-width:24px}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-section-number{opacity:1!important;transform:none!important;animation:none!important}
+ .home-section-marker:before{transform:scaleY(1)!important;transition:none!important}
+}
