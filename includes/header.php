@@ -68,7 +68,7 @@ $navItems=[
 <div class="ikki-cursor-ring" data-ikki-cursor-ring aria-hidden="true"></div>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
 <header class="site-header<?= $isHomePage?' is-home-header':'' ?>" data-site-header>
-<a class="maison-brand" href="/" aria-label="IKKI — Iconic Kyenotes. Kinetic Impression"><span class="maison-wordmark">IKKI</span><span class="maison-brand-tagline">Iconic Kyenotes. Kinetic Impression</span></a>
+<a class="maison-brand" href="/" aria-label="IKKI — Iconic Kyenotes. Kinetic Impression"><span class="maison-wordmark">IKKI</span><span class="maison-brand-tagline"><strong>I</strong>conic <strong>K</strong>yenotes. <strong>K</strong>inetic <strong>I</strong>mpression</span></a>
 <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation"><span></span><span></span><span></span></button>
 <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
 <?php foreach($navItems as $item): $active=in_array($currentPage,$item['match'],true); ?>
