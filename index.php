@@ -6,32 +6,43 @@ $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.id LIMIT 4")->fetchAll();
 }catch(Throwable $ex){error_log('[IKKI home] '.$ex->getMessage());}
+$editorialImages=[
+ 'https://images.unsplash.com/photo-1587304946976-cbbbafce2133?auto=format&fit=crop&w=1000&q=85',
+ 'https://images.unsplash.com/photo-1673710672680-944563ff9cce?auto=format&fit=crop&w=900&q=85',
+ 'https://images.unsplash.com/photo-1718068838055-3a8311f0e8ba?auto=format&fit=crop&w=900&q=85',
+ 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=85'
+];
+$conceptProducts=[
+ ['name'=>'NOOR','family'=>'AMBER · FLORAL','description'=>'A luminous, softly enveloping fragrance story.'],
+ ['name'=>'SAHRA','family'=>'WARM · SPICED','description'=>'A warm, sunlit composition with a graceful trail.'],
+ ['name'=>'VELVET DUSK','family'=>'WOODY · AMBER','description'=>'A deeper, intimate mood for the evening.'],
+ ['name'=>'AZURE 04','family'=>'FRESH · AROMATIC','description'=>'A crisp, modern expression with effortless clarity.']
+];
 require __DIR__.'/includes/header.php';
 ?>
-<section class="home-hero" aria-labelledby="home-title">
+<section class="home-hero home-hero--editorial" aria-labelledby="home-title">
  <div class="home-hero-copy">
-  <span class="home-hero-eyebrow">IKKI · THE ART OF FRAGRANCE</span>
+  <span class="home-hero-eyebrow">IKKI <i></i> THE ART OF FRAGRANCE</span>
   <p class="home-overline">A PERSONAL EXPRESSION, BEAUTIFULLY COMPOSED</p>
-  <h1 id="home-title">Elegance<br>is <em>timeless.</em></h1>
-  <p class="home-hero-subtext">Discover a world of refined fragrances. Explore expressive scent stories and find the one that feels unmistakably yours.</p>
+  <h1 id="home-title">Wear your<br><em>own story.</em></h1>
+  <p class="home-hero-subtext">Fragrance is the quietest form of self-expression. Discover refined scent stories made to linger long after the moment has passed.</p>
   <div class="home-hero-actions">
-   <a class="ikki-btn ikki-btn--primary" href="/shop.php">Explore Collection <span aria-hidden="true">↗</span></a>
-   <a class="ikki-btn ikki-btn--secondary home-quiet-link" href="/our-story.php">Discover IKKI <span aria-hidden="true">↗</span></a>
+   <a class="ikki-btn ikki-btn--primary" href="/shop.php">Explore the collection <span aria-hidden="true">↗</span></a>
+   <a class="ikki-btn ikki-btn--secondary home-quiet-link" href="/our-story.php">The IKKI story <span aria-hidden="true">↗</span></a>
   </div>
-  <div class="home-hero-foot" aria-label="IKKI fragrance collection"><span>CONSIDERED COMPOSITIONS</span><span>PERSONAL EXPRESSION</span><span>IKKI · EST. IN EVERY MOMENT</span></div>
+  <div class="home-hero-foot" aria-label="IKKI fragrance collection"><span>THOUGHTFUL COMPOSITIONS</span><span>PERSONAL EXPRESSION</span><span>MADE TO BE REMEMBERED</span></div>
  </div>
- <div class="home-hero-visual" role="img" aria-label="IKKI Noor fragrance bottle">
+ <div class="home-hero-visual" role="img" aria-label="Editorial photograph of a fine fragrance bottle">
   <div class="home-visual-glow" aria-hidden="true"></div>
   <div class="home-hero-orbit" aria-hidden="true"></div>
-  <div class="home-ring home-ring-b" aria-hidden="true"></div>
-  <img class="home-hero-bottle" src="/assets/images/noor.svg" alt="IKKI Noor fragrance bottle" width="500" height="690" loading="eager" fetchpriority="high" decoding="async">
-  <span class="home-visual-stamp" aria-hidden="true"><small>IKKI · Nº 01</small><strong>NOOR</strong><small>THE SIGNATURE COLLECTION</small></span>
+  <img class="home-hero-bottle" src="<?=e($editorialImages[0])?>" alt="Elegant glass perfume bottle with golden details" width="1000" height="1250" loading="eager" fetchpriority="high" decoding="async">
+  <span class="home-hero-photo-caption"><small>THE SIGNATURE EDIT</small><strong>SCENT, <em>IN FORM.</em></strong></span>
   <span class="home-vertical-note" aria-hidden="true">A SCENT THAT STAYS WITH YOU</span>
  </div>
  <a class="home-scroll-cue" href="#home-philosophy" aria-label="Scroll to discover"><span></span> DISCOVER IKKI</a>
 </section>
 
-<div class="home-marquee" aria-label="IKKI fragrance philosophy"><div>THE ART OF FRAGRANCE <b>✳</b> ELEGANCE IS TIMELESS <b>✳</b> FIND YOUR SIGNATURE <b>✳</b> THE ART OF FRAGRANCE <b>✳</b> ELEGANCE IS TIMELESS <b>✳</b> FIND YOUR SIGNATURE <b>✳</b></div></div>
+<div class="home-marquee" aria-label="IKKI fragrance philosophy"><div>THE ART OF FRAGRANCE <b>✳</b> ELEGANCE IN EVERY DETAIL <b>✳</b> FIND YOUR SIGNATURE <b>✳</b> THE ART OF FRAGRANCE <b>✳</b> ELEGANCE IN EVERY DETAIL <b>✳</b> FIND YOUR SIGNATURE <b>✳</b></div></div>
 
 <section class="home-philosophy" id="home-philosophy" aria-labelledby="philosophy-title">
  <span class="home-section-index">01 / THE IKKI POINT OF VIEW</span>
@@ -41,21 +52,28 @@ require __DIR__.'/includes/header.php';
 
 <section class="home-collection" id="signature-scents" aria-labelledby="signature-title">
  <div class="home-section-heading home-reveal"><div><span class="home-kicker">02 / FIND YOUR SIGNATURE</span><h2 id="signature-title">The signature<br><em>collection.</em></h2></div><a class="home-text-link" href="/shop.php">VIEW THE COLLECTION <span>↗</span></a></div>
- <div class="home-products">
- <?php if($products): foreach($products as $n=>$p): ?>
+ <div class="home-products home-products--editorial">
+ <?php if($products): foreach($products as $n=>$p):
+   $image=$p['image_path']??'';
+   if($image==='' || preg_match('/\.svg(?:$|\?)/i',$image)) $image=$editorialImages[$n%count($editorialImages)];
+ ?>
   <a class="home-product home-reveal" href="/product.php?slug=<?=e($p['slug'])?>">
-   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image_path']?:'/assets/images/noor.svg')?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div>
+   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance editorial photograph" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div>
    <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong><?=$p['price']!==null?money($p['price']):'DISCOVER'?></strong></div>
   </a>
- <?php endforeach; else: ?>
-  <p class="home-collection-note">Our fragrance collection is being prepared. <a href="/contact.php">Contact us for assistance.</a></p>
- <?php endif; ?>
+ <?php endforeach; else: foreach($conceptProducts as $n=>$p): ?>
+  <a class="home-product home-reveal home-product--concept" href="/shop.php">
+   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($editorialImages[$n])?>" alt="<?=e($p['name'])?> fragrance concept photograph" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">EXPLORE THE COLLECTION ↗</span><span class="home-concept-label">VISUAL CONCEPT</span></div>
+   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['family'])?></p></div><strong>COMING SOON</strong></div>
+   <p class="home-concept-description"><?=e($p['description'])?></p>
+  </a>
+ <?php endforeach; endif; ?>
  </div>
- <p class="home-collection-note home-reveal">Distinct expressions. One unmistakable point of view.</p>
+ <p class="home-collection-note home-reveal"><?= $products?'Distinct expressions. One unmistakable point of view.':'Concept imagery for the signature collection. Final product presentation will follow confirmed IKKI packaging.' ?></p>
 </section>
 
 <section class="home-feature" aria-labelledby="home-feature-title">
- <div class="home-feature-art"><img src="/assets/images/sahra.svg" alt="Sahra fragrance bottle from the IKKI collection" width="800" height="1000" loading="lazy" decoding="async"><span>IKKI · A STUDY IN SCENT</span></div>
+ <div class="home-feature-art"><img src="<?=e($editorialImages[1])?>" alt="Perfume styled in a soft, warm editorial setting" width="1000" height="1100" loading="lazy" decoding="async"><span>IKKI · A STUDY IN SCENT</span></div>
  <div class="home-feature-copy home-reveal"><span class="home-kicker">03 / THE EXPERIENCE</span><h2 id="home-feature-title">Find a scent<br>that feels like <em>you.</em></h2><p>From the first impression to the final lingering note, discover a fragrance that complements your individuality and makes every moment feel your own.</p><a class="home-outline-button" href="/shop.php">Explore the fragrances <span>↗</span></a></div>
 </section>
 
