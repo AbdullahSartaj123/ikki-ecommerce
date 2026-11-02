@@ -56,11 +56,10 @@ require __DIR__.'/includes/header.php';
   $imagePath=$dbProduct['image_path']??'/assets/images/noor.svg';
   $variants=[];
   if($dbProduct){$variantQuery=db()->prepare("SELECT id,variant_name,volume_ml,price,stock_quantity FROM product_variants WHERE product_id=? AND is_active=1 ORDER BY volume_ml");$variantQuery->execute([(int)$dbProduct['id']]);$variants=$variantQuery->fetchAll();}
-  $topNote=trim(explode(',',$p['notes'])[0]??'');
-  $noteParts=array_map('trim',explode(',',$p['notes']));
-  $heartNote=$noteParts[1]??'Signature accord';
-  $baseNote=$noteParts[2]??'Warm woods';
-  $modalDescription=$p['name'].' opens with '.$topNote.', unfolds into '.$heartNote.', and settles into '.$baseNote.'. A considered scent composition for a memorable signature.';
+  $topNote=trim((string)($p['top_notes']??''))?:'Opening notes';
+  $heartNote=trim((string)($p['heart_notes']??''))?:'Heart notes';
+  $baseNote=trim((string)($p['base_notes']??''))?:'Base notes';
+  $modalDescription=trim((string)($p['description']??''))?:'Discover the olfactive story of '.$p['name'].', an IKKI fragrance.';
  ?>
   <article class="collection-card collection-reveal" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
    <div class="collection-card-image">
