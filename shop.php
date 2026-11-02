@@ -5,7 +5,7 @@ $description='Explore the IKKI fragrance collection: individual scent stories, c
 $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.description,p.gender,p.top_notes,p.heart_notes,p.base_notes,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name")->fetchAll();
-}catch(Throwable $ex){error_log('[Ikki collection] '.$ex->getMessage());}
+}catch(Throwable $ex){error_log('[IKKI collection] '.$ex->getMessage());}
 $catalog=[];
 $databaseProducts=[];
 foreach($products as $product){
