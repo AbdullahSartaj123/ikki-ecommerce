@@ -607,3 +607,246 @@ body.has-home-hero .home-final-cta p{color:#777064}
  .home-concept-label{top:8px;right:8px;padding:6px;font-size:6px}
 }
 @media(prefers-reduced-motion:reduce){body.has-home-hero .home-hero-bottle{animation:none!important}body.has-home-hero .home-product-art img{transition:none!important}}
+
+
+/* =========================================================
+   IKKI SIGNATURE BRAND EXPERIENCE — site-wide refinement
+   Warm ivory, champagne metal, editorial typography and calm motion
+   ========================================================= */
+:root{
+ --ikki-ivory:#fbf9f5;
+ --ikki-paper:#f5f0e7;
+ --ikki-champagne:#c4a474;
+ --ikki-metal:#9b7848;
+ --ikki-ink:#29251f;
+ --ikki-muted:#797166;
+ --ikki-rule:rgba(157,125,78,.22);
+ --ikki-shadow:0 22px 60px rgba(62,48,30,.09);
+}
+body{background:var(--ikki-ivory)!important;color:var(--ikki-ink)!important}
+::selection{background:rgba(196,164,116,.3);color:var(--ikki-ink)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+ outline:2px solid var(--ikki-metal)!important;outline-offset:4px
+}
+.announcement{
+ min-height:34px;height:auto;padding:7px 18px;gap:18px;
+ background:#f4efe6!important;color:#78664d!important;
+ border-bottom:1px solid rgba(157,125,78,.18);
+ font-size:8px;letter-spacing:.2em
+}
+.announcement i{width:3px;height:3px;background:var(--ikki-champagne)}
+.site-header{
+ height:88px!important;padding-inline:clamp(22px,6vw,88px)!important;
+ background:rgba(255,255,255,.94)!important;border-bottom:1px solid rgba(157,125,78,.18)!important;
+ box-shadow:0 8px 30px rgba(55,43,28,.025);backdrop-filter:blur(18px)
+}
+.maison-brand{gap:0;position:relative}
+.maison-wordmark{
+ font:500 31px/.95 'Playfair Display',Georgia,serif!important;
+ letter-spacing:.23em!important;color:#29251f!important;
+ transition:letter-spacing .35s ease
+}
+.maison-brand:hover .maison-wordmark{letter-spacing:.28em!important}
+.main-nav{gap:clamp(22px,3.3vw,52px)!important}
+.main-nav>a{
+ position:relative;padding:12px 0;color:#494239!important;
+ font-size:9px!important;font-weight:500;letter-spacing:.19em!important;
+ transition:color .25s ease
+}
+.main-nav>a:after{
+ content:"";position:absolute;left:50%;right:50%;bottom:3px;height:1px;
+ background:var(--ikki-champagne);transition:left .3s ease,right .3s ease
+}
+.main-nav>a:hover:after,.main-nav>a.active:after{left:0;right:0}
+.main-nav>a:hover,.main-nav>a.active{color:var(--ikki-metal)!important}
+.header-actions{gap:17px!important}
+.header-icon-link{width:38px;height:38px;border:1px solid transparent;border-radius:50%;transition:background .25s,border-color .25s}
+.header-icon-link:hover{background:var(--ikki-paper);border-color:var(--ikki-rule)}
+.header-icon-link svg{width:18px;height:18px}
+.header-bag-link .bag-count{width:17px;height:17px;min-width:17px;font-size:8px;background:var(--ikki-metal)!important}
+.mobile-menu-overlay{background:var(--ikki-ivory)!important}
+.mobile-menu-links a{font:400 clamp(34px,7vw,56px)/1.15 'Playfair Display',serif!important}
+.mobile-menu-links a.active,.mobile-menu-links a:hover{color:var(--ikki-metal)!important}
+.menu-toggle span{height:1px!important}
+main{overflow:clip}
+.home-kicker,.story-kicker,.eyebrow,.story-narrative-eyebrow{
+ font-size:9px!important;letter-spacing:.23em!important;color:var(--ikki-metal)!important
+}
+.home-hero-eyebrow{letter-spacing:.22em!important}
+.home-hero-foot{letter-spacing:.15em!important}
+.home-hero-actions .ikki-btn{box-shadow:0 10px 28px rgba(95,72,42,.08)}
+.home-hero-visual{box-shadow:0 28px 75px rgba(90,67,37,.09)}
+.home-marquee{letter-spacing:.19em}
+.home-philosophy,.home-collection,.home-feature,.home-values,.home-manifesto,.home-final-cta,
+.story-narrative,.story-values,.story-mission,.story-cta,.contact-main,.collection-catalog{
+ position:relative
+}
+.home-philosophy:before,.home-collection:before,.story-values:before,.contact-main:before{
+ content:"";position:absolute;top:0;left:var(--gutter);right:var(--gutter);
+ height:1px;background:linear-gradient(90deg,transparent,var(--ikki-rule),transparent)
+}
+.home-philosophy{padding-top:clamp(90px,10vw,150px);padding-bottom:clamp(90px,10vw,150px)}
+.home-collection{padding-top:clamp(85px,9vw,130px);padding-bottom:clamp(85px,9vw,130px)}
+.home-section-heading{margin-bottom:54px}
+.home-section-heading h2,.home-philosophy-title h2,.home-feature-copy h2,.home-values-heading h2{
+ letter-spacing:-.035em!important
+}
+.home-product{padding:0 0 18px;transition:transform .4s ease,box-shadow .4s ease}
+.home-product:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(64,48,29,.08)}
+.home-product-art{border:1px solid rgba(157,125,78,.15)}
+.home-product-meta{padding:18px 4px 0}
+.home-product-meta h3{letter-spacing:-.025em}
+.home-product-meta p{letter-spacing:.16em!important}
+.home-concept-description{max-width:280px}
+.home-feature{border-top:1px solid var(--ikki-rule);border-bottom:1px solid var(--ikki-rule)}
+.home-feature-art{overflow:hidden}
+.home-feature-art img{transition:transform 1s cubic-bezier(.2,.65,.3,1)}
+.home-feature:hover .home-feature-art img{transform:scale(1.035)}
+.home-values{padding-block:clamp(85px,9vw,130px)}
+.home-value{padding:26px 22px;border:1px solid rgba(157,125,78,.2)!important;background:rgba(255,255,255,.52);transition:transform .35s,box-shadow .35s}
+.home-value:hover{transform:translateY(-4px);box-shadow:var(--ikki-shadow)}
+.home-manifesto{border-top:1px solid var(--ikki-rule);border-bottom:1px solid var(--ikki-rule)}
+.home-final-cta{padding-block:clamp(85px,10vw,145px)!important}
+.page-banner{
+ min-height:300px!important;display:flex;align-items:center;justify-content:center;
+ padding:64px 24px!important;position:relative;overflow:hidden;
+ background:radial-gradient(ellipse at 78% 42%,rgba(196,164,116,.16),transparent 42%),linear-gradient(135deg,#fbf9f5,#f3ecdf)!important
+}
+.page-banner:before{
+ content:"";position:absolute;inset:18px;border:1px solid rgba(157,125,78,.16);pointer-events:none
+}
+.page-banner-copy{position:relative;z-index:1;text-align:center;max-width:760px}
+.page-banner-breadcrumb{display:flex;justify-content:center;gap:10px;margin-bottom:24px;font-size:9px!important;letter-spacing:.12em;color:#8a8072!important}
+.page-banner-breadcrumb a{color:#8a8072!important}
+.page-banner h1{font:400 clamp(48px,7vw,82px)/1.02 'Playfair Display',Georgia,serif!important;letter-spacing:-.045em;margin:0 0 15px}
+.page-banner p{font-size:13px;letter-spacing:.04em;color:#82786b!important}
+.story-narrative{padding:clamp(65px,8vw,110px) clamp(24px,8vw,120px)!important}
+.story-narrative-block{max-width:1240px;margin:0 auto clamp(70px,9vw,130px)!important;gap:clamp(36px,7vw,100px)!important;align-items:center}
+.story-narrative-block:last-child{margin-bottom:0!important}
+.story-narrative-visual{position:relative;padding:16px!important;background:linear-gradient(145deg,#f2eadf,#fff);border:1px solid rgba(157,125,78,.2);box-shadow:var(--ikki-shadow)}
+.story-narrative-visual:after{content:"";position:absolute;inset:7px;border:1px solid rgba(157,125,78,.18);pointer-events:none}
+.story-narrative-visual img{position:relative;z-index:1;transition:transform .8s ease}
+.story-narrative-visual:hover img{transform:scale(1.025)}
+.story-narrative-copy{max-width:520px}
+.story-narrative-copy h2{font:400 clamp(34px,4.3vw,55px)/1.1 'Playfair Display',serif!important;letter-spacing:-.035em}
+.story-narrative-copy h2 em{color:var(--ikki-metal)!important}
+.story-narrative-copy p{font-size:13px!important;line-height:2!important;color:#777064!important}
+.story-narrative-rule{width:48px!important;background:var(--ikki-champagne)!important}
+.story-values{padding-inline:clamp(24px,7vw,100px)!important}
+.story-values-heading{text-align:center;margin:0 auto 48px;max-width:600px}
+.story-values-heading h2{font:400 clamp(46px,6vw,68px)/1.05 'Playfair Display',serif!important}
+.story-value-grid{max-width:1200px;margin-inline:auto;gap:16px!important}
+.story-value-card{
+ padding:36px 25px!important;min-height:230px;border:1px solid rgba(157,125,78,.2)!important;
+ background:linear-gradient(145deg,#fff,#fbf8f2)!important;transition:transform .35s,box-shadow .35s
+}
+.story-value-card:hover{transform:translateY(-5px);box-shadow:var(--ikki-shadow)}
+.story-value-symbol{width:42px;height:42px;margin-bottom:22px;color:var(--ikki-metal)!important}
+.story-value-card h3{font:400 24px/1.2 'Playfair Display',serif!important}
+.story-value-card p{font-size:12px!important;line-height:1.8}
+.story-mission{padding:clamp(75px,9vw,125px) 24px!important;background:#f2eadf!important}
+.story-mission-inner{max-width:900px;margin:auto;text-align:center}
+.story-mission-quote{font:400 clamp(30px,4.4vw,52px)/1.35 'Playfair Display',serif!important;letter-spacing:-.025em}
+.story-cta{text-align:center;padding:clamp(75px,9vw,120px) 24px!important}
+.contact-main{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.75fr);gap:clamp(36px,7vw,100px);max-width:1240px;margin:auto;padding:clamp(65px,8vw,110px) clamp(24px,6vw,70px)!important}
+.contact-form-column,.contact-info-column{min-width:0}
+.contact-form-title{font:400 clamp(34px,4vw,48px)/1.15 'Playfair Display',serif!important;margin:14px 0 30px}
+.ikki-contact-form{padding:clamp(22px,3vw,38px);background:#fff;border:1px solid rgba(157,125,78,.2);box-shadow:0 18px 55px rgba(62,48,30,.055)}
+.contact-field input,.contact-field textarea,.contact-field select{
+ min-height:52px!important;border-radius:0!important;background:#fff!important;border:1px solid #e7e0d5!important;
+ transition:border-color .25s,box-shadow .25s
+}
+.contact-field textarea{min-height:145px!important}
+.contact-field input:focus,.contact-field textarea:focus,.contact-field select:focus{
+ border-color:var(--ikki-champagne)!important;box-shadow:0 0 0 3px rgba(196,164,116,.12)
+}
+.contact-submit{min-height:54px!important;box-shadow:0 10px 25px rgba(157,125,78,.14)}
+.contact-info-column{align-self:center;padding:clamp(24px,4vw,42px);background:linear-gradient(145deg,#f4eee4,#fbf9f5);border:1px solid rgba(157,125,78,.2)}
+.contact-detail-item{padding:22px 0!important}
+.contact-detail-icon{border:1px solid var(--ikki-rule);color:var(--ikki-metal)!important}
+.contact-detail-copy h3{font:400 21px 'Playfair Display',serif!important}
+.ikki-catalog-hero{
+ background:radial-gradient(ellipse at 78% 40%,rgba(196,164,116,.2),transparent 38%),linear-gradient(112deg,#fbf9f5,#f1e8da)!important;
+ border-bottom:1px solid rgba(157,125,78,.18)
+}
+.ikki-catalog-hero:after{content:"";position:absolute;inset:16px;border:1px solid rgba(157,125,78,.16);pointer-events:none}
+.ikki-catalog-hero-inner,.ikki-catalog-hero-side{z-index:1}
+.ikki-catalog-hero h1{font:400 clamp(48px,6.5vw,82px)/1.02 'Playfair Display',serif!important;letter-spacing:-.045em}
+.ikki-catalog-hero h1 em{color:var(--ikki-metal)!important}
+.ikki-catalog-hero>div:first-child>p{max-width:470px;line-height:1.9}
+.ikki-catalog-hero-side img{filter:drop-shadow(0 18px 25px rgba(94,69,37,.12))}
+.ikki-catalog-intro{max-width:1300px;margin-inline:auto;padding:34px clamp(24px,5vw,65px)!important}
+.ikki-catalog-intro>span{font-size:8px!important;letter-spacing:.22em;color:var(--ikki-metal)!important}
+.ikki-catalog-intro p{font:400 clamp(18px,2vw,24px)/1.55 'Playfair Display',serif!important;color:#494239!important}
+.ikki-signature-grid{max-width:1440px;margin-inline:auto;padding-inline:clamp(22px,5vw,70px)!important;gap:clamp(20px,2.4vw,34px)!important}
+.ikki-signature-card{border:1px solid rgba(157,125,78,.17)!important;background:#fff!important;box-shadow:0 6px 24px rgba(62,48,30,.025)}
+.ikki-signature-card:hover{box-shadow:0 18px 44px rgba(62,48,30,.09)!important}
+.ikki-signature-card .collection-card-image{background:linear-gradient(145deg,#f6f1e9,#eee5d8)!important}
+.ikki-signature-card .collection-card-image img{transition:transform .8s cubic-bezier(.2,.65,.3,1)!important}
+.ikki-signature-card:hover .collection-card-image img{transform:scale(1.045)}
+.ikki-signature-card .collection-card-info{padding:22px!important}
+.ikki-signature-card .collection-card-info h2{font:400 27px/1.15 'Playfair Display',serif!important}
+.ikki-signature-card .collection-card-info p{min-height:44px;font-size:11px!important;line-height:1.75}
+.ikki-signature-card .collection-card-info strong{font-size:10px!important;letter-spacing:.1em}
+.ikki-card-discover{display:inline-flex!important;align-items:center;gap:9px;margin-top:14px;padding-bottom:6px;border-bottom:1px solid var(--ikki-rule);color:var(--ikki-metal)!important;font-size:8px!important;letter-spacing:.17em}
+.collection-quick-view{background:rgba(255,255,255,.94)!important;color:var(--ikki-metal)!important;border:1px solid var(--ikki-rule)!important;backdrop-filter:blur(8px)}
+.collection-toolbar-wrap{border-block:1px solid rgba(157,125,78,.18)!important}
+.collection-filter{font-size:9px!important;letter-spacing:.14em!important}
+.collection-filter.is-active{color:var(--ikki-metal)!important}
+.collection-sort select{color:var(--ikki-ink)!important}
+.ikki-product-page{background:var(--ikki-ivory)}
+.ikki-product-breadcrumb{max-width:1400px;margin:auto;padding:26px clamp(22px,5vw,64px)!important;color:#8c8171!important;font-size:9px!important;letter-spacing:.12em}
+.ikki-product-layout{max-width:1440px;margin:auto;padding:20px clamp(22px,5vw,64px) 100px!important;gap:clamp(40px,7vw,100px)!important}
+.ikki-product-main-image{background:radial-gradient(ellipse at 50% 42%,#fff 0%,#f4eee4 68%,#eee4d6 100%)!important;border:1px solid rgba(157,125,78,.2);box-shadow:var(--ikki-shadow)}
+.ikki-product-main-image:after{content:"";position:absolute;inset:14px;border:1px solid rgba(157,125,78,.2);pointer-events:none}
+.ikki-product-information h1{font:400 clamp(48px,6vw,76px)/1.02 'Playfair Display',serif!important;letter-spacing:-.045em}
+.ikki-product-deck{font-size:14px!important;line-height:1.9!important;color:#777064!important}
+.ikki-product-price{color:var(--ikki-metal)!important;font-size:18px!important}
+.ikki-product-rule{background:var(--ikki-rule)!important}
+.ikki-product-label,.ikki-product-object,.ikki-product-image-caption,.ikki-product-details span{color:var(--ikki-metal)!important;letter-spacing:.17em!important}
+.ikki-note-pyramid>div,.ikki-product-details>div{border-color:var(--ikki-rule)!important}
+.ikki-product-after{background:linear-gradient(135deg,#f3ecdf,#fbf9f5)!important}
+.ikki-product-after h2{font:400 clamp(42px,6vw,70px)/1.05 'Playfair Display',serif!important}
+.ikki-footer{padding:clamp(48px,6vw,78px) clamp(22px,6vw,84px) 22px!important;background:#f4efe6!important}
+.ikki-footer-main{max-width:1400px;margin:auto;gap:clamp(24px,4vw,58px)!important}
+.ikki-footer-brand-mark{font:500 36px/1 'Playfair Display',serif!important;letter-spacing:.2em}
+.ikki-footer-tagline{max-width:250px;font:italic 16px/1.7 'Playfair Display',serif!important;color:#7d7160!important}
+.ikki-footer-heading{font-size:9px!important;letter-spacing:.18em!important;text-transform:uppercase}
+.ikki-footer-panel a,.ikki-footer-panel p{font-size:11px!important;line-height:2}
+.ikki-footer-bottom{max-width:1400px;margin:42px auto 0!important;padding-top:20px!important;font-size:8px!important;letter-spacing:.14em}
+.back-to-top{width:44px!important;height:44px!important;background:var(--ikki-metal)!important;box-shadow:0 8px 24px rgba(70,52,28,.2)}
+@media(max-width:900px){
+ .site-header{height:74px!important}
+ .contact-main{grid-template-columns:1fr;gap:38px}
+ .contact-info-column{max-width:none}
+ .story-narrative{padding-inline:24px!important}
+}
+@media(max-width:640px){
+ .announcement{font-size:7px;gap:9px;letter-spacing:.12em}
+ .site-header{padding-inline:20px!important}
+ .maison-wordmark{font-size:27px!important}
+ .page-banner{min-height:245px!important;padding:50px 20px!important}
+ .page-banner:before{inset:10px}
+ .page-banner h1{font-size:48px!important}
+ .story-narrative-block{gap:28px!important;margin-bottom:60px!important}
+ .story-narrative-visual{padding:10px!important}
+ .story-values{padding-inline:20px!important}
+ .story-value-grid{grid-template-columns:1fr 1fr!important}
+ .story-value-card{min-height:190px;padding:24px 17px!important}
+ .story-value-card h3{font-size:20px!important}
+ .contact-main{padding:55px 20px!important}
+ .ikki-contact-form{padding:20px 16px}
+ .ikki-catalog-hero{padding:30px 22px!important}
+ .ikki-catalog-hero:after{inset:8px}
+ .ikki-catalog-hero h1{font-size:clamp(43px,11vw,58px)!important}
+ .ikki-signature-grid{padding-inline:18px!important}
+ .ikki-signature-card .collection-card-info{padding:16px!important}
+ .ikki-signature-card .collection-card-info h2{font-size:23px!important}
+ .ikki-product-layout{padding:8px 18px 65px!important}
+ .ikki-product-information h1{font-size:46px!important}
+ .ikki-footer{padding:44px 22px 20px!important}
+ .ikki-footer-bottom{gap:10px;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+ .maison-wordmark,.home-product,.home-feature-art img,.story-narrative-visual img,.story-value-card{transition:none!important}
+}
