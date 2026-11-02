@@ -2251,3 +2251,54 @@ body.has-home-hero .home-products--editorial .home-concept-description{
  }
  body.has-home-hero .home-products--editorial .home-product-art img{transition:none!important}
 }
+
+
+/* Reusable editorial image caption */
+.ikki-image-caption{
+ display:block!important;width:max-content;max-width:calc(100% - 36px);
+ margin:14px 0 0 18px!important;
+ color:#8b7658!important;
+ font:italic 13px/1.5 'Playfair Display',Georgia,serif!important;
+ letter-spacing:.035em!important;text-transform:none!important;
+ text-shadow:none!important;
+}
+/* Lifestyle feature image and copy entrance choreography */
+.home-feature.feature-motion-ready .home-feature-art img{
+ opacity:0;transform:translate3d(0,var(--lifestyle-parallax-y,0px),0) scale(.97);
+ transition:opacity 1.05s ease,transform 1.35s cubic-bezier(.2,.65,.3,1);
+ will-change:opacity,transform;
+}
+.home-feature.feature-motion-ready .home-feature-copy .home-section-marker,
+.home-feature.feature-motion-ready .home-feature-copy h2,
+.home-feature.feature-motion-ready .home-feature-copy p,
+.home-feature.feature-motion-ready .home-feature-copy .home-outline-button{
+ opacity:0;transform:translate3d(0,22px,0);
+ transition:opacity .8s ease,transform .9s cubic-bezier(.2,.65,.3,1);
+}
+.home-feature.is-feature-visible .home-feature-art img{
+ opacity:1;transform:translate3d(0,var(--lifestyle-parallax-y,0px),0) scale(1);
+}
+.home-feature.is-feature-visible .home-feature-copy .home-section-marker{
+ opacity:1;transform:translate3d(0,0,0);transition-delay:200ms;
+}
+.home-feature.is-feature-visible .home-feature-copy h2{
+ opacity:1;transform:translate3d(0,0,0);transition-delay:200ms;
+}
+.home-feature.is-feature-visible .home-feature-copy p{
+ opacity:1;transform:translate3d(0,0,0);transition-delay:400ms;
+}
+.home-feature.is-feature-visible .home-feature-copy .home-outline-button{
+ opacity:1;transform:translate3d(0,0,0);transition-delay:600ms;
+}
+@media(prefers-reduced-motion:reduce){
+ .home-feature.feature-motion-ready .home-feature-art img,
+ .home-feature.feature-motion-ready .home-feature-copy .home-section-marker,
+ .home-feature.feature-motion-ready .home-feature-copy h2,
+ .home-feature.feature-motion-ready .home-feature-copy p,
+ .home-feature.feature-motion-ready .home-feature-copy .home-outline-button{
+  opacity:1!important;transform:none!important;transition:none!important;will-change:auto
+ }
+}
+@media(max-width:899px){
+ .home-feature-art img{--lifestyle-parallax-y:0px!important}
+}
