@@ -1740,10 +1740,10 @@ p,
 .contact-detail-copy p,.contact-form-note,
 .ikki-product-deck,.ikki-product-description,
 .quick-view-description,.collection-card-info p{
-  color:#7a756c;
-  font-family:var(--font-body);
-  font-size:16.5px;
-  line-height:1.7;
+  color:#7a756c!important;
+  font-family:var(--font-body)!important;
+  font-size:16.5px!important;
+  line-height:1.7!important;
 }
 h1,
 .page-banner h1,.ikki-catalog-hero h1,.ikki-product-information h1,
@@ -1819,8 +1819,8 @@ h1 .accent-italic,
   .contact-detail-copy p,.contact-form-note,
   .ikki-product-deck,.ikki-product-description,
   .quick-view-description,.collection-card-info p{
-    font-size:16px;
-    line-height:1.7;
+    font-size:16px!important;
+    line-height:1.7!important;
   }
   h1,.page-banner h1,.ikki-catalog-hero h1,.ikki-product-information h1,
   .ikki-product-not-found h1,
