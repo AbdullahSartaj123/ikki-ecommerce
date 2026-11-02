@@ -1893,3 +1893,24 @@ h1 .accent-italic,
 @keyframes ikkiCircleRotate{from{transform:rotate(0deg) scale(.76)}to{transform:rotate(360deg) scale(.76)}}
 @media(max-width:700px){.home-circle-motif{top:-18px;left:-10px}.home-circle-motif--100{--motif-size:80px}}
 @media(prefers-reduced-motion:reduce){.home-circle-motif{opacity:1;transform:none;transition:none}.home-circle-motif i{animation:none!important}}
+
+
+/* Brand signature beneath the IKKI header wordmark */
+.site-header .maison-brand{
+ display:flex!important;flex-direction:column!important;align-items:flex-start!important;
+ justify-content:center!important;gap:5px!important;min-width:0;
+}
+.site-header .maison-brand-tagline{
+ display:block;color:var(--color-gold-dark)!important;
+ font:500 7px/1.25 var(--font-body)!important;
+ letter-spacing:1.35px!important;text-transform:uppercase;
+ white-space:nowrap;opacity:.92;
+}
+@media(max-width:700px){
+ .site-header .maison-brand{gap:4px!important}
+ .site-header .maison-wordmark{font-size:27px!important;line-height:.9!important}
+ .site-header .maison-brand-tagline{font-size:5.5px!important;letter-spacing:.85px!important}
+}
+@media(max-width:360px){
+ .site-header .maison-brand-tagline{font-size:5px!important;letter-spacing:.55px!important}
+}
