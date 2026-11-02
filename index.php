@@ -13,10 +13,10 @@ $editorialImages=[
  'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=85'
 ];
 $conceptProducts=[
- ['name'=>'NOOR','family'=>'AMBER · FLORAL','description'=>'A luminous, softly enveloping fragrance story.'],
- ['name'=>'SAHRA','family'=>'WARM · SPICED','description'=>'A warm, sunlit composition with a graceful trail.'],
- ['name'=>'VELVET DUSK','family'=>'WOODY · AMBER','description'=>'A deeper, intimate mood for the evening.'],
- ['name'=>'AZURE 04','family'=>'FRESH · AROMATIC','description'=>'A crisp, modern expression with effortless clarity.']
+ ['name'=>'NOOR','family'=>'AMBER · FLORAL','description'=>'A luminous, softly enveloping fragrance story.','image'=>'/assets/images/noor.svg'],
+ ['name'=>'SAHRA','family'=>'WARM · SPICED','description'=>'A warm, sunlit composition with a graceful trail.','image'=>'/assets/images/sahra.svg'],
+ ['name'=>'VELVET DUSK','family'=>'WOODY · AMBER','description'=>'A deeper, intimate mood for the evening.','image'=>'/assets/images/velvet-dusk.svg'],
+ ['name'=>'AZURE 04','family'=>'FRESH · AROMATIC','description'=>'A crisp, modern expression with effortless clarity.','image'=>'/assets/images/azure-04.svg']
 ];
 require __DIR__.'/includes/header.php';
 ?>
@@ -63,7 +63,7 @@ require __DIR__.'/includes/header.php';
   </a>
  <?php endforeach; else: foreach($conceptProducts as $n=>$p): ?>
   <a class="home-product home-reveal home-product--concept" href="/shop.php">
-   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($editorialImages[$n])?>" alt="<?=e($p['name'])?> fragrance concept photograph" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">EXPLORE THE COLLECTION ↗</span><span class="home-concept-label">VISUAL CONCEPT</span></div>
+   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image'])?>" alt="<?=e($p['name'])?> IKKI fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">EXPLORE THE COLLECTION ↗</span><span class="home-concept-label">VISUAL CONCEPT</span></div>
    <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['family'])?></p></div><strong>COMING SOON</strong></div>
    <p class="home-concept-description"><?=e($p['description'])?></p>
   </a>
