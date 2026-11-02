@@ -16,12 +16,15 @@ if(!$products){
   ['name'=>'Sahra','slug'=>'sahra','short_description'=>'Warm woods and amber-inspired character, made for golden-hour moods.','description'=>'Sahra takes its cue from the last light of the day: a warm, enveloping fragrance concept with a confident woody character. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Saffron accord, mandarin','heart_notes'=>'Rose accord, cedar','base_notes'=>'Amber accord, sandalwood','price'=>null,'image_path'=>'/assets/images/sahra.svg'],
   ['name'=>'Velvet Dusk','slug'=>'velvet-dusk','short_description'=>'A deep, smooth evening concept with a modern, velvety mood.','description'=>'Velvet Dusk is a study in contrast: dark fruit-like brightness meets a soft, textured woody base. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Blackcurrant accord, pink pepper','heart_notes'=>'Iris accord, rose','base_notes'=>'Vanilla, patchouli accord','price'=>null,'image_path'=>'/assets/images/velvet-dusk.svg'],
   ['name'=>'Azure 04','slug'=>'azure-04','short_description'=>'A fresh, airy aromatic concept with a clean, modern finish.','description'=>'Azure 04 evokes open air after rain: crisp citrus, aromatic clarity and a calm woody foundation. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Bergamot, marine accord','heart_notes'=>'Neroli, aromatic herbs','base_notes'=>'Cedar, clean musk accord','price'=>null,'image_path'=>'/assets/images/azure-04.svg']
- ];
+,
+  ['name'=>'Aether','slug'=>'aether','short_description'=>'A sheer citrus and mineral-wood concept with effortless clarity.','description'=>'Aether is imagined as a clean horizon: sparkling citrus, airy aromatic notes and a quiet mineral-wood finish. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Yuzu, bergamot','heart_notes'=>'Lavender, green tea accord','base_notes'=>'Mineral woods, white musk','price'=>null,'image_path'=>'/assets/images/aether.svg'],
+  ['name'=>'Rose Veil','slug'=>'rose-veil','short_description'=>'A modern rose composition softened with creamy woods and musk.','description'=>'Rose Veil explores the softer side of floral fragrance: luminous petals, gentle spice and a smooth, comforting base. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Pink pepper, lychee accord','heart_notes'=>'Rose, peony','base_notes'=>'Cashmere woods, musk','price'=>null,'image_path'=>'/assets/images/rose-veil.svg'],
+  ['name'=>'Oud Élan','slug'=>'oud-elan','short_description'=>'A poised oud-inspired concept with resinous warmth and depth.','description'=>'Oud Élan is a study in quiet confidence, pairing a refined oud-inspired accord with warm resin and polished woods. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Cardamom, saffron accord','heart_notes'=>'Rosewood, incense accord','base_notes'=>'Oud accord, amber, sandalwood','price'=>null,'image_path'=>'/assets/images/oud-elan.svg'] ];
 }
 $catalog=[];
 $databaseProducts=[];
 foreach($products as $product){
- $databaseProducts[$product['slug']]=$product;
+ if(isset($product['id']))$databaseProducts[$product['slug']]=$product;
  $gender=strtolower(trim((string)($product['gender']??'')));
  $category=in_array($gender,['female','women','woman','her'],true)?'her':(in_array($gender,['male','men','man','him'],true)?'him':'unisex');
  $catalog[]=[
