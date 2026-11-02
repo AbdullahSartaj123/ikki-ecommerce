@@ -2704,3 +2704,92 @@ body.cart-drawer-open{overflow:hidden}
  .ikki-premium-catalog .collection-toolbar-wrap,.ikki-premium-catalog .collection-search input,
  .ikki-premium-catalog .collection-sort .collection-sort-select select{transition:none!important}
 }
+
+
+/* Collection product grid — consistent three/two/one layout and card interaction */
+.ikki-premium-catalog .ikki-signature-grid{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
+ align-items:stretch;column-gap:clamp(32px,2.8vw,40px)!important;
+ row-gap:clamp(38px,3vw,48px)!important;
+ max-width:1440px;margin-inline:auto;
+}
+.ikki-premium-catalog .ikki-signature-card{
+ position:relative;display:flex!important;flex-direction:column;min-width:0;height:100%;
+ overflow:hidden;background:#fff!important;
+ border:1px solid rgba(122,117,108,.18)!important;
+ box-shadow:0 5px 22px rgba(42,34,23,.025);
+ opacity:0;transform:translateY(24px);
+ transition:opacity .65s ease,transform .65s cubic-bezier(.2,.65,.3,1),
+ border-color .35s ease,box-shadow .35s ease!important;
+}
+.ikki-premium-catalog .ikki-signature-card.is-revealed{opacity:1;transform:translateY(0)}
+.ikki-premium-catalog .ikki-signature-card:hover{
+ transform:translateY(-6px)!important;border-color:#b8935f!important;
+ box-shadow:0 18px 42px rgba(42,34,23,.105)!important;
+}
+.ikki-premium-catalog .ikki-signature-card .collection-card-image{
+ position:relative;flex:0 0 auto;overflow:hidden;aspect-ratio:4/4.55!important;
+ background:linear-gradient(145deg,#f5efe4 0%,#fff 100%)!important;
+}
+.ikki-premium-catalog .ikki-signature-card .ikki-card-image-link{display:block;width:100%;height:100%;overflow:hidden}
+.ikki-premium-catalog .ikki-signature-card .collection-card-image img{
+ display:block;width:100%;height:100%;object-fit:contain;padding:7%;
+ transition:transform .8s cubic-bezier(.2,.65,.3,1),filter .6s ease;
+}
+.ikki-premium-catalog .ikki-signature-card:hover .collection-card-image img{
+ transform:scale(1.055);filter:drop-shadow(0 18px 20px rgba(45,35,22,.12));
+}
+.ikki-premium-catalog .ikki-signature-card .collection-quick-view{
+ position:absolute!important;top:18px!important;right:18px!important;bottom:auto!important;
+ z-index:4;display:grid;place-items:center;width:44px;height:44px;padding:0;
+ border:1px solid rgba(184,147,95,.65)!important;border-radius:50%;
+ background:rgba(255,255,255,.95)!important;color:#987545!important;
+ opacity:0;visibility:hidden;transform:translateY(-5px) scale(.94);
+ transition:opacity .25s ease,visibility .25s ease,transform .25s ease,background .25s ease,color .25s ease!important;
+}
+.ikki-premium-catalog .ikki-signature-card:hover .collection-quick-view,
+.ikki-premium-catalog .ikki-signature-card:focus-within .collection-quick-view{
+ opacity:1;visibility:visible;transform:translateY(0) scale(1);
+}
+.ikki-premium-catalog .ikki-signature-card .collection-quick-view:hover{background:#b8935f!important;color:#fff!important}
+.ikki-premium-catalog .ikki-signature-card .collection-quick-view svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.45}
+.ikki-premium-catalog .ikki-signature-card .collection-card-info{
+ display:flex!important;flex:1;flex-direction:column;align-items:stretch;
+ gap:10px!important;padding:22px 22px 20px!important;text-align:left;
+}
+.ikki-premium-catalog .ikki-signature-card .collection-card-info h2{
+ min-height:2.25em;margin:0;font:400 clamp(23px,2vw,28px)/1.12 'Playfair Display',serif!important;
+}
+.ikki-premium-catalog .ikki-signature-card .collection-card-info p{
+ display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;
+ min-height:3.4em;margin:0;font:400 11px/1.7 'Montserrat',sans-serif!important;
+}
+.ikki-premium-catalog .ikki-signature-card .collection-card-info strong{
+ display:block;margin-top:auto;padding-top:7px;font:500 12px 'Montserrat',sans-serif!important;
+}
+.ikki-premium-catalog .ikki-signature-card .ikki-card-discover{
+ display:flex;justify-content:space-between;align-items:center;margin-top:4px;
+ padding-top:13px;border-top:1px solid rgba(122,117,108,.18);
+}
+@media(max-width:1000px){
+ .ikki-premium-catalog .ikki-signature-grid{
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  column-gap:34px!important;row-gap:40px!important;
+ }
+ .ikki-premium-catalog .ikki-signature-card .collection-card-info{padding:20px!important}
+}
+@media(max-width:700px){
+ .ikki-premium-catalog .ikki-signature-grid{
+  grid-template-columns:minmax(0,1fr)!important;max-width:520px!important;
+  column-gap:0!important;row-gap:30px!important;padding-inline:20px!important;
+ }
+ .ikki-premium-catalog .ikki-signature-card .collection-card-image{aspect-ratio:4/4.3!important}
+ .ikki-premium-catalog .ikki-signature-card .collection-card-info{padding:20px 20px 18px!important}
+ .ikki-premium-catalog .ikki-signature-card .collection-card-info h2{font-size:27px!important}
+ .ikki-premium-catalog .ikki-signature-card .collection-quick-view{opacity:1;visibility:visible;transform:none}
+}
+@media(prefers-reduced-motion:reduce){
+ .ikki-premium-catalog .ikki-signature-card,.ikki-premium-catalog .ikki-signature-card .collection-card-image img,
+ .ikki-premium-catalog .ikki-signature-card .collection-quick-view{transition:none!important}
+ .ikki-premium-catalog .ikki-signature-card{opacity:1;transform:none}
+}
