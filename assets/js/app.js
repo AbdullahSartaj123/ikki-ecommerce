@@ -704,6 +704,22 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
  }
 
+ // Signature collection cards: reveal as one staggered row on scroll.
+ const signatureCards=[...document.querySelectorAll('.home-products--editorial .home-product')];
+ if(signatureCards.length){
+  signatureCards.forEach((card,index)=>card.style.setProperty('--card-reveal-delay',(index*100)+'ms'));
+  if(reducedMotion||!('IntersectionObserver'in window))signatureCards.forEach(card=>card.classList.add('is-card-visible'));
+  else{
+   const cardsObserver=new IntersectionObserver(entries=>{
+    if(!entries.some(entry=>entry.isIntersecting))return;
+    signatureCards.forEach(card=>card.classList.add('is-card-visible'));
+    cardsObserver.disconnect();
+   },{threshold:.12,rootMargin:'0px 0px -35px 0px'});
+   const cardsRow=document.querySelector('.home-products--editorial');
+   if(cardsRow)cardsObserver.observe(cardsRow);else signatureCards.forEach(card=>card.classList.add('is-card-visible'));
+  }
+ }
+
  // Homepage circle ornaments: reveal on entry, then rotate quietly at one revolution per minute.
  const circleMotifs=[...document.querySelectorAll('.home-circle-motif')];
  if(circleMotifs.length){
