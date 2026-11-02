@@ -2302,3 +2302,81 @@ body.has-home-hero .home-products--editorial .home-concept-description{
 @media(max-width:899px){
  .home-feature-art img{--lifestyle-parallax-y:0px!important}
 }
+
+
+/* Desktop first-screen composition: compact, balanced and fragrance-led */
+@media(min-width:761px){
+ .announcement{min-height:26px!important;height:26px!important;padding:5px 16px!important;font-size:8px!important;letter-spacing:.16em!important}
+ .site-header,.site-header.is-home-header,.site-header.is-home-header.is-scrolled{
+  min-height:76px!important;height:76px!important;padding:10px clamp(28px,4.2vw,64px)!important;
+ }
+ .site-header .maison-brand{gap:2px!important}
+ .site-header .maison-wordmark{font-size:31px!important;line-height:.9!important}
+ .site-header .maison-brand-tagline{font-size:7px!important;letter-spacing:.55px!important}
+ .home-marquee{min-height:32px!important;height:32px!important}
+ .home-marquee .home-marquee-track>span{font-size:8px!important;letter-spacing:.17em!important}
+ .home-hero{
+  min-height:clamp(420px,calc(100svh - 134px),560px)!important;
+  height:clamp(420px,calc(100svh - 134px),560px)!important;
+  grid-template-columns:minmax(0,.94fr) minmax(0,1.06fr)!important;
+  align-items:center!important;gap:clamp(22px,3vw,44px)!important;
+  padding:24px clamp(34px,6vw,88px) 30px!important;
+  overflow:hidden!important;
+ }
+ .home-hero-copy{max-width:560px!important;align-self:center!important}
+ .home-hero-eyebrow{font-size:9px!important;letter-spacing:2px!important;margin-bottom:20px!important}
+ .home-overline{font-size:8px!important;letter-spacing:1.7px!important;margin-bottom:13px!important}
+ .home-hero h1{font-size:clamp(58px,5.1vw,76px)!important;line-height:.94!important;letter-spacing:-2.5px!important;margin:0 0 17px!important;max-width:9ch!important}
+ .home-hero-subtext{font-size:13px!important;line-height:1.75!important;max-width:400px!important;margin:0 0 20px!important}
+ .home-hero-actions{gap:12px!important}
+ .home-hero-actions .ikki-btn{min-height:46px!important;padding:13px 20px!important;font-size:9px!important;letter-spacing:.11em!important}
+ .home-hero-foot{display:flex!important;flex-wrap:wrap!important;gap:7px 15px!important;margin-top:22px!important;font-size:7px!important;letter-spacing:1px!important;line-height:1.5!important}
+ .home-hero-visual{width:100%!important;height:100%!important;min-height:0!important;max-height:490px!important;align-self:center!important;position:relative!important;display:grid!important;place-items:center!important}
+ .home-hero-bottle{width:100%!important;height:100%!important;max-height:440px!important;object-fit:contain!important;animation:ikkiBottleFloat 7s ease-in-out infinite!important;filter:drop-shadow(0 22px 28px rgba(50,38,20,.17))!important}
+ .home-hero-orbit{width:min(84%,440px)!important;height:auto!important;aspect-ratio:1!important;left:50%!important;top:50%!important;transform:translate(-50%,-50%)!important;border:1px solid rgba(184,147,95,.28)!important;border-radius:50%!important}
+ .home-hero-visual:before{
+  content:"";position:absolute;z-index:1;pointer-events:none;
+  width:min(67%,340px);aspect-ratio:1;border:1px solid rgba(184,147,95,.2);
+  border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);
+  box-shadow:0 0 0 22px rgba(184,147,95,.035),0 0 0 54px rgba(184,147,95,.025);
+ }
+ .home-hero-photo-caption{right:3%!important;bottom:9%!important}
+ .home-vertical-note{right:1%!important;font-size:7px!important;letter-spacing:2px!important}
+ .home-scroll-cue{display:none!important}
+}
+@keyframes ikkiBottleFloat{
+ 0%,100%{translate:0 0}
+ 50%{translate:0 -7px}
+}
+/* Fine botanical / fragrance-note details give the hero a purposeful editorial frame */
+@media(min-width:761px){
+ .home-hero-visual:after{
+  background:
+   radial-gradient(circle at 50% 50%,rgba(184,147,95,.13),transparent 54%),
+   radial-gradient(ellipse at 75% 24%,rgba(184,147,95,.11),transparent 34%)!important;
+  opacity:.9!important;
+ }
+ .home-hero-visual .home-hero-orbit:after{
+  content:"";position:absolute;width:7px;height:7px;border-radius:50%;
+  background:#b8935f;top:16%;right:18%;
+  box-shadow:0 0 0 6px rgba(184,147,95,.12),-255px 230px 0 -2px rgba(184,147,95,.65);
+  animation:ikkiNotePulse 4s ease-in-out infinite;
+ }
+ .home-hero-photo-caption{
+  padding:12px 15px!important;background:rgba(255,255,255,.78)!important;
+  border:1px solid rgba(184,147,95,.18)!important;backdrop-filter:blur(8px);
+ }
+}
+@keyframes ikkiNotePulse{
+ 0%,100%{opacity:.55;scale:.9}
+ 50%{opacity:1;scale:1.18}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-hero-bottle,.home-hero-visual .home-hero-orbit:after{animation:none!important}
+}
+@media(max-height:620px) and (min-width:761px){
+ .home-hero{min-height:390px!important;height:390px!important;padding-block:14px!important}
+ .home-hero-bottle{max-height:360px!important}
+ .home-hero h1{font-size:58px!important}
+ .home-hero-foot{margin-top:12px!important}
+}
