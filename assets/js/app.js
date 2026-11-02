@@ -685,4 +685,45 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('resize',updateStoryParallax);
  }
 
+
+ // Homepage-only depth motion: restrained pointer tilt and RAF-coalesced image drift.
+ const homeHero=document.querySelector('.home-hero--editorial');
+ if(homeHero&&!reducedMotion){
+  const visual=homeHero.querySelector('.home-hero-visual');
+  const bottle=homeHero.querySelector('.home-hero-bottle');
+  const finePointer=window.matchMedia('(min-width: 900px) and (hover: hover) and (pointer: fine)');
+  if(visual&&bottle&&finePointer.matches){
+   let pointerX=0,pointerY=0,frame=0;
+   const renderDepth=()=>{
+    frame=0;
+    visual.style.transform='perspective(1100px) rotateY('+pointerX+'deg) rotateX('+(-pointerY)+'deg)';
+    bottle.style.translate=(pointerX*.55)+'px '+(pointerY*.45)+'px';
+   };
+   visual.addEventListener('pointermove',event=>{
+    const rect=visual.getBoundingClientRect();
+    pointerX=((event.clientX-rect.left)/rect.width-.5)*5;
+    pointerY=((event.clientY-rect.top)/rect.height-.5)*4;
+    if(!frame)frame=requestAnimationFrame(renderDepth);
+   },{passive:true});
+   visual.addEventListener('pointerleave',()=>{
+    pointerX=0;pointerY=0;
+    if(!frame)frame=requestAnimationFrame(renderDepth);
+   });
+  }
+  // Stagger home content as each section enters the viewport.
+  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-philosophy-title,.home-philosophy-copy,.home-feature-copy,.home-values-heading,.home-value,.home-manifesto,.home-final-cta .home-instagram-heading')];
+  if('IntersectionObserver'in window){
+   const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
+    if(!entry.isIntersecting)return;
+    entry.target.classList.add('ikki-in-view');
+    revealObserver.unobserve(entry.target);
+   }),{threshold:.14,rootMargin:'0px 0px -35px 0px'});
+   revealTargets.forEach((element,index)=>{
+    element.style.setProperty('--ikki-reveal-delay',Math.min(index%4,3)*85+'ms');
+    element.classList.add('ikki-motion-ready');
+    revealObserver.observe(element);
+   });
+  }
+ }
+
 });
