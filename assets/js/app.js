@@ -823,8 +823,22 @@ document.addEventListener('DOMContentLoaded',()=>{
    }
   }
 
+  // Closing destination CTA: ordered entrance for its eyebrow, headline, copy and actions.
+  const finalCta=document.querySelector('.home-final-cta');
+  if(finalCta){
+   const revealFinalCta=()=>finalCta.classList.add('is-final-cta-visible');
+   if(reducedMotion||!('IntersectionObserver'in window))revealFinalCta();
+   else{
+    const finalCtaObserver=new IntersectionObserver(entries=>{
+     if(!entries.some(entry=>entry.isIntersecting))return;
+     revealFinalCta();finalCtaObserver.disconnect();
+    },{threshold:.16,rootMargin:'0px 0px -35px 0px'});
+    finalCtaObserver.observe(finalCta);
+   }
+  }
+
   // Stagger home content as each section enters the viewport.
-  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-values-heading,.home-manifesto,.home-final-cta .home-instagram-heading')];
+  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-values-heading,.home-manifesto')];
   if('IntersectionObserver'in window){
    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
