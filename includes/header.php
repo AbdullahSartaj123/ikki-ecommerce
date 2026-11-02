@@ -31,7 +31,7 @@ $navItems=[
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css?v=20261101-32">
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-9"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261102-2"><?php endif; ?>
-<link rel="stylesheet" href="/assets/css/ikki-luxury.css?v=20261102-15">
+<link rel="stylesheet" href="/assets/css/ikki-luxury.css?v=20261102-16">
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
 <div class="ikki-scroll-progress" data-ikki-scroll-progress aria-hidden="true"><span></span></div>
@@ -68,7 +68,7 @@ $navItems=[
 <div class="ikki-cursor-ring" data-ikki-cursor-ring aria-hidden="true"></div>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
 <header class="site-header<?= $isHomePage?' is-home-header':'' ?>" data-site-header>
-<a class="maison-brand" href="/" aria-label="IKKI home"><span class="maison-wordmark">IKKI</span></a>
+<a class="maison-brand" href="/" aria-label="IKKI — Iconic Kyenotes. Kinetic Impression"><span class="maison-wordmark">IKKI</span><span class="maison-brand-tagline">Iconic Kyenotes. Kinetic Impression</span></a>
 <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation"><span></span><span></span><span></span></button>
 <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
 <?php foreach($navItems as $item): $active=in_array($currentPage,$item['match'],true); ?>
