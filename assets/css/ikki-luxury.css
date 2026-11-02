@@ -2463,3 +2463,18 @@ body.has-home-hero .home-products--editorial .home-concept-description{
   opacity:1!important;transform:none!important;transition:none!important
  }
 }
+
+
+/* Homepage scroll rhythm: alternate section surfaces deliberately.
+   Hero → philosophy → collection → lifestyle → approach → brand statement → final CTA. */
+body.has-home-hero main>section.home-hero{
+ background:linear-gradient(112deg,#f5efe4 0%,#f5efe4 58%,#f1e8da 100%)!important;
+}
+body.has-home-hero main>section.home-philosophy{background:#ffffff!important}
+body.has-home-hero main>section.home-collection{background:#f5efe4!important}
+body.has-home-hero main>section.home-feature{background:#ffffff!important}
+body.has-home-hero main>section.home-values{background:#f5efe4!important}
+body.has-home-hero main>section.home-manifesto{background:#ffffff!important}
+body.has-home-hero main>section.home-final-cta{
+ background:linear-gradient(118deg,rgba(184,147,95,.055) 0%,#ffffff 48%,rgba(184,147,95,.085) 100%)!important;
+}
