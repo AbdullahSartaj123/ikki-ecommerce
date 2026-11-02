@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const toggle=document.querySelector('.menu-toggle');
  const nav=document.querySelector('#primary-navigation');
  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(window.location.hash==='#collection-search')document.querySelector('#collection-search')?.focus({preventScroll:true});
  // === PRELOADER MODULE ===
  // Start page entrance/reveal animations only after the global preloader exits.
  document.addEventListener('ikki:preloader-finished',initScrollAnimations,{once:true});
@@ -178,7 +179,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   if(mobileClose)mobileClose.addEventListener('click',closeMenu);
   mobileOverlay.addEventListener('click',event=>{if(event.target===mobileOverlay)closeMenu();});
   mobileLinks.forEach(link=>link.addEventListener('click',closeMenu));
-  document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMenu();});
+  document.addEventListener('keydown',event=>{
+   if(!mobileOverlay.classList.contains('is-open'))return;
+   if(event.key==='Escape'){closeMenu();return;}
+   if(event.key!=='Tab')return;
+   const focusable=[...mobileOverlay.querySelectorAll('a[href],button:not(:disabled)')].filter(el=>el.getClientRects().length);
+   if(!focusable.length)return;
+   const first=focusable[0],last=focusable[focusable.length-1];
+   if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+  });
   window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMenu();});
  }
  // Footer accordions: collapsed by default on small screens, expanded on desktop.
@@ -278,6 +288,8 @@ document.addEventListener('DOMContentLoaded',()=>{
  const filterTrack=document.querySelector('[data-filter-track]');
  const filterIndicator=filterTrack?.querySelector('.collection-filter-indicator');
  const sortSelect=document.querySelector('#collection-sort');
+ const collectionSearch=document.querySelector('#collection-search');
+ let collectionSearchTerm='';
  const toolbarWrap=document.querySelector('.collection-toolbar-wrap');
  const loadMoreButton=document.querySelector('#collection-load-more');
  const allViewedMessage=document.querySelector('#collection-all-viewed');
@@ -304,7 +316,11 @@ document.addEventListener('DOMContentLoaded',()=>{
    collectionCards=sorted;
   };
   collectionCards.forEach((card,index)=>card.dataset.originalIndex=String(index));
-  const matchesFilter=(card,selected)=>selected==='all'||(selected==='new'?card.dataset.isNew==='true':card.dataset.category===selected);
+  const matchesFilter=(card,selected)=>{
+   const categoryMatch=selected==='all'||card.dataset.category===selected;
+   const haystack=(card.textContent||'').toLocaleLowerCase();
+   return categoryMatch&&(!collectionSearchTerm||haystack.includes(collectionSearchTerm));
+  };
   const updatePagination=(matchingCount)=>{
    const hasMore=matchingCount>visibleLimit;
    if(loadMoreButton){loadMoreButton.hidden=!hasMore;loadMoreButton.disabled=loadMoreBusy||!hasMore;loadMoreButton.setAttribute('aria-busy',String(loadMoreBusy));}
@@ -380,6 +396,11 @@ document.addEventListener('DOMContentLoaded',()=>{
    if(allButton)applyFilter(allButton,true);
   });
   sortSelect?.addEventListener('change',sortCards);
+  collectionSearch?.addEventListener('input',()=>{
+   collectionSearchTerm=collectionSearch.value.trim().toLocaleLowerCase();
+   const activeButton=collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0];
+   if(activeButton)applyFilter(activeButton,false);
+  });
   positionIndicator(collectionFilters.find(button=>button.classList.contains('is-active'))||collectionFilters[0]);
   revealPage('all',false); // Progressive enhancement: show the first perPage products on initial load.
   if(collectionCount)collectionCount.textContent=String(collectionCards.length);
