@@ -1709,3 +1709,122 @@ body.has-home-hero main>section.home-final-cta{
   padding-top:64px!important;padding-bottom:64px!important;
  }
 }
+
+/* =========================================================
+   IKKI TYPOGRAPHY SYSTEM — global, page-independent rules
+   Display: Playfair Display | Body/UI: Montserrat
+   ========================================================= */
+:root{
+  --font-heading:'Playfair Display',Georgia,serif;
+  --font-body:'Montserrat',Arial,sans-serif;
+  --font-size-h1:clamp(2.5rem,5vw,4.5rem);
+  --font-size-body:16.5px;
+  --line-height-body:1.7;
+  --font-size-eyebrow:12px;
+  --font-letter-spacing-eyebrow:2px;
+}
+body,
+button,input,select,textarea{
+  font-family:var(--font-body);
+}
+body{
+  font-size:16.5px!important;
+  line-height:1.7!important;
+  color:#7a756c;
+}
+p,
+.home-hero-subtext,.home-philosophy-copy p,.home-feature-copy p,
+.home-values-heading p,.home-value p,.home-product-meta p,
+.home-concept-description,.home-collection-note,
+.story-narrative-copy p,.story-values p,.story-cta p,
+.contact-detail-copy p,.contact-form-note,
+.ikki-product-deck,.ikki-product-description,
+.quick-view-description,.collection-card-info p{
+  color:#7a756c;
+  font-family:var(--font-body);
+  font-size:16.5px;
+  line-height:1.7;
+}
+h1,
+.page-banner h1,.ikki-catalog-hero h1,.ikki-product-information h1,
+.ikki-product-not-found h1{
+  font-family:'Playfair Display',Georgia,serif!important;
+  font-size:clamp(2.5rem,5vw,4.5rem)!important;
+  font-weight:400!important;
+  line-height:1.12!important;
+  letter-spacing:-.025em;
+}
+.home-hero.home-hero--editorial .home-hero-copy h1{
+  font-family:'Playfair Display',Georgia,serif!important;
+  font-size:clamp(2.5rem,5vw,4.5rem)!important;
+  line-height:1.12!important;
+  letter-spacing:-.025em!important;
+}
+h1 em,h1 i,
+h1 .accent-italic,
+.accent-italic{
+  color:#b8935f!important;
+  font-family:inherit;
+  font-style:italic!important;
+  font-weight:400!important;
+}
+.eyebrow,.home-kicker,.story-kicker,.story-narrative-eyebrow,
+.home-hero-eyebrow,.home-story-eyebrow,.ikki-catalog-intro>span,
+.quick-view-kicker,.quick-view-label{
+  display:block;
+  color:#b8935f!important;
+  font-family:var(--font-body)!important;
+  font-size:12px!important;
+  font-weight:500!important;
+  line-height:1.5!important;
+  letter-spacing:2px!important;
+  text-transform:uppercase!important;
+}
+.home-kicker,.story-kicker,.eyebrow,
+.story-narrative-eyebrow,.ikki-catalog-intro>span{
+  margin:0 0 14px;
+}
+.home-hero-eyebrow{
+  margin:0 0 14px;
+}
+.home-philosophy-title .home-kicker,
+.home-section-heading .home-kicker,
+.home-feature-copy .home-kicker,
+.home-values-heading .home-kicker,
+.home-final-cta .home-kicker,
+.story-values-heading .story-kicker,
+.story-cta-copy .story-kicker,
+.contact-form-column .story-kicker{
+  margin-bottom:16px;
+}
+.story-narrative-copy .story-narrative-eyebrow{
+  margin:0 0 10px;
+}
+.home-philosophy-title h2,
+.home-section-heading h2,
+.home-feature-copy h2,
+.home-values-heading h2,
+.story-narrative-copy h2,
+.story-values-heading h2,
+.story-cta-copy h2,
+.home-final-cta h2{
+  font-family:'Playfair Display',Georgia,serif;
+}
+@media(max-width:760px){
+  body{font-size:16px!important}
+  p,.home-hero-subtext,.home-philosophy-copy p,.home-feature-copy p,
+  .home-values-heading p,.home-value p,.home-product-meta p,
+  .home-concept-description,.home-collection-note,
+  .story-narrative-copy p,.story-values p,.story-cta p,
+  .contact-detail-copy p,.contact-form-note,
+  .ikki-product-deck,.ikki-product-description,
+  .quick-view-description,.collection-card-info p{
+    font-size:16px;
+    line-height:1.7;
+  }
+  h1,.page-banner h1,.ikki-catalog-hero h1,.ikki-product-information h1,
+  .ikki-product-not-found h1,
+  .home-hero.home-hero--editorial .home-hero-copy h1{
+    font-size:clamp(2.5rem,5vw,4.5rem)!important;
+  }
+}
