@@ -14,8 +14,8 @@ $navItems=[
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0a0a0a">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
 <meta property="og:site_name" content="Ikki">
 <meta property="og:locale" content="en_PK">
 <meta name="robots" content="index,follow">
@@ -29,8 +29,9 @@ $navItems=[
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css?v=20261101-31">
+<link rel="stylesheet" href="/assets/css/style.css?v=20261101-32">
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-9"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261101-1"><?php endif; ?>
+<link rel="stylesheet" href="/assets/css/ikki-luxury.css?v=20261102-1">
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
 <div class="ikki-scroll-progress" data-ikki-scroll-progress aria-hidden="true"><span></span></div>
@@ -67,7 +68,7 @@ $navItems=[
 <div class="ikki-cursor-ring" data-ikki-cursor-ring aria-hidden="true"></div>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
 <header class="site-header<?= $isHomePage?' is-home-header':'' ?>" data-site-header>
-<a class="maison-brand" href="/" aria-label="Ikki home"><span class="maison-monogram" aria-hidden="true">M</span><span class="maison-wordmark">MAISON</span></a>
+<a class="maison-brand" href="/" aria-label="IKKI home"><span class="maison-wordmark">IKKI</span></a>
 <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation"><span></span><span></span><span></span></button>
 <nav class="main-nav" id="primary-navigation" aria-label="Main navigation">
 <?php foreach($navItems as $item): $active=in_array($currentPage,$item['match'],true); ?>
@@ -78,7 +79,7 @@ $navItems=[
 <a class="header-icon-link header-search-link" href="/shop.php" aria-label="Explore and search the collection" title="Explore collection">
 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 4.5 4.5"></path></svg>
 </a>
-<a class="header-icon-link header-bag-link" href="/cart.php" data-cart-drawer-trigger aria-label="Shopping bag, <?=cart_count()?> items" aria-haspopup="dialog" aria-controls="cart-drawer" aria-expanded="false" title="Shopping bag">
+<a class="header-icon-link header-bag-link" href="/cart.php" aria-label="Shopping bag, <?=cart_count()?> items" title="Shopping bag">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
 <span class="bag-count"><?=cart_count()?></span>
 </a>
