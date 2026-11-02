@@ -23,7 +23,7 @@
    </div>
   </section>
   <section class="ikki-footer-column ikki-footer-newsletter" data-footer-accordion>
-   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-newsletter-content"><span>Newsletter</span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
+   <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-newsletter-content"><span>Need Help?</span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
    <div class="ikki-footer-panel" id="footer-newsletter-content">
     <p>Questions about a fragrance or an order? Speak with the IKKI team directly.</p>
     <a class="ikki-footer-contact-link" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">CHAT WITH US ON WHATSAPP ↗</a>
@@ -32,9 +32,7 @@
  </div>
  <div class="ikki-footer-bottom">
   <span>© <?=date('Y')?> IKKI. ALL RIGHTS RESERVED.</span>
-  <div class="ikki-payment-methods" aria-label="Payment methods accepted">
-   <span>VISA</span><span>Mastercard</span><span>COD</span>
-  </div>
+  <span>FRAGRANCE • INDIVIDUALITY • IKKI</span>
  </div>
 </footer>
 <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top" title="Back to top"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M5.5 11.5 12 5l6.5 6.5"/></svg></button>
