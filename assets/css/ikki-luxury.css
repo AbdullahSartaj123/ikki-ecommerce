@@ -1902,15 +1902,17 @@ h1 .accent-italic,
 }
 .site-header .maison-brand-tagline{
  display:block;color:var(--color-gold-dark)!important;
- font:500 7px/1.25 var(--font-body)!important;
- letter-spacing:1.35px!important;text-transform:uppercase;
- white-space:nowrap;opacity:.92;
+ font:500 10px/1.3 var(--font-body)!important;
+ letter-spacing:1.05px!important;text-transform:uppercase;
+ white-space:nowrap;opacity:.96;
+}
+.site-header .maison-brand-tagline strong{font-weight:800!important;color:var(--color-black)!important;
 }
 @media(max-width:700px){
  .site-header .maison-brand{gap:4px!important}
  .site-header .maison-wordmark{font-size:27px!important;line-height:.9!important}
- .site-header .maison-brand-tagline{font-size:5.5px!important;letter-spacing:.85px!important}
+ .site-header .maison-brand-tagline{font-size:8px!important;letter-spacing:.65px!important}
 }
 @media(max-width:360px){
- .site-header .maison-brand-tagline{font-size:5px!important;letter-spacing:.55px!important}
+ .site-header .maison-brand-tagline{font-size:7px!important;letter-spacing:.35px!important}
 }
