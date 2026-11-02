@@ -1,17 +1,12 @@
 <?php
 require_once __DIR__.'/config/bootstrap.php';
-$pageTitle='Ikki — Leave a little mystery.';
-$description='Discover Ikki, a modern fragrance house in Pakistan. Find a signature scent that feels unmistakably yours.';
+$pageTitle='IKKI — The Art of Fragrance';
+$description='Discover IKKI, a considered fragrance house. Find a signature scent that feels unmistakably yours. Find a signature scent that feels unmistakably yours.';
 $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.id LIMIT 4")->fetchAll();
 }catch(Throwable $ex){error_log('[Ikki home] '.$ex->getMessage());}
-if(!$products){$products=[
- ['name'=>'Noor','slug'=>'noor','short_description'=>'Light, made lasting.','price'=>null,'image_path'=>'/assets/images/noor.svg'],
- ['name'=>'Sahra','slug'=>'sahra','short_description'=>'Warmth after sunset.','price'=>null,'image_path'=>'/assets/images/sahra.svg'],
- ['name'=>'Velvet Dusk','slug'=>'velvet-dusk','short_description'=>'The quiet after hours.','price'=>null,'image_path'=>'/assets/images/velvet-dusk.svg'],
- ['name'=>'Azure 04','slug'=>'azure-04','short_description'=>'A breath of open air.','price'=>null,'image_path'=>'/assets/images/azure-04.svg']
-];}
+$products=[];
 require __DIR__.'/includes/header.php';
 ?>
 <section class="home-hero" aria-labelledby="home-title">
@@ -36,12 +31,14 @@ require __DIR__.'/includes/header.php';
 <section class="home-collection" id="signature-scents" aria-labelledby="signature-title">
  <div class="home-section-heading home-reveal"><div><span class="home-kicker">01 / FIND YOUR SIGNATURE</span><h2 id="signature-title">Our signature<br><em>scents.</em></h2></div><a class="home-text-link" href="/shop.php">VIEW THE COLLECTION <span>↗</span></a></div>
  <div class="home-products">
- <?php foreach($products as $n=>$p): ?>
+ <?php if($products): foreach($products as $n=>$p): ?>
   <a class="home-product home-reveal" href="/product.php?slug=<?=e($p['slug'])?>">
    <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image_path']?:'/assets/images/noor.svg')?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div>
    <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An Ikki signature')?></p></div><strong><?=$p['price']!==null?money($p['price']):'DISCOVER'?></strong></div>
   </a>
- <?php endforeach; ?>
+ <?php endforeach; else: ?>
+  <p class="home-collection-note">Our fragrance collection is being prepared. <a href="/contact.php">Contact us for assistance.</a></p>
+ <?php endif; ?>
  </div>
  <p class="home-collection-note home-reveal">Distinct expressions. One unmistakable point of view.</p>
 </section>
@@ -50,7 +47,7 @@ require __DIR__.'/includes/header.php';
  <div class="home-story-parallax" aria-hidden="true"><img class="home-story-image" src="/assets/images/sahra.svg" alt="Sahra fragrance bottle artwork displayed in the Ikki brand story" width="800" height="1000" loading="lazy" decoding="async"></div>
  <div class="home-story-overlay" aria-hidden="true"></div>
  <div class="home-story-content home-reveal" data-story-reveal>
-  <span class="home-story-eyebrow">SINCE 1998</span>
+  <span class="home-story-eyebrow">THE IKKI FRAGRANCE HOUSE</span>
   <h2 id="story-title">A Legacy of Craftsmanship</h2>
   <p><em>Every fragrance begins with an idea, takes shape through thoughtful composition, and becomes part of a story only you can tell. Discover the art behind the scent.</em></p>
   <a class="ikki-btn ikki-btn--secondary home-story-button" href="/our-story.php">Discover Our Story <span aria-hidden="true">↗</span></a>
@@ -88,105 +85,12 @@ require __DIR__.'/includes/header.php';
  </div>
 </section>
 
-<?php
-$bestSellers=[
- ['name'=>'Noir Orchid','slug'=>'noir-orchid','price'=>'$185','notes'=>'A dark floral signature','image'=>'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=800&q=85','url'=>'/shop.php'],
- ['name'=>'Velvet Rose','slug'=>'velvet-rose','price'=>'$165','notes'=>'A modern rose composition','image'=>'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85','url'=>'/shop.php'],
- ['name'=>'Amber Nights','slug'=>'amber-nights','price'=>'$195','notes'=>'Amber, leather, tobacco','image'=>'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=800&q=85','url'=>'/shop.php']
-];
-try{
- $bestStmt=db()->prepare("SELECT p.id,p.slug,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path,(SELECT v.id FROM product_variants v WHERE v.product_id=p.id AND v.is_active=1 AND v.stock_quantity>0 ORDER BY v.price LIMIT 1) variant_id FROM products p WHERE p.slug=? AND p.is_active=1 LIMIT 1");
- foreach($bestSellers as &$best){$bestStmt->execute([$best['slug']]);$found=$bestStmt->fetch();if($found){$best['image']=$found['image_path']?:$best['image'];$best['variant_id']=$found['variant_id']?:null;$best['url']='/product.php?slug='.rawurlencode($best['slug']);}}
- unset($best);
-}catch(Throwable $ex){error_log('[Ikki best sellers] '.$ex->getMessage());}
-?>
-<section class="home-best-sellers" aria-labelledby="best-sellers-title">
- <div class="home-best-sellers-heading">
-  <h2 id="best-sellers-title">Our Best Sellers</h2>
-  <a href="/shop.php" class="home-best-sellers-view">View All <span aria-hidden="true">↗</span></a>
- </div>
- <div class="home-best-sellers-grid">
- <?php foreach($bestSellers as $best): ?>
-  <article class="home-best-card">
-   <div class="home-best-card-media">
-   <a class="home-best-card-image" href="<?=e($best['url'])?>" aria-label="View <?=e($best['name'])?>">
-    <img src="<?=e($best['image'])?>" alt="<?=e($best['name'])?> fragrance" width="800" height="1000" loading="lazy" decoding="async">
-    <span class="home-best-badge">Bestseller</span>
-   </a>
-   <?php if(!empty($best['variant_id'])): ?>
-    <form class="home-best-quick-add" action="/actions/cart-add.php" method="post" aria-label="Quick add <?=e($best['name'])?>">
-     <?=csrf_field()?><input type="hidden" name="variant_id" value="<?= (int)$best['variant_id'] ?>"><input type="hidden" name="quantity" value="1">
-     <button type="submit" aria-label="Add <?=e($best['name'])?> to bag">+</button>
-    </form>
-   <?php else: ?>
-    <a class="home-best-quick-add" href="/shop.php" aria-label="Explore <?=e($best['name'])?>"><span aria-hidden="true">+</span></a>
-   <?php endif; ?>
-   </div>
-   <div class="home-best-card-meta"><a href="<?=e($best['url'])?>" class="home-best-name"><?=e($best['name'])?></a><span class="home-best-price"><?=e($best['price'])?></span></div>
-   <?php if($best['slug']==='amber-nights'): ?><p class="home-best-notes"><?=e($best['notes'])?></p><?php endif; ?>
-  </article>
- <?php endforeach; ?>
- </div>
-</section>
-
-<section class="home-testimonials" aria-labelledby="testimonials-title" data-testimonial-carousel>
- <div class="home-testimonials-inner">
-  <span class="home-testimonials-quote-mark" aria-hidden="true">“</span>
-  <h2 id="testimonials-title" class="visually-hidden">Words from our customers</h2>
-  <div class="home-testimonial-slides" aria-live="polite" aria-atomic="true">
-   <article class="home-testimonial-slide is-active" data-testimonial-slide aria-hidden="false">
-    <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
-    <blockquote>“The Noir Orchid has become my signature scent. Compliments every single day.”</blockquote>
-    <p class="home-testimonial-author">Sarah M.</p><p class="home-testimonial-detail">Loyal Customer</p>
-   </article>
-   <article class="home-testimonial-slide" data-testimonial-slide aria-hidden="true" inert>
-    <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
-    <blockquote>“Exceptional quality and the bottles themselves are works of art.”</blockquote>
-    <p class="home-testimonial-author">James R.</p><p class="home-testimonial-detail">Verified Buyer</p>
-   </article>
-   <article class="home-testimonial-slide" data-testimonial-slide aria-hidden="true" inert>
-    <div class="home-testimonial-stars" aria-label="5 out of 5 stars">★★★★★</div>
-    <blockquote>“I've never experienced such longevity in a fragrance. Worth every penny.”</blockquote>
-    <p class="home-testimonial-author">Amara K.</p><p class="home-testimonial-detail">Verified Buyer</p>
-   </article>
-  </div>
-  <div class="home-testimonial-dots" role="group" aria-label="Choose a customer testimonial">
-   <button class="is-active" type="button" data-testimonial-dot="0" aria-label="Show testimonial 1" aria-pressed="true"></button>
-   <button type="button" data-testimonial-dot="1" aria-label="Show testimonial 2" aria-pressed="false"></button>
-   <button type="button" data-testimonial-dot="2" aria-label="Show testimonial 3" aria-pressed="false"></button>
-  </div>
- </div>
-</section>
-
-<section class="home-instagram" aria-labelledby="instagram-title">
+<section class="home-instagram home-contact-cta" aria-labelledby="home-contact-title">
  <div class="home-instagram-heading home-reveal">
-  <h2 id="instagram-title">Follow Our Journey</h2>
-  <a href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer">@maisonperfume <span aria-hidden="true">↗</span></a>
- </div>
- <div class="home-instagram-gallery" aria-label="Ikki fragrance lifestyle gallery">
-  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80" alt="Luxury perfume bottle in warm light" width="600" height="750" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
-  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80" alt="Perfume bottle and fragrance details" width="600" height="750" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
-  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Artful fragrance bottle composition" width="600" height="750" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
-  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1595425970377-c9703cf48b6d?auto=format&fit=crop&w=600&q=80" alt="Elegant perfume and beauty arrangement" width="600" height="750" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
-  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=600&q=80" alt="Minimal fragrance still life" width="600" height="750" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
-  <a class="home-instagram-tile" href="https://www.instagram.com/maisonperfume/" target="_blank" rel="noopener noreferrer" aria-label="Explore Ikki on Instagram"><img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=600&q=80" alt="Perfume bottle in an editorial setting" width="600" height="750" loading="lazy" decoding="async"><span class="home-instagram-overlay" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="18" cy="6" r="1" class="instagram-dot"/></svg></span></a>
+  <span class="home-kicker">A PERSONAL FRAGRANCE EXPERIENCE</span>
+  <h2 id="home-contact-title">Find the scent that feels like you.</h2>
+  <p>Need help choosing? Speak with IKKI about the collection.</p>
+  <a class="ikki-btn ikki-btn--primary" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">Chat with IKKI <span aria-hidden="true">↗</span></a>
  </div>
 </section>
-
-<section class="home-newsletter" aria-labelledby="newsletter-title">
- <div class="home-newsletter-inner home-reveal">
-  <span class="home-newsletter-eyebrow">JOIN THE INNER CIRCLE</span>
-  <h2 id="newsletter-title">Get 15% Off Your First Order</h2>
-  <p>Discover considered scents, exclusive offers and notes from our world.</p>
-  <form class="home-newsletter-form" data-home-newsletter novalidate>
-   <label class="visually-hidden" for="newsletter-email">Your email address</label>
-   <input id="newsletter-email" type="email" name="email" placeholder="Enter your email address" autocomplete="email" required>
-   <button type="submit">Subscribe <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5l7 7-7 7"/></svg></button>
-  </form>
-  <div class="home-newsletter-success" data-home-newsletter-success role="status" aria-live="polite" hidden>
-   <span class="home-newsletter-check" aria-hidden="true"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="21"/><path d="m13 24 8 8 15-17"/></svg></span>
-   <p>You're on the list. Welcome to the inner circle.</p>
-  </div>
- </div>
-</section>
-<?php require __DIR__.'/includes/footer.php'; ?>
+<?php require __DIR__.'/includes/footer.php'; ?><?php require __DIR__.'/includes/footer.php'; ?>
