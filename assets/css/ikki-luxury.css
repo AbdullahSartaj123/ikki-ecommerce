@@ -850,3 +850,75 @@ main{overflow:clip}
 @media(prefers-reduced-motion:reduce){
  .maison-wordmark,.home-product,.home-feature-art img,.story-narrative-visual img,.story-value-card{transition:none!important}
 }
+
+/* IKKI HOMEPAGE — complete ivory/champagne brand system */
+.home-hero{background:radial-gradient(ellipse at 76% 45%,rgba(196,164,116,.22),transparent 36%),linear-gradient(112deg,#fbf9f5 0%,#f6f0e6 52%,#eee3d2 100%)!important;color:var(--ikki-ink)!important;min-height:clamp(650px,calc(100svh - 118px),830px)}
+.home-hero:after{opacity:.035}
+.home-hero-copy{max-width:650px}
+.home-hero-eyebrow,.home-overline,.home-hero-foot,.home-vertical-note,.home-scroll-cue{color:#89785e!important}
+.home-hero-eyebrow i{background:var(--ikki-champagne)!important}
+.home-hero h1{color:#29251f!important;font:400 clamp(70px,8.5vw,116px)/.91 'Playfair Display',Georgia,serif!important;letter-spacing:-.055em}
+.home-hero h1 em{color:var(--ikki-metal)!important}
+.home-hero-subtext,.home-lead{max-width:440px;color:#71695e!important;font-size:13px;line-height:2}
+.home-hero-actions .ikki-btn--primary{background:#9b7848!important;border-color:#9b7848!important;color:#fff!important}
+.home-hero-actions .ikki-btn--primary:hover{background:#80613b!important}
+.home-hero-actions .ikki-btn--secondary,.home-quiet-link{color:#80613b!important}
+.home-hero-visual{min-height:550px;background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.9),rgba(255,255,255,0) 65%)}
+.home-hero-bottle{height:570px;max-height:75vh;filter:drop-shadow(0 25px 30px rgba(80,60,35,.16))}
+.home-visual-glow{background:radial-gradient(circle,rgba(211,174,111,.28),rgba(158,119,59,.07) 42%,transparent 70%)}
+.home-hero-orbit,.home-ring{border-color:rgba(157,125,78,.2)!important}
+.home-hero-photo-caption{position:absolute;z-index:3;left:7%;bottom:8%;display:grid;gap:8px;color:#89785e}
+.home-hero-photo-caption small{font-size:8px;letter-spacing:.2em}
+.home-hero-photo-caption strong{font:400 25px 'Playfair Display',serif;letter-spacing:.08em;color:#4a4032}
+.home-hero-photo-caption em{color:var(--ikki-metal)}
+.home-scroll-cue span{background:var(--ikki-champagne)}
+.home-marquee{background:#e9decc!important;color:#65533a!important;border-block:1px solid rgba(157,125,78,.18)}
+.home-marquee div{font-weight:500!important}.home-marquee b{color:#ad8b5c}
+.home-philosophy,.home-collection,.home-values,.home-final-cta{background:var(--ikki-ivory)!important;color:var(--ikki-ink)!important}
+.home-section-index{color:#8b7b63!important}.home-kicker{color:var(--ikki-metal)!important}
+.home-philosophy-title h2,.home-section-heading h2,.home-feature-copy h2,.home-values-heading h2{color:#29251f!important;font-family:'Playfair Display',Georgia,serif!important;letter-spacing:-.045em!important}
+.home-philosophy-title h2 em,.home-section-heading h2 em,.home-feature-copy h2 em,.home-values-heading h2 em,.home-manifesto p em,.home-final-cta h2 em{color:var(--ikki-metal)!important}
+.home-philosophy-copy p,.home-feature-copy p,.home-values-heading p{color:#746c60!important}
+.home-text-link{color:#8b6d43!important;border-color:var(--ikki-rule)!important}
+.home-collection{background:#f5f0e7!important}
+.home-product-art{background:linear-gradient(145deg,#f6f1e9,#eee5d8)!important;border:1px solid rgba(157,125,78,.16)}
+.home-product-art:after{background:linear-gradient(180deg,rgba(255,255,255,.03),transparent 62%,rgba(65,48,25,.12))!important}
+.home-product-art img{object-fit:contain!important;padding:8%!important;mix-blend-mode:multiply}
+.home-product-number{color:#8b6d43!important}.home-product-open{background:rgba(255,255,255,.94)!important;color:#80613b!important}
+.home-product-meta h3{color:#29251f!important;font-family:'Playfair Display',Georgia,serif!important}
+.home-product-meta p{color:#777064!important}.home-product-meta strong{color:#8b6d43!important}
+.home-concept-label{color:#8b6d43!important;background:rgba(255,255,255,.86)!important}
+.home-concept-description{color:#777064!important}.home-collection-note{color:#8a7b65!important}
+.home-feature{background:#f1e9dc!important}.home-feature-art{background:#e8dece}
+.home-feature-art img{filter:saturate(.82)}.home-feature-art>span{color:#766144!important}
+.home-outline-button{border-color:#9b7848!important;color:#80613b!important}
+.home-outline-button:hover{background:#9b7848!important;color:white!important}
+.home-values{grid-template-columns:1.1fr repeat(3,minmax(0,1fr));background:#fbf9f5!important}
+.home-value{background:rgba(255,255,255,.72)!important;border:1px solid var(--ikki-rule)!important;padding:26px 20px!important;display:block!important}
+.home-value>span,.home-value-number{color:#9b7848!important}
+.home-value h3{color:#393126!important;font:400 22px/1.2 'Playfair Display',Georgia,serif!important}
+.home-value p{color:#777064!important}
+.home-value-icon{display:block;width:38px;height:38px;margin-bottom:18px}
+.home-value-icon svg{width:100%;height:100%;fill:none;stroke:#9b7848;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.home-manifesto{background:linear-gradient(120deg,#eee5d7,#faf7f1)!important;border-block:1px solid var(--ikki-rule)}
+.home-manifesto>p{color:#3d3428!important;font-family:'Playfair Display',Georgia,serif!important}
+.home-manifesto>span:last-child{color:#8b7b63!important}
+.home-final-cta{background:radial-gradient(ellipse at 50% 100%,rgba(196,164,116,.2),transparent 60%),#f5f0e7!important}
+.home-final-cta h2{color:#29251f!important;font-family:'Playfair Display',Georgia,serif!important}
+.home-final-cta p{color:#71695e!important}
+.home-reveal{opacity:1!important;transform:none!important}
+@media(max-width:700px){
+ .home-hero{background:linear-gradient(155deg,#fbf9f5,#f0e6d7)!important;padding-top:54px}
+ .home-hero h1{font-size:clamp(66px,15vw,94px)!important}
+ .home-hero-visual{min-height:360px;background:transparent}
+ .home-hero-bottle{height:390px;max-height:none}
+ .home-hero-photo-caption{left:0;bottom:3%}
+ .home-hero-foot{color:#89785e!important}
+ .home-philosophy,.home-collection,.home-values{background:#fbf9f5!important}
+ .home-collection{background:#f5f0e7!important}
+ .home-values{grid-template-columns:1fr!important}
+ .home-value{display:grid!important;grid-template-columns:42px 1fr}
+ .home-value-icon{grid-row:1 / span 3;margin:0}
+ .home-value-number{align-self:end}.home-value h3,.home-value p{grid-column:2}
+ .home-manifesto{padding:76px 22px!important}
+}
