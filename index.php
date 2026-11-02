@@ -5,7 +5,7 @@ $description='Discover IKKI, a considered fragrance house. Find a signature scen
 $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.id LIMIT 4")->fetchAll();
-}catch(Throwable $ex){error_log('[Ikki home] '.$ex->getMessage());}
+}catch(Throwable $ex){error_log('[IKKI home] '.$ex->getMessage());}
 require __DIR__.'/includes/header.php';
 ?>
 <section class="home-hero" aria-labelledby="home-title">
@@ -18,10 +18,10 @@ require __DIR__.'/includes/header.php';
    <a class="ikki-btn ikki-btn--secondary" href="/our-story.php">Our Story <span aria-hidden="true">↗</span></a>
   </div>
  </div>
- <div class="home-hero-visual" role="img" aria-label="Ikki Noor fragrance bottle">
+ <div class="home-hero-visual" role="img" aria-label="IKKI Noor fragrance bottle">
   <div class="home-visual-glow" aria-hidden="true"></div>
   <div class="home-hero-orbit" aria-hidden="true"></div>
-  <img class="home-hero-bottle" src="/assets/images/noor.svg" alt="Ikki Noor fragrance bottle" width="500" height="690" loading="eager" fetchpriority="high" decoding="async">
+  <img class="home-hero-bottle" src="/assets/images/noor.svg" alt="IKKI Noor fragrance bottle" width="500" height="690" loading="eager" fetchpriority="high" decoding="async">
   <span class="home-hero-edition" aria-hidden="true">IKKI · Nº 01<br><strong>NOOR</strong></span>
  </div>
  <a class="home-scroll-cue" href="#signature-scents" aria-label="Scroll to discover"><span></span></a>
@@ -33,7 +33,7 @@ require __DIR__.'/includes/header.php';
  <?php if($products): foreach($products as $n=>$p): ?>
   <a class="home-product home-reveal" href="/product.php?slug=<?=e($p['slug'])?>">
    <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image_path']?:'/assets/images/noor.svg')?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div>
-   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An Ikki signature')?></p></div><strong><?=$p['price']!==null?money($p['price']):'DISCOVER'?></strong></div>
+   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI signature')?></p></div><strong><?=$p['price']!==null?money($p['price']):'DISCOVER'?></strong></div>
   </a>
  <?php endforeach; else: ?>
   <p class="home-collection-note">Our fragrance collection is being prepared. <a href="/contact.php">Contact us for assistance.</a></p>
@@ -43,7 +43,7 @@ require __DIR__.'/includes/header.php';
 </section>
 
 <section class="home-story-teaser" aria-labelledby="story-title">
- <div class="home-story-parallax" aria-hidden="true"><img class="home-story-image" src="/assets/images/sahra.svg" alt="Sahra fragrance bottle artwork displayed in the Ikki brand story" width="800" height="1000" loading="lazy" decoding="async"></div>
+ <div class="home-story-parallax" aria-hidden="true"><img class="home-story-image" src="/assets/images/sahra.svg" alt="Sahra fragrance bottle artwork displayed in the IKKI brand story" width="800" height="1000" loading="lazy" decoding="async"></div>
  <div class="home-story-overlay" aria-hidden="true"></div>
  <div class="home-story-content home-reveal" data-story-reveal>
   <span class="home-story-eyebrow">THE IKKI FRAGRANCE HOUSE</span>
