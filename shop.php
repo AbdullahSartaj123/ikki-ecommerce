@@ -44,7 +44,7 @@ require __DIR__.'/includes/header.php';
   <p>A considered collection of signature fragrances. Discover the scent that feels unmistakably yours.</p>
   <span class="ikki-catalog-edition">THE SIGNATURE COLLECTION <i>—</i> 01 / 07</span>
  </div>
- <div class="ikki-catalog-hero-side" aria-hidden="true"><span>SCENT IS A FORM OF MEMORY</span><b>IKKI</b></div>
+ <div class="ikki-catalog-hero-side"><img src="/assets/images/collection-hero.svg" alt="IKKI signature perfume bottle" width="420" height="460" fetchpriority="high"><span>SCENT IS A FORM OF MEMORY</span><b>IKKI</b></div>
 </section>
 <section class="collection-catalog ikki-premium-catalog" aria-label="Fragrance collection">
  <div class="collection-toolbar-wrap">
