@@ -9,7 +9,7 @@ function initScrollAnimations(){
   if(!entry.isIntersecting)return;
   const element=entry.target;
   const delay=element.getAttribute('data-delay')||'0ms';
-  element.style.transitionDelay=/^(?:0|[1-9]\\d{0,2}|1000)ms$/.test(delay)?delay:'0ms';
+  element.style.transitionDelay=/^(?:0|[1-9]\d{0,2}|1000)ms$/.test(delay)?delay:'0ms';
   reveal(element);
   observer.unobserve(element);
  }),{threshold:.12,rootMargin:'0px 0px -35px 0px'});
@@ -596,7 +596,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const missionQuote=document.querySelector('[data-mission-quote]');
  if(missionQuote){
   const quoteText=missionQuote.getAttribute('aria-label')||missionQuote.textContent.trim();
-  const words=quoteText.match(/\\S+/g)||[];
+  const words=quoteText.match(/\S+/g)||[];
   if(reducedMotion||!('IntersectionObserver' in window)){
    missionQuote.textContent=quoteText;
    missionQuote.classList.add('is-visible');
