@@ -1,12 +1,11 @@
 <?php
 require_once __DIR__.'/config/bootstrap.php';
 $pageTitle='IKKI — The Art of Fragrance';
-$description='Discover IKKI, a considered fragrance house. Find a signature scent that feels unmistakably yours. Find a signature scent that feels unmistakably yours.';
+$description='Discover IKKI, a considered fragrance house. Find a signature scent that feels unmistakably yours.';
 $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.id LIMIT 4")->fetchAll();
 }catch(Throwable $ex){error_log('[Ikki home] '.$ex->getMessage());}
-$products=[];
 require __DIR__.'/includes/header.php';
 ?>
 <section class="home-hero" aria-labelledby="home-title">
@@ -93,4 +92,4 @@ require __DIR__.'/includes/header.php';
   <a class="ikki-btn ikki-btn--primary" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">Chat with IKKI <span aria-hidden="true">↗</span></a>
  </div>
 </section>
-<?php require __DIR__.'/includes/footer.php'; ?><?php require __DIR__.'/includes/footer.php'; ?>
+<?php require __DIR__.'/includes/footer.php'; ?>
