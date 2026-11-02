@@ -2380,3 +2380,46 @@ body.has-home-hero .home-products--editorial .home-concept-description{
  .home-hero h1{font-size:58px!important}
  .home-hero-foot{margin-top:12px!important}
 }
+
+
+/* Discovery / Expression / Moments — consistent editorial value cards */
+.home-values{align-items:stretch!important}
+.home-values .home-value{
+ box-sizing:border-box;display:flex!important;flex-direction:column!important;
+ align-items:flex-start;justify-content:flex-start;height:100%;
+ min-height:260px!important;padding:48px!important;
+ border:1px solid rgba(122,117,108,.22)!important;background:#fff!important;
+ transition:border-color .35s ease,box-shadow .35s ease,transform .35s ease!important;
+}
+.home-values .home-value-icon{
+ display:flex!important;align-items:center;justify-content:flex-start;
+ width:36px!important;height:36px!important;min-width:36px;
+ margin:0 0 22px!important;color:#b8935f!important;
+ transition:transform .35s ease,color .35s ease!important;transform-origin:center;
+}
+.home-values .home-value-icon svg{
+ display:block;width:36px!important;height:36px!important;fill:none!important;
+ stroke:#b8935f!important;stroke-width:1.5px!important;
+ stroke-linecap:round!important;stroke-linejoin:round!important;
+}
+.home-values .home-value-number{margin:0 0 14px!important;color:#a9824e!important}
+.home-values .home-value h3{margin:0 0 12px!important}
+.home-values .home-value p{margin:0!important;line-height:1.85!important}
+.home-values .home-value:hover{
+ border-color:#b8935f!important;transform:translateY(-5px);
+ box-shadow:0 14px 34px rgba(72,55,29,.09)!important;
+}
+.home-values .home-value:hover .home-value-icon{transform:scale(1.1);color:#94713f!important}
+.home-values .home-value:hover .home-value-icon svg{stroke:#94713f!important}
+.home-values .home-value.is-value-motion-ready{
+ opacity:0;transform:translate3d(0,24px,0);
+ transition:opacity .7s ease,transform .8s cubic-bezier(.2,.65,.3,1),border-color .35s ease,box-shadow .35s ease!important;
+ transition-delay:var(--value-reveal-delay,0ms);
+}
+.home-values .home-value.is-value-visible{opacity:1;transform:translate3d(0,0,0)}
+@media(max-width:1100px){.home-values .home-value{padding:36px!important;min-height:250px!important}}
+@media(max-width:700px){.home-values .home-value{padding:32px 26px!important;min-height:0!important}}
+@media(prefers-reduced-motion:reduce){
+ .home-values .home-value,.home-values .home-value-icon{transition:none!important}
+ .home-values .home-value.is-value-motion-ready{opacity:1!important;transform:none!important}
+}
