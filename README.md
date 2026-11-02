@@ -1,6 +1,6 @@
-# Ikki — Premium Perfume Store
+# IKKI — Luxury Perfume Store
 
-Private PHP/MySQL e-commerce project for Ikki, a curated own-brand fragrance store serving Pakistan.
+Private PHP/MySQL e-commerce project for IKKI, a curated own-brand fragrance store serving Pakistan.
 
 - Domain: https://ikki.pk
 - WhatsApp: +923094733789 (wa.me format: 923094733789)
@@ -10,7 +10,7 @@ Private PHP/MySQL e-commerce project for Ikki, a curated own-brand fragrance sto
 - Checkout: Save order in MySQL, then open WhatsApp with a prefilled order summary. Customer must press Send; this is not automatic WhatsApp delivery.
 
 ## Storefront and launch collection
-The storefront now includes an editorial luxury homepage, collection grid, product detail pages, cart, checkout, order handoff, contact, delivery, returns and privacy pages. The visual system uses a black/charcoal palette, warm gold accents, Italiana/Manrope typography, responsive layouts, custom SVG bottle concept artwork and reduced-motion-aware reveal effects.
+The storefront now includes an editorial luxury homepage, collection grid, product detail pages, cart, checkout, order handoff, contact, delivery, returns and privacy pages. The storefront visual system uses a white and cream palette, champagne-gold accents, Playfair Display/Montserrat typography, responsive layouts, custom SVG bottle concept artwork and reduced-motion-aware reveal effects.
 
 Four proposed launch concepts are included: Noor, Sahra, Velvet Dusk and Azure 04. Their fragrance notes, descriptions and PKR prices are illustrative concept content, not verified formula or retail information. Confirm final product names, compositions, pricing, photography and stock before taking live orders.
 
