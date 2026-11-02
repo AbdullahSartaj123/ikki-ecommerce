@@ -65,7 +65,7 @@ require __DIR__.'/includes/header.php';
     <?php if($p['is_new']): ?><span class="collection-new-badge">New</span><?php endif; ?>
     <img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async">
     <button class="collection-quick-view" type="button" aria-label="View <?=e($p['name'])?> fragrance details" data-quick-view
-     data-name="<?=e($p['name'])?>" data-notes="<?=e($p['notes'])?>" data-price="<?=e(money($p['price']))?>"
+     data-name="<?=e($p['name'])?>" data-notes="<?=e($p['notes'])?>" data-price="<?=e($p['price']!==null?money($p['price']):'Price on request')?>"
      data-image="<?=e($imagePath)?>" data-description="<?=e($modalDescription)?>"
      data-top="<?=e($topNote)?>" data-heart="<?=e($heartNote)?>" data-base="<?=e($baseNote)?>"
      data-url="<?=e($productUrl)?>" data-variants="<?=e(json_encode($variants,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES))?>"
@@ -87,7 +87,7 @@ require __DIR__.'/includes/header.php';
  <dialog class="collection-quick-dialog" id="collection-quick-dialog" role="dialog" aria-modal="true" aria-labelledby="quick-view-title">
   <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   <div class="quick-view-layout">
-   <div class="quick-view-visual"><img data-quick-image src="/assets/images/noor.svg" alt="Ikki fragrance bottle artwork for the selected scent" width="800" height="1000" loading="lazy" decoding="async"></div>
+   <div class="quick-view-visual"><img data-quick-image src="/assets/images/noor.svg" alt="IKKI fragrance bottle artwork for the selected scent" width="800" height="1000" loading="lazy" decoding="async"></div>
    <div class="quick-view-content">
     <span class="quick-view-kicker">THE IKKI FRAGRANCE HOUSE</span>
     <h2 id="quick-view-title"></h2>
