@@ -2042,3 +2042,58 @@ h1 .accent-italic,
  .home-marquee .home-marquee-track{animation:none!important;transform:none!important}
  .home-marquee .home-marquee-track>span[aria-hidden="true"]{display:none!important}
 }
+
+
+/* Premium homepage hero — deliberate, staggered first impression */
+@keyframes ikkiHeroFadeUp{
+ from{opacity:0;transform:translate3d(0,18px,0)}
+ to{opacity:1;transform:translate3d(0,0,0)}
+}
+@keyframes ikkiHeroVisualIn{
+ from{opacity:0;transform:scale(.9)}
+ to{opacity:1;transform:scale(1)}
+}
+@keyframes ikkiHeroGlowDrift{
+ 0%{background-position:35% 42%}
+ 100%{background-position:68% 58%}
+}
+body.has-home-hero .home-hero-copy{animation:none!important}
+body.has-home-hero .home-overline{
+ opacity:0;animation:ikkiHeroFadeUp .85s cubic-bezier(.2,.7,.2,1) 0ms both!important
+}
+body.has-home-hero #home-title{overflow:visible}
+body.has-home-hero #home-title .hero-title-line{
+ display:inline-block;opacity:0;animation:ikkiHeroFadeUp .9s cubic-bezier(.2,.7,.2,1) both!important
+}
+body.has-home-hero #home-title .hero-title-line--first{animation-delay:150ms!important}
+body.has-home-hero #home-title .hero-title-line--second{animation-delay:300ms!important}
+body.has-home-hero .home-hero-subtext{
+ opacity:0;animation:ikkiHeroFadeUp .9s cubic-bezier(.2,.7,.2,1) 450ms both!important
+}
+body.has-home-hero .home-hero-actions{
+ opacity:0;animation:ikkiHeroFadeUp .9s cubic-bezier(.2,.7,.2,1) 600ms both!important
+}
+body.has-home-hero .home-hero-visual{
+ isolation:isolate;opacity:0;
+ animation:ikkiHeroVisualIn 1.15s cubic-bezier(.2,.7,.2,1) 300ms both!important
+}
+body.has-home-hero .home-hero-visual:after{
+ content:"";position:absolute;inset:-12%;z-index:0;pointer-events:none;
+ background:radial-gradient(ellipse at 35% 42%,rgba(184,147,95,.22) 0%,rgba(184,147,95,.10) 28%,rgba(245,239,228,0) 68%);
+ background-size:160% 160%;background-position:35% 42%;
+ animation:ikkiHeroGlowDrift 10s ease-in-out infinite alternate;
+}
+body.has-home-hero .home-hero-orbit{z-index:1}
+body.has-home-hero .home-hero-bottle{position:relative;z-index:2}
+body.has-home-hero .home-hero-photo-caption,
+body.has-home-hero .home-vertical-note{z-index:3}
+@media(prefers-reduced-motion:reduce){
+ body.has-home-hero .home-overline,
+ body.has-home-hero #home-title .hero-title-line,
+ body.has-home-hero .home-hero-subtext,
+ body.has-home-hero .home-hero-actions,
+ body.has-home-hero .home-hero-visual{
+  opacity:1!important;animation:none!important;transform:none!important
+ }
+ body.has-home-hero .home-hero-visual:after{animation:none!important}
+}
