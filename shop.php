@@ -80,7 +80,9 @@ require __DIR__.'/includes/header.php';
     <strong><?=$p['price']!==null?money($p['price']):'Price on request'?></strong>
    </div>
   </article>
- <?php endforeach; ?>
+ <?php endforeach; else: ?>
+  <p class="collection-empty-message">Our collection is being prepared. Please contact IKKI for current fragrance availability.</p>
+ <?php endif; ?>
  </div>
  
  <div class="collection-pagination" id="collection-pagination"><button type="button" class="collection-load-more" id="collection-load-more">Load More</button><span class="collection-all-viewed" id="collection-all-viewed" hidden>You’ve viewed our full collection</span></div>
