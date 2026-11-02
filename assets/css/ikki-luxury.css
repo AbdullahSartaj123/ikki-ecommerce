@@ -136,3 +136,10 @@ img{max-width:100%;height:auto}
 @media(max-width:900px){.site-header{height:72px}.main-nav{display:none}.menu-toggle{display:flex}.home-hero{grid-template-columns:1fr;gap:24px}.home-hero-copy{padding-block:50px 10px}.home-hero-visual{min-height:360px}.home-hero-bottle{max-height:420px}.home-story-overlay{background:rgba(250,247,242,.82)!important}}
 @media(max-width:640px){.home-hero{padding:34px 24px 60px}.home-hero-visual{min-height:300px}.home-hero-bottle{max-height:350px}.collection-card-info h2{font-size:1.3rem}.contact-main{padding-inline:24px}.site-footer__bottom{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+/* Collection search and keyboard interaction polish */
+.collection-search{display:inline-flex;align-items:center;min-width:min(240px,40vw)}
+.collection-search input{width:100%;min-height:40px;padding:8px 12px;border:1px solid var(--color-gray-light);border-radius:0;background:var(--color-white);color:var(--color-black);font:400 12px var(--font-body)}
+.collection-search input::placeholder{color:var(--color-gray)}
+.collection-search input:focus{border-color:var(--color-gold);outline:2px solid rgba(184,147,95,.18);outline-offset:1px}
+@media(max-width:640px){.collection-toolbar-controls{flex-wrap:wrap}.collection-search{width:100%;min-width:100%}}
