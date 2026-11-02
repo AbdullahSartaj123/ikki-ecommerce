@@ -76,14 +76,15 @@ $navItems=[
 <?php endforeach; ?>
 </nav>
 <div class="header-actions">
-<a class="header-icon-link header-search-link" href="/shop.php#collection-search" aria-label="Search the collection" title="Search collection">
+<button class="header-icon-link header-search-link" type="button" data-search-toggle aria-label="Open search" title="Search collection">
 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 4.5 4.5"></path></svg>
-</a>
-<a class="header-icon-link header-bag-link" href="/cart.php" aria-label="Shopping bag, <?=cart_count()?> items" title="Shopping bag">
+</button>
+<a class="header-icon-link header-bag-link" href="/cart.php" data-cart-drawer-trigger aria-label="Shopping bag, <?=cart_count()?> items" title="Shopping bag">
 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg>
-<span class="bag-count"><?=cart_count()?></span>
+<span class="bag-count" data-bag-count><?=cart_count()?></span>
 </a>
 </div>
+<div class="header-search-panel" data-search-panel aria-hidden="true"><form action="/shop.php" method="get"><input type="search" name="q" placeholder="Search fragrances…" aria-label="Search fragrances" data-header-search-input><button type="submit" aria-label="Submit search">↗</button></form><button type="button" data-search-close aria-label="Close search">×</button></div>
 </header>
 <div class="mobile-menu-overlay" id="mobile-navigation" aria-hidden="true">
  <button class="mobile-menu-close" type="button" aria-label="Close navigation"><span></span><span></span></button>
@@ -93,8 +94,8 @@ $navItems=[
  <?php endforeach; ?>
  </nav>
  <div class="mobile-menu-actions" aria-label="Shopping actions">
-  <a class="header-icon-link header-search-link" href="/shop.php#collection-search" aria-label="Search the collection" title="Search collection"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 4.5 4.5"></path></svg><span>SEARCH</span></a>
-  <a class="header-icon-link header-bag-link" href="/cart.php" aria-label="Shopping bag, <?=cart_count()?> items" title="Shopping bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg><span>BAG (<?=cart_count()?>)</span></a>
+  <button class="header-icon-link header-search-link" type="button" data-search-toggle aria-label="Open search" title="Search collection"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 4.5 4.5"></path></svg><span>SEARCH</span></button>
+  <button class="header-icon-link header-bag-link" type="button" data-cart-drawer-trigger aria-label="Open shopping bag"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l1 13H4L5 8Z"></path><path d="M9 9V6a3 3 0 0 1 6 0v3"></path></svg><span>BAG (<span data-bag-count><?=cart_count()?></span>)</span></button>
  </div>
  <div class="mobile-menu-social">
   <a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer" aria-label="Contact IKKI on WhatsApp">
@@ -103,4 +104,7 @@ $navItems=[
   <span>CONNECT WITH US</span>
  </div>
 </div>
+
+<div class="ikki-cart-scrim" data-cart-scrim></div>
+<aside class="ikki-cart-drawer" data-cart-drawer aria-hidden="true" aria-label="Shopping bag"><div class="ikki-cart-drawer-head"><div><span class="eyebrow">YOUR SELECTION</span><h2>Your bag<span data-drawer-count></span></h2></div><button type="button" data-cart-close aria-label="Close shopping bag">×</button></div><div class="ikki-cart-drawer-content" data-cart-content><p class="muted">Loading your selection…</p></div></aside>
 <main>
