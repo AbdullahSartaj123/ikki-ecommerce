@@ -7,7 +7,7 @@ $navItems=[
  ['label'=>'Home','href'=>'/','match'=>['index.php']],
  ['label'=>'Collection','href'=>'/shop.php','match'=>['shop.php']],
  ['label'=>'Our Story','href'=>'/our-story.php','match'=>['our-story.php']],
- ['label'=>'Contact','href'=>'/contact.php','match'=>['contact.php']]
+ ['label'=>'Contact Us','href'=>'/contact.php','match'=>['contact.php']]
 ];
 ?><!doctype html>
 <html lang="en">
@@ -76,7 +76,7 @@ $navItems=[
 <?php endforeach; ?>
 </nav>
 <div class="header-actions">
-<a class="header-icon-link header-search-link" href="/shop.php" aria-label="Explore and search the collection" title="Explore collection">
+<a class="header-icon-link header-search-link" href="/shop.php#collection-search" aria-label="Search the collection" title="Search collection">
 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="m16 16 4.5 4.5"></path></svg>
 </a>
 <a class="header-icon-link header-bag-link" href="/cart.php" aria-label="Shopping bag, <?=cart_count()?> items" title="Shopping bag">
