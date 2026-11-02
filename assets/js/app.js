@@ -420,16 +420,6 @@ document.addEventListener('DOMContentLoaded',()=>{
   const quickForm=$('[data-quick-form]'),variantInput=quickForm.querySelector('[name="variant_id"]'),qtyInput=quickForm.querySelector('[name="quantity"]');
   const qtyOutput=$('[data-quantity-value]'),sizeWrap=$('[data-quick-sizes]'),sizeButtons=$('[data-size-buttons]');
   const addButton=$('[data-quick-add]'),unavailable=$('[data-quick-unavailable]');
-  const products=[
-   {name:'Noir Orchid',price:185,image:'/assets/images/noor.svg',top:'Dark floral',heart:'Oud',base:'Black amber',description:'A deep floral composition with oud and black amber, created for a confident, lingering signature.'},
-   {name:'Velvet Rose',price:165,image:'/assets/images/noor.svg',top:'Rose',heart:'Patchouli',base:'Vanilla',description:'Velvet rose petals meet earthy patchouli and a soft vanilla finish in an elegant floral trail.'},
-   {name:'Golden Oud',price:210,image:'/assets/images/noor.svg',top:'Oud',heart:'Saffron',base:'Sandalwood',description:'A warm, opulent blend of oud, saffron and creamy sandalwood with a smooth, enduring character.'},
-   {name:'Citrus Soleil',price:145,image:'/assets/images/noor.svg',top:'Bergamot',heart:'Neroli',base:'Musk',description:'Bright bergamot and delicate neroli settle into clean musk for a fresh, luminous everyday scent.'},
-   {name:'Amber Nights',price:195,image:'/assets/images/noor.svg',top:'Amber',heart:'Leather',base:'Tobacco',description:'Rich amber, supple leather and tobacco create a warm, atmospheric fragrance with depth.'},
-   {name:'Iron & Leather',price:175,image:'/assets/images/noor.svg',top:'Vetiver',heart:'Leather',base:'Cedarwood',description:'Earthy vetiver and leather are grounded by cedarwood in a bold, woody composition.'},
-   {name:'White Jasmine',price:155,image:'/assets/images/noor.svg',top:'Jasmine',heart:'White musk',base:'Pear',description:'Airy jasmine and pear soften into white musk for a delicate, modern floral signature.'},
-   {name:'Midnight Spice',price:220,image:'/assets/images/noor.svg',top:'Black pepper',heart:'Cardamom',base:'Oud',description:'Black pepper and cardamom add a lively opening before rich oud brings a dark, distinctive finish.'}
-  ];
   let closing=false,returnFocus=null,closeTimer=null;
   const moneyLabel=value=>'Rs. '+new Intl.NumberFormat('en-PK',{maximumFractionDigits:0}).format(Number(value)||0);
   const setQuantity=value=>{const qty=Math.max(1,Math.min(10,Number(value)||1));qtyInput.value=String(qty);qtyOutput.textContent=String(qty);};
@@ -450,16 +440,16 @@ document.addEventListener('DOMContentLoaded',()=>{
    });
   };
   const openQuickView=trigger=>{
-   const product=products.find(item=>item.name===trigger.dataset.name);
-   if(!product)return;
+   const productName=trigger.dataset.name||'';
+   if(!productName)return;
    returnFocus=trigger;closing=false;
-   $('#quick-view-title').textContent=product.name;
-   $('[data-quick-price]').textContent=trigger.dataset.price||moneyLabel(product.price);
-   const image=$('[data-quick-image]');image.src=trigger.dataset.image||product.image;image.alt=product.name+' fragrance bottle';image.width=800;image.height=1000;image.loading='lazy';image.decoding='async';
-   $('[data-quick-description]').textContent=trigger.dataset.description||product.description;
-   $('[data-note-top]').textContent=trigger.dataset.top||product.top;
-   $('[data-note-heart]').textContent=trigger.dataset.heart||product.heart;
-   $('[data-note-base]').textContent=trigger.dataset.base||product.base;
+   $('#quick-view-title').textContent=productName;
+   $('[data-quick-price]').textContent=trigger.dataset.price||'Price on request';
+   const image=$('[data-quick-image]');image.src=trigger.dataset.image||'/assets/images/noor.svg';image.alt=productName+' fragrance bottle';image.width=800;image.height=1000;image.loading='lazy';image.decoding='async';
+   $('[data-quick-description]').textContent=trigger.dataset.description||'Discover the olfactive story of this IKKI fragrance.';
+   $('[data-note-top]').textContent=trigger.dataset.top||'Opening notes';
+   $('[data-note-heart]').textContent=trigger.dataset.heart||'Heart notes';
+   $('[data-note-base]').textContent=trigger.dataset.base||'Base notes';
    let variants=[];try{variants=JSON.parse(trigger.dataset.variants||'[]');}catch(error){variants=[];}
    renderVariants(variants);setQuantity(1);
    const available=trigger.dataset.available==='true'&&variants.some(item=>Number(item.stock_quantity)>0);
@@ -499,7 +489,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  }
  // === FORMS MODULE ===
  // === CONTACT PAGE: FORM VALIDATION ===
- // Client-side validation only; this form does not send or store messages.
+ // Contact enquiries are validated and handed off to the official IKKI WhatsApp number.
  const contactForm=document.querySelector('#ikki-contact-form');
  if(contactForm){
   const feedback=document.querySelector('#contact-form-feedback');
