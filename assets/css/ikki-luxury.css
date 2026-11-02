@@ -2626,3 +2626,81 @@ body.cart-drawer-open{overflow:hidden}
 @keyframes ikki-bag-pulse{0%{transform:scale(1)}45%{transform:scale(1.45)}100%{transform:scale(1)}}
 @media(max-width:900px){.header-search-panel{position:fixed;top:74px;left:12px;right:12px;width:auto;transform:translateY(-8px) scaleX(.98)}.header-search-panel.is-open{transform:translateY(0) scaleX(1)}}
 @media(prefers-reduced-motion:reduce){.header-search-panel,.ikki-cart-scrim,.ikki-cart-drawer{transition:none}.bag-count.is-pulsing{animation:none}}
+
+
+/* Collection banner and filter-toolbar polish */
+.ikki-catalog-hero-inner{padding-block:clamp(8px,1.5vw,18px)}
+.ikki-catalog-hero h1{letter-spacing:-.035em}
+.ikki-catalog-hero p{max-width:490px}
+.ikki-premium-catalog .collection-toolbar-wrap{
+ position:sticky;top:var(--ikki-toolbar-sticky-top,68px);z-index:80;
+ background:rgba(255,255,255,.97);backdrop-filter:blur(12px);
+ transition:box-shadow .22s ease,border-color .22s ease;
+ border-bottom:1px solid transparent;
+}
+.ikki-premium-catalog .collection-toolbar-wrap.is-stuck{
+ border-bottom-color:rgba(184,147,95,.3);
+ box-shadow:0 7px 18px rgba(42,34,23,.055);
+}
+.ikki-premium-catalog .collection-toolbar{
+ display:flex;align-items:center;justify-content:space-between;gap:22px;
+ padding-block:14px;opacity:0;transform:translateY(12px);
+ transition:opacity .55s ease,transform .55s cubic-bezier(.2,.65,.3,1);
+}
+.ikki-premium-catalog .collection-toolbar.is-toolbar-visible{opacity:1;transform:translateY(0)}
+.ikki-premium-catalog .collection-filters{position:relative;display:flex;align-items:center;gap:5px;padding:4px;border:1px solid #e5e0d8;border-radius:5px;background:#fff;isolation:isolate}
+.ikki-premium-catalog .collection-filter-indicator{
+ position:absolute;z-index:-1;left:0;top:4px;bottom:4px;width:0;
+ border-radius:3px;background:#b8935f;
+ transition:width .32s cubic-bezier(.2,.65,.3,1),transform .32s cubic-bezier(.2,.65,.3,1);
+ pointer-events:none;
+}
+.ikki-premium-catalog .collection-filter{
+ position:relative;z-index:1;min-height:34px!important;padding:0 16px!important;
+ border:1px solid transparent!important;border-radius:3px!important;
+ background:transparent!important;color:#77736c!important;
+ font:500 9px/1 'Montserrat',sans-serif!important;letter-spacing:.13em!important;
+ transition:color .25s ease,border-color .25s ease!important;
+}
+.ikki-premium-catalog .collection-filter:not(.is-active){border-color:#dedbd5!important}
+.ikki-premium-catalog .collection-filter.is-active{color:#fff!important;border-color:#b8935f!important}
+.ikki-premium-catalog .collection-toolbar-controls{display:flex;align-items:center;gap:16px}
+.ikki-premium-catalog .collection-search{width:clamp(170px,18vw,230px);min-width:0}
+.ikki-premium-catalog .collection-search input,
+.ikki-premium-catalog .collection-sort .collection-sort-select select{
+ box-sizing:border-box;width:100%;height:42px;min-height:42px!important;
+ padding:0 13px!important;border:1px solid #dcd7ce!important;border-radius:4px!important;
+ background:#fff!important;color:#2a2a2a!important;
+ font:400 10px 'Montserrat',sans-serif!important;
+ outline:none;box-shadow:none!important;transition:border-color .2s ease,box-shadow .2s ease;
+}
+.ikki-premium-catalog .collection-search input:focus,
+.ikki-premium-catalog .collection-sort .collection-sort-select select:focus{
+ border-color:#b8935f!important;outline:none!important;box-shadow:0 0 0 3px rgba(184,147,95,.13)!important;
+}
+.ikki-premium-catalog .collection-sort{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.ikki-premium-catalog .collection-sort>span:first-child{font:400 9px 'Montserrat',sans-serif;color:#77736c}
+.ikki-premium-catalog .collection-sort .collection-sort-select{position:relative;display:block;width:142px}
+.ikki-premium-catalog .collection-sort .collection-sort-select select{appearance:none;padding-right:32px!important;cursor:pointer}
+.ikki-premium-catalog .collection-sort .collection-sort-select svg{position:absolute;right:11px;top:50%;width:12px;height:12px;transform:translateY(-50%);pointer-events:none;stroke:#8d744f;fill:none;stroke-width:1.4}
+.ikki-premium-catalog .collection-count{white-space:nowrap;font:500 9px 'Montserrat',sans-serif;letter-spacing:.12em}
+@media(max-width:900px){
+ .ikki-premium-catalog .collection-toolbar-wrap{top:var(--ikki-toolbar-sticky-top,64px)}
+ .ikki-premium-catalog .collection-toolbar{flex-wrap:wrap;gap:12px;padding-block:12px}
+ .ikki-premium-catalog .collection-toolbar-controls{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
+ .ikki-premium-catalog .collection-search{width:100%;grid-column:1/-1;grid-row:1}
+ .ikki-premium-catalog .collection-sort{grid-column:1;grid-row:2}
+ .ikki-premium-catalog .collection-count{grid-column:2;grid-row:2;text-align:right}
+}
+@media(max-width:520px){
+ .ikki-premium-catalog .collection-filters{width:100%;justify-content:stretch}
+ .ikki-premium-catalog .collection-filter{flex:1;padding-inline:8px!important;font-size:8px!important}
+ .ikki-premium-catalog .collection-toolbar-controls{grid-template-columns:1fr auto}
+ .ikki-premium-catalog .collection-sort .collection-sort-select{width:128px}
+ .ikki-premium-catalog .collection-count{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ikki-premium-catalog .collection-toolbar,.ikki-premium-catalog .collection-filter-indicator,
+ .ikki-premium-catalog .collection-toolbar-wrap,.ikki-premium-catalog .collection-search input,
+ .ikki-premium-catalog .collection-sort .collection-sort-select select{transition:none!important}
+}
