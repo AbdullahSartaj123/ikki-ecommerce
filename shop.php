@@ -4,7 +4,7 @@ $pageTitle='Collection — IKKI';
 $description='Explore the IKKI fragrance collection: individual scent stories, composed to become part of your signature.';
 $products=[];
 try{
- $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.gender,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name")->fetchAll();
+ $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.description,p.gender,p.top_notes,p.heart_notes,p.base_notes,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name")->fetchAll();
 }catch(Throwable $ex){error_log('[Ikki collection] '.$ex->getMessage());}
 $catalog=[];
 $databaseProducts=[];
@@ -15,6 +15,7 @@ foreach($products as $product){
  $catalog[]=[
   'name'=>$product['name'],'slug'=>$product['slug'],
   'notes'=>trim((string)($product['short_description']??''))?:'An IKKI signature fragrance',
+  'top_notes'=>(string)($product['top_notes']??''),'heart_notes'=>(string)($product['heart_notes']??''),'base_notes'=>(string)($product['base_notes']??''),'description'=>(string)($product['description']??''),
   'price'=>$product['price']!==null?(float)$product['price']:null,
   'category'=>$category,'is_new'=>false
  ];
