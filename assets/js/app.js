@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded',()=>{
      requestAnimationFrame(()=>noCollectionResults.classList.add('is-visible'));
     }
    };
-   filterTimer=window.setTimeout(revealResults,showLoading?480:0);
+   filterTimer=window.setTimeout(revealResults,showLoading?360:0);
   };
   // === Collection Page: Load More ===
   // Progressive batches use perPage; new products are picked up automatically.
