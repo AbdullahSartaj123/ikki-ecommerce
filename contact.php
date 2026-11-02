@@ -23,7 +23,7 @@ require __DIR__.'/includes/header.php';
     <div class="contact-field contact-field-full ikki-form-field"><textarea id="contact-message" name="message" rows="5" minlength="10" placeholder=" " required></textarea><label for="contact-message">Message</label><small class="field-error" aria-live="polite"></small></div>
     <div class="contact-field contact-field-full"><label class="ikki-form-checkbox"><input type="checkbox" name="whatsapp_consent" value="yes"><span class="ikki-form-checkbox__box" aria-hidden="true"></span><span>You may contact me about this enquiry on WhatsApp.</span></label></div>
    </div>
-   <button class="contact-submit" type="submit">Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button>
+   <button class="contact-submit ikki-btn--primary" type="submit">Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button>
    <p class="contact-form-feedback" id="contact-form-feedback" role="status" aria-live="polite"></p>
    <p class="contact-form-note">Your enquiry is prepared in WhatsApp. You will review and send it there.</p>
   </form>
