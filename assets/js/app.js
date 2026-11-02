@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  if(header){
   let headerFrame=0;
   const updateHeader=()=>{
-   header.classList.toggle('is-scrolled',window.scrollY>80);
+   header.classList.toggle('is-scrolled',window.scrollY>50);
    headerFrame=0;
   };
   const requestHeaderUpdate=()=>{
