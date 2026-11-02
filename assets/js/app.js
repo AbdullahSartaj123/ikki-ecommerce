@@ -752,6 +752,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
  }
 
+ // Discovery / Expression / Moments: reveal the three cards in a 120ms sequence.
+ const valueCards=[...document.querySelectorAll('.home-values .home-value')];
+ if(valueCards.length){
+  valueCards.forEach((card,index)=>{card.style.setProperty('--value-reveal-delay',(index*120)+'ms');card.classList.add('is-value-motion-ready')});
+  const revealValueCards=()=>valueCards.forEach(card=>card.classList.add('is-value-visible'));
+  if(reducedMotion||!('IntersectionObserver'in window))revealValueCards();
+  else{
+   const valueObserver=new IntersectionObserver(entries=>{
+    if(!entries.some(entry=>entry.isIntersecting))return;
+    revealValueCards();valueObserver.disconnect();
+   },{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+   valueObserver.observe(valueCards[0].parentElement);
+  }
+ }
+
  // Homepage circle ornaments: reveal on entry, then rotate quietly at one revolution per minute.
  const circleMotifs=[...document.querySelectorAll('.home-circle-motif')];
  if(circleMotifs.length){
@@ -809,7 +824,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
 
   // Stagger home content as each section enters the viewport.
-  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-values-heading,.home-value,.home-manifesto,.home-final-cta .home-instagram-heading')];
+  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-values-heading,.home-manifesto,.home-final-cta .home-instagram-heading')];
   if('IntersectionObserver'in window){
    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
