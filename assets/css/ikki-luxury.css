@@ -2478,3 +2478,36 @@ body.has-home-hero main>section.home-manifesto{background:#ffffff!important}
 body.has-home-hero main>section.home-final-cta{
  background:linear-gradient(118deg,rgba(184,147,95,.055) 0%,#ffffff 48%,rgba(184,147,95,.085) 100%)!important;
 }
+
+
+/* Anchored sticky header: promo remains in normal flow and scrolls away. */
+.announcement{position:relative!important;top:auto!important;z-index:99!important}
+.site-header,.site-header.is-home-header,.site-header.is-home-header.is-scrolled{
+ position:sticky!important;top:0!important;z-index:100!important;
+ height:76px!important;min-height:76px!important;
+ border-bottom:1px solid rgba(122,117,108,.16)!important;
+ box-shadow:0 0 0 rgba(35,29,20,0)!important;
+ transition:height .32s ease,min-height .32s ease,padding .32s ease,
+  box-shadow .32s ease,border-color .32s ease,background-color .32s ease!important;
+}
+.site-header.is-scrolled,.site-header.is-home-header.is-scrolled{
+ height:68px!important;min-height:68px!important;
+ border-bottom-color:rgba(122,117,108,.24)!important;
+ box-shadow:0 5px 18px rgba(35,29,20,.075)!important;
+}
+.site-header .maison-brand,.site-header .main-nav,.site-header .header-actions{
+ transition:transform .32s ease!important;
+}
+.site-header.is-scrolled .maison-brand{transform:scale(.94);transform-origin:left center}
+.site-header.is-scrolled .main-nav,.site-header.is-scrolled .header-actions{transform:translateY(-1px)}
+@media(max-width:900px){
+ .site-header,.site-header.is-home-header,.site-header.is-home-header.is-scrolled{
+  height:72px!important;min-height:72px!important;
+ }
+ .site-header.is-scrolled,.site-header.is-home-header.is-scrolled{
+  height:64px!important;min-height:64px!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .site-header,.site-header .maison-brand,.site-header .main-nav,.site-header .header-actions{transition:none!important}
+}
