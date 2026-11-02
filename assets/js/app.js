@@ -720,6 +720,38 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
  }
 
+ // Lifestyle feature: image-first reveal, then copy in a 200ms stagger.
+ const lifestyleFeature=document.querySelector('.home-feature');
+ if(lifestyleFeature){
+  lifestyleFeature.classList.add('feature-motion-ready');
+  const showLifestyleFeature=()=>lifestyleFeature.classList.add('is-feature-visible');
+  if(reducedMotion||!('IntersectionObserver'in window))showLifestyleFeature();
+  else{
+   const lifestyleObserver=new IntersectionObserver(entries=>{
+    if(!entries.some(entry=>entry.isIntersecting))return;
+    showLifestyleFeature();lifestyleObserver.disconnect();
+   },{threshold:.16,rootMargin:'0px 0px -35px 0px'});
+   lifestyleObserver.observe(lifestyleFeature);
+  }
+  // Desktop-only, RAF-coalesced parallax; the image drifts at a restrained fraction of scroll.
+  const lifestyleImage=lifestyleFeature.querySelector('.home-feature-art img');
+  if(lifestyleImage&&!reducedMotion&&window.matchMedia('(min-width: 900px) and (hover: hover)').matches){
+   let lifestyleFrame=0;
+   const updateLifestyleParallax=()=>{
+    if(lifestyleFrame)return;
+    lifestyleFrame=requestAnimationFrame(()=>{
+     lifestyleFrame=0;
+     const rect=lifestyleFeature.getBoundingClientRect();
+     const travel=(rect.top+rect.height/2-window.innerHeight/2)*-.12;
+     lifestyleImage.style.setProperty('--lifestyle-parallax-y',travel.toFixed(2)+'px');
+    });
+   };
+   updateLifestyleParallax();
+   window.addEventListener('scroll',updateLifestyleParallax,{passive:true});
+   window.addEventListener('resize',updateLifestyleParallax);
+  }
+ }
+
  // Homepage circle ornaments: reveal on entry, then rotate quietly at one revolution per minute.
  const circleMotifs=[...document.querySelectorAll('.home-circle-motif')];
  if(circleMotifs.length){
@@ -777,7 +809,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
 
   // Stagger home content as each section enters the viewport.
-  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-feature-copy,.home-values-heading,.home-value,.home-manifesto,.home-final-cta .home-instagram-heading')];
+  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-values-heading,.home-value,.home-manifesto,.home-final-cta .home-instagram-heading')];
   if('IntersectionObserver'in window){
    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
