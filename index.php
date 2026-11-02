@@ -47,7 +47,7 @@ require __DIR__.'/includes/header.php';
  <div class="home-story-overlay" aria-hidden="true"></div>
  <div class="home-story-content home-reveal" data-story-reveal>
   <span class="home-story-eyebrow">THE IKKI FRAGRANCE HOUSE</span>
-  <h2 id="story-title">A Legacy of Craftsmanship</h2>
+  <h2 id="story-title">The Art of Fragrance</h2>
   <p><em>Every fragrance begins with an idea, takes shape through thoughtful composition, and becomes part of a story only you can tell. Discover the art behind the scent.</em></p>
   <a class="ikki-btn ikki-btn--secondary home-story-button" href="/our-story.php">Discover Our Story <span aria-hidden="true">↗</span></a>
  </div>
