@@ -745,8 +745,23 @@ document.addEventListener('DOMContentLoaded',()=>{
     if(!frame)frame=requestAnimationFrame(renderDepth);
    });
   }
+  // The philosophy statement has its own carefully ordered entrance sequence.
+  const philosophy=document.querySelector('.home-philosophy');
+  if(philosophy){
+   const revealPhilosophy=()=>philosophy.classList.add('is-philosophy-visible');
+   if(reducedMotion||!('IntersectionObserver'in window))revealPhilosophy();
+   else{
+    const philosophyObserver=new IntersectionObserver(entries=>{
+     if(!entries.some(entry=>entry.isIntersecting))return;
+     revealPhilosophy();
+     philosophyObserver.disconnect();
+    },{threshold:.18,rootMargin:'0px 0px -35px 0px'});
+    philosophyObserver.observe(philosophy);
+   }
+  }
+
   // Stagger home content as each section enters the viewport.
-  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-philosophy-title,.home-philosophy-copy,.home-feature-copy,.home-values-heading,.home-value,.home-manifesto,.home-final-cta .home-instagram-heading')];
+  const revealTargets=[...document.querySelectorAll('.home-section-heading,.home-feature-copy,.home-values-heading,.home-value,.home-manifesto,.home-final-cta .home-instagram-heading')];
   if('IntersectionObserver'in window){
    const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{
     if(!entry.isIntersecting)return;
