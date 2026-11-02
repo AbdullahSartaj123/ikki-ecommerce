@@ -250,6 +250,21 @@ document.addEventListener('DOMContentLoaded',()=>{
   window.addEventListener('resize',setFooterAccordionMode);
  }
 
+
+ // Footer content: reveal once as the footer enters the viewport.
+ const footer=document.querySelector('.ikki-footer');
+ if(footer){
+  if(reducedMotion||!('IntersectionObserver' in window))footer.classList.add('is-footer-visible');
+  else{
+   const footerObserver=new IntersectionObserver(entries=>{
+    if(!entries.some(entry=>entry.isIntersecting))return;
+    footer.classList.add('is-footer-visible');
+    footerObserver.disconnect();
+   },{threshold:.08,rootMargin:'0px 0px -24px 0px'});
+   footerObserver.observe(footer);
+  }
+ }
+
  // Newsletter email feedback. The subscription endpoint is not connected yet.
  // Shared floating back-to-top control with RAF-throttled visibility and click feedback.
  const backToTop=document.querySelector('[data-back-to-top]');
