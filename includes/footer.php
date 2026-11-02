@@ -19,7 +19,7 @@
   <section class="ikki-footer-column" data-footer-accordion>
    <button class="ikki-footer-heading" type="button" aria-expanded="true" aria-controls="footer-care-content"><span>Customer Care</span><span class="ikki-footer-accordion-icon" aria-hidden="true"></span></button>
    <div class="ikki-footer-panel" id="footer-care-content">
-    <a href="/contact.php">Contact Us</a><a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">WhatsApp Support</a><a href="/cart.php">Shopping Bag</a>
+    <a href="/contact.php">Contact Us</a><a href="/shipping.php">Shipping Information</a><a href="/returns.php">Returns &amp; Support</a><a href="/privacy.php">Privacy</a><a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">WhatsApp Support</a><a href="/cart.php">Shopping Bag</a>
    </div>
   </section>
   <section class="ikki-footer-column ikki-footer-newsletter" data-footer-accordion>
