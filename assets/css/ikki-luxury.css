@@ -2097,3 +2097,66 @@ body.has-home-hero .home-vertical-note{z-index:3}
  }
  body.has-home-hero .home-hero-visual:after{animation:none!important}
 }
+
+
+/* Philosophy section — spacious two-column composition and ordered entrance */
+.home-philosophy{
+ display:grid!important;
+ grid-template-columns:minmax(250px,.9fr) minmax(0,1.1fr)!important;
+ column-gap:clamp(80px,10vw,160px)!important;
+ row-gap:40px!important;
+ padding-top:140px!important;
+ padding-bottom:140px!important;
+ align-items:center!important;
+}
+.home-philosophy-title,.home-philosophy-copy{min-width:0}
+.home-philosophy-copy{padding-top:0!important;margin:0!important}
+.home-philosophy .home-section-marker,
+.home-philosophy .home-circle-motif,
+.home-philosophy-title h2,
+.home-philosophy-copy p,
+.home-philosophy-copy .home-text-link{opacity:0}
+.home-philosophy .home-section-marker,
+.home-philosophy .home-circle-motif{
+ transition:opacity .75s ease,transform .9s cubic-bezier(.2,.65,.3,1);
+}
+.home-philosophy .home-section-marker{transform:translate3d(0,10px,0)}
+.home-philosophy-title h2{
+ transform:translate3d(0,22px,0);
+ transition:opacity .8s ease .22s,transform .9s cubic-bezier(.2,.65,.3,1) .22s;
+}
+.home-philosophy-copy p{
+ transform:translate3d(0,18px,0);
+ transition:opacity .8s ease .37s,transform .9s cubic-bezier(.2,.65,.3,1) .37s;
+}
+.home-philosophy-copy .home-text-link{
+ transform:translate3d(0,8px,0);
+ transition:opacity .75s ease .58s,transform .8s cubic-bezier(.2,.65,.3,1) .58s;
+ border:0!important;border-bottom:1px solid rgba(184,147,95,.72)!important;
+ border-radius:0!important;padding:10px 0 8px!important;min-height:0!important;
+ background:transparent!important;
+}
+.home-philosophy.is-philosophy-visible .home-section-marker,
+.home-philosophy.is-philosophy-visible .home-circle-motif,
+.home-philosophy.is-philosophy-visible .home-philosophy-title h2,
+.home-philosophy.is-philosophy-visible .home-philosophy-copy p,
+.home-philosophy.is-philosophy-visible .home-philosophy-copy .home-text-link{
+ opacity:1;transform:translate3d(0,0,0) scale(1);
+}
+.home-philosophy.is-philosophy-visible .home-circle-motif i{animation:ikkiCircleRotate 60s linear infinite}
+.home-philosophy .home-section-marker:before{transition-delay:.12s}
+@media(max-width:760px){
+ .home-philosophy{
+  grid-template-columns:minmax(0,1fr)!important;row-gap:28px!important;
+  padding:76px 26px!important;
+ }
+ .home-philosophy-copy{padding:0!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-philosophy .home-section-marker,.home-philosophy .home-circle-motif,
+ .home-philosophy-title h2,.home-philosophy-copy p,
+ .home-philosophy-copy .home-text-link{
+  opacity:1!important;transform:none!important;transition:none!important
+ }
+ .home-philosophy .home-circle-motif i{animation:none!important}
+}
