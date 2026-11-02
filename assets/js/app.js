@@ -704,6 +704,23 @@ document.addEventListener('DOMContentLoaded',()=>{
   }
  }
 
+ // Homepage circle ornaments: reveal on entry, then rotate quietly at one revolution per minute.
+ const circleMotifs=[...document.querySelectorAll('.home-circle-motif')];
+ if(circleMotifs.length){
+  if(reducedMotion||!('IntersectionObserver' in window)){
+   circleMotifs.forEach(motif=>motif.classList.add('is-circle-visible'));
+  }else{
+   const circleObserver=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+     if(!entry.isIntersecting)return;
+     entry.target.classList.add('is-circle-visible');
+     circleObserver.unobserve(entry.target);
+    });
+   },{threshold:.2,rootMargin:'0px 0px -6% 0px'});
+   circleMotifs.forEach(motif=>circleObserver.observe(motif));
+  }
+ }
+
  // Homepage-only depth motion: restrained pointer tilt and RAF-coalesced image drift.
  const homeHero=document.querySelector('.home-hero--editorial');
  if(homeHero&&!reducedMotion){
