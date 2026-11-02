@@ -21,6 +21,7 @@ foreach($products as $product){
  ];
 }
 $products=$catalog;
+$availableCategories=array_values(array_unique(array_column($products,'category')));
 require __DIR__.'/includes/header.php';
 ?>
 <section class="page-banner page-banner-collection" aria-labelledby="page-banner-title">
@@ -36,9 +37,9 @@ require __DIR__.'/includes/header.php';
   <div class="collection-filters" role="group" aria-label="Filter fragrances by category" data-filter-track>
    <span class="collection-filter-indicator" aria-hidden="true"></span>
    <button class="collection-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-   <button class="collection-filter" type="button" data-filter="her" aria-pressed="false">For Her</button>
-   <button class="collection-filter" type="button" data-filter="him" aria-pressed="false">For Him</button>
-   <button class="collection-filter" type="button" data-filter="unisex" aria-pressed="false">Unisex</button>
+   <?php foreach(['her'=>'For Her','him'=>'For Him','unisex'=>'Unisex'] as $filterKey=>$filterLabel): if(in_array($filterKey,$availableCategories,true)): ?>
+    <button class="collection-filter" type="button" data-filter="<?=e($filterKey)?>" aria-pressed="false"><?=e($filterLabel)?></button>
+   <?php endif; endforeach; ?>
   </div>
   <div class="collection-toolbar-controls">
    <label class="collection-search"><span class="visually-hidden">Search fragrances</span><input id="collection-search" type="search" placeholder="Search fragrances" autocomplete="off"></label>
