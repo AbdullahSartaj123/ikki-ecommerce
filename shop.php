@@ -4,7 +4,7 @@ $pageTitle='Collection — IKKI';
 $description='Explore the IKKI fragrance collection: individual scent stories, composed to become part of your signature.';
 $products=[];
 try{
- $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.description,p.gender,p.top_notes,p.heart_notes,p.base_notes,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name")->fetchAll();
+ $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.description,p.gender,p.top_notes,p.heart_notes,p.base_notes,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name LIMIT 7")->fetchAll();
 }catch(Throwable $ex){error_log('[IKKI collection] '.$ex->getMessage());}
 $catalog=[];
 $databaseProducts=[];
@@ -24,14 +24,17 @@ $products=$catalog;
 $availableCategories=array_values(array_unique(array_column($products,'category')));
 require __DIR__.'/includes/header.php';
 ?>
-<section class="page-banner page-banner-collection" aria-labelledby="page-banner-title">
- <div class="page-banner-copy reveal">
-  <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Our Collection</span></nav>
-  <h1 id="page-banner-title">Our Collection</h1>
-  <p>Discover fragrances crafted for every moment</p>
+<section class="ikki-catalog-hero" aria-labelledby="page-banner-title">
+ <div class="ikki-catalog-hero-inner">
+  <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">The Collection</span></nav>
+  <span class="home-kicker">IKKI · THE SIGNATURE EDIT</span>
+  <h1 id="page-banner-title">A few scents.<br><em>Endless expression.</em></h1>
+  <p>A considered collection of signature fragrances. Discover the scent that feels unmistakably yours.</p>
+  <span class="ikki-catalog-edition">THE SIGNATURE COLLECTION <i>—</i> 01 / 07</span>
  </div>
+ <div class="ikki-catalog-hero-side" aria-hidden="true"><span>SCENT IS A FORM OF MEMORY</span><b>IKKI</b></div>
 </section>
-<section class="collection-catalog" aria-label="Fragrance collection">
+<section class="collection-catalog ikki-premium-catalog" aria-label="Fragrance collection">
  <div class="collection-toolbar-wrap">
  <div class="collection-toolbar" data-collection-toolbar>
   <div class="collection-filters" role="group" aria-label="Filter fragrances by category" data-filter-track>
@@ -50,7 +53,8 @@ require __DIR__.'/includes/header.php';
   </div>
  </div>
  </div>
- <div class="collection-grid" id="collection-grid">
+ <div class="ikki-catalog-intro"><span>THE IKKI SIGNATURE EDIT</span><p>Each fragrance tells its own story. Take your time, explore the notes, and find your signature.</p></div>
+ <div class="collection-grid ikki-signature-grid" id="collection-grid">
  <?php if($products): foreach($products as $n=>$p):
   $dbProduct=$databaseProducts[$p['slug']]??null;
   $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
@@ -62,7 +66,7 @@ require __DIR__.'/includes/header.php';
   $baseNote=trim((string)($p['base_notes']??''))?:'Base notes';
   $modalDescription=trim((string)($p['description']??''))?:'Discover the olfactive story of '.$p['name'].', an IKKI fragrance.';
  ?>
-  <article class="collection-card collection-reveal" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
+  <article class="collection-card collection-reveal ikki-signature-card" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
    <div class="collection-card-image">
     <?php if($p['is_new']): ?><span class="collection-new-badge">New</span><?php endif; ?>
     <img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async">
