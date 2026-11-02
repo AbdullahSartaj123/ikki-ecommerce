@@ -72,7 +72,7 @@ require __DIR__.'/includes/header.php';
 </section>
 
 <section class="home-feature" aria-labelledby="home-feature-title">
- <div class="home-feature-art"><img src="<?=e($editorialImages[1])?>" alt="Perfume styled in a soft, warm editorial setting" width="1000" height="1100" loading="lazy" decoding="async"><span>IKKI · A STUDY IN SCENT</span></div>
+ <div class="home-feature-art"><img src="<?=e($editorialImages[1])?>" alt="IKKI fragrance in a soft, warm lifestyle setting" width="1000" height="1100" loading="lazy" decoding="async"><span class="ikki-image-caption">IKKI · A STUDY IN SCENT</span></div>
  <div class="home-feature-copy home-reveal home-circle-anchor"><span class="home-circle-motif home-circle-motif--100" aria-hidden="true"><i></i></span><div class="home-section-marker"><span class="home-section-number">03</span><span class="home-kicker">THE EXPERIENCE</span></div><h2 id="home-feature-title">Find a scent<br>that feels like <em>you.</em></h2><p>From the first impression to the final lingering note, discover a fragrance that complements your individuality and makes every moment feel your own.</p><a class="home-outline-button" href="/shop.php">Explore the fragrances <span>↗</span></a></div>
 </section>
 
