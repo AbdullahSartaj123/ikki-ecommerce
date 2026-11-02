@@ -20,6 +20,8 @@ $conceptProducts=[
 ];
 require __DIR__.'/includes/header.php';
 ?>
+<div class="home-marquee" aria-label="IKKI fragrance philosophy"><div class="home-marquee-track"><span>ELEGANCE IN EVERY DETAIL <b aria-hidden="true">✳</b> FIND YOUR SIGNATURE <b aria-hidden="true">✳</b> THE ART OF FRAGRANCE <b aria-hidden="true">✳</b></span><span aria-hidden="true">ELEGANCE IN EVERY DETAIL <b>✳</b> FIND YOUR SIGNATURE <b>✳</b> THE ART OF FRAGRANCE <b>✳</b></span></div></div>
+
 <section class="home-hero home-hero--editorial" aria-labelledby="home-title">
  <div class="home-hero-copy">
   <span class="home-hero-eyebrow">IKKI <i></i> THE ART OF FRAGRANCE</span>
@@ -41,8 +43,6 @@ require __DIR__.'/includes/header.php';
  </div>
  <a class="home-scroll-cue" href="#home-philosophy" aria-label="Scroll to discover"><span></span> DISCOVER IKKI</a>
 </section>
-
-<div class="home-marquee" aria-label="IKKI fragrance philosophy"><div>THE ART OF FRAGRANCE <b>✳</b> ELEGANCE IN EVERY DETAIL <b>✳</b> FIND YOUR SIGNATURE <b>✳</b> THE ART OF FRAGRANCE <b>✳</b> ELEGANCE IN EVERY DETAIL <b>✳</b> FIND YOUR SIGNATURE <b>✳</b></div></div>
 
 <section class="home-philosophy" id="home-philosophy" aria-labelledby="philosophy-title">
  <div class="home-philosophy-title home-circle-anchor"><span class="home-circle-motif home-circle-motif--80" aria-hidden="true"><i></i></span><div class="home-section-marker"><span class="home-section-number">01</span><span class="home-kicker">MORE THAN A FRAGRANCE</span></div><h2 id="philosophy-title">A signature<br>is <em>personal.</em></h2></div>
