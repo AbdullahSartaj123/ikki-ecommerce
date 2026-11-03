@@ -37,7 +37,7 @@ require __DIR__.'/includes/header.php';
  <div class="home-hero-visual" role="img" aria-label="Editorial photograph of a fine fragrance bottle">
   <div class="home-visual-glow" aria-hidden="true"></div>
   <div class="home-hero-orbit" aria-hidden="true"></div>
-  <img class="home-hero-bottle" src="<?=e($editorialImages[0])?>" alt="Elegant glass perfume bottle with golden details" width="1000" height="1250" loading="eager" fetchpriority="high" decoding="async">
+  <img class="home-hero-bottle" src="<?=e($editorialImages[0])?>" alt="IKKI Legendary Profile signature perfume bottle" width="1000" height="1250" loading="eager" fetchpriority="high" decoding="async">
   <span class="home-hero-photo-caption"><small>THE SIGNATURE EDIT</small><strong>SCENT, <em>IN FORM.</em></strong></span>
   <span class="home-vertical-note" aria-hidden="true">A SCENT THAT STAYS WITH YOU</span>
  </div>
@@ -68,7 +68,7 @@ require __DIR__.'/includes/header.php';
   </a>
  <?php endforeach; endif; ?>
  </div>
- <p class="home-collection-note home-reveal"><?= $products?'Distinct expressions. One unmistakable point of view.':'Concept imagery for the signature collection. Final product presentation will follow confirmed IKKI packaging.' ?></p>
+ <p class="home-collection-note home-reveal"><?= $products?'Distinct expressions. One unmistakable point of view.':'Meet the four signature fragrances from IKKI.' ?></p>
 </section>
 
 <section class="home-feature" aria-labelledby="home-feature-title">
