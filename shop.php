@@ -43,7 +43,7 @@ require __DIR__.'/includes/header.php';
   <span class="home-kicker">IKKI · THE SIGNATURE EDIT</span>
   <h1 id="page-banner-title">A few scents.<br><em>Endless expression.</em></h1>
   <p>A considered collection of signature fragrances. Discover the scent that feels unmistakably yours.</p>
-  <span class="ikki-catalog-edition">THE SIGNATURE COLLECTION <i>—</i> 01 / 07</span>
+  <span class="ikki-catalog-edition">THE SIGNATURE COLLECTION <i>—</i> 01 / 04</span>
  </div>
  <div class="ikki-catalog-hero-side"><img src="/assets/images/collection-hero.svg" alt="IKKI signature perfume bottle" width="420" height="460" fetchpriority="high"><span>SCENT IS A FORM OF MEMORY</span><b>IKKI</b></div>
 </section>
@@ -71,7 +71,8 @@ require __DIR__.'/includes/header.php';
  <?php if($products): foreach($products as $n=>$p):
   $dbProduct=$databaseProducts[$p['slug']]??null;
   $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
-  $imagePath=$p['image_path']??'/assets/images/legendary-profile.svg';
+  $signatureImages=['legendary-profile'=>'/assets/images/legendary-profile.svg','informal'=>'/assets/images/informal.svg','amane'=>'/assets/images/amane.svg','sasha'=>'/assets/images/sasha.svg'];
+  $imagePath=$signatureImages[$p['slug']]??'/assets/images/legendary-profile.svg';
   $variants=[];
   if($dbProduct){$variantQuery=db()->prepare("SELECT id,variant_name,volume_ml,price,stock_quantity FROM product_variants WHERE product_id=? AND is_active=1 ORDER BY volume_ml");$variantQuery->execute([(int)$dbProduct['id']]);$variants=$variantQuery->fetchAll();}
   $topNote=trim((string)($p['top_notes']??''))?:'Opening notes';
@@ -108,7 +109,7 @@ require __DIR__.'/includes/header.php';
  <dialog class="collection-quick-dialog" id="collection-quick-dialog" role="dialog" aria-modal="true" aria-labelledby="quick-view-title">
   <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   <div class="quick-view-layout">
-   <div class="quick-view-visual"><img data-quick-image src="/assets/images/noor.svg" alt="IKKI fragrance bottle artwork for the selected scent" width="800" height="1000" loading="lazy" decoding="async"></div>
+   <div class="quick-view-visual"><img data-quick-image src="/assets/images/legendary-profile.svg" alt="IKKI fragrance bottle artwork for the selected scent" width="800" height="1000" loading="lazy" decoding="async"></div>
    <div class="quick-view-content">
     <span class="quick-view-kicker">THE IKKI FRAGRANCE HOUSE</span>
     <h2 id="quick-view-title"></h2>
