@@ -3112,3 +3112,7 @@ body.quick-view-open{overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){
  .home-hero--editorial .home-hero-bottle,.home-hero--editorial .home-visual-glow,.home-hero--editorial .home-hero-orbit{animation:none!important}
 }
+
+
+/* Fix legacy hero reveal state: the campaign float animation replaces the old reveal animation. */
+.home-hero--editorial .home-hero-bottle{opacity:1!important;visibility:visible!important;transform:translateY(0);}
