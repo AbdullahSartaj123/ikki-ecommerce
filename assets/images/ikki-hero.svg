@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" role="img" aria-labelledby="title desc">
+<title id="title">IKKI signature fragrance — luxury campaign artwork</title>
+<desc id="desc">A clear glass IKKI perfume bottle with a black cap, abstract teal label, sculpted stone pedestal, ivory silk, botanical details and champagne-gold light.</desc>
+<defs>
+ <linearGradient id="back" x2="1" y2="1"><stop stop-color="#fbf7ef"/><stop offset=".48" stop-color="#eee1cd"/><stop offset="1" stop-color="#d9c4a3"/></linearGradient>
+ <radialGradient id="sun"><stop stop-color="#fffdf8" stop-opacity=".95"/><stop offset=".55" stop-color="#ead8b8" stop-opacity=".42"/><stop offset="1" stop-color="#c5a16d" stop-opacity="0"/></radialGradient>
+ <linearGradient id="glass" x1="0" x2="1"><stop stop-color="#fff" stop-opacity=".8"/><stop offset=".16" stop-color="#d9e0dc" stop-opacity=".32"/><stop offset=".48" stop-color="#fff" stop-opacity=".76"/><stop offset=".8" stop-color="#c2b9a9" stop-opacity=".25"/><stop offset="1" stop-color="#fff" stop-opacity=".8"/></linearGradient>
+ <linearGradient id="liquid" x2="0" y2="1"><stop stop-color="#f5e4c6" stop-opacity=".3"/><stop offset="1" stop-color="#b58b50" stop-opacity=".35"/></linearGradient>
+ <linearGradient id="cap" x2="1"><stop stop-color="#090909"/><stop offset=".25" stop-color="#38332e"/><stop offset=".55" stop-color="#080808"/><stop offset=".82" stop-color="#302b26"/><stop offset="1" stop-color="#050505"/></linearGradient>
+ <linearGradient id="gold" x2="1"><stop stop-color="#8d6837"/><stop offset=".5" stop-color="#e7ce9d"/><stop offset="1" stop-color="#a77d46"/></linearGradient>
+ <linearGradient id="teal" x2="1" y2="1"><stop stop-color="#164f50"/><stop offset=".48" stop-color="#0a7775"/><stop offset="1" stop-color="#123b3d"/></linearGradient>
+ <linearGradient id="stone" x2="0" y2="1"><stop stop-color="#f4ecdf"/><stop offset="1" stop-color="#cdbb9e"/></linearGradient>
+ <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="28"/></filter>
+ <filter id="soft"><feGaussianBlur stdDeviation="12"/></filter>
+ <pattern id="grain" width="70" height="70" patternUnits="userSpaceOnUse"><circle cx="12" cy="15" r="1" fill="#9e825b" opacity=".12"/><circle cx="48" cy="52" r=".8" fill="#9e825b" opacity=".1"/></pattern>
+</defs>
+<rect width="1000" height="1200" fill="url(#back)"/>
+<rect width="1000" height="1200" fill="url(#grain)"/>
+<ellipse cx="530" cy="480" rx="480" ry="510" fill="url(#sun)"/>
+<path d="M0 0h1000v180c-150 5-240 80-360 130C490 370 300 330 0 440Z" fill="#fff" opacity=".28"/>
+<path d="M0 720c160-100 280-30 395 75 105 96 236 121 605 22v383H0Z" fill="#f9f2e7" opacity=".62"/>
+<path d="M-80 895c180-145 305-104 424 4 118 108 246 129 432 65 100-34 178-75 280-55v291H-80Z" fill="#fffaf1" opacity=".75"/>
+<path d="M0 1065c202-80 290-16 432 42 154 62 308 28 568-83v176H0Z" fill="#d8c4a4" opacity=".3"/>
+<!-- botanical silhouette -->
+<g fill="none" stroke="#7d8557" stroke-width="5" stroke-linecap="round" opacity=".7">
+ <path d="M820 0c-12 116 17 190 78 263 44 52 65 99 74 168"/>
+ <path d="M864 119c-53-34-82-73-86-119M890 177c62-21 91-59 110-111M916 243c-44-7-76 4-111 34"/>
+</g>
+<g fill="#a9a77b" opacity=".7">
+ <path d="M777 0c35 8 65 33 78 67-43 0-71-22-78-67ZM928 77c7-44 32-68 72-76-4 40-27 65-72 76ZM808 236c20-37 49-53 89-49-20 37-49 53-89 49Z"/>
+</g>
+<!-- jasmine blossom -->
+<g transform="translate(890 305)" fill="#fffdf7" stroke="#d9c7a9" stroke-width="2">
+ <ellipse cy="-25" rx="15" ry="32"/><ellipse cy="-25" rx="15" ry="32" transform="rotate(72)"/><ellipse cy="-25" rx="15" ry="32" transform="rotate(144)"/><ellipse cy="-25" rx="15" ry="32" transform="rotate(216)"/><ellipse cy="-25" rx="15" ry="32" transform="rotate(288)"/><circle r="10" fill="#d9b86f" stroke="none"/>
+</g>
+<g transform="translate(125 290) scale(.72)" fill="#fffdf7" stroke="#d9c7a9" stroke-width="2"><ellipse cy="-25" rx="15" ry="32"/><ellipse cy="-25" rx="15" ry="32" transform="rotate(72)"/><ellipse cy="-25" rx="15" ry="32" transform="rotate(144)"/><ellipse cy="-25" rx="15" ry="32" transform="rotate(216)"/><ellipse cy="-25" rx="15" ry="32" transform="rotate(288)"/><circle r="10" fill="#d9b86f" stroke="none"/></g>
+<!-- sculptural gold halo -->
+<ellipse cx="535" cy="570" rx="310" ry="390" fill="none" stroke="url(#gold)" stroke-width="2" opacity=".6" transform="rotate(17 535 570)"/>
+<ellipse cx="535" cy="570" rx="342" ry="420" fill="none" stroke="#fff" stroke-width="1.5" opacity=".6" transform="rotate(-18 535 570)"/>
+<circle cx="825" cy="250" r="4" fill="#b8935f"/><circle cx="224" cy="690" r="3" fill="#b8935f"/><circle cx="760" cy="890" r="3" fill="#b8935f"/>
+<!-- pedestal -->
+<ellipse cx="535" cy="1015" rx="280" ry="52" fill="#756047" opacity=".22" filter="url(#shadow)"/>
+<path d="M230 890 805 890 900 1090 135 1090Z" fill="url(#stone)"/>
+<path d="M230 890 805 890 785 923 248 923Z" fill="#fffaf1"/>
+<path d="M135 1090h765" stroke="#aa8c60" stroke-width="2" opacity=".55"/>
+<path d="M180 1035c190-26 380 34 650-4" fill="none" stroke="#b49c78" stroke-width="2" opacity=".35"/>
+<!-- bottle shadow -->
+<ellipse cx="520" cy="900" rx="170" ry="32" fill="#5c4c38" opacity=".24" filter="url(#soft)"/>
+<!-- bottle cap -->
+<rect x="414" y="178" width="214" height="194" rx="26" fill="url(#cap)"/>
+<rect x="428" y="190" width="14" height="166" rx="7" fill="#fff" opacity=".12"/>
+<rect x="604" y="190" width="8" height="166" rx="4" fill="#fff" opacity=".1"/>
+<rect x="405" y="355" width="232" height="48" rx="9" fill="#171614"/>
+<path d="M420 365h202" stroke="#a88958" stroke-width="2" opacity=".6"/>
+<!-- bottle body -->
+<rect x="306" y="382" width="430" height="520" rx="48" fill="url(#glass)" stroke="#fff" stroke-width="9"/>
+<rect x="318" y="394" width="406" height="496" rx="39" fill="url(#liquid)" stroke="#b8a78f" stroke-opacity=".48" stroke-width="2"/>
+<path d="M329 428c8-25 19-33 37-34v456c-23-8-37-24-37-48Z" fill="#fff" opacity=".44"/>
+<path d="M695 423c13 18 18 40 18 64v332c0 29-9 50-24 65Z" fill="#fff" opacity=".48"/>
+<path d="M347 406h342" stroke="#fff" stroke-width="5" opacity=".8"/>
+<path d="M350 874h340" stroke="#fff" stroke-width="4" opacity=".55"/>
+<!-- label -->
+<rect x="360" y="492" width="322" height="318" rx="4" fill="#fffdf8" stroke="#d2c3ac" stroke-width="2"/>
+<text x="521" y="560" fill="#171614" text-anchor="middle" font-family="Georgia,serif" font-size="52" letter-spacing="9">IKKI</text>
+<path d="M393 586h256" stroke="url(#gold)" stroke-width="2"/>
+<rect x="394" y="608" width="254" height="156" fill="url(#teal)"/>
+<path d="M394 700c70-68 125 15 254-58v122H394Z" fill="#0b393b" opacity=".58"/>
+<path d="M394 662c62-48 118 36 254-18" fill="none" stroke="#7ec0b6" stroke-width="3" opacity=".6"/>
+<path d="M394 727c75-51 137 16 254-44" fill="none" stroke="#b0d1c7" stroke-width="2" opacity=".45"/>
+<text x="521" y="791" fill="#6d6252" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" letter-spacing="5">EAU DE PARFUM</text>
+<!-- falling petals -->
+<g fill="#fffdf8" stroke="#d9c5a5" stroke-width="1.5"><path d="M205 775c-21-23-17-48 10-60 20 24 18 44-10 60Z"/><path d="M840 770c-20-19-20-42 4-58 21 20 20 40-4 58Z"/><path d="M735 430c-17-18-13-37 8-48 16 18 14 34-8 48Z"/></g>
+<text x="70" y="1120" fill="#94774c" font-family="Arial,sans-serif" font-size="13" letter-spacing="5">THE ART OF FRAGRANCE</text>
+<text x="930" y="1120" text-anchor="end" fill="#94774c" font-family="Arial,sans-serif" font-size="13" letter-spacing="5">IKKI · EST. 2026</text>
+</svg>
