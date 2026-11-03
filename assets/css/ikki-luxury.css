@@ -3060,3 +3060,55 @@ body.quick-view-open{overflow:hidden!important}
 .ikki-catalog-hero-side img{object-fit:contain;mix-blend-mode:multiply}
 @media(max-width:700px){.home-hero.home-hero--editorial{background:linear-gradient(150deg,#f5efe4,#fff 65%,#f5efe4)}.home-hero--editorial .home-hero-bottle{height:auto;max-height:500px}.home-products--editorial{gap:25px 12px}}
 @media(prefers-reduced-motion:reduce){.home-product-art img,.ikki-signature-card .collection-card-image img{transition:none!important}}
+
+/* IKKI signature campaign hero — cream, botanical and champagne gold */
+.home-hero--editorial{
+ background:linear-gradient(112deg,#fbf8f2 0%,#f5efe4 48%,#eee2cf 100%)!important;
+ color:#2a2a2a;min-height:clamp(690px,calc(100svh - 118px),900px);
+}
+.home-hero--editorial:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 76% 48%,rgba(184,147,95,.2),transparent 36%),radial-gradient(ellipse at 15% 12%,rgba(255,255,255,.92),transparent 48%)}
+.home-hero--editorial:after{opacity:.035}
+.home-hero--editorial .home-hero-copy{max-width:620px}
+.home-hero--editorial .home-hero-eyebrow{color:#9b794b}
+.home-hero--editorial .home-hero-eyebrow i{background:#b8935f}
+.home-hero--editorial .home-overline{color:#887d6d}
+.home-hero--editorial h1{color:#292720}
+.home-hero--editorial h1 em{color:#a77f4c}
+.home-hero--editorial .home-hero-subtext{max-width:440px;color:#716b61;font-size:14px;line-height:1.95}
+.home-hero--editorial .home-hero-foot{color:#827969}
+.home-hero--editorial .home-hero-visual{min-height:620px;overflow:visible}
+.home-hero--editorial .home-hero-bottle{display:block;position:relative;z-index:2;width:min(100%,620px);height:auto;max-height:740px;object-fit:contain;filter:drop-shadow(0 24px 30px rgba(85,65,39,.13));animation:ikkiCampaignFloat 8s ease-in-out infinite}
+.home-hero--editorial .home-visual-glow{width:min(90%,570px);background:radial-gradient(circle,rgba(255,255,255,.9),rgba(184,147,95,.18) 44%,transparent 72%);filter:blur(20px);animation:ikkiCampaignGlow 8s ease-in-out infinite}
+.home-hero--editorial .home-hero-orbit{position:absolute;z-index:1;width:min(90%,610px);aspect-ratio:1;border:1px solid rgba(184,147,95,.38);border-radius:50%;transform:scaleY(.76) rotate(-18deg);animation:ikkiCampaignOrbit 34s linear infinite}
+.home-hero--editorial .home-hero-orbit:before,.home-hero--editorial .home-hero-orbit:after{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:#b8935f;box-shadow:0 0 18px rgba(184,147,95,.55)}
+.home-hero--editorial .home-hero-orbit:before{top:12%;left:19%}
+.home-hero--editorial .home-hero-orbit:after{right:12%;bottom:17%;width:5px;height:5px}
+.home-hero--editorial .home-photo-caption,.home-hero--editorial .home-hero-photo-caption{color:#8e7047}
+.home-hero--editorial .home-hero-photo-caption strong{color:#2a2a2a}
+.home-hero--editorial .home-vertical-note{color:#9b8b72}
+.home-hero--editorial .home-scroll-cue{color:#887d6d}
+.home-hero--editorial .home-scroll-cue span{background:#b8935f}
+@keyframes ikkiCampaignFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+@keyframes ikkiCampaignGlow{0%,100%{opacity:.72;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}
+@keyframes ikkiCampaignOrbit{from{rotate:0deg}to{rotate:360deg}}
+@media(max-width:900px){
+ .home-hero--editorial{grid-template-columns:1fr;min-height:unset;padding-top:54px;padding-bottom:82px}
+ .home-hero--editorial .home-hero-copy{max-width:720px;padding-bottom:0}
+ .home-hero--editorial .home-overline{margin-top:35px}
+ .home-hero--editorial .home-hero-foot{margin-top:40px}
+ .home-hero--editorial .home-hero-visual{min-height:0;margin:12px auto 0;width:min(100%,680px)}
+ .home-hero--editorial .home-hero-bottle{width:min(100%,590px);max-height:none}
+ .home-hero--editorial .home-hero-orbit{width:78%}
+}
+@media(max-width:600px){
+ .home-hero--editorial{padding:42px 22px 72px}
+ .home-hero--editorial h1{font-size:clamp(62px,17vw,88px);line-height:.88}
+ .home-hero--editorial .home-hero-subtext{font-size:13px}
+ .home-hero--editorial .home-hero-visual{width:calc(100% + 22px);margin-left:-11px;margin-right:-11px}
+ .home-hero--editorial .home-hero-foot{gap:10px 17px;font-size:7px}
+ .home-hero--editorial .home-vertical-note{right:0;font-size:7px}
+ .home-hero--editorial .home-scroll-cue{bottom:18px}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-hero--editorial .home-hero-bottle,.home-hero--editorial .home-visual-glow,.home-hero--editorial .home-hero-orbit{animation:none!important}
+}
