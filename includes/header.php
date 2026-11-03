@@ -30,8 +30,8 @@ $navItems=[
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css?v=20261101-32">
-<?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261101-9"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261102-2"><?php endif; ?>
-<link rel="stylesheet" href="/assets/css/ikki-luxury.css?v=20261102-36">
+<?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261103-1"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261103-1"><?php endif; ?>
+<link rel="stylesheet" href="/assets/css/ikki-luxury.css?v=20261103-1">
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
 <div class="ikki-scroll-progress" data-ikki-scroll-progress aria-hidden="true"><span></span></div>
