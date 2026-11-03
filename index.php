@@ -4,19 +4,19 @@ $pageTitle='IKKI — The Art of Fragrance';
 $description='Discover IKKI, a considered fragrance house. Explore expressive scents and find a fragrance that feels unmistakably yours.';
 $products=[];
 try{
- $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.id LIMIT 4")->fetchAll();
+ $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 AND p.name IN ('Legendary Profile','Informal','Amane','Sasha') GROUP BY p.id ORDER BY FIELD(p.name,'Legendary Profile','Informal','Amane','Sasha') LIMIT 4")->fetchAll();
 }catch(Throwable $ex){error_log('[IKKI home] '.$ex->getMessage());}
 $editorialImages=[
- 'https://images.unsplash.com/photo-1587304946976-cbbbafce2133?auto=format&fit=crop&w=1000&q=85',
- 'https://images.unsplash.com/photo-1673710672680-944563ff9cce?auto=format&fit=crop&w=900&q=85',
- 'https://images.unsplash.com/photo-1718068838055-3a8311f0e8ba?auto=format&fit=crop&w=900&q=85',
- 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=900&q=85'
+ '/assets/images/legendary-profile.svg',
+ '/assets/images/informal.svg',
+ '/assets/images/amane.svg',
+ '/assets/images/sasha.svg'
 ];
 $conceptProducts=[
- ['name'=>'NOOR','family'=>'AMBER · FLORAL','description'=>'A luminous, softly enveloping fragrance story.','image'=>'/assets/images/noor.svg'],
- ['name'=>'SAHRA','family'=>'WARM · SPICED','description'=>'A warm, sunlit composition with a graceful trail.','image'=>'/assets/images/sahra.svg'],
- ['name'=>'VELVET DUSK','family'=>'WOODY · AMBER','description'=>'A deeper, intimate mood for the evening.','image'=>'/assets/images/velvet-dusk.svg'],
- ['name'=>'AZURE 04','family'=>'FRESH · AROMATIC','description'=>'A crisp, modern expression with effortless clarity.','image'=>'/assets/images/azure-04.svg']
+ ['name'=>'Legendary Profile','family'=>'WOODY · AMBER','description'=>'A confident signature with a distinctive, memorable presence.','image'=>'/assets/images/legendary-profile.svg','slug'=>'legendary-profile'],
+ ['name'=>'Informal','family'=>'FRESH · AROMATIC','description'=>'An effortless everyday expression, relaxed yet refined.','image'=>'/assets/images/informal.svg','slug'=>'informal'],
+ ['name'=>'Amane','family'=>'AQUATIC · MODERN','description'=>'A fresh, contemporary character with a smooth finish.','image'=>'/assets/images/amane.svg','slug'=>'amane'],
+ ['name'=>'Sasha','family'=>'FLORAL · WOODY','description'=>'A poised, expressive fragrance with a lasting impression.','image'=>'/assets/images/sasha.svg','slug'=>'sasha']
 ];
 require __DIR__.'/includes/header.php';
 ?>
@@ -54,7 +54,7 @@ require __DIR__.'/includes/header.php';
  <div class="home-products home-products--editorial">
  <?php if($products): foreach($products as $n=>$p):
    $image=$p['image_path']??'';
-   if($image==='' || preg_match('/\.svg(?:$|\?)/i',$image)) $image=$editorialImages[$n%count($editorialImages)];
+   $image=$editorialImages[$n%count($editorialImages)];
  ?>
   <a class="home-product" href="/product.php?slug=<?=e($p['slug'])?>">
    <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance editorial photograph" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div>
