@@ -4,7 +4,7 @@ $pageTitle='Collection — IKKI';
 $description='Explore the IKKI fragrance collection: individual scent stories, composed to become part of your signature.';
 $products=[];
 try{
- $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.description,p.gender,p.top_notes,p.heart_notes,p.base_notes,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 GROUP BY p.id ORDER BY p.is_featured DESC,p.name LIMIT 7")->fetchAll();
+ $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.description,p.gender,p.top_notes,p.heart_notes,p.base_notes,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 AND p.name IN ('Legendary Profile','Informal','Amane','Sasha') GROUP BY p.id ORDER BY FIELD(p.name,'Legendary Profile','Informal','Amane','Sasha') LIMIT 4")->fetchAll();
 }catch(Throwable $ex){error_log('[IKKI collection] '.$ex->getMessage());}
 /*
  * Keep the editorial collection visible even before the live catalogue is populated.
@@ -12,15 +12,11 @@ try{
  */
 if(!$products){
  $products=[
-  ['name'=>'Noor','slug'=>'noor','short_description'=>'A luminous floral-amber concept with a soft, golden finish.','description'=>'Noor is imagined as first light across warm stone: bright, graceful and quietly memorable. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Bergamot, pear accord','heart_notes'=>'Jasmine, orange blossom accord','base_notes'=>'Soft amber, musk accord','price'=>null,'image_path'=>'/assets/images/noor.svg'],
-  ['name'=>'Sahra','slug'=>'sahra','short_description'=>'Warm woods and amber-inspired character, made for golden-hour moods.','description'=>'Sahra takes its cue from the last light of the day: a warm, enveloping fragrance concept with a confident woody character. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Saffron accord, mandarin','heart_notes'=>'Rose accord, cedar','base_notes'=>'Amber accord, sandalwood','price'=>null,'image_path'=>'/assets/images/sahra.svg'],
-  ['name'=>'Velvet Dusk','slug'=>'velvet-dusk','short_description'=>'A deep, smooth evening concept with a modern, velvety mood.','description'=>'Velvet Dusk is a study in contrast: dark fruit-like brightness meets a soft, textured woody base. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Blackcurrant accord, pink pepper','heart_notes'=>'Iris accord, rose','base_notes'=>'Vanilla, patchouli accord','price'=>null,'image_path'=>'/assets/images/velvet-dusk.svg'],
-  ['name'=>'Azure 04','slug'=>'azure-04','short_description'=>'A fresh, airy aromatic concept with a clean, modern finish.','description'=>'Azure 04 evokes open air after rain: crisp citrus, aromatic clarity and a calm woody foundation. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Bergamot, marine accord','heart_notes'=>'Neroli, aromatic herbs','base_notes'=>'Cedar, clean musk accord','price'=>null,'image_path'=>'/assets/images/azure-04.svg']
-,
-  ['name'=>'Aether','slug'=>'aether','short_description'=>'A sheer citrus and mineral-wood concept with effortless clarity.','description'=>'Aether is imagined as a clean horizon: sparkling citrus, airy aromatic notes and a quiet mineral-wood finish. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Yuzu, bergamot','heart_notes'=>'Lavender, green tea accord','base_notes'=>'Mineral woods, white musk','price'=>null,'image_path'=>'/assets/images/aether.svg'],
-  ['name'=>'Rose Veil','slug'=>'rose-veil','short_description'=>'A modern rose composition softened with creamy woods and musk.','description'=>'Rose Veil explores the softer side of floral fragrance: luminous petals, gentle spice and a smooth, comforting base. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Pink pepper, lychee accord','heart_notes'=>'Rose, peony','base_notes'=>'Cashmere woods, musk','price'=>null,'image_path'=>'/assets/images/rose-veil.svg'],
-  ['name'=>'Oud Élan','slug'=>'oud-elan','short_description'=>'A poised oud-inspired concept with resinous warmth and depth.','description'=>'Oud Élan is a study in quiet confidence, pairing a refined oud-inspired accord with warm resin and polished woods. A fragrance concept preview.','gender'=>'Unisex','top_notes'=>'Cardamom, saffron accord','heart_notes'=>'Rosewood, incense accord','base_notes'=>'Oud accord, amber, sandalwood','price'=>null,'image_path'=>'/assets/images/oud-elan.svg'] ];
-}
+ ['name'=>'Legendary Profile','slug'=>'legendary-profile','short_description'=>'A confident signature with a distinctive, memorable presence.','description'=>'Legendary Profile is the bold signature fragrance from IKKI.','gender'=>'Unisex','top_notes'=>'Citrus accord, aromatic spice','heart_notes'=>'Refined woods, floral accord','base_notes'=>'Amber, musk, woods','price'=>null,'image_path'=>'/assets/images/legendary-profile.svg'],
+ ['name'=>'Informal','slug'=>'informal','short_description'=>'An effortless everyday expression, relaxed yet refined.','description'=>'Informal brings a relaxed, modern character to everyday moments.','gender'=>'Unisex','top_notes'=>'Bergamot, green notes','heart_notes'=>'Aromatic herbs, soft florals','base_notes'=>'Clean musk, cedarwood','price'=>null,'image_path'=>'/assets/images/informal.svg'],
+ ['name'=>'Amane','slug'=>'amane','short_description'=>'A fresh, contemporary character with a smooth finish.','description'=>'Amane is a fresh and contemporary IKKI signature fragrance.','gender'=>'Unisex','top_notes'=>'Fresh citrus, aquatic accord','heart_notes'=>'Neroli, aromatic notes','base_notes'=>'Soft woods, musk','price'=>null,'image_path'=>'/assets/images/amane.svg'],
+ ['name'=>'Sasha','slug'=>'sasha','short_description'=>'A poised, expressive fragrance with a lasting impression.','description'=>'Sasha is an expressive signature with a graceful, memorable trail.','gender'=>'Unisex','top_notes'=>'Bright fruits, pink pepper','heart_notes'=>'Floral accord, rose','base_notes'=>'Warm woods, musk','price'=>null,'image_path'=>'/assets/images/sasha.svg']
+ ];
 $catalog=[];
 $databaseProducts=[];
 foreach($products as $product){
@@ -73,7 +69,7 @@ require __DIR__.'/includes/header.php';
  <?php if($products): foreach($products as $n=>$p):
   $dbProduct=$databaseProducts[$p['slug']]??null;
   $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
-  $imagePath=$dbProduct['image_path']??($p['image_path']??'/assets/images/noor.svg');
+  $imagePath=$p['image_path']??'/assets/images/legendary-profile.svg';
   $variants=[];
   if($dbProduct){$variantQuery=db()->prepare("SELECT id,variant_name,volume_ml,price,stock_quantity FROM product_variants WHERE product_id=? AND is_active=1 ORDER BY volume_ml");$variantQuery->execute([(int)$dbProduct['id']]);$variants=$variantQuery->fetchAll();}
   $topNote=trim((string)($p['top_notes']??''))?:'Opening notes';
