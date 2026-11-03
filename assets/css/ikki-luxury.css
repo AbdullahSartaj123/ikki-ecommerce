@@ -3022,3 +3022,41 @@ body.quick-view-open{overflow:hidden!important}
  .ikki-footer-main{opacity:1;transform:none;transition:none}
  .ikki-footer .ikki-footer-panel a,.ikki-footer .ikki-footer-socials a,.ikki-footer .ikki-footer-contact-link{transition:none}
 }
+
+/* IKKI signature-four storefront art direction */
+.home-hero.home-hero--editorial{background:radial-gradient(ellipse at 75% 45%,rgba(184,147,95,.13),transparent 37%),linear-gradient(120deg,#f5efe4 0%,#fff 58%,#f5efe4 100%)}
+.home-hero--editorial h1,.home-hero--editorial .home-hero-subtext,.home-hero--editorial .home-overline{color:#2a2a2a}
+.home-hero--editorial .home-hero-eyebrow,.home-hero--editorial .home-hero-foot,.home-hero--editorial .home-vertical-note,.home-hero--editorial .home-scroll-cue{color:#7a756c}
+.home-hero--editorial .home-hero-bottle{width:min(78%,510px);height:min(62vw,620px);object-fit:contain;border-radius:0;filter:drop-shadow(0 26px 30px rgba(44,36,24,.18));mix-blend-mode:multiply}
+.home-hero--editorial .home-visual-glow{background:radial-gradient(circle,rgba(184,147,95,.2),rgba(158,119,59,.07) 42%,transparent 72%)}
+.home-hero-orbit{border-color:rgba(184,147,95,.24)}
+.home-hero-photo-caption{background:rgba(255,255,255,.82);border-color:rgba(184,147,95,.38);color:#2a2a2a}
+.home-philosophy,.home-collection,.home-values{background:#fff;color:#2a2a2a}
+.home-philosophy-title h2,.home-section-heading h2,.home-values-heading h2,.home-product-meta h3{color:#2a2a2a}
+.home-feature,.home-values{background:#f5efe4}
+.home-feature-copy p,.home-value p,.home-philosophy-copy p{color:#7a756c}
+.home-feature-copy h2,.home-value h3{color:#2a2a2a}
+.home-manifesto{background:#fff}.home-manifesto>p{color:#2a2a2a}
+.home-final-cta{background:radial-gradient(ellipse at 50% 100%,rgba(184,147,95,.16),transparent 60%),#f5efe4}
+.home-final-cta h2{color:#2a2a2a}.home-final-cta p{color:#7a756c}
+.home-products--editorial{gap:clamp(16px,2.4vw,34px)}
+.home-product-art{background:linear-gradient(145deg,#f8f5ef,#eee7dc);border:1px solid rgba(184,147,95,.18);aspect-ratio:4/5}
+.home-product-art img{object-fit:contain;padding:8px;mix-blend-mode:multiply;transition:transform .8s}
+.home-product:hover .home-product-art img{transform:scale(1.045)}
+.home-product-open{background:rgba(255,255,255,.9);color:#6c5435}
+.home-product-meta{padding-top:19px}.home-product-meta p{color:#7a756c}.home-product-meta strong{color:#987344}
+.home-collection-note{color:#7a756c}
+.ikki-signature-card .collection-card-image{background:linear-gradient(145deg,#faf8f3,#eee7dc)}
+.ikki-signature-card .collection-card-image img{object-fit:contain;padding:10px;mix-blend-mode:multiply;transition:transform .7s}
+.ikki-signature-card:hover .collection-card-image img{transform:scale(1.035)}
+.ikki-signature-card .collection-card-info{background:#fff}
+.ikki-signature-card .collection-card-info h2 a{color:#2a2a2a}
+.ikki-signature-card .collection-card-info p{color:#7a756c}
+.ikki-catalog-intro{max-width:760px;margin:0 auto 42px;text-align:center}
+.ikki-catalog-intro>span{font:500 10px Montserrat,sans-serif;letter-spacing:.2em;color:#b8935f}
+.ikki-catalog-intro>p{color:#7a756c}
+.ikki-catalog-hero{background:linear-gradient(110deg,#f5efe4,#fff 65%,#f5efe4);color:#2a2a2a}
+.ikki-catalog-hero h1,.ikki-catalog-hero p{color:#2a2a2a}
+.ikki-catalog-hero-side img{object-fit:contain;mix-blend-mode:multiply}
+@media(max-width:700px){.home-hero.home-hero--editorial{background:linear-gradient(150deg,#f5efe4,#fff 65%,#f5efe4)}.home-hero--editorial .home-hero-bottle{height:auto;max-height:500px}.home-products--editorial{gap:25px 12px}}
+@media(prefers-reduced-motion:reduce){.home-product-art img,.ikki-signature-card .collection-card-image img{transition:none!important}}
