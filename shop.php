@@ -12,11 +12,13 @@ try{
  */
 if(!$products){
  $products=[
- ['name'=>'Legendary Profile','slug'=>'legendary-profile','short_description'=>'A confident signature with a distinctive, memorable presence.','description'=>'Legendary Profile is the bold signature fragrance from IKKI.','gender'=>'Unisex','top_notes'=>'Citrus accord, aromatic spice','heart_notes'=>'Refined woods, floral accord','base_notes'=>'Amber, musk, woods','price'=>null,'image_path'=>'/assets/images/legendary-profile.svg'],
- ['name'=>'Informal','slug'=>'informal','short_description'=>'An effortless everyday expression, relaxed yet refined.','description'=>'Informal brings a relaxed, modern character to everyday moments.','gender'=>'Unisex','top_notes'=>'Bergamot, green notes','heart_notes'=>'Aromatic herbs, soft florals','base_notes'=>'Clean musk, cedarwood','price'=>null,'image_path'=>'/assets/images/informal.svg'],
- ['name'=>'Amane','slug'=>'amane','short_description'=>'A fresh, contemporary character with a smooth finish.','description'=>'Amane is a fresh and contemporary IKKI signature fragrance.','gender'=>'Unisex','top_notes'=>'Fresh citrus, aquatic accord','heart_notes'=>'Neroli, aromatic notes','base_notes'=>'Soft woods, musk','price'=>null,'image_path'=>'/assets/images/amane.svg'],
- ['name'=>'Sasha','slug'=>'sasha','short_description'=>'A poised, expressive fragrance with a lasting impression.','description'=>'Sasha is an expressive signature with a graceful, memorable trail.','gender'=>'Unisex','top_notes'=>'Bright fruits, pink pepper','heart_notes'=>'Floral accord, rose','base_notes'=>'Warm woods, musk','price'=>null,'image_path'=>'/assets/images/sasha.svg']
+ ['name'=>'Legendary Profile','slug'=>'legendary-profile','short_description'=>'A confident signature with a distinctive, memorable presence.','description'=>'Legendary Profile is the bold signature fragrance from IKKI.','gender'=>'Unisex','top_notes'=>'Fragrance profile to be confirmed','heart_notes'=>'Fragrance profile to be confirmed','base_notes'=>'Fragrance profile to be confirmed','price'=>null,'image_path'=>'/assets/images/legendary-profile.svg'],
+ ['name'=>'Informal','slug'=>'informal','short_description'=>'An effortless everyday expression, relaxed yet refined.','description'=>'Informal brings a relaxed, modern character to everyday moments.','gender'=>'Unisex','top_notes'=>'Fragrance profile to be confirmed','heart_notes'=>'Fragrance profile to be confirmed','base_notes'=>'Fragrance profile to be confirmed','price'=>null,'image_path'=>'/assets/images/informal.svg'],
+ ['name'=>'Amane','slug'=>'amane','short_description'=>'A fresh, contemporary character with a smooth finish.','description'=>'Amane is a fresh and contemporary IKKI signature fragrance.','gender'=>'Unisex','top_notes'=>'Fragrance profile to be confirmed','heart_notes'=>'Fragrance profile to be confirmed','base_notes'=>'Fragrance profile to be confirmed','price'=>null,'image_path'=>'/assets/images/amane.svg'],
+ ['name'=>'Sasha','slug'=>'sasha','short_description'=>'A poised, expressive fragrance with a lasting impression.','description'=>'Sasha is an expressive signature with a graceful, memorable trail.','gender'=>'Unisex','top_notes'=>'Fragrance profile to be confirmed','heart_notes'=>'Fragrance profile to be confirmed','base_notes'=>'Fragrance profile to be confirmed','price'=>null,'image_path'=>'/assets/images/sasha.svg']
+
  ];
+}
 $catalog=[];
 $databaseProducts=[];
 foreach($products as $product){
