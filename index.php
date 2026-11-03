@@ -37,7 +37,7 @@ require __DIR__.'/includes/header.php';
  <div class="home-hero-visual" role="img" aria-label="Editorial photograph of a fine fragrance bottle">
   <div class="home-visual-glow" aria-hidden="true"></div>
   <div class="home-hero-orbit" aria-hidden="true"></div>
-  <img class="home-hero-bottle" src="<?=e($editorialImages[0])?>" alt="IKKI Legendary Profile signature perfume bottle" width="1000" height="1250" loading="eager" fetchpriority="high" decoding="async">
+  <img class="home-hero-bottle" src="/assets/images/ikki-hero.svg" alt="IKKI signature fragrance bottle in a champagne-lit botanical campaign setting" width="1000" height="1200" loading="eager" fetchpriority="high" decoding="async">
   <span class="home-hero-photo-caption"><small>THE SIGNATURE EDIT</small><strong>SCENT, <em>IN FORM.</em></strong></span>
   <span class="home-vertical-note" aria-hidden="true">A SCENT THAT STAYS WITH YOU</span>
  </div>
