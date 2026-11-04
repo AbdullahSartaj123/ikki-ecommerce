@@ -4113,3 +4113,38 @@ body.quick-view-open{overflow:hidden!important}
  .home-hero--editorial .home-visual-glow,.home-hero--editorial .home-hero-orbit{animation:none!important}
  .ikki-home-edition-links a{transition:none}
 }
+
+/* House of Four campaign art direction — homepage v2 */
+.home-hero.home-hero--editorial{min-height:clamp(650px,calc(100svh - 108px),850px);grid-template-columns:1.02fr .98fr;gap:clamp(32px,6vw,90px);background:linear-gradient(112deg,#f5efe4 0%,#fbf8f1 48%,#eee3d1 100%)!important}
+.home-hero.home-hero--editorial h1{font-size:clamp(76px,9vw,126px);line-height:.78;letter-spacing:-.065em;color:#29251f!important}
+.home-hero.home-hero--editorial h1 .hero-title-line{display:block}
+.home-hero.home-hero--editorial h1 em{color:#b18a55!important}
+.home-hero--editorial .home-overline{margin-top:clamp(42px,6vw,76px);color:#9b805e}
+.home-hero--editorial .home-hero-subtext{max-width:410px;color:#746d62;font-size:13px;line-height:2.05}
+.home-hero--editorial .home-hero-visual{height:min(66vw,650px);max-height:650px;min-height:0;border:1px solid rgba(184,147,95,.22);background:linear-gradient(145deg,rgba(255,255,255,.72),rgba(236,224,204,.4));box-shadow:0 35px 90px rgba(81,62,35,.09)}
+.home-hero--editorial .home-hero-visual:before{content:"";position:absolute;inset:18px;border:1px solid rgba(184,147,95,.22);pointer-events:none}
+.home-hero--editorial .home-hero-bottle{width:100%;height:100%;max-height:none;object-fit:contain;padding:3%;filter:drop-shadow(0 28px 32px rgba(76,57,32,.15))}
+.home-hero--editorial .home-hero-photo-caption{padding:17px 21px;background:rgba(255,255,255,.9);border:1px solid rgba(184,147,95,.2);color:#92734c}
+.home-hero--editorial .home-hero-photo-caption strong{font-size:27px;color:#30291f}
+.ikki-home-edition-index{grid-template-columns:1fr;background:#fff}
+.ikki-home-edition-intro{justify-content:center}
+.ikki-home-edition-links{max-width:1180px;width:100%;margin:0 auto;gap:clamp(12px,3vw,38px)}
+.ikki-home-edition-links a{justify-content:center;padding:11px 12px;border-bottom:1px solid rgba(184,147,95,.2)}
+.home-collection{padding-top:clamp(82px,9vw,126px);padding-bottom:clamp(82px,9vw,126px);background:#fff!important}
+.home-collection .home-section-heading{margin-bottom:56px}
+.home-collection .home-section-heading h2{font-size:clamp(56px,7vw,88px);line-height:.88}
+.home-products--editorial{gap:clamp(14px,2vw,26px)}
+.home-products--editorial .home-product{padding-bottom:22px;border-bottom:1px solid rgba(184,147,95,.3);transition:transform .4s,border-color .4s}
+.home-products--editorial .home-product:hover{transform:translateY(-6px);border-color:#b8935f}
+.home-products--editorial .home-product-art{aspect-ratio:4/5;background:#f5efe4;border:1px solid rgba(184,147,95,.16)}
+.home-products--editorial .home-product-art:before{content:"";position:absolute;z-index:1;inset:14px;border:1px solid rgba(184,147,95,.18);pointer-events:none}
+.home-products--editorial .home-product-number{top:22px;left:22px;display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(184,147,95,.48);border-radius:50%;background:rgba(255,255,255,.86);color:#997448}
+.home-products--editorial .home-product-open{transform:none;left:14px;right:14px;bottom:14px;padding:13px;background:rgba(255,255,255,.9);color:#84633b;text-align:center;opacity:0;transition:opacity .3s}
+.home-products--editorial .home-product:hover .home-product-open{opacity:1}
+.home-products--editorial .home-product-meta{display:block;padding:19px 5px 0}
+.home-products--editorial .home-product-meta h3{font-size:clamp(24px,2.3vw,32px);color:#2a2a2a}
+.home-products--editorial .home-product-meta p{min-height:34px;color:#81796d;font-size:9px;line-height:1.7}
+.home-products--editorial .home-product-meta strong{display:block;margin-top:13px;padding-top:11px;border-top:1px solid rgba(184,147,95,.18);color:#a17d4e;font-size:8px;letter-spacing:.16em}
+@media(max-width:900px){.home-hero.home-hero--editorial{gap:24px;padding-inline:28px}.home-hero.home-hero--editorial h1{font-size:clamp(66px,8vw,92px)}.home-hero--editorial .home-hero-visual{height:55vw;min-height:410px}.home-products--editorial{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.home-hero.home-hero--editorial{display:flex;flex-direction:column;min-height:0;padding:28px 18px 58px}.home-hero--editorial .home-hero-visual{order:0;width:100%;height:clamp(300px,88vw,410px);min-height:0;margin-bottom:27px}.home-hero--editorial .home-hero-copy{order:1;width:100%;padding:0 4px}.home-hero.home-hero--editorial h1{font-size:clamp(65px,15vw,90px);margin:15px 0 20px}.home-hero--editorial .home-overline{margin-top:22px;font-size:7px}.home-hero--editorial .home-hero-subtext{font-size:12px;line-height:1.9}.home-hero--editorial .home-hero-foot{margin-top:25px;gap:8px 14px;font-size:6px}.home-hero--editorial .home-hero-photo-caption{right:10px;bottom:10px;padding:12px 14px}.home-hero--editorial .home-hero-photo-caption strong{font-size:19px}.ikki-home-edition-index{padding:18px 17px}.ikki-home-edition-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px}.ikki-home-edition-links a{justify-content:flex-start;padding:10px 4px}.home-collection .home-section-heading h2{font-size:clamp(48px,12vw,65px)}.home-products--editorial{gap:24px 13px}.home-products--editorial .home-product-meta{padding:14px 2px 0}.home-products--editorial .home-product-meta h3{font-size:23px}.home-products--editorial .home-product-meta p{font-size:8px;min-height:0}}
+@media(prefers-reduced-motion:reduce){.home-products--editorial .home-product,.home-products--editorial .home-product-art img{transition:none!important}}
