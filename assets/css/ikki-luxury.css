@@ -3817,3 +3817,89 @@ body.quick-view-open{overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){
  .ikki-signature-card .collection-card-image img,.ikki-signature-card .collection-quick-view,.ikki-signature-card .ikki-card-discover{transition:none!important}
 }
+
+/* IKKI visual signature layer — ornamental geometry, bottle-stage lighting and note storytelling */
+.ikki-catalog-hero{isolation:isolate}
+.ikki-catalog-hero:before{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.32;background-image:radial-gradient(rgba(154,117,70,.28) .65px,transparent .65px);background-size:17px 17px;mask-image:linear-gradient(90deg,transparent 0%,#000 72%,transparent 100%)}
+.ikki-catalog-hero:after{box-shadow:0 0 0 1px rgba(167,127,76,.13),0 0 0 24px rgba(184,147,95,.035),0 0 0 56px rgba(184,147,95,.025),inset 0 0 55px rgba(184,147,95,.06)!important}
+.ikki-catalog-hero-side{position:relative!important}
+.ikki-catalog-hero-side:before{content:"";position:absolute;z-index:-1;width:76%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,rgba(184,147,95,.2),rgba(184,147,95,.06) 48%,transparent 72%);filter:blur(9px)}
+.ikki-catalog-hero-side:after{content:"";position:absolute;z-index:-1;width:92%;height:1px;bottom:21%;left:4%;background:linear-gradient(90deg,transparent,rgba(167,127,76,.4),transparent);box-shadow:0 15px 28px 5px rgba(91,67,38,.08)}
+.ikki-catalog-edition{display:flex!important;align-items:center;gap:10px}
+.ikki-catalog-edition:before,.ikki-catalog-edition:after{content:"";width:28px;height:1px;background:linear-gradient(90deg,transparent,#b8935f)}
+.ikki-catalog-edition:after{transform:rotate(180deg)}
+.ikki-signature-card{position:relative}
+.ikki-signature-card .collection-card-image{isolation:isolate;background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.95),transparent 55%),linear-gradient(145deg,#fbf9f5,#eee5d8)!important}
+.ikki-signature-card .collection-card-image:after{content:"";position:absolute;z-index:0;inset:18px;border:1px solid rgba(184,147,95,.14);pointer-events:none}
+.ikki-signature-card .collection-card-image:before{content:"";position:absolute;z-index:0;width:68%;aspect-ratio:1;left:16%;top:15%;border:1px solid rgba(184,147,95,.15);border-radius:50%;box-shadow:0 0 0 14px rgba(184,147,95,.025),0 0 0 30px rgba(184,147,95,.02);pointer-events:none}
+.ikki-signature-card .collection-card-image img{position:relative;z-index:1}
+.ikki-signature-card .collection-new-badge{z-index:3;top:22px!important;left:22px!important;padding:8px 11px!important;background:rgba(255,255,255,.82)!important;border:1px solid rgba(184,147,95,.38);color:#8b673c!important;font:600 7px Montserrat,sans-serif!important;letter-spacing:.16em;text-transform:uppercase;backdrop-filter:blur(8px)}
+.ikki-signature-card .collection-quick-view{z-index:4}
+.ikki-signature-card .collection-card-info:before{content:"";grid-column:1/-1;width:30px;height:1px;margin-bottom:3px;background:#b8935f;opacity:.8}
+.ikki-signature-card .collection-card-info h2{letter-spacing:.015em!important}
+.ikki-signature-card .collection-card-info p{max-width:34em}
+.ikki-product-page{position:relative;isolation:isolate;overflow:hidden}
+.ikki-product-page:before{content:"";position:absolute;z-index:-1;top:80px;left:-220px;width:520px;height:520px;border:1px solid rgba(184,147,95,.08);border-radius:50%;box-shadow:0 0 0 35px rgba(184,147,95,.018),0 0 0 75px rgba(184,147,95,.014);pointer-events:none}
+.ikki-product-breadcrumb{position:relative;z-index:1}
+.ikki-product-main-image{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 48%,rgba(255,255,255,.96) 0%,rgba(255,255,255,.25) 43%,transparent 68%),linear-gradient(145deg,#f7f2e9,#eee4d5)!important}
+.ikki-product-main-image:before{content:"";position:absolute;z-index:-1;width:72%;aspect-ratio:1;left:14%;top:13%;border:1px solid rgba(184,147,95,.2);border-radius:50%;box-shadow:0 0 0 18px rgba(184,147,95,.035),0 0 0 42px rgba(184,147,95,.022),inset 0 0 45px rgba(184,147,95,.05);pointer-events:none}
+.ikki-product-main-image:after{content:"";position:absolute;z-index:0;left:14%;right:14%;bottom:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(167,127,76,.5),transparent);box-shadow:0 12px 25px 5px rgba(91,67,38,.1);pointer-events:none}
+.ikki-product-main-image img{position:relative;z-index:1;filter:drop-shadow(0 22px 22px rgba(55,43,27,.11))}
+.ikki-product-object,.ikki-product-image-caption{z-index:2!important;color:#92764e!important;letter-spacing:.2em!important}
+.ikki-product-object{display:inline-flex;align-items:center;gap:9px}
+.ikki-product-object:before{content:"";width:17px;height:1px;background:#b8935f}
+.ikki-product-image-caption{display:flex;align-items:center;gap:10px}
+.ikki-product-image-caption:before,.ikki-product-image-caption:after{content:"";width:22px;height:1px;background:rgba(184,147,95,.6)}
+.ikki-product-thumbnails{gap:12px!important;margin-top:14px}
+.ikki-product-thumb{border:1px solid rgba(184,147,95,.22)!important;background:#f7f2e9!important;padding:4px!important;transition:border-color .25s,transform .25s}
+.ikki-product-thumb.is-active{border-color:#b8935f!important;box-shadow:0 0 0 2px rgba(184,147,95,.12)}
+.ikki-product-thumb:hover{transform:translateY(-3px)}
+.ikki-product-information{position:relative}
+.ikki-product-information>.eyebrow{display:flex;align-items:center;gap:10px;color:#987448!important;letter-spacing:.2em!important}
+.ikki-product-information>.eyebrow:before{content:"";width:24px;height:1px;background:#b8935f}
+.ikki-product-information h1{font-size:clamp(52px,6.4vw,88px)!important;line-height:.95!important}
+.ikki-product-deck{max-width:440px;color:#777064!important}
+.ikki-product-price{display:flex;align-items:center;gap:12px}
+.ikki-product-price:before{content:"";width:25px;height:1px;background:#b8935f}
+.ikki-product-rule{height:1px!important;background:linear-gradient(90deg,#b8935f,rgba(184,147,95,.08))!important}
+.ikki-product-label{color:#8e7048!important;letter-spacing:.18em!important}
+.ikki-product-purchase{padding:22px;background:linear-gradient(145deg,#fbf9f5,#f5efe4);border:1px solid rgba(184,147,95,.2)}
+.ikki-product-add{box-shadow:0 10px 24px rgba(133,99,53,.14);transition:transform .25s,box-shadow .25s}
+.ikki-product-add:hover{transform:translateY(-2px);box-shadow:0 14px 28px rgba(133,99,53,.2)}
+.ikki-product-notes{position:relative}
+.ikki-product-notes>.ikki-product-label{display:block;margin-bottom:20px}
+.ikki-note-pyramid{position:relative;display:grid;gap:0!important}
+.ikki-note-pyramid:before{content:"";position:absolute;left:12px;top:14px;bottom:18px;width:1px;background:linear-gradient(#b8935f,rgba(184,147,95,.12))}
+.ikki-note-pyramid>div{position:relative;display:grid;grid-template-columns:100px minmax(0,1fr);align-items:center;gap:16px;padding:13px 0 13px 34px!important;border:0!important}
+.ikki-note-pyramid>div:before{content:"";position:absolute;left:7px;top:50%;width:11px;height:11px;border:1px solid #b8935f;border-radius:50%;background:#fff;transform:translateY(-50%);box-shadow:0 0 0 4px #f8f4ed}
+.ikki-note-pyramid>div span{font-size:8px!important;letter-spacing:.13em;color:#a17c4c!important}
+.ikki-note-pyramid>div p{margin:0;color:#4d463c;font:400 13px/1.7 'Cormorant Garamond',Georgia,serif}
+.ikki-product-details{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:0 18px}
+.ikki-product-details>div{position:relative;padding:17px 0!important;border-bottom:1px solid rgba(184,147,95,.16)!important}
+.ikki-product-details>div:before{content:"";display:block;width:17px;height:1px;margin-bottom:12px;background:#b8935f}
+.ikki-product-details>div span{display:block;margin-bottom:7px}
+.ikki-product-details>div b{color:#3d372f;font:500 11px Montserrat,sans-serif}
+.ikki-product-help{background:linear-gradient(110deg,#f7f2e9,#fcfaf6)!important;border-color:rgba(184,147,95,.24)!important}
+.ikki-product-help-mark{background:rgba(255,255,255,.65);box-shadow:0 0 0 5px rgba(184,147,95,.05)}
+.ikki-product-after{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 50% 110%,rgba(184,147,95,.18),transparent 56%),linear-gradient(130deg,#f5efe4,#fbf8f2)!important}
+.ikki-product-after:before,.ikki-product-after:after{content:"";position:absolute;z-index:-1;width:300px;aspect-ratio:1;border:1px solid rgba(184,147,95,.18);border-radius:50%;top:50%;transform:translateY(-50%);pointer-events:none}
+.ikki-product-after:before{left:-180px;box-shadow:0 0 0 25px rgba(184,147,95,.03),0 0 0 55px rgba(184,147,95,.02)}
+.ikki-product-after:after{right:-180px;box-shadow:0 0 0 25px rgba(184,147,95,.03),0 0 0 55px rgba(184,147,95,.02)}
+.ikki-product-after>.eyebrow{display:inline-flex;align-items:center;gap:12px;color:#8b673c!important;letter-spacing:.2em}
+.ikki-product-after>.eyebrow:before,.ikki-product-after>.eyebrow:after{content:"";width:25px;height:1px;background:#b8935f}
+.ikki-product-after h2{font-size:clamp(48px,6vw,76px)!important;line-height:.98!important}
+.ikki-product-after>a{margin-top:15px}
+@media(max-width:700px){
+ .ikki-catalog-hero:before{opacity:.2;background-size:13px 13px}
+ .ikki-signature-card .collection-card-image:after{inset:10px}
+ .ikki-signature-card .collection-card-image:before{width:78%;left:11%;top:14%}
+ .ikki-product-main-image:before{width:78%;left:11%;top:14%}
+ .ikki-product-purchase{padding:17px}
+ .ikki-note-pyramid>div{grid-template-columns:78px minmax(0,1fr);gap:10px;padding-left:29px!important}
+ .ikki-note-pyramid>div p{font-size:12px}
+ .ikki-product-after:before,.ikki-product-after:after{width:190px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ikki-product-thumb,.ikki-product-add{transition:none!important}
+ .ikki-product-thumb:hover,.ikki-product-add:hover{transform:none}
+}
