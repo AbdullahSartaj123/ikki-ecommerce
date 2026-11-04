@@ -3954,3 +3954,22 @@ body.quick-view-open{overflow:hidden!important}
  .ikki-campaign .ikki-campaign-edition{font-size:7px;gap:7px;flex-wrap:wrap}
  .ikki-campaign-end p{font-size:11px}
 }
+
+/* The IKKI house page — a focused presentation of its four signatures */
+.ikki-house-signatures{padding:clamp(72px,9vw,132px) clamp(22px,6vw,88px);background:#fff;color:#2a2a2a}
+.ikki-house-signatures-heading{max-width:720px;margin:0 auto 54px;text-align:center}
+.ikki-house-signatures-heading h2{margin:17px 0 16px;font:400 clamp(38px,5.5vw,68px)/1.08 var(--font-heading);letter-spacing:-.035em}
+.ikki-house-signatures-heading h2 em{color:#b8935f;font-weight:400}
+.ikki-house-signatures-heading p{max-width:490px;margin:0 auto;color:#7a756c;font:300 13px/2 var(--font-body)}
+.ikki-house-signatures-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;max-width:1400px;margin:auto}
+.ikki-house-signature{display:block;min-width:0;padding-bottom:22px;color:#2a2a2a;text-decoration:none;border-bottom:1px solid rgba(122,117,108,.25);transition:transform .35s ease,border-color .35s ease}
+.ikki-house-signature:hover{transform:translateY(-5px);border-color:#b8935f}
+.ikki-house-signature img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:#f5efe4;transition:transform .6s cubic-bezier(.2,.65,.3,1)}
+.ikki-house-signature:hover img{transform:scale(.985)}
+.ikki-house-signature>span{display:block;margin-top:20px;color:#b8935f;font:500 8px/1.5 var(--font-body);letter-spacing:.18em}
+.ikki-house-signature h3{margin:7px 0 12px;font:400 clamp(19px,2vw,25px)/1.2 var(--font-heading)}
+.ikki-house-signature i{font:500 8px/1.5 var(--font-body);font-style:normal;letter-spacing:.14em;color:#7a756c;transition:color .25s}
+.ikki-house-signature:hover i{color:#b8935f}
+@media(max-width:900px){.ikki-house-signatures-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}.ikki-house-signatures-heading{margin-bottom:36px}}
+@media(max-width:480px){.ikki-house-signatures{padding-inline:18px}.ikki-house-signatures-grid{gap:24px 12px}.ikki-house-signature>span{font-size:7px}.ikki-house-signature h3{font-size:19px}}
+@media(prefers-reduced-motion:reduce){.ikki-house-signature,.ikki-house-signature img{transition:none}}
