@@ -74,14 +74,7 @@ require __DIR__.'/includes/header.php';
    <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong><?=$p['is_live']?'IKKI Nº 0'.($n+1):'DISCOVER IKKI'?></strong></div>
   </a>
  <?php endforeach; /* the four house signatures are always rendered above */ ?>
- <?php /* legacy fallback intentionally removed */ ?>
- <?php if(false): foreach($conceptProducts as $n=>$p): ?>
-  <a class="home-product home-reveal home-product--concept" href="/shop.php">
-   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image'])?>" alt="<?=e($p['name'])?> IKKI fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">EXPLORE THE COLLECTION ↗</span></div>
-   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['family'])?></p></div><strong>COMING SOON</strong></div>
-   <p class="home-concept-description"><?=e($p['description'])?></p>
-  </a>
- <?php endforeach; endif; ?>
+
  </div>
  <p class="home-collection-note home-reveal">Four distinct expressions. One unmistakable point of view.</p>
 </section>
