@@ -53,12 +53,17 @@ require __DIR__.'/includes/header.php';
  <div class="home-section-heading home-reveal"><div class="home-circle-anchor"><span class="home-circle-motif home-circle-motif--60" aria-hidden="true"><i></i></span><div class="home-section-marker"><span class="home-section-number">02</span><span class="home-kicker">FIND YOUR SIGNATURE</span></div><h2 id="signature-title">The signature<br><em>collection.</em></h2></div><a class="home-text-link" href="/shop.php">VIEW THE COLLECTION <span>↗</span></a></div>
  <div class="home-products home-products--editorial">
  <?php if($products): foreach($products as $n=>$p):
-   $image=$p['image_path']??'';
-   $image=$editorialImages[$n%count($editorialImages)];
+   $image=trim((string)($p['image_path']??''));
+   if($image===''){
+    $fallbackBySlug=['legendary-profile'=>'/assets/images/legendary-profile.svg','informal'=>'/assets/images/informal.svg','amane'=>'/assets/images/amane.svg','sasha'=>'/assets/images/sasha.svg'];
+    $candidate=$fallbackBySlug[$p['slug']]??'';
+    $image=($candidate!==''&&is_file(__DIR__.$candidate))?$candidate:'/assets/images/ikki-hero.svg';
+   }
+   $displayPrice=$p['price']!==null?money($p['price']):'PRICE ON REQUEST';
  ?>
   <a class="home-product" href="/product.php?slug=<?=e($p['slug'])?>">
    <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance editorial photograph" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">DISCOVER THIS SCENT ↗</span></div>
-   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong><?=$p['price']!==null?money($p['price']):'DISCOVER'?></strong></div>
+   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong><?=e($displayPrice)?></strong></div>
   </a>
  <?php endforeach; else: foreach($conceptProducts as $n=>$p): ?>
   <a class="home-product home-reveal home-product--concept" href="/shop.php">
