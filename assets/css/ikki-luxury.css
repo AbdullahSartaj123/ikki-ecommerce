@@ -3903,3 +3903,54 @@ body.quick-view-open{overflow:hidden!important}
  .ikki-product-thumb,.ikki-product-add{transition:none!important}
  .ikki-product-thumb:hover,.ikki-product-add:hover{transform:none}
 }
+
+
+/* IKKI campaign identities — four distinct visual signatures within one house */
+.ikki-campaign{--campaign-accent:#b8935f;--campaign-soft:#f5efe4;--campaign-ink:#2a2a2a}
+.ikki-campaign--azure{--campaign-accent:#527f91;--campaign-soft:#e7eff1}
+.ikki-campaign--olive{--campaign-accent:#78845d;--campaign-soft:#edf0e7}
+.ikki-campaign--aqua{--campaign-accent:#319b94;--campaign-soft:#e6f2ef}
+.ikki-campaign--rose{--campaign-accent:#a65d70;--campaign-soft:#f5e9e8}
+.ikki-campaign .ikki-product-main-image{background:radial-gradient(ellipse at 50% 45%,#fff 0%,var(--campaign-soft) 64%,#e9dfd1 100%)!important}
+.ikki-campaign .ikki-product-main-image:before{border-color:color-mix(in srgb,var(--campaign-accent) 35%,transparent);box-shadow:0 0 0 18px color-mix(in srgb,var(--campaign-accent) 7%,transparent),0 0 0 42px color-mix(in srgb,var(--campaign-accent) 5%,transparent),inset 0 0 45px color-mix(in srgb,var(--campaign-accent) 8%,transparent)}
+.ikki-campaign .ikki-product-main-image:after{background:linear-gradient(90deg,transparent,var(--campaign-accent),transparent)}
+.ikki-campaign .ikki-product-object,.ikki-campaign .ikki-product-image-caption{color:var(--campaign-accent)!important}
+.ikki-campaign .ikki-product-object:before{background:var(--campaign-accent)}
+.ikki-campaign .ikki-product-information>.eyebrow{color:var(--campaign-accent)!important}
+.ikki-campaign .ikki-product-information>.eyebrow i{display:inline-block;width:22px;height:1px;background:var(--campaign-accent)}
+.ikki-campaign .ikki-campaign-edition{display:flex;align-items:center;gap:10px;margin:0 0 20px;color:var(--campaign-accent);font:500 8px Montserrat,sans-serif;letter-spacing:.19em}
+.ikki-campaign .ikki-campaign-edition span{opacity:.55}
+.ikki-campaign .ikki-product-price:before,.ikki-campaign .ikki-product-rule{background:var(--campaign-accent)!important}
+.ikki-campaign .ikki-product-label{color:var(--campaign-accent)!important}
+.ikki-campaign .ikki-product-purchase{background:linear-gradient(145deg,#fff,var(--campaign-soft));border-color:color-mix(in srgb,var(--campaign-accent) 30%,transparent)}
+.ikki-campaign .ikki-product-add{background:var(--campaign-accent)!important;border-color:var(--campaign-accent)!important;color:#fff!important}
+.ikki-campaign .ikki-product-thumb.is-active{border-color:var(--campaign-accent)!important;box-shadow:0 0 0 2px color-mix(in srgb,var(--campaign-accent) 16%,transparent)}
+.ikki-campaign .ikki-note-pyramid:before{background:linear-gradient(var(--campaign-accent),transparent)}
+.ikki-campaign .ikki-note-pyramid>div:before{border-color:var(--campaign-accent)}
+.ikki-campaign .ikki-product-details>div:before{background:var(--campaign-accent)}
+.ikki-campaign .ikki-product-help{background:linear-gradient(110deg,var(--campaign-soft),#fff)!important;border-color:color-mix(in srgb,var(--campaign-accent) 28%,transparent)!important}
+.ikki-campaign .ikki-product-after{background:radial-gradient(ellipse at 50% 110%,color-mix(in srgb,var(--campaign-accent) 19%,transparent),transparent 58%),linear-gradient(130deg,var(--campaign-soft),#fff)!important}
+.ikki-campaign .ikki-product-after>.eyebrow{color:var(--campaign-accent)!important}
+.ikki-campaign .ikki-product-after>.eyebrow:before,.ikki-campaign .ikki-product-after>.eyebrow:after{background:var(--campaign-accent)}
+.ikki-campaign .ikki-product-after h2 em{color:var(--campaign-accent)!important}
+.ikki-campaign .ikki-product-after>a{border-color:var(--campaign-accent);color:var(--campaign-accent)}
+.ikki-campaign-end p{max-width:490px;margin:0 auto 22px;color:#777064;font:300 12px/2 Montserrat,sans-serif}
+.ikki-signature-card[data-signature="legendary-profile"]{--signature-accent:#527f91;--signature-soft:#e7eff1}
+.ikki-signature-card[data-signature="informal"]{--signature-accent:#78845d;--signature-soft:#edf0e7}
+.ikki-signature-card[data-signature="amane"]{--signature-accent:#319b94;--signature-soft:#e6f2ef}
+.ikki-signature-card[data-signature="sasha"]{--signature-accent:#a65d70;--signature-soft:#f5e9e8}
+.ikki-signature-card .collection-card-image{background:radial-gradient(ellipse at 50% 44%,#fff,var(--signature-soft) 72%,#eee4d8)!important}
+.ikki-signature-card .collection-card-image:before{border-color:color-mix(in srgb,var(--signature-accent) 28%,transparent);box-shadow:0 0 0 14px color-mix(in srgb,var(--signature-accent) 5%,transparent),0 0 0 30px color-mix(in srgb,var(--signature-accent) 4%,transparent)}
+.ikki-signature-card .collection-card-info:before{background:var(--signature-accent)!important}
+.ikki-signature-card .collection-card-info h2 a{transition:color .25s}
+.ikki-signature-card:hover .collection-card-info h2 a{color:var(--signature-accent)!important}
+.ikki-signature-card .collection-new-badge{color:var(--signature-accent)!important;border-color:color-mix(in srgb,var(--signature-accent) 35%,transparent)!important}
+.ikki-signature-card .ikki-card-discover{color:var(--signature-accent)!important}
+@supports not (color:color-mix(in srgb,red,blue)){
+ .ikki-campaign .ikki-product-main-image:before{border-color:rgba(184,147,95,.25)}
+ .ikki-campaign .ikki-product-purchase,.ikki-campaign .ikki-product-help{border-color:rgba(184,147,95,.25)}
+}
+@media(max-width:700px){
+ .ikki-campaign .ikki-campaign-edition{font-size:7px;gap:7px;flex-wrap:wrap}
+ .ikki-campaign-end p{font-size:11px}
+}
