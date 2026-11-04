@@ -3306,3 +3306,49 @@ body.quick-view-open{overflow:hidden!important}
  .home-products--editorial .home-product-meta{min-height:104px;flex-direction:column;gap:8px}
  .home-products--editorial .home-product-meta strong{max-width:100%;text-align:left}
 }
+
+
+/* Stage 4 — clearer editorial storytelling and customer-support experience */
+.story-narrative{padding-block:clamp(56px,8vw,112px)}
+.story-narrative-block{align-items:center;gap:clamp(32px,6vw,88px);max-width:1320px;margin-inline:auto;padding-inline:clamp(22px,5vw,72px)}
+.story-narrative-visual{background:linear-gradient(145deg,#fff,#eee6d9);border:1px solid rgba(184,147,95,.2);overflow:hidden}
+.story-narrative-visual img{display:block;width:100%;height:100%;object-fit:contain;padding:clamp(14px,3vw,36px);mix-blend-mode:multiply}
+.story-narrative-copy{max-width:560px}
+.story-narrative-copy h2{font-size:clamp(34px,4.4vw,58px);line-height:1.08}
+.story-narrative-copy h2 em,.story-values-heading h2 em,.story-cta h2 em{color:var(--color-gold);font-style:italic}
+.story-narrative-copy p{font-size:14px;line-height:2}
+.story-values{padding-inline:clamp(22px,5vw,72px)}
+.story-value-grid{max-width:1320px;margin-inline:auto}
+.story-value-card{padding:clamp(24px,3vw,38px);transition:transform var(--transition-base),border-color var(--transition-base),box-shadow var(--transition-base)}
+.story-value-card:hover{transform:translateY(-4px);border-color:rgba(184,147,95,.55);box-shadow:0 16px 34px rgba(42,42,42,.06)}
+.story-value-card p{font-size:12px;line-height:1.85}
+.story-mission{padding:clamp(72px,10vw,130px) 24px}
+.story-mission-quote{max-width:900px;margin-inline:auto;font-size:clamp(34px,5vw,66px);line-height:1.2}
+.story-cta{align-items:center;gap:clamp(32px,7vw,96px);padding:clamp(64px,9vw,120px) clamp(22px,5vw,72px)}
+.story-cta-copy{max-width:560px}
+.story-cta-art{background:linear-gradient(145deg,#fff,#eee6d9);border:1px solid rgba(184,147,95,.2)}
+.story-cta-art img{display:block;width:100%;height:100%;object-fit:contain;padding:24px;mix-blend-mode:multiply}
+.contact-main{gap:clamp(36px,7vw,100px);padding:clamp(56px,8vw,112px) clamp(22px,5vw,72px)}
+.contact-form-column{max-width:760px}
+.contact-form-title{font-size:clamp(34px,4vw,52px)}
+.contact-form-note{max-width:480px;color:var(--color-gray);font-size:11px;line-height:1.8}
+.contact-form-feedback{min-height:1.6em;font-size:12px;line-height:1.7}
+.contact-field input:focus-visible,.contact-field textarea:focus-visible,.contact-field select:focus-visible,.contact-submit:focus-visible,.contact-info-column a:focus-visible{outline:2px solid var(--color-gold);outline-offset:3px}
+.contact-info-column{align-self:stretch;padding:clamp(24px,4vw,48px);background:var(--color-cream);border:1px solid rgba(184,147,95,.2)}
+.contact-detail-item{padding-block:22px}
+.contact-detail-icon{flex:0 0 42px;width:42px;height:42px;display:grid;place-items:center;border:1px solid rgba(184,147,95,.55);border-radius:50%;color:var(--color-gold-dark);font-size:11px}
+.contact-detail-copy h3{font-size:19px}
+.contact-detail-copy p{font-size:12px;line-height:1.9}
+.contact-info-column>.contact-submit{width:100%;margin-top:24px;text-align:center}
+@media(max-width:700px){
+ .story-narrative-block{padding-inline:22px;gap:26px}
+ .story-narrative-copy h2{font-size:38px}
+ .story-narrative-copy p{font-size:13px}
+ .story-cta{padding-inline:22px}
+ .contact-main{padding-inline:22px}
+ .contact-info-column{padding:24px}
+}
+@media(prefers-reduced-motion:reduce){
+ .story-value-card,.story-narrative-visual img{transition:none!important}
+ .story-value-card:hover{transform:none}
+}
