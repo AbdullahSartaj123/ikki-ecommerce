@@ -64,7 +64,7 @@ $navItems=[
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261104-1"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261104-1"><?php endif; ?>
 <link rel="stylesheet" href="/assets/css/ikki-luxury.css?v=20261104-14">
 </head>
-<body class="<?= $isHomePage?'has-home-hero':'' ?> page-enter is-loading">
+<body class="<?= $isHomePage?'has-home-hero':'' ?>">
 <div class="ikki-scroll-progress" data-ikki-scroll-progress aria-hidden="true"><span></span></div>
 <div class="home-preloader" data-home-preloader role="status" aria-label="Loading IKKI">
  <div class="home-preloader-content"><span class="home-preloader-mark" aria-label="IKKI">ikki<span>.</span></span><span class="home-preloader-track" aria-hidden="true"><span class="home-preloader-progress"></span></span></div>
