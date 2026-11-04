@@ -3501,3 +3501,40 @@ body.quick-view-open{overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){
  .site-header,.main-nav>a::after,.home-products--editorial .home-product,.home-products--editorial .home-product-art img,.home-feature-art img,.ikki-signature-card .collection-card-image,.ikki-signature-card .collection-card-image img,.ikki-signature-card .ikki-card-discover,.ikki-footer a{transition:none!important}
 }
+
+
+/* Collection quick-view and product purchase finishing details */
+.quick-view-layout{gap:clamp(24px,4vw,54px)}
+.quick-view-visual{background:linear-gradient(145deg,#faf7f1,#eee5d8);border:1px solid rgba(184,147,95,.2)}
+.quick-view-visual img{width:100%;height:100%;object-fit:contain;padding:clamp(18px,3vw,38px);mix-blend-mode:multiply}
+.quick-view-content{padding:clamp(22px,3vw,42px)}
+.quick-view-content h2{font-size:clamp(32px,4vw,48px);line-height:1.05;letter-spacing:-.035em}
+.quick-view-price{display:block;margin-top:12px;color:#8e6b3e;font:500 15px Montserrat,sans-serif}
+.quick-view-notes{margin-top:25px;padding-top:20px;border-top:1px solid var(--ikki-border)}
+.quick-view-note-pills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px}
+.quick-view-note-pills span{min-width:0;padding:10px 8px;background:#faf7f1;border:1px solid rgba(184,147,95,.16);color:#76644e;font-size:10px;line-height:1.55;overflow-wrap:anywhere}
+.quick-view-note-pills span[hidden]{display:none}
+.quick-view-notes[hidden]{display:none}
+.quick-view-description{margin-top:18px;font-size:12px;line-height:1.9}
+.quick-view-size-buttons button{min-height:42px;padding-inline:15px;border:1px solid var(--ikki-border);background:#fff;color:#6e5638;transition:background .2s ease,color .2s ease,border-color .2s ease}
+.quick-view-size-buttons button[aria-pressed=true]{background:#b8935f;border-color:#b8935f;color:#fff}
+.quick-view-size-buttons button:disabled{opacity:.4;text-decoration:line-through;cursor:not-allowed}
+.quick-view-add{width:100%;min-height:54px}
+.quick-view-add:disabled{opacity:.48;cursor:not-allowed;transform:none}
+.quick-view-detail-link{display:inline-flex;margin-top:18px;color:#8d6c40;font-size:11px;text-decoration:none;border-bottom:1px solid var(--ikki-border);padding-bottom:5px}
+.ikki-product-quantity input{width:68px;min-height:48px;padding:8px 10px;border:1px solid var(--ikki-border);background:#faf8f4;color:#2a2a2a;font:500 13px Montserrat,sans-serif}
+.ikki-product-quantity input:focus-visible,.ikki-product-select-wrap select:focus-visible{outline:2px solid #b8935f;outline-offset:3px}
+.ikki-product-unavailable{padding:17px;background:#faf7f1;border:1px solid var(--ikki-border);font-size:12px;line-height:1.8}
+.ikki-product-unavailable a{color:#8d6c40}
+@media(max-width:700px){
+ .quick-view-layout{display:flex;flex-direction:column;gap:0}
+ .quick-view-visual{max-height:38vh;min-height:210px}
+ .quick-view-visual img{max-height:38vh;padding:12px}
+ .quick-view-content{padding:22px 20px 26px}
+ .quick-view-content h2{font-size:34px}
+ .quick-view-note-pills{gap:6px}
+ .quick-view-note-pills span{padding:9px 6px;font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .quick-view-size-buttons button{transition:none!important}
+}
