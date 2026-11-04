@@ -70,31 +70,20 @@ $navItems=[
  <div class="home-preloader-content"><span class="home-preloader-mark" aria-label="IKKI">ikki<span>.</span></span><span class="home-preloader-track" aria-hidden="true"><span class="home-preloader-progress"></span></span></div>
 </div>
 <script>
-/* Global, session-aware preloader: 1.5s progress + 0.5s exit; 0.3s on repeat visits. */
+/* Keep the brand transition brief; never hold shopping content behind an intro. */
 (function(){
  var overlay=document.querySelector('[data-home-preloader]');
- if(!overlay)return;
- var repeatVisit=false;
- try{
-  repeatVisit=sessionStorage.getItem('ikki-preloader-seen')==='1';
-  if(!repeatVisit)sessionStorage.setItem('ikki-preloader-seen','1');
- }catch(error){/* Storage may be unavailable; play the full intro safely. */}
- var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- var fast=repeatVisit||reduced;
- if(fast)overlay.classList.add('is-fast');
- var progressTime=fast?0:1500;
- var exitTime=fast?300:500;
- window.setTimeout(function(){
+ var finish=function(){
+  if(!overlay)return;
   overlay.classList.add('is-finished');
   document.body.classList.remove('is-loading');
   document.body.classList.add('page-transition-in');
   document.dispatchEvent(new CustomEvent('ikki:preloader-finished'));
-  window.setTimeout(function(){
-   if(overlay.parentNode)overlay.remove();
-  },exitTime);
- },progressTime);
+  window.setTimeout(function(){if(overlay.parentNode)overlay.remove();},280);
+ };
+ var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ window.setTimeout(finish,reduced?0:120);
 })();
-</script>
 <div class="ikki-cursor-dot" data-ikki-cursor-dot aria-hidden="true"></div>
 <div class="ikki-cursor-ring" data-ikki-cursor-ring aria-hidden="true"></div>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
