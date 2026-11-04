@@ -353,6 +353,8 @@ document.addEventListener('DOMContentLoaded',()=>{
   const sortCards=()=>{
    const mode=sortSelect?.value||'featured';
    const sorted=[...collectionCards].sort((a,b)=>{
+    if(mode==='name-asc')return (a.querySelector('.collection-card-info h2')?.textContent||'').localeCompare(b.querySelector('.collection-card-info h2')?.textContent||'');
+    if(mode==='name-desc')return (b.querySelector('.collection-card-info h2')?.textContent||'').localeCompare(a.querySelector('.collection-card-info h2')?.textContent||'');
     if(mode==='price-asc')return Number(a.dataset.price)-Number(b.dataset.price);
     if(mode==='price-desc')return Number(b.dataset.price)-Number(a.dataset.price);
     if(mode==='newest')return Number(b.dataset.productId)-Number(a.dataset.productId);
