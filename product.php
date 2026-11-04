@@ -33,9 +33,11 @@ $productStructuredData=[
  '@context'=>'https://schema.org','@type'=>'Product',
  'name'=>(string)$product['name'],'description'=>$description,'image'=>[$productImageUrl],
  'brand'=>['@type'=>'Brand','name'=>'IKKI'],
- 'category'=>(string)($product['fragrance_family']??'Fragrance'),
- 'offers'=>$productOffers
+ 'category'=>(string)($product['fragrance_family']??'Fragrance')
 ];
+if($productOffers)$productStructuredData['offers']=$productOffers;
+$editionNumber=['legendary-profile'=>'01','informal'=>'02','amane'=>'03','sasha'=>'04'][$slug]??'—';
+$whatsappProductUrl='https://wa.me/923094733789?text='.rawurlencode('Hello IKKI, I would like to enquire about '.$product['name'].' (IKKI Nº '.$editionNumber.').');
 require __DIR__.'/includes/header.php';
 ?>
 <?php
@@ -65,7 +67,7 @@ $signature=$signatureEditions[$slug]??["number"=>"—","edition"=>"AN IKKI SIGNA
    <span class="eyebrow">THE HOUSE OF IKKI <i></i> <?=e($signature["edition"])?></span>
    <span class="ikki-campaign-edition">SIGNATURE <?=e($signature["number"])?> <span>—</span> FOUR EXPRESSIONS, ONE HOUSE</span>
    <h1><?=e($product['name'])?></h1>
-   <p class="ikki-product-deck"><?=e($product['short_description']??'A fragrance composed to become part of your story.')?></p>
+   <?php if(trim((string)($product['short_description']??''))!==''): ?><p class="ikki-product-deck"><?=e($product['short_description'])?></p><?php endif; ?>
    <div class="ikki-product-price" aria-live="polite" aria-atomic="true"><?=$variants?money($variants[0]['price']):'Price on request'?></div>
    <div class="ikki-product-rule"></div>
    <?php if(!empty($product['description'])): ?><div class="ikki-product-description"><?=nl2br(e($product['description']))?></div><?php endif; ?>
@@ -77,7 +79,7 @@ $signature=$signatureEditions[$slug]??["number"=>"—","edition"=>"AN IKKI SIGNA
     <div class="ikki-product-select-wrap"><select id="variant" name="variant_id" required><?php foreach($variants as $index=>$variant): ?><option value="<?=(int)$variant['id']?>" data-price="<?=e((string)$variant['price'])?>" <?=$index===0?'selected':''?>><?=e($variant['variant_name'])?> · <?=money($variant['price'])?></option><?php endforeach; ?></select><span aria-hidden="true">⌄</span></div>
     <div class="ikki-product-purchase-row"><label class="ikki-product-quantity">QUANTITY <input type="number" name="quantity" value="1" min="1" max="5" inputmode="numeric"></label><button class="ikki-product-add ikki-btn--primary" type="submit">ADD TO BAG <span>↗</span></button></div>
    </form>
-   <?php else: ?><div class="ikki-product-unavailable">Currently unavailable. <a href="/contact.php">Contact us for availability.</a></div><?php endif; ?>
+   <?php else: ?><div class="ikki-product-unavailable"><span>THIS SIGNATURE IS NOT CURRENTLY AVAILABLE TO ORDER.</span><a class="ikki-product-enquiry-link" href="<?=e($whatsappProductUrl)?>" target="_blank" rel="noopener noreferrer">ENQUIRE ABOUT <?=e(strtoupper($product['name']))?> <span aria-hidden="true">↗</span></a></div><?php endif; ?>
    <?php
     $olfactiveNotes=[
      'top_notes'=>['label'=>'01 / OPENING','value'=>trim((string)($product['top_notes']??''))],
@@ -109,9 +111,10 @@ $signature=$signatureEditions[$slug]??["number"=>"—","edition"=>"AN IKKI SIGNA
     <?php endforeach; ?>
    </div>
    <?php endif; ?>
-   <div class="ikki-product-help"><span class="ikki-product-help-mark" aria-hidden="true">IKKI</span><div><b>Need a little guidance?</b><p>Speak with us about this fragrance before placing your order.</p></div><a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">ASK IKKI <span aria-hidden="true">↗</span></a></div><p class="ikki-product-disclaimer">Fragrance notes and characteristics are presented as product descriptions. Please refer to the final product packaging for ingredient and formulation details.</p>
+   <div class="ikki-product-help"><span class="ikki-product-help-mark" aria-hidden="true">IKKI</span><div><b>Need a little guidance?</b><p>Speak with us about <?=e($product['name'])?> before placing your order.</p></div><a href="<?=e($whatsappProductUrl)?>" target="_blank" rel="noopener noreferrer">ASK IKKI <span aria-hidden="true">↗</span></a></div><p class="ikki-product-disclaimer">Fragrance notes and characteristics are presented as product descriptions. Please refer to the final product packaging for ingredient and formulation details.</p>
   </div>
  </section>
+ <nav class="ikki-product-signature-nav" aria-label="Explore the four IKKI signatures"><span>THE HOUSE OF FOUR</span><a href="/shop.php">VIEW ALL FOUR <span aria-hidden="true">↗</span></a></nav>
  <section class="ikki-product-after ikki-campaign-end">
   <span class="eyebrow">FOUR SIGNATURES · ONE HOUSE</span>
   <h2>Discover the<br><em>IKKI point of view.</em></h2>
