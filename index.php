@@ -13,10 +13,10 @@ $editorialImages=[
  '/assets/images/sasha.svg'
 ];
 $conceptProducts=[
- ['name'=>'Legendary Profile','family'=>'WOODY · AMBER','description'=>'A confident signature with a distinctive, memorable presence.','image'=>'/assets/images/legendary-profile.svg','slug'=>'legendary-profile'],
- ['name'=>'Informal','family'=>'FRESH · AROMATIC','description'=>'An effortless everyday expression, relaxed yet refined.','image'=>'/assets/images/informal.svg','slug'=>'informal'],
- ['name'=>'Amane','family'=>'AQUATIC · MODERN','description'=>'A fresh, contemporary character with a smooth finish.','image'=>'/assets/images/amane.svg','slug'=>'amane'],
- ['name'=>'Sasha','family'=>'FLORAL · WOODY','description'=>'A poised, expressive fragrance with a lasting impression.','image'=>'/assets/images/sasha.svg','slug'=>'sasha']
+ ['name'=>'Legendary Profile','family'=>'IKKI SIGNATURE FRAGRANCE','description'=>'A confident signature with a distinctive, memorable presence.','image'=>'/assets/images/legendary-profile.svg','slug'=>'legendary-profile'],
+ ['name'=>'Informal','family'=>'IKKI SIGNATURE FRAGRANCE','description'=>'An effortless everyday expression, relaxed yet refined.','image'=>'/assets/images/informal.svg','slug'=>'informal'],
+ ['name'=>'Amane','family'=>'IKKI SIGNATURE FRAGRANCE','description'=>'A fresh, contemporary character with a smooth finish.','image'=>'/assets/images/amane.svg','slug'=>'amane'],
+ ['name'=>'Sasha','family'=>'IKKI SIGNATURE FRAGRANCE','description'=>'A poised, expressive fragrance with a lasting impression.','image'=>'/assets/images/sasha.svg','slug'=>'sasha']
 ];
 require __DIR__.'/includes/header.php';
 ?>
