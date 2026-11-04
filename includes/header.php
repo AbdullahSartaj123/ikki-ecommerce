@@ -84,6 +84,7 @@ $navItems=[
  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  window.setTimeout(finish,reduced?0:120);
 })();
+</script>
 <div class="ikki-cursor-dot" data-ikki-cursor-dot aria-hidden="true"></div>
 <div class="ikki-cursor-ring" data-ikki-cursor-ring aria-hidden="true"></div>
 <div class="announcement"><span>Complimentary fragrance consultation</span><i></i><span>Pakistan-wide order enquiries</span></div>
