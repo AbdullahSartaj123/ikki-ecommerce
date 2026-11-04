@@ -3116,3 +3116,106 @@ body.quick-view-open{overflow:hidden!important}
 
 /* Fix legacy hero reveal state: the campaign float animation replaces the old reveal animation. */
 .home-hero--editorial .home-hero-bottle{opacity:1!important;visibility:visible!important;transform:translateY(0);}
+
+
+/* COLLECTION PAGE — IKKI SIGNATURE EDITORIAL ART DIRECTION */
+.ikki-catalog-hero{
+ position:relative;isolation:isolate;overflow:hidden;display:grid;
+ grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);align-items:center;
+ gap:clamp(24px,5vw,72px);min-height:520px;padding:clamp(48px,6vw,86px) max(24px,calc((100vw - 1240px)/2));
+ background:radial-gradient(ellipse at 78% 44%,rgba(184,147,95,.2),transparent 38%),linear-gradient(112deg,#f5efe4 0%,#fff 58%,#eee3d3 100%);
+}
+.ikki-catalog-hero:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.28),transparent 62%),radial-gradient(circle at 84% 50%,rgba(184,147,95,.12),transparent 32%)}
+.ikki-catalog-hero-inner{position:relative;z-index:1;max-width:640px}
+.ikki-catalog-hero .page-banner-breadcrumb{display:flex;gap:10px;align-items:center;margin-bottom:34px;color:#938675;font:500 9px Montserrat,sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.ikki-catalog-hero .page-banner-breadcrumb a{color:#8d704b;text-decoration:none}
+.ikki-catalog-hero .home-kicker{color:#a17d4d;font:500 9px Montserrat,sans-serif;letter-spacing:.23em}
+.ikki-catalog-hero h1{margin:20px 0 18px;color:#292720;font:400 clamp(54px,6.4vw,86px)/.94 'Cormorant Garamond',Georgia,serif;letter-spacing:-.035em}
+.ikki-catalog-hero h1 em{color:#ad8754;font-weight:400}
+.ikki-catalog-hero p{max-width:460px;margin:0;color:#777064;font:300 13px/2 Montserrat,sans-serif}
+.ikki-catalog-edition{display:inline-flex;align-items:center;gap:12px;margin-top:32px;color:#9a805d;font:500 8px Montserrat,sans-serif;letter-spacing:.2em}
+.ikki-catalog-edition i{font-style:normal;color:#b8935f}
+.ikki-catalog-hero-side{position:relative;min-width:0;display:grid;place-items:center;min-height:390px}
+.ikki-catalog-hero-side:before{content:"";position:absolute;width:min(94%,470px);aspect-ratio:1;border:1px solid rgba(184,147,95,.35);border-radius:50%;box-shadow:0 0 0 24px rgba(255,255,255,.16),0 0 0 25px rgba(184,147,95,.12);animation:ikkiCollectionHalo 18s linear infinite}
+.ikki-catalog-hero-side img{position:relative;z-index:1;width:min(100%,430px);height:430px;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 24px 25px rgba(66,49,26,.14));animation:ikkiCollectionBottle 7s ease-in-out infinite}
+.ikki-catalog-hero-side>span{position:absolute;z-index:2;right:0;top:48%;writing-mode:vertical-rl;color:#9a805d;font:500 7px Montserrat,sans-serif;letter-spacing:.23em}
+.ikki-catalog-hero-side>b{position:absolute;z-index:2;left:5%;bottom:4%;color:rgba(184,147,95,.45);font:400 54px 'Cormorant Garamond',Georgia,serif;letter-spacing:.18em}
+@keyframes ikkiCollectionHalo{to{transform:rotate(360deg)}}
+@keyframes ikkiCollectionBottle{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+.ikki-premium-catalog{padding:0 max(22px,calc((100vw - 1240px)/2)) 110px;background:#fff;color:#2a2a2a}
+.ikki-premium-catalog .collection-toolbar-wrap{top:72px;background:rgba(255,255,255,.94);border-bottom:1px solid rgba(184,147,95,.18);backdrop-filter:blur(18px)}
+.ikki-premium-catalog .collection-toolbar-wrap.is-stuck{box-shadow:0 10px 26px rgba(55,43,25,.07)}
+.ikki-premium-catalog .collection-toolbar{padding:20px 0;border:0}
+.ikki-premium-catalog .collection-filters{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.ikki-premium-catalog .collection-filter{position:relative;padding:10px 17px;border:1px solid rgba(184,147,95,.28);border-radius:99px;background:transparent;color:#756b5e;font:500 9px Montserrat,sans-serif;letter-spacing:.08em;text-transform:uppercase;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.ikki-premium-catalog .collection-filter:hover{border-color:#b8935f;color:#8c6b3e;transform:translateY(-1px)}
+.ikki-premium-catalog .collection-filter.is-active{background:#b8935f;border-color:#b8935f;color:#fff}
+.ikki-premium-catalog .collection-toolbar-controls{gap:20px}
+.ikki-premium-catalog .collection-search input{min-height:38px;border:0;border-bottom:1px solid rgba(184,147,95,.42);background:transparent;color:#2a2a2a;font:400 10px Montserrat,sans-serif}
+.ikki-premium-catalog .collection-search input::placeholder{color:#9b9388}
+.ikki-premium-catalog .collection-count,.ikki-premium-catalog .collection-sort{color:#8a8073;font:500 8px Montserrat,sans-serif;letter-spacing:.12em}
+.ikki-premium-catalog .collection-sort-select select{background:transparent;color:#51483d;border:0;font:500 9px Montserrat,sans-serif}
+.ikki-premium-catalog .ikki-catalog-intro{max-width:700px;margin:52px auto 40px;text-align:center}
+.ikki-premium-catalog .ikki-catalog-intro>span{color:#a27e4d;font:500 9px Montserrat,sans-serif;letter-spacing:.25em}
+.ikki-premium-catalog .ikki-catalog-intro>p{margin:13px auto 0;color:#777064;font:300 12px/1.9 Montserrat,sans-serif}
+.ikki-premium-catalog .ikki-preview-note{display:inline-block;margin-top:15px;color:#a18b6a;font:500 7px Montserrat,sans-serif;letter-spacing:.14em}
+.ikki-premium-catalog .collection-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:42px 22px;padding-top:0}
+.ikki-premium-catalog .ikki-signature-card{min-width:0;padding-bottom:5px}
+.ikki-premium-catalog .ikki-signature-card .collection-card-image{position:relative;aspect-ratio:4/5;overflow:hidden;border:1px solid rgba(184,147,95,.18);border-radius:2px;background:#f3ede3}
+.ikki-premium-catalog .ikki-signature-card .collection-card-image:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.08),transparent 55%,rgba(42,42,42,.05))}
+.ikki-premium-catalog .ikki-signature-card .collection-card-image img{display:block;width:100%;height:100%;padding:0;object-fit:cover;mix-blend-mode:normal;filter:none;transition:transform .85s cubic-bezier(.2,.7,.2,1)}
+.ikki-premium-catalog .ikki-signature-card:hover .collection-card-image img{transform:scale(1.045);filter:none}
+.ikki-premium-catalog .ikki-signature-card .collection-card-info{padding:18px 2px 0;background:transparent}
+.ikki-premium-catalog .ikki-signature-card .collection-card-info h2{margin:0 0 7px;color:#2a2a2a;font:400 27px/1.15 'Cormorant Garamond',Georgia,serif}
+.ikki-premium-catalog .ikki-signature-card .collection-card-info p{min-height:42px;margin:0 0 12px;color:#7a756c;font:300 10px/1.8 Montserrat,sans-serif}
+.ikki-premium-catalog .ikki-signature-card .collection-card-info strong{display:block;padding-top:12px;border-top:1px solid rgba(184,147,95,.2);color:#9a7546;font:500 9px Montserrat,sans-serif;letter-spacing:.1em;text-transform:uppercase}
+.ikki-premium-catalog .ikki-card-discover{display:inline-flex;align-items:center;gap:12px;margin-top:13px;color:#80633e;font:600 8px Montserrat,sans-serif;letter-spacing:.15em;text-decoration:none;transition:gap .25s,color .25s}
+.ikki-premium-catalog .ikki-card-discover span{font-size:14px;transition:transform .25s}
+.ikki-premium-catalog .ikki-card-discover:hover{gap:17px;color:#b8935f}
+.ikki-premium-catalog .ikki-card-discover:hover span{transform:translate(2px,-2px)}
+.ikki-premium-catalog .collection-quick-view{top:14px;right:14px;width:40px;height:40px;border:1px solid rgba(184,147,95,.45);border-radius:50%;background:rgba(255,255,255,.88);color:#8b6c42;backdrop-filter:blur(10px);opacity:0;transform:translateY(5px);transition:opacity .25s,transform .25s,background .25s}
+.ikki-premium-catalog .collection-quick-view:hover{background:#b8935f;color:#fff}
+.ikki-premium-catalog .collection-new-badge{top:14px;left:14px;padding:7px 11px;background:#b8935f;color:#fff;font:500 7px Montserrat,sans-serif;letter-spacing:.15em;text-transform:uppercase}
+@media(max-width:1000px){
+ .ikki-catalog-hero{grid-template-columns:1fr 1fr;min-height:450px;padding-left:5vw;padding-right:5vw}
+ .ikki-catalog-hero-side{min-height:340px}
+ .ikki-catalog-hero-side img{height:360px}
+ .ikki-premium-catalog .collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 18px}
+}
+@media(max-width:700px){
+ .ikki-catalog-hero{grid-template-columns:1fr;gap:8px;padding:44px 22px 36px}
+ .ikki-catalog-hero .page-banner-breadcrumb{margin-bottom:23px}
+ .ikki-catalog-hero h1{font-size:clamp(52px,13vw,72px)}
+ .ikki-catalog-hero p{font-size:12px}
+ .ikki-catalog-hero-side{min-height:300px;margin-top:5px}
+ .ikki-catalog-hero-side:before{width:76%}
+ .ikki-catalog-hero-side img{height:310px;width:min(100%,340px)}
+ .ikki-catalog-hero-side>span{right:2%;font-size:6px}
+ .ikki-catalog-hero-side>b{left:4%;bottom:1%;font-size:40px}
+ .ikki-premium-catalog{padding:0 18px 75px}
+ .ikki-premium-catalog .collection-toolbar-wrap{top:64px}
+ .ikki-premium-catalog .collection-toolbar{gap:13px;padding:15px 0}
+ .ikki-premium-catalog .collection-toolbar-controls{display:grid;grid-template-columns:1fr auto;gap:10px 14px;width:100%}
+ .ikki-premium-catalog .collection-search{grid-column:1/-1}
+ .ikki-premium-catalog .collection-search input{width:100%}
+ .ikki-premium-catalog .collection-count{align-self:center}
+ .ikki-premium-catalog .collection-sort{justify-self:end}
+ .ikki-premium-catalog .ikki-catalog-intro{margin:34px auto 28px}
+ .ikki-premium-catalog .collection-grid{gap:28px 13px}
+ .ikki-premium-catalog .ikki-signature-card .collection-card-info{padding:13px 1px 0}
+ .ikki-premium-catalog .ikki-signature-card .collection-card-info h2{font-size:23px}
+ .ikki-premium-catalog .ikki-signature-card .collection-card-info p{font-size:9px;min-height:55px}
+ .ikki-premium-catalog .collection-quick-view{width:34px;height:34px;top:9px;right:9px;opacity:1;transform:none}
+ .ikki-premium-catalog .collection-new-badge{top:9px;left:9px}
+}
+@media(max-width:390px){
+ .ikki-premium-catalog{padding-left:14px;padding-right:14px}
+ .ikki-premium-catalog .collection-grid{gap:24px 10px}
+ .ikki-premium-catalog .ikki-signature-card .collection-card-info h2{font-size:20px}
+ .ikki-premium-catalog .ikki-card-discover{font-size:7px}
+}
+@media(hover:hover) and (pointer:fine){.ikki-premium-catalog .ikki-signature-card:hover{transform:translateY(-5px)}.ikki-premium-catalog .ikki-signature-card:hover .collection-quick-view{opacity:1;transform:translateY(0)}}
+@media(prefers-reduced-motion:reduce){
+ .ikki-catalog-hero-side:before,.ikki-catalog-hero-side img{animation:none!important}
+ .ikki-premium-catalog .collection-quick-view,.ikki-premium-catalog .ikki-card-discover,.ikki-premium-catalog .ikki-card-discover span{transition:none!important}
+}
