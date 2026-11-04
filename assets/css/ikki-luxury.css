@@ -3645,3 +3645,71 @@ body.quick-view-open{overflow:hidden!important}
 }
 @media(max-width:390px){.collection-toolbar-tools{gap:6px}.collection-search-control,.collection-sort-control{padding:0 8px}.collection-sort-control select{width:90px;font-size:9px}}
 @media(prefers-reduced-motion:reduce){.collection-toolbar,.collection-filter-track .collection-filter{transition:none!important}}
+
+
+/* IKKI cream-and-gold homepage design pass */
+.home-hero.home-hero--editorial{
+ background:
+  radial-gradient(ellipse at 76% 48%,rgba(184,147,95,.18),transparent 38%),
+  radial-gradient(ellipse at 15% 88%,rgba(184,147,95,.10),transparent 42%),
+  linear-gradient(112deg,#f5efe4 0%,#fbf8f2 54%,#eee3d3 100%);
+ color:#2a2a2a;
+}
+.home-hero.home-hero--editorial:before{
+ background:linear-gradient(90deg,rgba(255,255,255,.18),transparent 58%),radial-gradient(circle at 72% 50%,transparent 0 35%,rgba(126,94,53,.055) 78%);
+}
+.home-hero--editorial .home-hero-eyebrow{color:#80613b}
+.home-hero--editorial .home-overline{color:#88765e}
+.home-hero--editorial h1{color:#2a2a2a}
+.home-hero--editorial h1 em{color:#a77f4c}
+.home-hero--editorial .home-hero-subtext{color:#655d52}
+.home-hero--editorial .home-hero-foot{color:#807565}
+.home-hero--editorial .ikki-btn--secondary{border-color:rgba(167,127,76,.58);color:#76572f;background:rgba(255,255,255,.45)}
+.home-hero--editorial .ikki-btn--secondary:hover{background:#fff;color:#5e4528}
+.home-hero-orbit{border-color:rgba(167,127,76,.32)}
+.home-hero-orbit:before,.home-hero-orbit:after{border-color:rgba(167,127,76,.16)}
+.home-hero--editorial .home-hero-bottle{box-shadow:0 28px 70px rgba(91,67,38,.16);filter:saturate(.92) contrast(1.02);mix-blend-mode:multiply}
+.home-hero-photo-caption{border-color:rgba(184,147,95,.35);background:rgba(250,247,241,.82);color:#6c5130;backdrop-filter:blur(12px)}
+.home-hero-photo-caption em{color:#a77f4c}
+.home-hero--editorial .home-vertical-note,.home-hero--editorial .home-scroll-cue{color:#776b5b}
+.home-marquee{background:#b8935f;color:#fffaf2}
+.home-philosophy{background:#fff!important}
+.home-philosophy-title h2,.home-section-heading h2,.home-feature-copy h2,.home-values-heading h2{color:#2a2a2a}
+.home-philosophy-copy p,.home-feature-copy p{color:#6f675d}
+.home-text-link{color:#8c6738;border-color:rgba(184,147,95,.55)}
+.home-collection{background:#f5efe4!important}
+.home-product-art{background:linear-gradient(145deg,#fff,#e9dfd1);border:1px solid rgba(184,147,95,.22)}
+.home-product-art img{mix-blend-mode:multiply}
+.home-product-art:after{background:linear-gradient(180deg,rgba(255,255,255,.04),transparent 55%,rgba(71,52,29,.12))}
+.home-product-number{color:#80613b}
+.home-product-open{background:rgba(42,42,42,.9);color:#f5efe4}
+.home-product-meta h3{color:#2a2a2a}
+.home-product-meta p{color:#7a756c}
+.home-product-meta strong{color:#8c6738}
+.home-collection-note{color:#817565}
+.home-feature{background:#fff!important}
+.home-feature-art{background:#eee4d7}
+.home-feature-art>span{color:#fff}
+.home-values{background:#f5efe4!important}
+.home-value{border-color:rgba(184,147,95,.42)}
+.home-value>span,.home-value-number{color:#a77f4c}
+.home-value h3{color:#2a2a2a}
+.home-value p{color:#71695e}
+.home-manifesto{background:linear-gradient(130deg,#eee3d3,#f8f4ec)!important}
+.home-manifesto>p{color:#2a2a2a}
+.home-manifesto>span:last-child{color:#806f59}
+.home-final-cta{background:radial-gradient(ellipse at 50% 100%,rgba(184,147,95,.16),transparent 60%),#fff!important}
+.home-final-cta h2{color:#2a2a2a}
+.home-final-cta p{color:#6f675d}
+.home-final-cta .home-kicker,.home-section-marker .home-kicker{color:#80613b}
+@media(max-width:700px){
+ .home-hero.home-hero--editorial{background:linear-gradient(145deg,#f5efe4,#fbf8f2 60%,#eee3d3)}
+ .home-hero--editorial .home-hero-bottle{mix-blend-mode:multiply}
+}
+@media(hover:hover) and (pointer:fine){
+ .home-product:hover .home-product-art{box-shadow:0 18px 38px rgba(91,67,38,.13)}
+ .home-product:hover .home-product-meta h3{color:#9a713d}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-hero--editorial .home-hero-copy,.home-hero--editorial .home-hero-bottle,.home-hero--editorial .home-visual-glow,.home-hero-orbit,.home-hero--editorial .home-scroll-cue span{animation:none!important}
+}
