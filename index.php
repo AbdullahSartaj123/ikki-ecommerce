@@ -4,7 +4,7 @@ $pageTitle='IKKI — The Art of Fragrance';
 $description='IKKI is a fragrance house defined by four signature expressions. Discover the identity, stories and artistry behind each scent.';
 $products=[];
 try{
- $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 AND p.name IN ('Legendary Profile','Informal','Amane','Sasha') GROUP BY p.id ORDER BY FIELD(p.name,'Legendary Profile','Informal','Amane','Sasha') LIMIT 4")->fetchAll();
+ $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,MIN(v.price) price,(SELECT pi.image_path FROM product_images pi WHERE pi.product_id=p.id ORDER BY pi.is_primary DESC,pi.sort_order LIMIT 1) image_path FROM products p INNER JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 AND v.stock_quantity>0 WHERE p.is_active=1 AND p.name IN ('Legendary Profile','Informal','Amane','Sasha') GROUP BY p.id ORDER BY FIELD(p.name,'Legendary Profile','Informal','Amane','Sasha') LIMIT 4")->fetchAll();
 }catch(Throwable $ex){error_log('[IKKI home] '.$ex->getMessage());}
 $editorialImages=[
  '/assets/images/legendary-profile.svg',
@@ -83,7 +83,7 @@ require __DIR__.'/includes/header.php';
   <a id="signature-<?=e($p['slug'])?>" class="home-product" data-signature="<?=e($p['slug'])?>" href="<?=$p['is_live']?'/product.php?slug='.rawurlencode($p['slug']):'/shop.php'?>" aria-label="<?=e($p['name'])?> — <?=$p['is_live']?'view fragrance':'explore the collection'?>">
    <div class="home-product-art">
     <span class="home-product-number">0<?=($n+1)?></span>
-    <span class="home-product-edition">THE IKKI SIGNATURE</span>
+    <span class="home-product-edition"><?=$p['is_live']?'AVAILABLE TO ORDER':'THE IKKI SIGNATURE'?></span>
     <img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance campaign illustration" width="800" height="1000" loading="lazy" decoding="async">
     <span class="home-product-open">DISCOVER THIS SIGNATURE <i aria-hidden="true">↗</i></span>
    </div>
