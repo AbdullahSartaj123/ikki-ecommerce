@@ -68,19 +68,37 @@ require __DIR__.'/includes/header.php';
     <div class="ikki-product-purchase-row"><label class="ikki-product-quantity">QUANTITY <input type="number" name="quantity" value="1" min="1" max="5" inputmode="numeric"></label><button class="ikki-product-add ikki-btn--primary" type="submit">ADD TO BAG <span>↗</span></button></div>
    </form>
    <?php else: ?><div class="ikki-product-unavailable">Currently unavailable. <a href="/contact.php">Contact us for availability.</a></div><?php endif; ?>
+   <?php
+    $olfactiveNotes=[
+     'top_notes'=>['label'=>'01 / OPENING','value'=>trim((string)($product['top_notes']??''))],
+     'heart_notes'=>['label'=>'02 / HEART','value'=>trim((string)($product['heart_notes']??''))],
+     'base_notes'=>['label'=>'03 / DRY DOWN','value'=>trim((string)($product['base_notes']??''))]
+    ];
+    $hasOlfactiveNotes=(bool)array_filter($olfactiveNotes,static fn($note)=>$note['value']!=='');
+    $productAttributes=[
+     'FRAGRANCE FAMILY'=>trim((string)($product['fragrance_family']??'')),
+     'CONCENTRATION'=>trim((string)($product['concentration']??'')),
+     'CHARACTER'=>trim((string)($product['gender']??''))
+    ];
+    $productAttributes=array_filter($productAttributes,static fn($value)=>$value!=='');
+   ?>
+   <?php if($hasOlfactiveNotes): ?>
    <div class="ikki-product-notes">
     <span class="ikki-product-label">THE OLFACTIVE STORY</span>
     <div class="ikki-note-pyramid">
-     <div><span>01 / OPENING</span><p><?=e($product['top_notes']??'To be confirmed')?></p></div>
-     <div><span>02 / HEART</span><p><?=e($product['heart_notes']??'To be confirmed')?></p></div>
-     <div><span>03 / DRY DOWN</span><p><?=e($product['base_notes']??'To be confirmed')?></p></div>
+     <?php foreach($olfactiveNotes as $note): if($note['value']==='')continue; ?>
+     <div><span><?=e($note['label'])?></span><p><?=e($note['value'])?></p></div>
+     <?php endforeach; ?>
     </div>
    </div>
+   <?php endif; ?>
+   <?php if($productAttributes): ?>
    <div class="ikki-product-details">
-    <div><span>FRAGRANCE FAMILY</span><b><?=e($product['fragrance_family']??'Signature')?></b></div>
-    <div><span>CONCENTRATION</span><b><?=e($product['concentration']??'To be confirmed')?></b></div>
-    <div><span>CHARACTER</span><b><?=e($product['gender']??'Unisex')?></b></div>
+    <?php foreach($productAttributes as $label=>$value): ?>
+    <div><span><?=e($label)?></span><b><?=e($value)?></b></div>
+    <?php endforeach; ?>
    </div>
+   <?php endif; ?>
    <div class="ikki-product-help"><span class="ikki-product-help-mark" aria-hidden="true">IKKI</span><div><b>Need a little guidance?</b><p>Speak with us about this fragrance before placing your order.</p></div><a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">ASK IKKI <span aria-hidden="true">↗</span></a></div><p class="ikki-product-disclaimer">Fragrance notes and characteristics are presented as product descriptions. Please refer to the final product packaging for ingredient and formulation details.</p>
   </div>
  </section>
