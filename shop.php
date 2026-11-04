@@ -76,7 +76,7 @@ require __DIR__.'/includes/header.php';
   $baseNote=trim((string)($p['base_notes']??''));
   $modalDescription=trim((string)($p['description']??''))?:'Discover the olfactive story of '.$p['name'].', an IKKI fragrance.';
  ?>
-  <article class="collection-card collection-reveal ikki-signature-card" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
+  <article class="collection-card collection-reveal ikki-signature-card" data-signature="<?=e($p['slug'])?>" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
    <div class="collection-card-image">
     <?php if($p['is_new']): ?><span class="collection-new-badge">New</span><?php endif; ?>
     <a class="ikki-card-image-link" href="<?=e($productUrl?:'/shop.php')?>"><img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async"></a>
