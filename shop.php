@@ -52,20 +52,12 @@ require __DIR__.'/includes/header.php';
 </section>
 <section class="collection-catalog ikki-premium-catalog" aria-label="Fragrance collection">
  <div class="ikki-catalog-intro"><span>FOUR EXPRESSIONS · ONE HOUSE</span><p>A focused collection, created to be discovered one signature at a time.</p><?php if(count($databaseProducts)<4): ?><small class="ikki-preview-note">Some signatures are presented as collection previews. Contact IKKI to enquire about current availability.</small><?php endif; ?></div>
- <div class="collection-toolbar-wrap">
-  <div class="collection-toolbar-sentinel" aria-hidden="true"></div>
-  <div class="collection-toolbar" data-collection-toolbar>
-   <div class="collection-filter-track" data-filter-track aria-label="Collection filters">
-    <span class="collection-filter-indicator" aria-hidden="true"></span>
-    <button class="collection-filter is-active" type="button" data-filter="all" aria-pressed="true">All fragrances</button>
-   </div>
-   <div class="collection-toolbar-tools">
-    <label class="collection-search-control"><span class="sr-only">Search fragrances</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="collection-search" type="search" placeholder="Find a fragrance" autocomplete="off"></label>
-    <label class="collection-sort-control"><span class="sr-only">Sort fragrances</span><select id="collection-sort" aria-label="Sort fragrances"><option value="featured">Featured</option><option value="name-asc">Name: A to Z</option><option value="name-desc">Name: Z to A</option></select></label>
-   </div>
-   <p class="collection-count" aria-live="polite"><b><?=count($products)?></b> fragrances</p>
-  </div>
- </div>
+ <nav class="ikki-signature-index" aria-label="Explore the four IKKI signatures">
+  <span>THE FOUR SIGNATURES</span>
+  <?php foreach($products as $index=>$signature): ?>
+   <a href="#signature-<?=e($signature["slug"])?>"><i>0<?=($index+1)?></i><?=e($signature["name"])?></a>
+  <?php endforeach; ?>
+ </nav>
  <div class="collection-grid ikki-signature-grid" id="collection-grid">
  <?php if($products): foreach($products as $n=>$p):
   $dbProduct=$databaseProducts[$p['slug']]??null;
@@ -80,7 +72,7 @@ require __DIR__.'/includes/header.php';
   $baseNote=trim((string)($p['base_notes']??''));
   $modalDescription=trim((string)($p['description']??''))?:'Discover the olfactive story of '.$p['name'].', an IKKI fragrance.';
  ?>
-  <article class="collection-card collection-reveal ikki-signature-card" data-signature="<?=e($p['slug'])?>" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
+  <article id="signature-<?=e($p["slug"])?>" class="collection-card collection-reveal ikki-signature-card" data-signature="<?=e($p['slug'])?>" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
    <div class="collection-card-image">
     <?php if($p['is_new']): ?><span class="collection-new-badge">New</span><?php endif; ?>
     <a class="ikki-card-image-link" href="<?=e($detailUrl)?>"><img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async"></a>
