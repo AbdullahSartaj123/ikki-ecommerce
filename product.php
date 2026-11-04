@@ -38,22 +38,32 @@ $productStructuredData=[
 ];
 require __DIR__.'/includes/header.php';
 ?>
-<main class="ikki-product-page">
+<?php
+$signatureEditions=[
+ "legendary-profile"=>["number"=>"01","edition"=>"THE BOLD EXPRESSION","tone"=>"azure"],
+ "informal"=>["number"=>"02","edition"=>"THE EVERYDAY EXPRESSION","tone"=>"olive"],
+ "amane"=>["number"=>"03","edition"=>"THE CONTEMPORARY EXPRESSION","tone"=>"aqua"],
+ "sasha"=>["number"=>"04","edition"=>"THE EXPRESSIVE SIGNATURE","tone"=>"rose"]
+];
+$signature=$signatureEditions[$slug]??["number"=>"—","edition"=>"AN IKKI SIGNATURE","tone"=>"classic"];
+?>
+<main class="ikki-product-page ikki-campaign ikki-campaign--<?=e($signature["tone"])?>">
  <script type="application/ld+json"><?=json_encode($productStructuredData,JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT)?></script>
  <nav class="ikki-product-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/shop.php">The Collection</a><span> / </span><span aria-current="page"><?=e($product['name'])?></span></nav>
  <section class="ikki-product-layout" data-product-gallery>
   <div class="ikki-product-gallery">
    <div class="ikki-product-main-image">
-    <span class="ikki-product-object">IKKI / OBJECT Nº <?=str_pad((string)(int)$product['id'],2,'0',STR_PAD_LEFT)?></span>
+    <span class="ikki-product-object">IKKI / SIGNATURE Nº <?=e($signature["number"])?></span>
     <img data-product-main-image src="<?=e($image)?>" alt="<?=e($product['name'])?> fragrance bottle" width="900" height="1125" loading="eager" fetchpriority="high" decoding="async">
-    <span class="ikki-product-image-caption">THE SIGNATURE COLLECTION</span>
+    <span class="ikki-product-image-caption">AN IKKI ORIGINAL <i>·</i> SIGNATURE <?=e($signature["number"])?></span>
    </div>
    <?php if(count($images)>1): ?><div class="ikki-product-thumbnails" aria-label="Product images">
     <?php foreach($images as $index=>$im): ?><button type="button" class="ikki-product-thumb<?=$index===0?' is-active':''?>" data-product-thumb data-src="<?=e($im['image_path'])?>" data-alt="<?=e($im['alt_text']??$product['name'].' fragrance bottle')?>" aria-label="View product image <?=($index+1)?>" aria-pressed="<?=$index===0?'true':'false'?>"><img src="<?=e($im['image_path'])?>" alt="" width="120" height="150" loading="lazy" decoding="async"></button><?php endforeach; ?>
    </div><?php endif; ?>
   </div>
   <div class="ikki-product-information">
-   <span class="eyebrow">THE IKKI SIGNATURE COLLECTION</span>
+   <span class="eyebrow">THE HOUSE OF IKKI <i></i> <?=e($signature["edition"])?></span>
+   <span class="ikki-campaign-edition">SIGNATURE <?=e($signature["number"])?> <span>—</span> FOUR EXPRESSIONS, ONE HOUSE</span>
    <h1><?=e($product['name'])?></h1>
    <p class="ikki-product-deck"><?=e($product['short_description']??'A fragrance composed to become part of your story.')?></p>
    <div class="ikki-product-price" aria-live="polite" aria-atomic="true"><?=$variants?money($variants[0]['price']):'Price on request'?></div>
@@ -102,7 +112,12 @@ require __DIR__.'/includes/header.php';
    <div class="ikki-product-help"><span class="ikki-product-help-mark" aria-hidden="true">IKKI</span><div><b>Need a little guidance?</b><p>Speak with us about this fragrance before placing your order.</p></div><a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">ASK IKKI <span aria-hidden="true">↗</span></a></div><p class="ikki-product-disclaimer">Fragrance notes and characteristics are presented as product descriptions. Please refer to the final product packaging for ingredient and formulation details.</p>
   </div>
  </section>
- <section class="ikki-product-after"><span class="eyebrow">THE IKKI SIGNATURE COLLECTION</span><h2>One more scent<br><em>to discover.</em></h2><a class="ikki-btn--secondary" href="/shop.php">EXPLORE THE COLLECTION <span>↗</span></a></section>
+ <section class="ikki-product-after ikki-campaign-end">
+  <span class="eyebrow">FOUR SIGNATURES · ONE HOUSE</span>
+  <h2>Discover the<br><em>IKKI point of view.</em></h2>
+  <p>Four individual expressions. One fragrance house. Find the signature that speaks to you.</p>
+  <a class="ikki-btn--secondary" href="/shop.php">MEET THE OTHER SIGNATURES <span>↗</span></a>
+ </section>
 </main>
 <script>
 document.addEventListener('DOMContentLoaded',function(){
