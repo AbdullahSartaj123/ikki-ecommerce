@@ -4290,3 +4290,50 @@ body.quick-view-open{overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){
  .home-marquee .home-marquee-track{animation:none!important}
 }
+
+
+/* IKKI editorial interlude — visual pause between collection and campaign */
+.ikki-home-interlude{
+ position:relative;isolation:isolate;overflow:hidden;
+ margin:clamp(44px,7vw,96px) auto;
+ width:min(100% - 44px,1320px);
+ padding:clamp(32px,5vw,68px) clamp(24px,6vw,88px);
+ color:#f5efe4;
+ background:
+  radial-gradient(ellipse at 82% 15%,rgba(184,147,95,.19),transparent 35%),
+  linear-gradient(115deg,#25231e,#343027 54%,#24221d);
+}
+.ikki-home-interlude:before,.ikki-home-interlude:after{
+ content:"";position:absolute;z-index:-1;pointer-events:none;border:1px solid rgba(207,177,128,.2);border-radius:50%;aspect-ratio:1;
+}
+.ikki-home-interlude:before{width:clamp(250px,35vw,480px);right:-9%;top:-55%}
+.ikki-home-interlude:after{width:clamp(180px,24vw,320px);right:1%;top:-28%;border-color:rgba(207,177,128,.11)}
+.ikki-home-interlude-top,.ikki-home-interlude-bottom{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.ikki-home-interlude-top{padding-bottom:18px;border-bottom:1px solid rgba(207,177,128,.28);color:#c9b38e;font:500 8px/1.5 Montserrat,sans-serif;letter-spacing:.2em}
+.ikki-home-interlude-main{position:relative;padding:clamp(38px,6vw,78px) 0 clamp(34px,5vw,62px)}
+.ikki-home-interlude-main p{margin:0;font:400 clamp(34px,6.2vw,82px)/.98 'Cormorant Garamond',Georgia,serif;letter-spacing:-.025em}
+.ikki-home-interlude-main p em{color:#d2b582;font-weight:400}
+.ikki-home-interlude-mark{position:absolute;top:0;left:-.04em;color:rgba(207,177,128,.2);font:400 clamp(90px,14vw,170px)/1 'Cormorant Garamond',serif}
+.ikki-home-interlude-bottom{padding-top:18px;border-top:1px solid rgba(207,177,128,.28);color:#c6b99f;font:500 7px/1.5 Montserrat,sans-serif;letter-spacing:.18em}
+.ikki-home-interlude-bottom a{display:inline-flex;align-items:center;gap:16px;color:#e1c99e;text-decoration:none;transition:color .25s,gap .25s}
+.ikki-home-interlude-bottom a:hover{color:#fff;gap:22px}
+.ikki-home-interlude-bottom i{font-style:normal;font-size:14px}
+.home-feature{margin-top:clamp(58px,8vw,110px)}
+.home-values{position:relative}
+.home-values:before{content:"";position:absolute;top:0;left:max(22px,calc((100vw - 1240px)/2));right:max(22px,calc((100vw - 1240px)/2));height:1px;background:linear-gradient(90deg,transparent,rgba(184,147,95,.35),transparent)}
+.home-value-icon svg{width:42px;height:42px;stroke:#b8935f;fill:none;stroke-width:1.15;stroke-linecap:round;stroke-linejoin:round}
+.home-final-cta.home-contact-cta .home-instagram-heading{position:relative;z-index:1}
+.home-final-cta.home-contact-cta .home-final-actions{gap:14px;margin-top:28px}
+.home-final-cta.home-contact-cta .home-final-actions a{min-width:190px;justify-content:center}
+@media(max-width:700px){
+ .ikki-home-interlude{width:calc(100% - 32px);margin:42px auto;padding:28px 22px}
+ .ikki-home-interlude-top,.ikki-home-interlude-bottom{font-size:6px;letter-spacing:.12em}
+ .ikki-home-interlude-main{padding:46px 0 38px}
+ .ikki-home-interlude-main p{font-size:clamp(34px,9vw,54px)}
+ .ikki-home-interlude-bottom{align-items:flex-start;flex-direction:column}
+ .home-final-cta.home-contact-cta .home-final-actions{align-items:stretch;flex-direction:column}
+ .home-final-cta.home-contact-cta .home-final-actions a{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ .ikki-home-interlude-bottom a{transition:none}
+}
