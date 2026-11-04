@@ -49,6 +49,20 @@ require __DIR__.'/includes/header.php';
 </section>
 <section class="collection-catalog ikki-premium-catalog" aria-label="Fragrance collection">
  <div class="ikki-catalog-intro"><span>THE IKKI SIGNATURE EDIT</span><p>Each fragrance tells its own story. Take your time, explore the notes, and find your signature.</p><?php if(empty($databaseProducts)): ?><small class="ikki-preview-note">COLLECTION PREVIEW · FRAGRANCES AND PRICING WILL BE CONFIRMED BEFORE ORDERS OPEN</small><?php endif; ?></div>
+ <div class="collection-toolbar-wrap">
+  <div class="collection-toolbar-sentinel" aria-hidden="true"></div>
+  <div class="collection-toolbar" data-collection-toolbar>
+   <div class="collection-filter-track" data-filter-track aria-label="Collection filters">
+    <span class="collection-filter-indicator" aria-hidden="true"></span>
+    <button class="collection-filter is-active" type="button" data-filter="all" aria-pressed="true">All fragrances</button>
+   </div>
+   <div class="collection-toolbar-tools">
+    <label class="collection-search-control"><span class="sr-only">Search fragrances</span><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="collection-search" type="search" placeholder="Find a fragrance" autocomplete="off"></label>
+    <label class="collection-sort-control"><span class="sr-only">Sort fragrances</span><select id="collection-sort" aria-label="Sort fragrances"><option value="featured">Featured</option><option value="name-asc">Name: A to Z</option><option value="name-desc">Name: Z to A</option></select></label>
+   </div>
+   <p class="collection-count" aria-live="polite"><b><?=count($products)?></b> fragrances</p>
+  </div>
+ </div>
  <div class="collection-grid ikki-signature-grid" id="collection-grid">
  <?php if($products): foreach($products as $n=>$p):
   $dbProduct=$databaseProducts[$p['slug']]??null;
