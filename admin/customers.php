@@ -1,0 +1,12 @@
+<?php
+require_once __DIR__.'/../config/bootstrap.php';require_admin();
+$q=trim((string)($_GET['q']??''));$sql="SELECT c.id,c.full_name,c.phone,c.whatsapp_phone,c.email,c.created_at,COUNT(o.id) order_count,COALESCE(SUM(CASE WHEN o.order_status<>'cancelled' THEN o.grand_total ELSE 0 END),0) order_value,MAX(o.created_at) last_order FROM customers c LEFT JOIN orders o ON o.customer_id=c.id";$args=[];
+if($q!==''){$sql.=" WHERE c.full_name LIKE ? OR c.phone LIKE ? OR c.email LIKE ?";$like='%'.$q.'%';$args=[$like,$like,$like];}
+$sql.=" GROUP BY c.id ORDER BY last_order DESC,c.id DESC LIMIT 200";$s=db()->prepare($sql);$s->execute($args);$rows=$s->fetchAll();
+$pageTitle='Customers — Ikki';require __DIR__.'/../includes/header.php';?>
+<div class="admin-shell"><h1 class="page-title">Customers</h1><nav class="admin-nav"><a href="/admin/">Overview</a><a href="/admin/orders.php">Orders</a><a href="/admin/customers.php">Customers</a><a href="/admin/products.php">Products</a></nav>
+<form method="get" class="site-form"><label class="field-label" for="customer-search">Find a customer</label><input class="field" id="customer-search" name="q" value="<?=e($q)?>" placeholder="Name, phone or email"><p><button class="btn" type="submit">Search</button> <a class="btn btn-outline" href="/admin/customers.php">Clear</a></p></form>
+<p class="muted">Showing up to 200 customer records. Customer profiles are created when an order is placed.</p>
+<div style="overflow-x:auto"><table class="cart-table"><thead><tr><th>Customer</th><th>Phone</th><th>WhatsApp</th><th>Email</th><th>Orders</th><th>Order value*</th><th>Last order</th><th></th></tr></thead><tbody>
+<?php foreach($rows as $r):?><tr><td><?=e($r['full_name'])?></td><td><?=e($r['phone'])?></td><td><?=e($r['whatsapp_phone']??'—')?></td><td><?=e($r['email']??'—')?></td><td><?=(int)$r['order_count']?></td><td><?=money($r['order_value'])?></td><td><?=e($r['last_order']??'—')?></td><td><a href="/admin/customer.php?id=<?=(int)$r['id']?>">View</a></td></tr><?php endforeach;?>
+<?php if(!$rows):?><tr><td colspan="8">No matching customers found.</td></tr><?php endif;?></tbody></table></div><p class="muted">*Excludes cancelled orders; not collected revenue or profit.</p></div><?php require __DIR__.'/../includes/footer.php';?>
