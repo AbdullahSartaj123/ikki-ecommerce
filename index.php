@@ -52,6 +52,17 @@ require __DIR__.'/includes/header.php';
  <a class="home-scroll-cue" href="#home-philosophy" aria-label="Scroll to discover"><span></span> DISCOVER IKKI</a>
 </section>
 
+
+<section class="ikki-home-edition-index" aria-label="Explore the four IKKI signatures">
+ <div class="ikki-home-edition-intro"><span>THE IKKI SIGNATURE COLLECTION</span><i aria-hidden="true"></i></div>
+ <nav class="ikki-home-edition-links">
+  <a href="#signature-scents"><small>01</small><span>Legendary Profile</span><i aria-hidden="true">↗</i></a>
+  <a href="#signature-scents"><small>02</small><span>Informal</span><i aria-hidden="true">↗</i></a>
+  <a href="#signature-scents"><small>03</small><span>Amane</span><i aria-hidden="true">↗</i></a>
+  <a href="#signature-scents"><small>04</small><span>Sasha</span><i aria-hidden="true">↗</i></a>
+ </nav>
+</section>
+
 <section class="home-philosophy" id="home-philosophy" aria-labelledby="philosophy-title">
  <div class="home-philosophy-title home-circle-anchor"><span class="home-circle-motif home-circle-motif--80" aria-hidden="true"><i></i></span><div class="home-section-marker"><span class="home-section-number">01</span><span class="home-kicker">THE HOUSE OF IKKI</span></div><h2 id="philosophy-title">A signature<br>is <em>personal.</em></h2></div>
  <div class="home-philosophy-copy"><p>IKKI is a fragrance house built around four distinct expressions. Each name carries its own character; together, they form the identity of the house. We believe a fragrance should be recognised not only by how it smells, but by how it makes you feel.</p><a class="home-text-link" href="/our-story.php">THE IKKI STORY <span>↗</span></a></div>
