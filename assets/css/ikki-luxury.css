@@ -3538,3 +3538,76 @@ body.quick-view-open{overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){
  .quick-view-size-buttons button{transition:none!important}
 }
+
+
+/* Editorial refinement — Our Story and Contact pages */
+.page-banner-story,.page-banner-contact{position:relative;isolation:isolate;overflow:hidden;background:linear-gradient(112deg,#f5efe4 0%,#faf7f1 58%,#ece1d1 100%)!important}
+.page-banner-story::after,.page-banner-contact::after{content:"IKKI";position:absolute;z-index:-1;right:clamp(18px,8vw,120px);top:50%;transform:translateY(-50%);color:rgba(184,147,95,.075);font:500 clamp(100px,21vw,290px)/.8 'Cormorant Garamond',Georgia,serif;letter-spacing:.12em;pointer-events:none}
+.page-banner-copy{position:relative;z-index:1;max-width:760px}
+.page-banner-copy h1{font-size:clamp(54px,8vw,100px);letter-spacing:-.055em;line-height:.95}
+.page-banner-copy>p{max-width:470px;font-size:13px;line-height:2}
+.story-narrative{padding-block:clamp(68px,9vw,120px);gap:clamp(45px,8vw,110px)}
+.story-narrative-block{max-width:1280px;margin-inline:auto;gap:clamp(34px,7vw,96px);align-items:center}
+.story-narrative-visual{position:relative;overflow:hidden;background:linear-gradient(145deg,#faf7f1,#e9dfd1);border:1px solid rgba(184,147,95,.2);box-shadow:var(--ikki-shadow-soft)}
+.story-narrative-visual::after{content:"";position:absolute;inset:12px;border:1px solid rgba(184,147,95,.22);pointer-events:none}
+.story-narrative-visual img{width:100%;height:100%;object-fit:contain;padding:clamp(22px,4vw,55px);mix-blend-mode:multiply;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.story-narrative-visual:hover img{transform:scale(1.035)}
+.story-narrative-copy{max-width:530px}
+.story-narrative-copy h2{font-size:clamp(36px,4.5vw,58px);letter-spacing:-.035em;line-height:1.04}
+.story-narrative-copy h2 em{color:#a77f4c}
+.story-narrative-copy p{font-size:12px;line-height:2.05}
+.story-values{background:#fff!important}
+.story-values-heading{max-width:1280px;margin:0 auto 35px}
+.story-values-heading h2{font-size:clamp(42px,5vw,64px);letter-spacing:-.04em}
+.story-value-grid{max-width:1280px;margin-inline:auto;gap:14px}
+.story-value-card{padding:clamp(24px,3vw,38px);border-color:rgba(184,147,95,.2);transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease}
+.story-value-card:hover{transform:translateY(-4px);border-color:rgba(184,147,95,.55);box-shadow:var(--ikki-shadow-soft)}
+.story-value-card h3{font-size:22px}
+.story-value-card p{font-size:11px;line-height:1.9}
+.story-mission{background:linear-gradient(130deg,#f5efe4,#fbf8f2)!important}
+.story-mission-quote{max-width:900px;font-size:clamp(32px,5vw,62px);line-height:1.12;letter-spacing:-.025em}
+.story-cta{align-items:center;gap:clamp(30px,7vw,100px);padding-block:clamp(70px,9vw,120px)}
+.story-cta-copy{max-width:560px}
+.story-cta-copy h2{font-size:clamp(42px,5.6vw,72px);letter-spacing:-.04em;line-height:1}
+.story-cta-copy h2 em{color:#a77f4c}
+.story-cta-art{position:relative;overflow:hidden;background:linear-gradient(145deg,#faf7f1,#e9dfd1);border:1px solid rgba(184,147,95,.2);box-shadow:var(--ikki-shadow-soft)}
+.story-cta-art img{width:100%;height:100%;object-fit:contain;padding:clamp(24px,4vw,55px);mix-blend-mode:multiply;transition:transform .8s ease}
+.story-cta-art:hover img{transform:scale(1.035)}
+.contact-main{max-width:1320px;margin-inline:auto;padding:clamp(58px,8vw,105px) clamp(22px,5vw,72px);gap:clamp(30px,6vw,82px);align-items:start}
+.contact-form-column{padding:clamp(25px,4vw,48px);background:#fff;border:1px solid rgba(184,147,95,.22);box-shadow:var(--ikki-shadow-soft)}
+.contact-form-title{font-size:clamp(30px,3.5vw,43px);letter-spacing:-.03em}
+.contact-form-grid{gap:18px}
+.contact-field input,.contact-field textarea,.contact-field select{min-height:54px;padding:15px 16px;border-radius:0;background:#fcfaf6}
+.contact-field textarea{min-height:145px;resize:vertical}
+.contact-field label{font-size:10px;letter-spacing:.07em}
+.contact-submit{min-height:52px}
+.contact-info-column{position:sticky;top:110px;padding:clamp(24px,3.5vw,42px);background:linear-gradient(145deg,#f8f3eb,#eee4d5);border:1px solid rgba(184,147,95,.24)}
+.contact-detail-item{padding-block:23px}
+.contact-detail-icon{background:rgba(255,255,255,.65)}
+.contact-detail-copy h3{font-size:20px}
+.contact-detail-copy p,.contact-detail-copy a{font-size:12px;line-height:1.9}
+.contact-info-column>.contact-submit{width:100%;margin-top:24px}
+@media(max-width:850px){
+ .story-narrative-block{padding-inline:24px}
+ .contact-info-column{position:static}
+}
+@media(max-width:700px){
+ .page-banner-story::after,.page-banner-contact::after{right:-8px;font-size:42vw}
+ .page-banner-copy h1{font-size:clamp(48px,13vw,68px)}
+ .story-narrative{padding-block:58px}
+ .story-narrative-block{padding-inline:20px;gap:26px}
+ .story-narrative-visual{max-height:390px}
+ .story-narrative-copy h2{font-size:39px}
+ .story-value-grid{gap:11px}
+ .story-value-card{padding:24px}
+ .story-cta{padding:60px 20px;gap:30px}
+ .story-cta-art{max-height:380px}
+ .contact-main{padding:48px 18px;gap:22px}
+ .contact-form-column,.contact-info-column{padding:22px 18px}
+ .contact-form-grid{grid-template-columns:1fr}
+ .contact-field-full{grid-column:1}
+}
+@media(prefers-reduced-motion:reduce){
+ .story-narrative-visual img,.story-value-card,.story-cta-art img{transition:none!important}
+ .story-value-card:hover{transform:none}
+}
