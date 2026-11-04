@@ -3973,3 +3973,17 @@ body.quick-view-open{overflow:hidden!important}
 @media(max-width:900px){.ikki-house-signatures-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 16px}.ikki-house-signatures-heading{margin-bottom:36px}}
 @media(max-width:480px){.ikki-house-signatures{padding-inline:18px}.ikki-house-signatures-grid{gap:24px 12px}.ikki-house-signature>span{font-size:7px}.ikki-house-signature h3{font-size:19px}}
 @media(prefers-reduced-motion:reduce){.ikki-house-signature,.ikki-house-signature img{transition:none}}
+
+/* Editorial signature index — replace generic catalogue controls */
+.ikki-signature-index{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:14px 28px;padding:22px clamp(20px,5vw,70px);border-top:1px solid rgba(122,117,108,.18);border-bottom:1px solid rgba(122,117,108,.18);background:#fff}
+.ikki-signature-index>span{color:#9b805d;font:500 8px/1.5 var(--font-body);letter-spacing:.2em}
+.ikki-signature-index>a{display:inline-flex;align-items:center;gap:8px;color:#5f5a52;text-decoration:none;font:400 11px/1.4 var(--font-body);transition:color .2s}
+.ikki-signature-index>a i{color:#b8935f;font:400 10px var(--font-heading);font-style:normal}
+.ikki-signature-index>a:hover{color:#b8935f}
+.ikki-signature-grid{scroll-margin-top:100px}
+.ikki-signature-card[id]{scroll-margin-top:110px}
+.ikki-signature-card .ikki-card-image-link{display:block}
+.ikki-signature-card .ikki-card-discover{display:inline-flex;align-items:center;gap:9px}
+.ikki-signature-card .ikki-card-discover span{transition:transform .2s}
+.ikki-signature-card .ikki-card-discover:hover span{transform:translate(3px,-3px)}
+@media(max-width:650px){.ikki-signature-index{justify-content:flex-start;gap:13px 19px;padding:18px 20px}.ikki-signature-index>span{width:100%}.ikki-signature-index>a{font-size:10px}}
