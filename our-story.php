@@ -13,33 +13,33 @@ require __DIR__.'/includes/header.php';
 
 <section class="story-narrative" aria-label="The IKKI story">
  <article class="story-narrative-block">
-  <div class="story-narrative-visual slide-right"><img src="/assets/images/noor.svg" alt="A signature IKKI fragrance bottle, representing the beginning of the house" width="800" height="1000" loading="lazy" decoding="async"></div>
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/legendary-profile.svg" alt="Legendary Profile fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">THE BEGINNING</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
-   <h2>Born from a <em>Single Scent</em></h2>
-   <p>Every fragrance house begins with a moment of inspiration. For IKKI, that beginning is rooted in the belief that a single scent can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered.</p>
-   <p>That first spark grew into a wider ambition: to create fragrances with character, depth and a sense of individuality. The story continues with the same curiosity that started it — following the notes, moods and moments that make scent personal.</p>
+   <h2>Inspired by <em>Individuality</em></h2>
+   <p>Fragrance can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered. IKKI is shaped around that personal connection between scent and self-expression.</p>
+   <p>Our collection brings together distinct fragrance identities for different moods and moments. The invitation is simple: explore with curiosity and discover the expression that feels right to you.</p>
   </div>
  </article>
  <article class="story-narrative-block is-reversed">
-  <div class="story-narrative-visual slide-left"><img src="/assets/images/sahra.svg" alt="Sahra fragrance bottle artwork, an expression of the perfumer’s craft" width="800" height="1000" loading="lazy" decoding="async"></div>
+  <div class="story-narrative-visual slide-left"><img src="/assets/images/informal.svg" alt="Informal fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">THE CRAFT</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
-   <h2>Where Art Meets <em>Chemistry</em></h2>
-   <p>Perfume is both creative expression and careful composition. A perfumer considers how top, heart and base notes unfold, how materials interact, and how a fragrance changes from its first impression to the trace it leaves behind.</p>
-   <p>It is a process of exploration and precision: balancing accords, refining proportions and allowing each element to find its place. The artistry is in the emotion a fragrance evokes; the chemistry is in the thoughtful work that helps bring that experience to life.</p>
+   <h2>The Art of <em>Composition</em></h2>
+   <p>Perfume is an art of balance. Fragrance compositions are often experienced in stages, from an opening impression to the character that develops and the notes that remain.</p>
+   <p>For the wearer, these layers come together as one impression — a scent associated with a mood, a place or a moment. Discovering that connection is part of the pleasure of fragrance.</p>
   </div>
  </article>
  <article class="story-narrative-block">
-  <div class="story-narrative-visual slide-right"><img src="/assets/images/velvet-dusk.svg" alt="Velvet Dusk fragrance bottle artwork, representing the IKKI collection today" width="800" height="1000" loading="lazy" decoding="async"></div>
+  <div class="story-narrative-visual slide-right"><img src="/assets/images/amane.svg" alt="Amane fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
    <span class="story-narrative-eyebrow">TODAY</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
    <h2>A World of <em>Fragrance</em></h2>
-   <p>Today, IKKI continues to shape a fragrance house guided by curiosity, considered design and the belief that scent is deeply individual. Each fragrance is an invitation to discover a mood, express a point of view and make a moment your own.</p>
-   <p>Our outlook is open to the world, while our focus remains personal: creating a welcoming experience, celebrating distinctive scent identities and making the art of fragrance part of everyday life.</p>
+   <p>IKKI brings together a collection of signature fragrances, each with its own identity. Every one offers a different way to explore mood, personal style and the memories connected to scent.</p>
+   <p>We want discovering a fragrance to feel considered and welcoming — from exploring the collection to asking for guidance when you need it.</p>
   </div>
  </article>
 </section>
@@ -49,19 +49,19 @@ require __DIR__.'/includes/header.php';
  <div class="story-value-grid">
   <article class="story-value-card reveal" style="--value-delay:0ms">
    <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 28 17 40 12 31 23 43 29 29 29 25 43 20 29 6 34 16 23 7 15 20 18Z"/><circle cx="24" cy="24" r="5"/></svg></span>
-   <h3>Craftsmanship</h3><p>Every bottle is a testament to meticulous artistry</p>
+   <h3>Composition</h3><p>Discover the character and layers that make each fragrance distinct.</p>
   </article>
   <article class="story-value-card reveal" style="--value-delay:100ms">
    <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 42S7 32 7 19C7 11 17 6 24 15 31 6 41 11 41 19c0 13-17 23-17 23Z"/><path d="M24 15c-3 7-3 14 0 21M15 25c3-1 6-1 9 0m0 0c3-1 6-1 9 0"/></svg></span>
-   <h3>Thoughtful Design</h3><p>Every detail is considered, from the fragrance to its presentation.</p>
+   <h3>Thoughtful Discovery</h3><p>Take your time exploring different fragrance identities.</p>
   </article>
   <article class="story-value-card reveal" style="--value-delay:200ms">
    <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 39 13.5V30.5L24 39 9 30.5V13.5Z"/><path d="m16 23 5 5 11-12"/><path d="M24 39v5"/></svg></span>
-   <h3>Authenticity</h3><p>No shortcuts. No compromises. Only genuine quality</p>
+   <h3>Personal Expression</h3><p>Choose a fragrance that feels aligned with your own style.</p>
   </article>
   <article class="story-value-card reveal" style="--value-delay:300ms">
    <span class="story-value-symbol" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 29 18 43 18 32 27 36 41 24 33 12 41 16 27 5 18 19 18Z"/><circle cx="24" cy="24" r="4"/></svg></span>
-   <h3>Individuality</h3><p>Distinctive fragrance expressions for personal style.</p>
+   <h3>Connection</h3><p>Let scent become part of the moments you make your own.</p>
   </article>
  </div>
 </section>
@@ -69,13 +69,13 @@ require __DIR__.'/includes/header.php';
 <section class="story-mission" aria-labelledby="story-mission-title">
  <div class="story-mission-inner">
   <span class="story-mission-rule" aria-hidden="true"></span>
-  <h2 id="story-mission-title" class="story-mission-quote" data-mission-quote aria-label="We believe fragrance is memory bottled — a single scent capable of transporting you across time and place.">“We believe fragrance is memory bottled — a single scent capable of transporting you across time and place.”</h2>
+  <h2 id="story-mission-title" class="story-mission-quote" data-mission-quote aria-label="A fragrance can become part of the memories you carry.">“A fragrance can become part of the memories you carry.”</h2>
   <span class="story-mission-rule" aria-hidden="true"></span>
  </div>
 </section>
 
 <section class="story-cta">
  <div class="story-cta-copy reveal"><span class="story-kicker">YOUR NEXT CHAPTER</span><h2>Discover your<br><em>signature scent.</em></h2><p>Explore the collection and find the fragrance that feels like you.</p><a class="story-cta-button" href="/shop.php">Explore Our Collection <span>↗</span></a></div>
- <div class="story-cta-art reveal"><img src="/assets/images/azure-04.svg" alt="Azure 04 fragrance bottle concept artwork" width="800" height="1000" loading="lazy" decoding="async"><span>IKKI / THE SIGNATURE COLLECTION</span></div>
+ <div class="story-cta-art reveal"><img src="/assets/images/sasha.svg" alt="Sasha fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"><span>IKKI / THE SIGNATURE COLLECTION</span></div>
 </section>
 <?php require __DIR__.'/includes/footer.php'; ?>
