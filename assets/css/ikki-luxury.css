@@ -4467,3 +4467,71 @@ body.quick-view-open{overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){
  .ikki-home-edition-links a span{transition:none}
 }
+
+
+/* IKKI homepage finishing pass — refined section rhythm and interaction details */
+.home-marquee{position:relative;z-index:2;border-top:1px solid rgba(184,147,95,.22);border-bottom:1px solid rgba(184,147,95,.22);background:#fffdf9}
+.home-marquee-track span{color:#8d795e}
+.home-hero.home-hero--editorial{min-height:min(790px,calc(100svh - 112px));}
+.home-hero--editorial .home-hero-eyebrow{font-size:10px;letter-spacing:.24em}
+.home-hero--editorial .home-overline{color:#8d795e;letter-spacing:.2em}
+.home-hero--editorial .home-hero-actions .ikki-btn{min-height:54px;padding-inline:30px}
+.home-hero--editorial .home-quiet-link{border-color:rgba(184,147,95,.48)}
+.home-hero--editorial .home-scroll-cue{color:#8d795e;letter-spacing:.2em}
+.home-hero--editorial .home-scroll-cue span{background:#b8935f}
+.ikki-home-edition-index{box-shadow:0 12px 34px rgba(54,43,28,.025)}
+.ikki-home-edition-links a{border-left:1px solid rgba(184,147,95,.2);padding-inline:clamp(12px,2vw,28px)}
+.ikki-home-edition-links a:first-child{border-left:0}
+.ikki-home-edition-links a i{transition:transform .25s,color .25s}
+.ikki-home-edition-links a:hover i{transform:translate(3px,-3px);color:#8d6840}
+.home-philosophy{isolation:isolate}
+.home-philosophy:before{content:"";position:absolute;z-index:-1;inset:14px 0;background:linear-gradient(90deg,rgba(245,239,228,.52),transparent 58%);pointer-events:none}
+.home-philosophy-copy{border-left:1px solid rgba(184,147,95,.35);padding-left:clamp(22px,3vw,42px)}
+.home-text-link{display:inline-flex;align-items:center;gap:12px;transition:gap .25s,color .25s}
+.home-text-link:hover{gap:18px;color:#80603d}
+.home-section-marker{display:flex;align-items:center;gap:13px}
+.home-section-number{display:inline-grid;place-items:center;width:31px;height:31px;border:1px solid rgba(184,147,95,.42);border-radius:50%;font-size:9px;color:#9a784f}
+.home-kicker{letter-spacing:.2em}
+.home-collection{padding-top:clamp(76px,9vw,132px);padding-bottom:clamp(72px,9vw,128px)}
+.home-products--editorial .home-product{border:1px solid rgba(184,147,95,.13)}
+.home-products--editorial .home-product-art{aspect-ratio:4/4.65}
+.home-products--editorial .home-product-art img{transition:transform .9s cubic-bezier(.2,.65,.3,1),filter .9s}
+.home-products--editorial .home-product:hover .home-product-art img{transform:scale(1.055) translateY(-3px);filter:contrast(1.025)}
+.home-products--editorial .home-product-meta{background:linear-gradient(180deg,#fff,#fdfbf8)}
+.home-products--editorial .home-product-meta strong{font-size:8px;letter-spacing:.14em}
+.home-products--editorial .home-product-open{opacity:.82;transition:opacity .25s,letter-spacing .25s}
+.home-products--editorial .home-product:hover .home-product-open{opacity:1;letter-spacing:.17em}
+.home-collection-note{padding-top:20px;border-top:1px solid rgba(184,147,95,.2);max-width:520px;margin:35px auto 0}
+.ikki-home-interlude{outline:1px solid rgba(184,147,95,.16);outline-offset:7px}
+.ikki-home-interlude-bottom a{font-size:8px;letter-spacing:.2em}
+.home-feature{gap:clamp(36px,7vw,110px)}
+.home-feature-copy .home-outline-button{margin-top:18px;transition:background .25s,color .25s,transform .25s}
+.home-feature-copy .home-outline-button:hover{transform:translateY(-3px)}
+.home-values{background:linear-gradient(180deg,#fff 0%,#fdfbf8 100%)}
+.home-values-heading{padding-right:clamp(10px,2vw,30px)}
+.home-value{position:relative}
+.home-value:after{content:"";position:absolute;left:0;top:-1px;width:42px;height:2px;background:#b8935f;transform:scaleX(.55);transform-origin:left;transition:transform .3s}
+.home-value:hover:after{transform:scaleX(1)}
+.home-manifesto{border-top:1px solid rgba(184,147,95,.2);border-bottom:1px solid rgba(184,147,95,.2)}
+.home-manifesto>span:last-child{letter-spacing:.22em;color:#98784f}
+.home-final-cta.home-contact-cta{border-top:1px solid rgba(184,147,95,.2)}
+.home-final-cta.home-contact-cta .home-final-actions .ikki-btn{transition:transform .3s,box-shadow .3s,background .3s}
+.home-final-cta.home-contact-cta .home-final-actions .ikki-btn:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(66,49,27,.12)}
+@media(max-width:900px){
+ .home-philosophy-copy{padding-left:22px}
+ .home-feature{gap:34px}
+}
+@media(max-width:700px){
+ .home-hero.home-hero--editorial{min-height:0}
+ .home-hero--editorial .home-hero-actions .ikki-btn{min-height:49px;padding-inline:20px}
+ .ikki-home-edition-links a{border-left:0;border-top:1px solid rgba(184,147,95,.17);padding-inline:5px}
+ .home-philosophy-copy{border-left:0;border-top:1px solid rgba(184,147,95,.32);padding:20px 0 0}
+ .home-collection{padding-top:64px;padding-bottom:64px}
+ .home-products--editorial .home-product-art{aspect-ratio:4/4.7}
+ .home-collection-note{margin-top:24px}
+ .ikki-home-interlude{outline-offset:4px}
+ .home-value:after{width:30px}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-products--editorial .home-product-art img,.home-products--editorial .home-product-open,.home-value:after,.home-text-link,.ikki-home-edition-links a i{transition:none!important}
+}
