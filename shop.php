@@ -70,6 +70,7 @@ require __DIR__.'/includes/header.php';
  <?php if($products): foreach($products as $n=>$p):
   $dbProduct=$databaseProducts[$p['slug']]??null;
   $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
+  $detailUrl=$dbProduct?$productUrl:'https://wa.me/923094733789?text='.rawurlencode('Hello IKKI, I would like to enquire about '.$p['name'].'.');
   $signatureImages=['legendary-profile'=>'/assets/images/legendary-profile.svg','informal'=>'/assets/images/informal.svg','amane'=>'/assets/images/amane.svg','sasha'=>'/assets/images/sasha.svg'];
   $imagePath=trim((string)($p['image_path']??''))?:($signatureImages[$p['slug']]??'/assets/images/legendary-profile.svg');
   $variants=[];
@@ -82,7 +83,7 @@ require __DIR__.'/includes/header.php';
   <article class="collection-card collection-reveal ikki-signature-card" data-signature="<?=e($p['slug'])?>" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
    <div class="collection-card-image">
     <?php if($p['is_new']): ?><span class="collection-new-badge">New</span><?php endif; ?>
-    <a class="ikki-card-image-link" href="<?=e($productUrl?:'/shop.php')?>"><img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async"></a>
+    <a class="ikki-card-image-link" href="<?=e($detailUrl)?>"><img src="<?=e($imagePath)?>" alt="<?=e($p['name'])?> fragrance bottle" width="800" height="1000" loading="lazy" decoding="async"></a>
     <button class="collection-quick-view" type="button" aria-label="View <?=e($p['name'])?> fragrance details" data-quick-view
      data-name="<?=e($p['name'])?>" data-notes="<?=e($p['notes'])?>" data-price="<?=e($p['price']!==null?money($p['price']):'Price on request')?>"
      data-image="<?=e($imagePath)?>" data-description="<?=e($modalDescription)?>"
@@ -94,7 +95,7 @@ require __DIR__.'/includes/header.php';
     </button>
    </div>
    <div class="collection-card-info">
-    <h2><a href="<?=e($productUrl?:'/shop.php')?>"><?=e($p['name'])?></a></h2>
+    <h2><a href="<?=e($detailUrl)?>"><?=e($p['name'])?></a></h2>
     <p><?=e($p['notes'])?></p>
     <strong><?=$dbProduct?($p['price']!==null?money($p['price']):'Price on request'):'A SIGNATURE OF IKKI'?></strong><a class="ikki-card-discover" href="<?=$dbProduct?e($productUrl):'https://wa.me/923094733789?text='.rawurlencode('Hello IKKI, I would like to enquire about '.$p['name'].'.')?>"><?=$dbProduct?'DISCOVER THIS SCENT':'ENQUIRE ABOUT THIS SCENT'?> <span>↗</span></a>
    </div>
