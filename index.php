@@ -80,9 +80,17 @@ require __DIR__.'/includes/header.php';
    }
    $displayPrice='';
  ?>
-  <a id="signature-<?=e($p['slug'])?>" class="home-product" href="<?=$p['is_live']?'/product.php?slug='.rawurlencode($p['slug']):'/shop.php'?>">
-   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance campaign illustration" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">ENTER THE WORLD OF THIS SCENT ↗</span></div>
-   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong><?=$p['is_live']?'IKKI Nº 0'.($n+1):'DISCOVER IKKI'?></strong></div>
+  <a id="signature-<?=e($p['slug'])?>" class="home-product" data-signature="<?=e($p['slug'])?>" href="<?=$p['is_live']?'/product.php?slug='.rawurlencode($p['slug']):'/shop.php'?>" aria-label="<?=e($p['name'])?> — <?=$p['is_live']?'view fragrance':'explore the collection'?>">
+   <div class="home-product-art">
+    <span class="home-product-number">0<?=($n+1)?></span>
+    <span class="home-product-edition">THE IKKI SIGNATURE</span>
+    <img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance campaign illustration" width="800" height="1000" loading="lazy" decoding="async">
+    <span class="home-product-open">DISCOVER THIS SIGNATURE <i aria-hidden="true">↗</i></span>
+   </div>
+   <div class="home-product-meta">
+    <div><span class="home-product-index">0<?=($n+1)?> / FOUR EXPRESSIONS</span><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div>
+    <strong><?=$p['is_live']?'EXPLORE FRAGRANCE':'EXPLORE COLLECTION'?> <i aria-hidden="true">↗</i></strong>
+   </div>
   </a>
  <?php endforeach; /* the four house signatures are always rendered above */ ?>
 
