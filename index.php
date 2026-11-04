@@ -18,6 +18,14 @@ $conceptProducts=[
  ['name'=>'Amane','family'=>'IKKI SIGNATURE FRAGRANCE','description'=>'A fresh, contemporary character with a smooth finish.','image'=>'/assets/images/amane.svg','slug'=>'amane'],
  ['name'=>'Sasha','family'=>'IKKI SIGNATURE FRAGRANCE','description'=>'A poised, expressive fragrance with a lasting impression.','image'=>'/assets/images/sasha.svg','slug'=>'sasha']
 ];
+$liveBySlug=[];
+foreach($products as $liveProduct){$liveBySlug[$liveProduct['slug']]=$liveProduct;}
+$products=[];
+foreach($conceptProducts as $concept){
+ $live=$liveBySlug[$concept['slug']]??null;
+ $products[]=$live?array_merge($concept,$live,['is_live'=>true]):array_merge($concept,['is_live'=>false,'short_description'=>$concept['description']]);
+}
+
 require __DIR__.'/includes/header.php';
 ?>
 <div class="home-marquee" aria-label="IKKI fragrance philosophy"><div class="home-marquee-track"><span>ELEGANCE IN EVERY DETAIL <b aria-hidden="true">✳</b> FIND YOUR SIGNATURE <b aria-hidden="true">✳</b> THE ART OF FRAGRANCE <b aria-hidden="true">✳</b></span><span aria-hidden="true">ELEGANCE IN EVERY DETAIL <b>✳</b> FIND YOUR SIGNATURE <b>✳</b> THE ART OF FRAGRANCE <b>✳</b></span></div></div>
@@ -52,7 +60,7 @@ require __DIR__.'/includes/header.php';
 <section class="home-collection" id="signature-scents" aria-labelledby="signature-title">
  <div class="home-section-heading home-reveal"><div class="home-circle-anchor"><span class="home-circle-motif home-circle-motif--60" aria-hidden="true"><i></i></span><div class="home-section-marker"><span class="home-section-number">02</span><span class="home-kicker">FOUR EXPRESSIONS · ONE HOUSE</span></div><h2 id="signature-title">Four names.<br><em>One identity.</em></h2></div><a class="home-text-link" href="/shop.php">VIEW THE COLLECTION <span>↗</span></a></div>
  <div class="home-products home-products--editorial">
- <?php if($products): foreach($products as $n=>$p):
+ <?php foreach($products as $n=>$p):
    $image=trim((string)($p['image_path']??''));
    if($image===''){
     $fallbackBySlug=['legendary-profile'=>'/assets/images/legendary-profile.svg','informal'=>'/assets/images/informal.svg','amane'=>'/assets/images/amane.svg','sasha'=>'/assets/images/sasha.svg'];
@@ -61,11 +69,13 @@ require __DIR__.'/includes/header.php';
    }
    $displayPrice='';
  ?>
-  <a class="home-product" href="/product.php?slug=<?=e($p['slug'])?>">
+  <a class="home-product" href="<?=$p['is_live']?'/product.php?slug='.rawurlencode($p['slug']):'/shop.php'?>">
    <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance editorial photograph" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">ENTER THE WORLD OF THIS SCENT ↗</span></div>
-   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong>IKKI Nº 0<?=($n+1)?></strong></div>
+   <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong><?=$p['is_live']?'IKKI Nº 0'.($n+1):'DISCOVER IKKI'?></strong></div>
   </a>
- <?php endforeach; else: foreach($conceptProducts as $n=>$p): ?>
+ <?php endforeach; /* the four house signatures are always rendered above */ ?>
+ <?php /* legacy fallback intentionally removed */ ?>
+ <?php if(false): foreach($conceptProducts as $n=>$p): ?>
   <a class="home-product home-reveal home-product--concept" href="/shop.php">
    <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($p['image'])?>" alt="<?=e($p['name'])?> IKKI fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">EXPLORE THE COLLECTION ↗</span></div>
    <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['family'])?></p></div><strong>COMING SOON</strong></div>
@@ -73,7 +83,7 @@ require __DIR__.'/includes/header.php';
   </a>
  <?php endforeach; endif; ?>
  </div>
- <p class="home-collection-note home-reveal"><?= $products?'Distinct expressions. One unmistakable point of view.':'Meet the four signature fragrances from IKKI.' ?></p>
+ <p class="home-collection-note home-reveal">Four distinct expressions. One unmistakable point of view.</p>
 </section>
 
 <section class="home-feature" aria-labelledby="home-feature-title">
