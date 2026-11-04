@@ -13,7 +13,7 @@ $v->execute([$product['id']]);
 $variants=array_values(array_filter($v->fetchAll(),static fn($variant)=>(int)$variant['stock_quantity']>0));
 $i=db()->prepare("SELECT * FROM product_images WHERE product_id=? ORDER BY is_primary DESC,sort_order");
 $i->execute([$product['id']]);$images=$i->fetchAll();
-$image=$images[0]['image_path']??'/assets/images/noor.svg';
+$image=$images[0]['image_path']??('/assets/images/'.preg_replace('/[^a-z0-9-]/','',$slug).'.svg');
 $pageTitle=$product['name'].' — IKKI';$description=$product['short_description'];
 require __DIR__.'/includes/header.php';
 ?>
@@ -59,7 +59,7 @@ require __DIR__.'/includes/header.php';
     <div><span>CONCENTRATION</span><b><?=e($product['concentration']??'To be confirmed')?></b></div>
     <div><span>CHARACTER</span><b><?=e($product['gender']??'Unisex')?></b></div>
    </div>
-   <p class="ikki-product-disclaimer">Fragrance notes and characteristics are presented as product descriptions. Please refer to the final product packaging for ingredient and formulation details.</p>
+   <div class="ikki-product-help"><span class="ikki-product-help-mark" aria-hidden="true">IKKI</span><div><b>Need a little guidance?</b><p>Speak with us about this fragrance before placing your order.</p></div><a href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">ASK IKKI <span aria-hidden="true">↗</span></a></div><p class="ikki-product-disclaimer">Fragrance notes and characteristics are presented as product descriptions. Please refer to the final product packaging for ingredient and formulation details.</p>
   </div>
  </section>
  <section class="ikki-product-after"><span class="eyebrow">THE IKKI SIGNATURE COLLECTION</span><h2>One more scent<br><em>to discover.</em></h2><a class="ikki-btn--secondary" href="/shop.php">EXPLORE THE COLLECTION <span>↗</span></a></section>
