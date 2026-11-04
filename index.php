@@ -32,20 +32,20 @@ require __DIR__.'/includes/header.php';
 
 <section class="home-hero home-hero--editorial" aria-labelledby="home-title">
  <div class="home-hero-copy">
-  <span class="home-hero-eyebrow">IKKI <i></i> THE ART OF FRAGRANCE</span>
-  <p class="home-overline">A PERSONAL EXPRESSION, BEAUTIFULLY COMPOSED</p>
-  <h1 id="home-title"><span class="hero-title-line hero-title-line--first">Wear your</span><span class="hero-title-line hero-title-line--second"><em>own story.</em></span></h1>
-  <p class="home-hero-subtext">Fragrance is the quietest form of self-expression. Discover refined scent stories made to linger long after the moment has passed.</p>
+  <span class="home-hero-eyebrow">IKKI <i></i> THE HOUSE OF FOUR</span>
+  <p class="home-overline">FOUR SIGNATURES. FOUR DISTINCT POINTS OF VIEW.</p>
+  <h1 id="home-title"><span class="hero-title-line hero-title-line--first">The House</span><span class="hero-title-line hero-title-line--second"><em>of Four.</em></span></h1>
+  <p class="home-hero-subtext">Meet four individual fragrance identities, each with its own character. Discover the signature that feels unmistakably yours.</p>
   <div class="home-hero-actions">
    <a class="ikki-btn ikki-btn--primary" href="#signature-scents">Discover the four <span aria-hidden="true">↗</span></a>
    <a class="ikki-btn ikki-btn--secondary home-quiet-link" href="/our-story.php">Our philosophy <span aria-hidden="true">↗</span></a>
   </div>
   <div class="home-hero-foot" aria-label="IKKI fragrance collection"><span>FOUR DISTINCT IDENTITIES</span><span>ONE CREATIVE HOUSE</span><span>THE IKKI SIGNATURE</span></div>
  </div>
- <div class="home-hero-visual" role="img" aria-label="Editorial photograph of a fine fragrance bottle">
+ <div class="home-hero-visual" role="img" aria-label="IKKI fragrance campaign illustration">
   <div class="home-visual-glow" aria-hidden="true"></div>
   <div class="home-hero-orbit" aria-hidden="true"></div>
-  <img class="home-hero-bottle" src="/assets/images/ikki-hero.svg" alt="IKKI signature fragrance bottle in a champagne-lit botanical campaign setting" width="1000" height="1200" loading="eager" fetchpriority="high" decoding="async">
+  <img class="home-hero-bottle" src="/assets/images/ikki-hero.svg" alt="Illustrated IKKI fragrance bottle in a champagne-toned campaign composition" width="1000" height="1200" loading="eager" fetchpriority="high" decoding="async">
   <span class="home-hero-photo-caption"><small>THE SIGNATURE EDIT</small><strong>SCENT, <em>IN FORM.</em></strong></span>
   <span class="home-vertical-note" aria-hidden="true">A SCENT THAT STAYS WITH YOU</span>
  </div>
@@ -56,10 +56,10 @@ require __DIR__.'/includes/header.php';
 <section class="ikki-home-edition-index" aria-label="Explore the four IKKI signatures">
  <div class="ikki-home-edition-intro"><span>THE IKKI SIGNATURE COLLECTION</span><i aria-hidden="true"></i></div>
  <nav class="ikki-home-edition-links">
-  <a href="#signature-scents"><small>01</small><span>Legendary Profile</span><i aria-hidden="true">↗</i></a>
-  <a href="#signature-scents"><small>02</small><span>Informal</span><i aria-hidden="true">↗</i></a>
-  <a href="#signature-scents"><small>03</small><span>Amane</span><i aria-hidden="true">↗</i></a>
-  <a href="#signature-scents"><small>04</small><span>Sasha</span><i aria-hidden="true">↗</i></a>
+  <a href="#signature-legendary-profile"><small>01</small><span>Legendary Profile</span><i aria-hidden="true">↗</i></a>
+  <a href="#signature-informal"><small>02</small><span>Informal</span><i aria-hidden="true">↗</i></a>
+  <a href="#signature-amane"><small>03</small><span>Amane</span><i aria-hidden="true">↗</i></a>
+  <a href="#signature-sasha"><small>04</small><span>Sasha</span><i aria-hidden="true">↗</i></a>
  </nav>
 </section>
 
@@ -80,8 +80,8 @@ require __DIR__.'/includes/header.php';
    }
    $displayPrice='';
  ?>
-  <a class="home-product" href="<?=$p['is_live']?'/product.php?slug='.rawurlencode($p['slug']):'/shop.php'?>">
-   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance editorial photograph" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">ENTER THE WORLD OF THIS SCENT ↗</span></div>
+  <a id="signature-<?=e($p['slug'])?>" class="home-product" href="<?=$p['is_live']?'/product.php?slug='.rawurlencode($p['slug']):'/shop.php'?>">
+   <div class="home-product-art"><span class="home-product-number">0<?=($n+1)?></span><img src="<?=e($image)?>" alt="<?=e($p['name'])?> fragrance campaign illustration" width="800" height="1000" loading="lazy" decoding="async"><span class="home-product-open">ENTER THE WORLD OF THIS SCENT ↗</span></div>
    <div class="home-product-meta"><div><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div><strong><?=$p['is_live']?'IKKI Nº 0'.($n+1):'DISCOVER IKKI'?></strong></div>
   </a>
  <?php endforeach; /* the four house signatures are always rendered above */ ?>
