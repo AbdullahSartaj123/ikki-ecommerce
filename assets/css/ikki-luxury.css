@@ -4269,3 +4269,24 @@ body.quick-view-open{overflow:hidden!important}
  .home-products--editorial .home-product-index{font-size:6px}
  .home-products--editorial .home-product-meta strong{font-size:7px}
 }
+
+
+/* Homepage usability and commerce details */
+.home-products--editorial .home-product-meta strong span{display:block;min-width:0}
+.home-products--editorial .home-product-meta strong{min-height:38px}
+.home-products--editorial .home-product-meta strong:has(span:first-child){letter-spacing:.12em}
+.home-products--editorial .home-product:focus-visible .home-product-open{opacity:1}
+.home-products--editorial .home-product-art img{display:block}
+.home-hero.home-hero--editorial .home-hero-visual{contain:paint}
+.home-marquee:hover .home-marquee-track{animation-play-state:paused}
+.home-marquee:focus-within .home-marquee-track{animation-play-state:paused}
+#signature-legendary-profile,#signature-informal,#signature-amane,#signature-sasha{scroll-margin-top:120px}
+.home-collection .home-section-heading{gap:28px}
+.home-collection .home-section-heading>.home-text-link{white-space:nowrap}
+@media(max-width:700px){
+ .home-collection .home-section-heading>.home-text-link{white-space:normal}
+ .home-products--editorial .home-product-meta strong{min-height:34px}
+}
+@media(prefers-reduced-motion:reduce){
+ .home-marquee .home-marquee-track{animation:none!important}
+}
