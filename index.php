@@ -42,7 +42,7 @@ require __DIR__.'/includes/header.php';
   </div>
   <div class="home-hero-foot" aria-label="IKKI fragrance collection"><span>FOUR DISTINCT IDENTITIES</span><span>ONE CREATIVE HOUSE</span><span>THE IKKI SIGNATURE</span></div>
  </div>
- <div class="home-hero-visual" role="img" aria-label="IKKI fragrance campaign illustration">
+ <div class="home-hero-visual">
   <div class="home-visual-glow" aria-hidden="true"></div>
   <div class="home-hero-orbit" aria-hidden="true"></div>
   <img class="home-hero-bottle" src="/assets/images/ikki-hero.svg" alt="Illustrated IKKI fragrance bottle in a champagne-toned campaign composition" width="1000" height="1200" loading="eager" fetchpriority="high" decoding="async">
@@ -78,7 +78,7 @@ require __DIR__.'/includes/header.php';
     $candidate=$fallbackBySlug[$p['slug']]??'';
     $image=($candidate!==''&&is_file(__DIR__.$candidate))?$candidate:'/assets/images/ikki-hero.svg';
    }
-   $displayPrice='';
+   $displayPrice=($p['is_live']&&isset($p['price'])&&is_numeric($p['price'])&&(float)$p['price']>0)?money($p['price']):'';
  ?>
   <a id="signature-<?=e($p['slug'])?>" class="home-product" data-signature="<?=e($p['slug'])?>" href="<?=$p['is_live']?'/product.php?slug='.rawurlencode($p['slug']):'/shop.php'?>" aria-label="<?=e($p['name'])?> — <?=$p['is_live']?'view fragrance':'explore the collection'?>">
    <div class="home-product-art">
@@ -89,7 +89,7 @@ require __DIR__.'/includes/header.php';
    </div>
    <div class="home-product-meta">
     <div><span class="home-product-index">0<?=($n+1)?> / FOUR EXPRESSIONS</span><h3><?=e($p['name'])?></h3><p><?=e($p['short_description']??'An IKKI fragrance')?></p></div>
-    <strong><?=$p['is_live']?'EXPLORE FRAGRANCE':'EXPLORE COLLECTION'?> <i aria-hidden="true">↗</i></strong>
+    <strong><span><?=$displayPrice!==''?'FROM '.e($displayPrice):($p['is_live']?'EXPLORE FRAGRANCE':'EXPLORE COLLECTION')?></span> <i aria-hidden="true">↗</i></strong>
    </div>
   </a>
  <?php endforeach; /* the four house signatures are always rendered above */ ?>
@@ -99,7 +99,7 @@ require __DIR__.'/includes/header.php';
 </section>
 
 <section class="home-feature" aria-labelledby="home-feature-title">
- <div class="home-feature-art"><img src="<?=e($editorialImages[1])?>" alt="IKKI fragrance in a soft, warm lifestyle setting" width="1000" height="1100" loading="lazy" decoding="async"><span class="ikki-image-caption">IKKI · A STUDY IN SCENT</span></div>
+ <div class="home-feature-art"><img src="<?=e($editorialImages[1])?>" alt="IKKI Informal signature fragrance campaign illustration" width="1000" height="1100" loading="lazy" decoding="async"><span class="ikki-image-caption">IKKI · A STUDY IN SCENT</span></div>
  <div class="home-feature-copy home-reveal home-circle-anchor"><span class="home-circle-motif home-circle-motif--100" aria-hidden="true"><i></i></span><div class="home-section-marker"><span class="home-section-number">03</span><span class="home-kicker">A HOUSE WITH A POINT OF VIEW</span></div><h2 id="home-feature-title">Four signatures.<br><em>Infinite expression.</em></h2><p>Legendary Profile. Informal. Amane. Sasha. Four individual identities brought together under one name: IKKI.</p><a class="home-outline-button" href="/shop.php">Meet the four signatures <span>↗</span></a></div>
 </section>
 
