@@ -1796,3 +1796,10 @@ body.cart-drawer-open{overflow:hidden}
  .story-mission-word,.story-timeline-item,.story-timeline-marker,
  .story-timeline-track::after{opacity:1!important;transform:none!important}
 }
+
+
+/* Performance refinement: the brand intro is a brief transition, never a page-load gate. */
+.home-preloader{transition-duration:.28s;}
+.home-preloader-mark{animation-duration:.28s;animation-delay:0s;}
+.home-preloader-progress{animation:none;transform:scaleX(1);}
+@media(prefers-reduced-motion:reduce){.home-preloader,.home-preloader-mark{transition:none!important;animation:none!important}}
