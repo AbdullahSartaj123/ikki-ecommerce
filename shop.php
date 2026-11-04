@@ -6,18 +6,21 @@ $products=[];
 try{
  $products=db()->query("SELECT p.id,p.name,p.slug,p.short_description,p.description,p.gender,p.top_notes,p.heart_notes,p.base_notes,MIN(v.price) price,(SELECT image_path FROM product_images WHERE product_id=p.id ORDER BY is_primary DESC,sort_order LIMIT 1) image_path FROM products p LEFT JOIN product_variants v ON v.product_id=p.id AND v.is_active=1 WHERE p.is_active=1 AND p.name IN ('Legendary Profile','Informal','Amane','Sasha') GROUP BY p.id ORDER BY FIELD(p.name,'Legendary Profile','Informal','Amane','Sasha') LIMIT 4")->fetchAll();
 }catch(Throwable $ex){error_log('[IKKI collection] '.$ex->getMessage());}
-/*
- * Keep the editorial collection visible even before the live catalogue is populated.
- * These are non-purchasable concept previews: no price, stock or cart variant is implied.
- */
-if(!$products){
- $products=[
- ['name'=>'Legendary Profile','slug'=>'legendary-profile','short_description'=>'A confident signature with a distinctive, memorable presence.','description'=>'Legendary Profile is the bold signature fragrance from IKKI.','gender'=>'','top_notes'=>'','heart_notes'=>'','base_notes'=>'','price'=>null,'image_path'=>'/assets/images/legendary-profile.svg'],
- ['name'=>'Informal','slug'=>'informal','short_description'=>'An effortless everyday expression, relaxed yet refined.','description'=>'Informal brings a relaxed, modern character to everyday moments.','gender'=>'','top_notes'=>'','heart_notes'=>'','base_notes'=>'','price'=>null,'image_path'=>'/assets/images/informal.svg'],
- ['name'=>'Amane','slug'=>'amane','short_description'=>'A fresh, contemporary character with a smooth finish.','description'=>'Amane is a fresh and contemporary IKKI signature fragrance.','gender'=>'','top_notes'=>'','heart_notes'=>'','base_notes'=>'','price'=>null,'image_path'=>'/assets/images/amane.svg'],
- ['name'=>'Sasha','slug'=>'sasha','short_description'=>'A poised, expressive fragrance with a lasting impression.','description'=>'Sasha is an expressive signature with a graceful, memorable trail.','gender'=>'','top_notes'=>'','heart_notes'=>'','base_notes'=>'','price'=>null,'image_path'=>'/assets/images/sasha.svg']
-
- ];
+/* The house has four permanent signature identities. Merge live catalogue data
+   into this fixed editorial order; a missing/inactive product remains a preview,
+   never a fake purchasable listing. */
+$conceptProducts=[
+ ['name'=>'Legendary Profile','slug'=>'legendary-profile','short_description'=>'A confident signature with a distinctive, memorable presence.','description'=>'Legendary Profile is an IKKI signature fragrance.','gender'=>'','top_notes'=>'','heart_notes'=>'','base_notes'=>'','price'=>null,'image_path'=>'/assets/images/legendary-profile.svg'],
+ ['name'=>'Informal','slug'=>'informal','short_description'=>'An effortless everyday expression, relaxed yet refined.','description'=>'Informal is an IKKI signature fragrance.','gender'=>'','top_notes'=>'','heart_notes'=>'','base_notes'=>'','price'=>null,'image_path'=>'/assets/images/informal.svg'],
+ ['name'=>'Amane','slug'=>'amane','short_description'=>'A fresh, contemporary character with a smooth finish.','description'=>'Amane is an IKKI signature fragrance.','gender'=>'','top_notes'=>'','heart_notes'=>'','base_notes'=>'','price'=>null,'image_path'=>'/assets/images/amane.svg'],
+ ['name'=>'Sasha','slug'=>'sasha','short_description'=>'A poised, expressive fragrance with a lasting impression.','description'=>'Sasha is an IKKI signature fragrance.','gender'=>'','top_notes'=>'','heart_notes'=>'','base_notes'=>'','price'=>null,'image_path'=>'/assets/images/sasha.svg']
+];
+$liveBySlug=[];
+foreach($products as $liveProduct){$liveBySlug[$liveProduct['slug']]=$liveProduct;}
+$products=[];
+foreach($conceptProducts as $concept){
+ $live=$liveBySlug[$concept['slug']]??null;
+ $products[]=$live?array_merge($concept,$live,['is_live'=>true]):array_merge($concept,['is_live'=>false]);
 }
 $catalog=[];
 $databaseProducts=[];
@@ -30,7 +33,7 @@ foreach($products as $product){
   'notes'=>trim((string)($product['short_description']??''))?:'An IKKI signature fragrance',
   'top_notes'=>(string)($product['top_notes']??''),'heart_notes'=>(string)($product['heart_notes']??''),'base_notes'=>(string)($product['base_notes']??''),'description'=>(string)($product['description']??''),
   'price'=>$product['price']!==null?(float)$product['price']:null,'image_path'=>$product['image_path']??null,
-  'category'=>$category,'is_new'=>false
+  'category'=>$category,'is_new'=>false,'is_live'=>(bool)($product['is_live']??true)
  ];
 }
 $products=$catalog;
@@ -40,15 +43,15 @@ require __DIR__.'/includes/header.php';
 <section class="ikki-catalog-hero" aria-labelledby="page-banner-title">
  <div class="ikki-catalog-hero-inner">
   <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">The Collection</span></nav>
-  <span class="home-kicker">IKKI · THE SIGNATURE EDIT</span>
-  <h1 id="page-banner-title">A few scents.<br><em>Endless expression.</em></h1>
-  <p>A considered collection of signature fragrances. Discover the scent that feels unmistakably yours.</p>
-  <span class="ikki-catalog-edition">THE SIGNATURE COLLECTION <i>—</i> 01 / 04</span>
+  <span class="home-kicker">THE HOUSE OF FOUR · IKKI</span>
+  <h1 id="page-banner-title">Four signatures.<br><em>One identity.</em></h1>
+  <p>Meet the four expressions that define the IKKI fragrance house. Each has its own character; together, they tell one story.</p>
+  <span class="ikki-catalog-edition">LEGENDARY PROFILE <i>·</i> INFORMAL <i>·</i> AMANE <i>·</i> SASHA</span>
  </div>
  <div class="ikki-catalog-hero-side"><img src="/assets/images/collection-hero.svg" alt="IKKI signature perfume bottle" width="420" height="460" fetchpriority="high"><span>SCENT IS A FORM OF MEMORY</span><b>IKKI</b></div>
 </section>
 <section class="collection-catalog ikki-premium-catalog" aria-label="Fragrance collection">
- <div class="ikki-catalog-intro"><span>THE IKKI SIGNATURE EDIT</span><p>Each fragrance tells its own story. Take your time, explore the notes, and find your signature.</p><?php if(empty($databaseProducts)): ?><small class="ikki-preview-note">COLLECTION PREVIEW · FRAGRANCES AND PRICING WILL BE CONFIRMED BEFORE ORDERS OPEN</small><?php endif; ?></div>
+ <div class="ikki-catalog-intro"><span>FOUR EXPRESSIONS · ONE HOUSE</span><p>A focused collection, created to be discovered one signature at a time.</p><?php if(count($databaseProducts)<4): ?><small class="ikki-preview-note">Some signatures are presented as collection previews. Contact IKKI to enquire about current availability.</small><?php endif; ?></div>
  <div class="collection-toolbar-wrap">
   <div class="collection-toolbar-sentinel" aria-hidden="true"></div>
   <div class="collection-toolbar" data-collection-toolbar>
@@ -93,7 +96,7 @@ require __DIR__.'/includes/header.php';
    <div class="collection-card-info">
     <h2><a href="<?=e($productUrl?:'/shop.php')?>"><?=e($p['name'])?></a></h2>
     <p><?=e($p['notes'])?></p>
-    <strong><?=$p['price']!==null?money($p['price']):'Price on request'?></strong><a class="ikki-card-discover" href="<?=e($productUrl?:'/shop.php')?>">DISCOVER FRAGRANCE <span>↗</span></a>
+    <strong><?=$dbProduct?($p['price']!==null?money($p['price']):'Price on request'):'A SIGNATURE OF IKKI'?></strong><a class="ikki-card-discover" href="<?=$dbProduct?e($productUrl):'https://wa.me/923094733789?text='.rawurlencode('Hello IKKI, I would like to enquire about '.$p['name'].'.')?>"><?=$dbProduct?'DISCOVER THIS SCENT':'ENQUIRE ABOUT THIS SCENT'?> <span>↗</span></a>
    </div>
   </article>
  <?php endforeach; else: ?>
