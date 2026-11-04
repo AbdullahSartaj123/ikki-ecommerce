@@ -4601,7 +4601,7 @@ body.quick-view-open{overflow:hidden!important}
   linear-gradient(118deg,#f9f6ef 0%,#f4ecdf 52%,#eee2d1 100%)!important;
 }
 .home-hero.home-hero--editorial .home-hero-copy:after{
- content:"EST. IN INDIVIDUALITY";display:block;width:max-content;max-width:100%;
+ content:"A HOUSE OF FOUR SIGNATURES";display:block;width:max-content;max-width:100%;
  margin-top:clamp(24px,3vw,38px);padding-top:12px;border-top:1px solid rgba(184,147,95,.35);
  color:#9b805b;font:500 8px/1.5 Montserrat,sans-serif;letter-spacing:.23em;
 }
