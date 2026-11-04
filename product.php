@@ -16,10 +16,30 @@ $i->execute([$product['id']]);$images=$i->fetchAll();
 $slugImage='/assets/images/'.preg_replace('/[^a-z0-9-]/','',$slug).'.svg';
 $fallbackImage=is_file(__DIR__.$slugImage)?$slugImage:'/assets/images/legendary-profile.svg';
 $image=$images[0]['image_path']??$fallbackImage;
-$pageTitle=$product['name'].' — IKKI';$description=$product['short_description'];
+$pageTitle=$product['name'].' — IKKI';
+$description=trim((string)($product['short_description']??''))?:'Discover '.$product['name'].', part of the IKKI signature fragrance collection.';
+$productSiteUrl=rtrim(defined('APP_URL')?APP_URL:'https://ikki.pk','/');
+$productCanonical=$productSiteUrl.'/product.php?slug='.rawurlencode($slug);
+$productImageUrl=preg_match('~^https?://~i',(string)$image)?$image:$productSiteUrl.'/'.ltrim((string)$image,'/');
+$productOffers=[];
+foreach($variants as $variant){
+ $productOffers[]=[
+  '@type'=>'Offer','priceCurrency'=>'PKR','price'=>(float)$variant['price'],
+  'availability'=>'https://schema.org/InStock','url'=>$productCanonical,
+  'itemCondition'=>'https://schema.org/NewCondition'
+ ];
+}
+$productStructuredData=[
+ '@context'=>'https://schema.org','@type'=>'Product',
+ 'name'=>(string)$product['name'],'description'=>$description,'image'=>[$productImageUrl],
+ 'brand'=>['@type'=>'Brand','name'=>'IKKI'],
+ 'category'=>(string)($product['fragrance_family']??'Fragrance'),
+ 'offers'=>$productOffers
+];
 require __DIR__.'/includes/header.php';
 ?>
 <main class="ikki-product-page">
+ <script type="application/ld+json"><?=json_encode($productStructuredData,JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT)?></script>
  <nav class="ikki-product-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span> / </span><a href="/shop.php">The Collection</a><span> / </span><span aria-current="page"><?=e($product['name'])?></span></nav>
  <section class="ikki-product-layout" data-product-gallery>
   <div class="ikki-product-gallery">
@@ -36,7 +56,7 @@ require __DIR__.'/includes/header.php';
    <span class="eyebrow">THE IKKI SIGNATURE COLLECTION</span>
    <h1><?=e($product['name'])?></h1>
    <p class="ikki-product-deck"><?=e($product['short_description']??'A fragrance composed to become part of your story.')?></p>
-   <div class="ikki-product-price"><?=$variants?money($variants[0]['price']):'Price on request'?></div>
+   <div class="ikki-product-price" aria-live="polite" aria-atomic="true"><?=$variants?money($variants[0]['price']):'Price on request'?></div>
    <div class="ikki-product-rule"></div>
    <?php if(!empty($product['description'])): ?><div class="ikki-product-description"><?=nl2br(e($product['description']))?></div><?php endif; ?>
    <?php if($variants): ?>
