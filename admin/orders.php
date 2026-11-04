@@ -34,13 +34,13 @@ $pageTitle='Orders — Ikki';require __DIR__.'/../includes/header.php';
 ?>
 <div class="admin-shell">
  <h1 class="page-title">Orders</h1>
- <nav class="admin-nav"><a href="/admin/">Overview</a><a href="/admin/products.php">Products</a><a href="/admin/orders.php">Orders</a><a href="/admin/logout.php">Sign out</a></nav>
+ <nav class="admin-nav"><a href="/admin/">Overview</a><a href="/admin/products.php">Products</a><a href="/admin/orders.php">Orders</a><a href="/admin/customers.php">Customers</a><a href="/admin/logout.php">Sign out</a></nav>
  <?php if($error):?><div class="notice" role="alert"><?=e($error)?></div><?php endif;?>
  <?php if(isset($_GET['updated'])):?><div class="notice" role="status">Order status updated.</div><?php endif;?>
  <p class="muted">Update the operational status after confirming each order. Every change is recorded in the order history.</p>
  <div style="overflow-x:auto"><table class="cart-table"><thead><tr><th>Order</th><th>Customer</th><th>Phone</th><th>Total</th><th>Status</th><th>Created</th><th>Update</th></tr></thead><tbody>
  <?php foreach($rows as $r):?><tr>
- <td><?=e($r['order_number'])?></td><td><?=e($r['customer_name'])?></td><td><?=e($r['customer_phone'])?></td><td><?=money($r['grand_total'])?></td><td><?=e($allowedStatuses[$r['order_status']]??$r['order_status'])?></td><td><?=e($r['created_at'])?></td>
+ <td><a href="/admin/order.php?id=<?=(int)$r['id']?>"><?=e($r['order_number'])?></a></td><td><?=e($r['customer_name'])?></td><td><?=e($r['customer_phone'])?></td><td><?=money($r['grand_total'])?></td><td><?=e($allowedStatuses[$r['order_status']]??$r['order_status'])?></td><td><?=e($r['created_at'])?></td>
  <td><form method="post" style="min-width:220px"><?=csrf_field()?><input type="hidden" name="order_id" value="<?=(int)$r['id']?>"><label class="field-label" for="status-<?=(int)$r['id']?>">New status</label><select id="status-<?=(int)$r['id']?>" name="order_status" required><?php foreach($allowedStatuses as $value=>$label):?><option value="<?=e($value)?>" <?=$r['order_status']===$value?'selected':''?>><?=e($label)?></option><?php endforeach;?></select><input class="field" name="note" maxlength="500" placeholder="Optional internal note" aria-label="Internal note for <?=e($r['order_number'])?>"><button class="btn" type="submit">Save status</button></form></td>
  </tr><?php endforeach;?>
  <?php if(!$rows):?><tr><td colspan="7">No orders have been placed yet.</td></tr><?php endif;?>
