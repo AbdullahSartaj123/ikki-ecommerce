@@ -4400,3 +4400,70 @@ body.quick-view-open{overflow:hidden!important}
 @media(prefers-reduced-motion:reduce){
  .home-hero--editorial .home-hero-bottle,.home-products--editorial .home-product,.home-value{transition:none!important}
 }
+
+
+/* IKKI homepage art direction pass — editorial rhythm and refined finishes */
+.home-hero.home-hero--editorial{
+ background-image:
+  radial-gradient(circle at 12% 18%,rgba(255,255,255,.82) 0 1px,transparent 1.5px),
+  radial-gradient(circle at 82% 76%,rgba(184,147,95,.09) 0 1px,transparent 1.5px),
+  linear-gradient(112deg,#faf7f0 0%,#f5efe4 48%,#eee4d5 100%)!important;
+ background-size:34px 34px,46px 46px,auto;
+}
+.home-hero--editorial .home-hero-copy h1{letter-spacing:-.055em;text-wrap:balance}
+.home-hero--editorial .home-hero-subtext{max-width:430px;line-height:1.9}
+.home-hero--editorial .home-hero-actions{align-items:center}
+.home-hero--editorial .home-hero-foot{border-top:1px solid rgba(184,147,95,.28);padding-top:17px}
+.home-hero--editorial .home-hero-foot span{font-size:8px;letter-spacing:.14em}
+.ikki-home-edition-index{padding-inline:clamp(22px,5vw,72px)}
+.ikki-home-edition-intro{display:flex;align-items:center;gap:16px}
+.ikki-home-edition-intro:after{content:"";height:1px;flex:1;background:linear-gradient(90deg,rgba(184,147,95,.45),transparent)}
+.ikki-home-edition-links a{position:relative}
+.ikki-home-edition-links a small{font-variant-numeric:tabular-nums}
+.ikki-home-edition-links a span{transition:letter-spacing .25s}
+.ikki-home-edition-links a:hover span{letter-spacing:.035em}
+.home-philosophy{background:linear-gradient(180deg,#fff 0%,#fdfbf8 100%)}
+.home-philosophy-copy p{max-width:520px;line-height:2}
+.home-collection .home-section-heading{margin-bottom:clamp(30px,4vw,54px)}
+.home-products--editorial .home-product-art{isolation:isolate}
+.home-products--editorial .home-product-art:before{
+ content:"";position:absolute;z-index:0;width:72%;aspect-ratio:1;left:14%;top:14%;
+ border:1px solid color-mix(in srgb,var(--signature-accent) 20%,transparent);
+ border-radius:50%;box-shadow:0 0 0 16px color-mix(in srgb,var(--signature-accent) 4%,transparent);
+ pointer-events:none;
+}
+.home-products--editorial .home-product-art img{mix-blend-mode:multiply}
+.home-products--editorial .home-product-meta{padding:22px 20px 19px}
+.home-products--editorial .home-product-meta h3{letter-spacing:-.035em}
+.home-products--editorial .home-product-meta p{line-height:1.85}
+.ikki-home-interlude{box-shadow:0 24px 70px rgba(44,35,24,.09)}
+.ikki-home-interlude-main p{max-width:950px;text-wrap:balance}
+.home-feature{align-items:center}
+.home-feature-art{box-shadow:0 24px 60px rgba(55,43,27,.07)}
+.home-feature-copy p{max-width:440px;line-height:1.95}
+.home-values-heading p{max-width:390px;line-height:1.9}
+.home-value{padding:28px 22px 10px 0}
+.home-value h3{letter-spacing:-.025em}
+.home-value p{max-width:300px;line-height:1.9}
+.home-manifesto{min-height:clamp(280px,34vw,430px);display:flex;flex-direction:column;justify-content:center}
+.home-manifesto p{max-width:1000px;text-wrap:balance}
+.home-final-cta.home-contact-cta:after{
+ content:"IKKI";position:absolute;left:50%;top:50%;transform:translate(-50%,-48%);
+ color:rgba(184,147,95,.045);font:600 clamp(130px,27vw,360px)/.8 'Playfair Display',Georgia,serif;
+ letter-spacing:.12em;pointer-events:none;white-space:nowrap;
+}
+.home-final-cta.home-contact-cta .home-instagram-heading{z-index:2}
+@media(max-width:700px){
+ .home-hero--editorial .home-hero-foot{gap:10px}
+ .home-hero--editorial .home-hero-foot span{font-size:6px;letter-spacing:.08em}
+ .home-products--editorial .home-product-meta{padding:17px 13px 14px}
+ .home-products--editorial .home-product-art:before{width:78%;left:11%;top:12%}
+ .home-value{padding-right:0}
+ .home-final-cta.home-contact-cta:after{font-size:42vw}
+}
+@supports not (color:color-mix(in srgb,red,transparent)){
+ .home-products--editorial .home-product-art:before{border-color:rgba(184,147,95,.2);box-shadow:0 0 0 16px rgba(184,147,95,.04)}
+}
+@media(prefers-reduced-motion:reduce){
+ .ikki-home-edition-links a span{transition:none}
+}
