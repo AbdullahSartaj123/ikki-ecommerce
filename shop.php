@@ -54,7 +54,7 @@ require __DIR__.'/includes/header.php';
   $dbProduct=$databaseProducts[$p['slug']]??null;
   $productUrl=$dbProduct?'/product.php?slug='.rawurlencode($p['slug']):'';
   $signatureImages=['legendary-profile'=>'/assets/images/legendary-profile.svg','informal'=>'/assets/images/informal.svg','amane'=>'/assets/images/amane.svg','sasha'=>'/assets/images/sasha.svg'];
-  $imagePath=$signatureImages[$p['slug']]??'/assets/images/legendary-profile.svg';
+  $imagePath=trim((string)($p['image_path']??''))?:($signatureImages[$p['slug']]??'/assets/images/legendary-profile.svg');
   $variants=[];
   if($dbProduct){$variantQuery=db()->prepare("SELECT id,variant_name,volume_ml,price,stock_quantity FROM product_variants WHERE product_id=? AND is_active=1 ORDER BY volume_ml");$variantQuery->execute([(int)$dbProduct['id']]);$variants=$variantQuery->fetchAll();}
   $topNote=trim((string)($p['top_notes']??''))?:'Opening notes';
@@ -87,7 +87,7 @@ require __DIR__.'/includes/header.php';
  <?php endif; ?>
  </div>
  
- <div class="collection-pagination" id="collection-pagination"><button type="button" class="collection-load-more" id="collection-load-more">Load More</button><span class="collection-all-viewed" id="collection-all-viewed" hidden>You’ve viewed our full collection</span></div>
+ 
  <dialog class="collection-quick-dialog" id="collection-quick-dialog" role="dialog" aria-modal="true" aria-labelledby="quick-view-title">
   <button class="collection-dialog-close" type="button" data-quick-close aria-label="Close quick view"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   <div class="quick-view-layout">
@@ -96,7 +96,7 @@ require __DIR__.'/includes/header.php';
     <span class="quick-view-kicker">THE IKKI FRAGRANCE HOUSE</span>
     <h2 id="quick-view-title"></h2>
     <strong class="quick-view-price" data-quick-price></strong>
-    <div class="quick-view-rating" aria-label="Customer ratings are not available yet"><span aria-hidden="true">★★★★★</span><small>Customer rating coming soon</small></div>
+    
     <div class="quick-view-notes"><span class="quick-view-label">THE OLFACTIVE STORY</span><div class="quick-view-note-pills"><span data-note-top></span><span data-note-heart></span><span data-note-base></span></div></div>
     <p class="quick-view-description" data-quick-description></p>
     <form class="quick-view-purchase" method="post" action="/actions/cart-add.php" data-quick-form>
