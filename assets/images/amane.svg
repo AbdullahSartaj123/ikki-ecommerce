@@ -2,7 +2,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-labelledby="title desc">
 <title id="title">Amane by IKKI</title><desc id="desc">Premium clear glass rectangular IKKI perfume bottle with black cylindrical cap and Amane coloured artistic label.</desc>
 <defs>
- <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#f9f6ef"/><stop offset="1" stop-color="#e9e1d4"/></linearGradient>
+ <linearGradient id="bg" x2="0" y2="1"><stop stop-color="#e7f2ef"/><stop offset=".58" stop-color="#d6e9e4"/><stop offset="1" stop-color="#bdd8d2"/></linearGradient>
  <linearGradient id="glass" x1="0" y1="0" x2="1" y2=".1"><stop stop-color="#fff" stop-opacity=".94"/><stop offset=".14" stop-color="#d8d4cd" stop-opacity=".22"/><stop offset=".34" stop-color="#fff" stop-opacity=".72"/><stop offset=".72" stop-color="#c9c4ba" stop-opacity=".2"/><stop offset="1" stop-color="#fff" stop-opacity=".9"/></linearGradient>
  <linearGradient id="liquid" x2="1" y2="1"><stop stop-color="#087f7b"/><stop offset=".55" stop-color="#42b8ae"/><stop offset="1" stop-color="#087f7b"/></linearGradient>
  <linearGradient id="cap" x2="1"><stop stop-color="#050505"/><stop offset=".45" stop-color="#242424"/><stop offset=".72" stop-color="#090909"/><stop offset="1" stop-color="#000"/></linearGradient>
@@ -12,6 +12,7 @@
  <clipPath id="labelClip"><rect x="300" y="670" width="600" height="520" rx="2"/></clipPath>
 </defs>
 <rect width="1200" height="1500" fill="url(#bg)"/>
+<g aria-hidden="true"><circle cx="600" cy="620" r="470" fill="#fff" opacity=".3"/><circle cx="600" cy="620" r="390" fill="none" stroke="#fff" stroke-width="4" opacity=".7"/><circle cx="600" cy="620" r="330" fill="none" stroke="#8bbeb4" stroke-width="3" opacity=".4"/><path d="M0 1020C220 930 340 1120 600 1020S980 920 1200 1020" fill="none" stroke="#fff" stroke-width="16" opacity=".35"/><path d="M0 1120C240 1030 380 1200 640 1110S980 1010 1200 1120" fill="none" stroke="#77b5aa" stroke-width="5" opacity=".28"/><g fill="#fff" opacity=".55"><circle cx="170" cy="280" r="9"/><circle cx="1020" cy="310" r="12"/><circle cx="940" cy="850" r="7"/><circle cx="220" cy="930" r="6"/></g></g>
 <ellipse cx="600" cy="1322" rx="330" ry="43" fill="#514b42" opacity=".22" filter="url(#shadow)"/>
 <!-- atomiser neck -->
 <rect x="515" y="270" width="170" height="100" rx="14" fill="#b9b5ae" opacity=".45"/>
