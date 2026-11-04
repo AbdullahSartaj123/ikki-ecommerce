@@ -57,9 +57,9 @@ require __DIR__.'/includes/header.php';
   $imagePath=trim((string)($p['image_path']??''))?:($signatureImages[$p['slug']]??'/assets/images/legendary-profile.svg');
   $variants=[];
   if($dbProduct){$variantQuery=db()->prepare("SELECT id,variant_name,volume_ml,price,stock_quantity FROM product_variants WHERE product_id=? AND is_active=1 ORDER BY volume_ml");$variantQuery->execute([(int)$dbProduct['id']]);$variants=$variantQuery->fetchAll();}
-  $topNote=trim((string)($p['top_notes']??''))?:'Opening notes';
-  $heartNote=trim((string)($p['heart_notes']??''))?:'Heart notes';
-  $baseNote=trim((string)($p['base_notes']??''))?:'Base notes';
+  $topNote=trim((string)($p['top_notes']??''));
+  $heartNote=trim((string)($p['heart_notes']??''));
+  $baseNote=trim((string)($p['base_notes']??''));
   $modalDescription=trim((string)($p['description']??''))?:'Discover the olfactive story of '.$p['name'].', an IKKI fragrance.';
  ?>
   <article class="collection-card collection-reveal ikki-signature-card" data-category="<?=e($p['category'])?>" data-is-new="<?=$p['is_new']?'true':'false'?>" data-price="<?=e((string)$p['price'])?>" data-product-id="<?=e((string)($dbProduct['id']??(8-$n)))?>">
@@ -97,7 +97,7 @@ require __DIR__.'/includes/header.php';
     <h2 id="quick-view-title"></h2>
     <strong class="quick-view-price" data-quick-price></strong>
     
-    <div class="quick-view-notes"><span class="quick-view-label">THE OLFACTIVE STORY</span><div class="quick-view-note-pills"><span data-note-top></span><span data-note-heart></span><span data-note-base></span></div></div>
+    <div class="quick-view-notes" data-quick-notes hidden><span class="quick-view-label">THE OLFACTIVE STORY</span><div class="quick-view-note-pills"><span data-note-top hidden></span><span data-note-heart hidden></span><span data-note-base hidden></span></div></div>
     <p class="quick-view-description" data-quick-description></p>
     <form class="quick-view-purchase" method="post" action="/actions/cart-add.php" data-quick-form>
      <?=csrf_field()?>
