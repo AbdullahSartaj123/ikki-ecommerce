@@ -62,7 +62,7 @@ $navItems=[
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/style.css?v=20261104-11">
 <?php if($isHomePage): ?><link rel="stylesheet" href="/assets/css/home.css?v=20261104-1"><link rel="stylesheet" href="/assets/css/home-layout.css?v=20261104-1"><?php endif; ?>
-<link rel="stylesheet" href="/assets/css/ikki-luxury.css?v=20261104-24">
+<link rel="stylesheet" href="/assets/css/ikki-luxury.css?v=20261104-25">
 </head>
 <body class="<?= $isHomePage?'has-home-hero':'' ?>">
 <div class="ikki-scroll-progress" data-ikki-scroll-progress aria-hidden="true"><span></span></div>
