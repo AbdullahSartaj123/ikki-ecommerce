@@ -3,6 +3,12 @@ $pageTitle=$pageTitle??'IKKI — Fragrance, composed.';
 $description=$description??'Discover IKKI: a modern fragrance house creating expressive scent stories in Pakistan.';
 $currentPage=basename($_SERVER['SCRIPT_NAME']??'');
 $isHomePage=($currentPage==='index.php');
+$siteUrl=rtrim(defined('APP_URL')?APP_URL:'https://ikki.pk','/');
+$requestPath=parse_url($_SERVER['REQUEST_URI']??'/',PHP_URL_PATH)?:'/';
+if($requestPath==='/index.php')$requestPath='/';
+$canonicalUrl=$siteUrl.$requestPath;
+if($currentPage==='product.php'&&!empty($_GET['slug'])&&is_string($_GET['slug']))$canonicalUrl.='?slug='.rawurlencode($_GET['slug']);
+$socialImage=$siteUrl.'/assets/images/ikki-hero.svg';
 $navItems=[
  ['label'=>'Home','href'=>'/','match'=>['index.php']],
  ['label'=>'Collection','href'=>'/shop.php','match'=>['shop.php']],
@@ -18,6 +24,14 @@ $navItems=[
 <meta name="color-scheme" content="light">
 <meta property="og:site_name" content="IKKI">
 <meta property="og:locale" content="en_PK">
+<meta property="og:url" content="<?=e($canonicalUrl)?>">
+<meta property="og:image" content="<?=e($socialImage)?>">
+<meta property="og:image:alt" content="IKKI — The Art of Fragrance">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<?=e($pageTitle)?>">
+<meta name="twitter:description" content="<?=e($description)?>">
+<meta name="twitter:image" content="<?=e($socialImage)?>">
+<link rel="canonical" href="<?=e($canonicalUrl)?>">
 <meta name="robots" content="index,follow">
 <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
 <link rel="apple-touch-icon" href="/assets/images/favicon.svg">
@@ -26,6 +40,23 @@ $navItems=[
 <meta property="og:title" content="<?=e($pageTitle)?>">
 <meta property="og:description" content="<?=e($description)?>">
 <title><?=e($pageTitle)?></title>
+<script type="application/ld+json">
+<?=json_encode([
+ '@context'=>'https://schema.org',
+ '@type'=>'Organization',
+ 'name'=>'IKKI',
+ 'url'=>$siteUrl.'/',
+ 'logo'=>$siteUrl.'/assets/images/favicon.svg',
+ 'description'=>'A modern fragrance house serving Pakistan.',
+ 'contactPoint'=>[
+  '@type'=>'ContactPoint',
+  'telephone'=>'+923094733789',
+  'contactType'=>'customer service',
+  'areaServed'=>'PK',
+  'availableLanguage'=>['English','Urdu']
+ ]
+],JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE|JSON_HEX_TAG|JSON_HEX_AMP|JSON_HEX_APOS|JSON_HEX_QUOT)?>
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
