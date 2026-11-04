@@ -493,9 +493,10 @@ document.addEventListener('DOMContentLoaded',()=>{
    $('[data-quick-price]').textContent=trigger.dataset.price||'Price on request';
    const image=$('[data-quick-image]');image.src=trigger.dataset.image||'/assets/images/noor.svg';image.alt=productName+' fragrance bottle';image.width=800;image.height=1000;image.loading='lazy';image.decoding='async';
    $('[data-quick-description]').textContent=trigger.dataset.description||'Discover the olfactive story of this IKKI fragrance.';
-   $('[data-note-top]').textContent=trigger.dataset.top||'Opening notes';
-   $('[data-note-heart]').textContent=trigger.dataset.heart||'Heart notes';
-   $('[data-note-base]').textContent=trigger.dataset.base||'Base notes';
+   const noteFields=[['[data-note-top]',trigger.dataset.top],['[data-note-heart]',trigger.dataset.heart],['[data-note-base]',trigger.dataset.base]];
+   let visibleNotes=0;
+   noteFields.forEach(([selector,value])=>{const node=$(selector);const note=(value||'').trim();node.textContent=note;node.hidden=!note;if(note)visibleNotes++;});
+   const notesPanel=$('[data-quick-notes]');if(notesPanel)notesPanel.hidden=visibleNotes===0;
    let variants=[];try{variants=JSON.parse(trigger.dataset.variants||'[]');}catch(error){variants=[];}
    renderVariants(variants);setQuantity(1);
    const available=trigger.dataset.available==='true'&&variants.some(item=>Number(item.stock_quantity)>0);
