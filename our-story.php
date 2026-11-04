@@ -30,8 +30,8 @@ require __DIR__.'/includes/header.php';
    <span class="story-narrative-eyebrow">THE IKKI POINT OF VIEW</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
    <h2>Fragrance is <em>personal.</em></h2>
-   <p>Fragrance can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered. IKKI is shaped around that personal connection between scent and self-expression.</p>
-   <p>Our collection brings together distinct fragrance identities for different moods and moments. The invitation is simple: explore with curiosity and discover the expression that feels right to you.</p>
+   <p>A fragrance is more than a finishing touch. It can become part of a mood, a memory or the impression you leave behind. IKKI puts that personal connection at the centre of the fragrance experience.</p>
+   <p>Rather than an endless catalogue, the house is presented through four named signatures. Each offers its own point of discovery, while all belong to one IKKI identity.</p>
   </div>
  </article>
  <article class="story-narrative-block is-reversed">
@@ -40,8 +40,8 @@ require __DIR__.'/includes/header.php';
    <span class="story-narrative-eyebrow">THE EXPERIENCE</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
    <h2>Discover your <em>own expression.</em></h2>
-   <p>Perfume is an art of balance. Fragrance compositions are often experienced in stages, from an opening impression to the character that develops and the notes that remain.</p>
-   <p>For the wearer, these layers come together as one impression — a scent associated with a mood, a place or a moment. Discovering that connection is part of the pleasure of fragrance.</p>
+   <p>There is no single way to experience fragrance. Some people begin with a particular note; others are drawn to a feeling, a setting or the character of a scent.</p>
+   <p>Our approach is to make discovery feel clear and considered. Explore each signature, review the fragrance information provided, and take the time to find the one that feels right.</p>
   </div>
  </article>
  <article class="story-narrative-block">
@@ -50,8 +50,8 @@ require __DIR__.'/includes/header.php';
    <span class="story-narrative-eyebrow">THE COLLECTION</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
    <h2>Four names. <em>One house.</em></h2>
-   <p>IKKI brings together a collection of signature fragrances, each with its own identity. Every one offers a different way to explore mood, personal style and the memories connected to scent.</p>
-   <p>We want discovering a fragrance to feel considered and welcoming — from exploring the collection to asking for guidance when you need it.</p>
+   <p>Legendary Profile, Informal, Amane and Sasha form the IKKI signature collection. Four distinct names give the house its focused identity.</p>
+   <p>Explore the collection at your own pace. If you would like help choosing or have a question about an order, our team is available through WhatsApp.</p>
   </div>
  </article>
 </section>
