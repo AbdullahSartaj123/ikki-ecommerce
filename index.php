@@ -98,6 +98,12 @@ require __DIR__.'/includes/header.php';
  <p class="home-collection-note home-reveal">Four distinct expressions. One unmistakable point of view.</p>
 </section>
 
+<section class="ikki-home-interlude" aria-label="The IKKI point of view">
+ <div class="ikki-home-interlude-top"><span>THE ART OF CHOOSING A SIGNATURE</span><span>IKKI · 01—04</span></div>
+ <div class="ikki-home-interlude-main"><span class="ikki-home-interlude-mark" aria-hidden="true">“</span><p>Not simply a fragrance.<br><em>A way of being remembered.</em></p></div>
+ <div class="ikki-home-interlude-bottom"><span>FOUR INDIVIDUAL EXPRESSIONS</span><a href="/shop.php">FIND YOUR SIGNATURE <i aria-hidden="true">↗</i></a></div>
+</section>
+
 <section class="home-feature" aria-labelledby="home-feature-title">
  <div class="home-feature-art"><img src="<?=e($editorialImages[1])?>" alt="IKKI Informal signature fragrance campaign illustration" width="1000" height="1100" loading="lazy" decoding="async"><span class="ikki-image-caption">IKKI · A STUDY IN SCENT</span></div>
  <div class="home-feature-copy home-reveal home-circle-anchor"><span class="home-circle-motif home-circle-motif--100" aria-hidden="true"><i></i></span><div class="home-section-marker"><span class="home-section-number">03</span><span class="home-kicker">A HOUSE WITH A POINT OF VIEW</span></div><h2 id="home-feature-title">Four signatures.<br><em>Infinite expression.</em></h2><p>Legendary Profile. Informal. Amane. Sasha. Four individual identities brought together under one name: IKKI.</p><a class="home-outline-button" href="/shop.php">Meet the four signatures <span>↗</span></a></div>
