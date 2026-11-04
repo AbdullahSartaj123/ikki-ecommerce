@@ -8,7 +8,7 @@ require __DIR__.'/includes/header.php';
  <div class="page-banner-copy fade-up">
   <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Contact Us</span></nav>
   <h1 id="page-banner-title">Contact Us</h1>
-  <p>We'd love to hear from you — reach out with any questions</p>
+  <p>Questions about a fragrance or an order? Our team is here to help.</p>
  </div>
 </section>
 <section class="contact-main">
@@ -25,7 +25,7 @@ require __DIR__.'/includes/header.php';
    </div>
    <button class="contact-submit ikki-btn--primary" type="submit">Send Message <svg class="contact-submit-icon" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></button>
    <p class="contact-form-feedback" id="contact-form-feedback" role="status" aria-live="polite"></p>
-   <p class="contact-form-note">Your enquiry is prepared in WhatsApp. You will review and send it there.</p>
+   <p class="contact-form-note">Your message will open in WhatsApp, where you can review it before sending. No message is sent until you press Send in WhatsApp.</p>
   </form>
  </div>
  <aside class="contact-info-column slide-right">
@@ -36,7 +36,7 @@ require __DIR__.'/includes/header.php';
    </div>
    <div class="contact-detail-item fade-up">
     <span class="contact-detail-icon" aria-hidden="true">✦</span>
-    <div class="contact-detail-copy"><h3>Fragrance Guidance</h3><p>Contact our team for help choosing a fragrance or asking about an order.</p></div>
+    <div class="contact-detail-copy"><h3>Fragrance Guidance</h3><p>Ask us about the collection, fragrance guidance or an existing order.</p></div>
    </div>
   </div>
   <a class="contact-submit" href="https://wa.me/923094733789" target="_blank" rel="noopener noreferrer">Chat with IKKI on WhatsApp ↗</a>
