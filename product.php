@@ -13,7 +13,9 @@ $v->execute([$product['id']]);
 $variants=array_values(array_filter($v->fetchAll(),static fn($variant)=>(int)$variant['stock_quantity']>0));
 $i=db()->prepare("SELECT * FROM product_images WHERE product_id=? ORDER BY is_primary DESC,sort_order");
 $i->execute([$product['id']]);$images=$i->fetchAll();
-$image=$images[0]['image_path']??('/assets/images/'.preg_replace('/[^a-z0-9-]/','',$slug).'.svg');
+$slugImage='/assets/images/'.preg_replace('/[^a-z0-9-]/','',$slug).'.svg';
+$fallbackImage=is_file(__DIR__.$slugImage)?$slugImage:'/assets/images/legendary-profile.svg';
+$image=$images[0]['image_path']??$fallbackImage;
 $pageTitle=$product['name'].' — IKKI';$description=$product['short_description'];
 require __DIR__.'/includes/header.php';
 ?>
