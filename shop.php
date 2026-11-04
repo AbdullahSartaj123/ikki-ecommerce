@@ -48,24 +48,6 @@ require __DIR__.'/includes/header.php';
  <div class="ikki-catalog-hero-side"><img src="/assets/images/collection-hero.svg" alt="IKKI signature perfume bottle" width="420" height="460" fetchpriority="high"><span>SCENT IS A FORM OF MEMORY</span><b>IKKI</b></div>
 </section>
 <section class="collection-catalog ikki-premium-catalog" aria-label="Fragrance collection">
- <div class="collection-toolbar-wrap">
- <div class="collection-toolbar" data-collection-toolbar>
-  <div class="collection-filters" role="group" aria-label="Filter fragrances by category" data-filter-track>
-   <span class="collection-filter-indicator" aria-hidden="true"></span>
-   <button class="collection-filter is-active" type="button" data-filter="all" aria-pressed="true">All</button>
-   <?php foreach(['her'=>'For Her','him'=>'For Him','unisex'=>'Unisex'] as $filterKey=>$filterLabel): if(in_array($filterKey,$availableCategories,true)): ?>
-    <button class="collection-filter" type="button" data-filter="<?=e($filterKey)?>" aria-pressed="false"><?=e($filterLabel)?></button>
-   <?php endif; endforeach; ?>
-  </div>
-  <div class="collection-toolbar-controls">
-   <label class="collection-search"><span class="visually-hidden">Search fragrances</span><input id="collection-search" type="search" placeholder="Search fragrances" autocomplete="off"></label>
-   <span class="collection-count"><b><?=count($products)?></b> FRAGRANCES</span>
-   <label class="collection-sort"><span>Sort by</span>
-    <span class="collection-sort-select"><select id="collection-sort" aria-label="Sort fragrances"><option value="featured">Featured</option><option value="price-asc">Price: Low–High</option><option value="price-desc">Price: High–Low</option><option value="newest">Newest</option></select><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m3.5 5.75 4.5 4.5 4.5-4.5"/></svg></span>
-   </label>
-  </div>
- </div>
- </div>
  <div class="ikki-catalog-intro"><span>THE IKKI SIGNATURE EDIT</span><p>Each fragrance tells its own story. Take your time, explore the notes, and find your signature.</p><?php if(empty($databaseProducts)): ?><small class="ikki-preview-note">COLLECTION PREVIEW · FRAGRANCES AND PRICING WILL BE CONFIRMED BEFORE ORDERS OPEN</small><?php endif; ?></div>
  <div class="collection-grid ikki-signature-grid" id="collection-grid">
  <?php if($products): foreach($products as $n=>$p):
