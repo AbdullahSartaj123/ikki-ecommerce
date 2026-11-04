@@ -44,6 +44,32 @@ require __DIR__.'/includes/header.php';
  </article>
 </section>
 
+<section class="ikki-house-signatures" aria-labelledby="house-signatures-title">
+ <div class="ikki-house-signatures-heading">
+  <span class="story-kicker">THE HOUSE OF FOUR</span>
+  <h2 id="house-signatures-title">Four expressions.<br><em>One IKKI identity.</em></h2>
+  <p>Our signature collection is intentionally focused: four names, each with its own place in the IKKI house.</p>
+ </div>
+ <div class="ikki-house-signatures-grid">
+  <a href="/shop.php" class="ikki-house-signature">
+   <img src="/assets/images/legendary-profile.svg" alt="Legendary Profile IKKI fragrance artwork" width="600" height="750" loading="lazy" decoding="async">
+   <span>01 / THE SIGNATURE</span><h3>Legendary Profile</h3><i>DISCOVER THE COLLECTION ↗</i>
+  </a>
+  <a href="/shop.php" class="ikki-house-signature">
+   <img src="/assets/images/informal.svg" alt="Informal IKKI fragrance artwork" width="600" height="750" loading="lazy" decoding="async">
+   <span>02 / THE SIGNATURE</span><h3>Informal</h3><i>DISCOVER THE COLLECTION ↗</i>
+  </a>
+  <a href="/shop.php" class="ikki-house-signature">
+   <img src="/assets/images/amane.svg" alt="Amane IKKI fragrance artwork" width="600" height="750" loading="lazy" decoding="async">
+   <span>03 / THE SIGNATURE</span><h3>Amane</h3><i>DISCOVER THE COLLECTION ↗</i>
+  </a>
+  <a href="/shop.php" class="ikki-house-signature">
+   <img src="/assets/images/sasha.svg" alt="Sasha IKKI fragrance artwork" width="600" height="750" loading="lazy" decoding="async">
+   <span>04 / THE SIGNATURE</span><h3>Sasha</h3><i>DISCOVER THE COLLECTION ↗</i>
+  </a>
+ </div>
+</section>
+
 <section class="story-values" aria-labelledby="story-values-title">
  <div class="story-values-heading reveal"><span class="story-kicker">WHAT GUIDES US</span><h2 id="story-values-title">Our <em>values.</em></h2><p>The principles behind every choice we make.</p></div>
  <div class="story-value-grid">
