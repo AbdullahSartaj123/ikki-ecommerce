@@ -4148,3 +4148,95 @@ body.quick-view-open{overflow:hidden!important}
 @media(max-width:900px){.home-hero.home-hero--editorial{gap:24px;padding-inline:28px}.home-hero.home-hero--editorial h1{font-size:clamp(66px,8vw,92px)}.home-hero--editorial .home-hero-visual{height:55vw;min-height:410px}.home-products--editorial{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.home-hero.home-hero--editorial{display:flex;flex-direction:column;min-height:0;padding:28px 18px 58px}.home-hero--editorial .home-hero-visual{order:0;width:100%;height:clamp(300px,88vw,410px);min-height:0;margin-bottom:27px}.home-hero--editorial .home-hero-copy{order:1;width:100%;padding:0 4px}.home-hero.home-hero--editorial h1{font-size:clamp(65px,15vw,90px);margin:15px 0 20px}.home-hero--editorial .home-overline{margin-top:22px;font-size:7px}.home-hero--editorial .home-hero-subtext{font-size:12px;line-height:1.9}.home-hero--editorial .home-hero-foot{margin-top:25px;gap:8px 14px;font-size:6px}.home-hero--editorial .home-hero-photo-caption{right:10px;bottom:10px;padding:12px 14px}.home-hero--editorial .home-hero-photo-caption strong{font-size:19px}.ikki-home-edition-index{padding:18px 17px}.ikki-home-edition-links{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px}.ikki-home-edition-links a{justify-content:flex-start;padding:10px 4px}.home-collection .home-section-heading h2{font-size:clamp(48px,12vw,65px)}.home-products--editorial{gap:24px 13px}.home-products--editorial .home-product-meta{padding:14px 2px 0}.home-products--editorial .home-product-meta h3{font-size:23px}.home-products--editorial .home-product-meta p{font-size:8px;min-height:0}}
 @media(prefers-reduced-motion:reduce){.home-products--editorial .home-product,.home-products--editorial .home-product-art img{transition:none!important}}
+
+
+/* IKKI homepage — House of Four editorial direction, round three */
+.home-hero.home-hero--editorial{
+ position:relative;isolation:isolate;overflow:hidden;
+ grid-template-columns:minmax(0,.92fr) minmax(440px,1.08fr);
+ min-height:clamp(690px,calc(100svh - 105px),900px);
+ padding-top:clamp(70px,8vw,112px);padding-bottom:clamp(80px,9vw,120px);
+ background:radial-gradient(ellipse at 72% 48%,rgba(184,147,95,.19),transparent 34%),linear-gradient(120deg,#f5efe4 0%,#fbf8f2 53%,#eee4d4 100%)!important;
+}
+.home-hero.home-hero--editorial:before{
+ content:"";position:absolute;z-index:-1;inset:0;opacity:.55;pointer-events:none;
+ background:repeating-linear-gradient(90deg,transparent 0,transparent calc(10% - 1px),rgba(150,119,78,.045) 10%);
+}
+.home-hero--editorial .home-hero-copy{position:relative;z-index:2;max-width:650px}
+.home-hero--editorial .home-hero-eyebrow{display:flex;align-items:center;gap:13px;font-size:9px;letter-spacing:.25em}
+.home-hero--editorial .home-hero-eyebrow i{width:24px;height:1px;background:#b8935f}
+.home-hero--editorial .home-overline{margin-top:clamp(52px,7vw,90px);font-size:8px;letter-spacing:.23em}
+.home-hero.home-hero--editorial h1{margin:22px 0 26px;font-size:clamp(78px,9.3vw,132px);line-height:.79;letter-spacing:-.07em}
+.home-hero.home-hero--editorial h1 .hero-title-line--second{padding-left:clamp(22px,4vw,60px)}
+.home-hero--editorial .home-hero-subtext{max-width:390px;margin-left:clamp(22px,4vw,60px);font-size:13px;line-height:2.05}
+.home-hero--editorial .home-hero-actions{margin-left:clamp(22px,4vw,60px);margin-top:28px}
+.home-hero--editorial .home-hero-foot{margin:40px 0 0 clamp(22px,4vw,60px);max-width:450px;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:7px;letter-spacing:.14em}
+.home-hero--editorial .home-hero-visual{
+ position:relative;min-height:0;height:min(68vw,690px);max-height:690px;overflow:hidden;
+ border:1px solid rgba(184,147,95,.32);border-radius:2px;
+ background:linear-gradient(145deg,rgba(255,255,255,.76),rgba(234,220,197,.42));
+ box-shadow:0 35px 100px rgba(73,54,29,.1);
+}
+.home-hero--editorial .home-hero-visual:before{inset:18px;border-color:rgba(184,147,95,.3)}
+.home-hero--editorial .home-hero-visual:after{
+ content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(90deg,rgba(245,239,228,.18),transparent 38%,rgba(255,255,255,.18));
+}
+.home-hero--editorial .home-hero-bottle{position:relative;z-index:1;width:100%;height:100%;padding:4%;object-fit:contain;filter:drop-shadow(0 28px 32px rgba(76,57,32,.17))}
+.home-hero--editorial .home-hero-photo-caption{z-index:3;right:18px;bottom:18px;min-width:min(78%,360px);padding:16px 22px}
+.home-hero--editorial .home-hero-photo-caption small{display:block;margin-bottom:5px;font-size:8px;letter-spacing:.23em}
+.home-hero--editorial .home-hero-photo-caption strong{font-size:clamp(22px,2.3vw,32px);letter-spacing:.025em}
+.home-hero--editorial .home-vertical-note{z-index:3;letter-spacing:.27em}
+.home-hero--editorial .home-scroll-cue{left:max(24px,calc((100vw - 1320px)/2));bottom:25px}
+.ikki-home-edition-index{padding-block:28px}
+.ikki-home-edition-intro{font-size:8px;letter-spacing:.22em}
+.ikki-home-edition-links a{position:relative;min-height:44px}
+.ikki-home-edition-links a:after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:#b8935f;transition:width .35s ease}
+.ikki-home-edition-links a:hover:after{width:100%}
+.home-philosophy{position:relative;overflow:hidden}
+.home-philosophy:after{content:"IKKI";position:absolute;right:-.03em;bottom:-.32em;color:rgba(184,147,95,.055);font:400 clamp(180px,30vw,430px)/.8 'Cormorant Garamond',serif;letter-spacing:.08em;pointer-events:none}
+.home-philosophy-title,.home-philosophy-copy{position:relative;z-index:1}
+.home-philosophy-title h2{font-size:clamp(60px,7.5vw,100px)!important;line-height:.88}
+.home-collection .home-section-heading{align-items:end}
+.home-products--editorial .home-product{position:relative;background:#fff}
+.home-products--editorial .home-product-art{overflow:hidden;background:linear-gradient(145deg,#f7f2e9,#eee5d7)}
+.home-products--editorial .home-product-art img{transition:transform .8s cubic-bezier(.2,.65,.3,1),filter .8s}
+.home-products--editorial .home-product:hover .home-product-art img{transform:scale(1.045);filter:saturate(1.08)}
+.home-products--editorial .home-product-meta h3{font-size:clamp(26px,2.5vw,36px);letter-spacing:-.025em}
+.home-products--editorial .home-product-meta p{max-width:260px;font-size:10px;line-height:1.8}
+.home-feature{position:relative}
+.home-feature-art{overflow:hidden}
+.home-feature-art img{transition:transform 1s cubic-bezier(.2,.65,.3,1)}
+.home-feature:hover .home-feature-art img{transform:scale(1.035)}
+.home-feature-copy h2{font-size:clamp(48px,6vw,78px)!important;line-height:.94}
+.home-values{gap:clamp(22px,4vw,60px)}
+.home-value{border-top:1px solid rgba(184,147,95,.3);padding-top:24px}
+.home-value h3{font-size:clamp(22px,2.2vw,30px)}
+.home-manifesto{position:relative;overflow:hidden}
+.home-manifesto:before,.home-manifesto:after{content:"";position:absolute;width:clamp(180px,28vw,360px);aspect-ratio:1;border:1px solid rgba(184,147,95,.2);border-radius:50%;pointer-events:none}
+.home-manifesto:before{left:-10%;top:-50%}.home-manifesto:after{right:-10%;bottom:-55%}
+.home-final-cta.home-contact-cta{position:relative;overflow:hidden}
+.home-final-cta.home-contact-cta:before{content:"";position:absolute;inset:22px;border:1px solid rgba(184,147,95,.18);pointer-events:none}
+@media(max-width:900px){
+ .home-hero.home-hero--editorial{grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);padding-inline:26px;gap:24px}
+ .home-hero.home-hero--editorial h1{font-size:clamp(62px,8vw,90px)}
+ .home-hero--editorial .home-hero-visual{height:58vw;min-height:440px}
+ .home-hero--editorial .home-hero-subtext,.home-hero--editorial .home-hero-actions,.home-hero--editorial .home-hero-foot{margin-left:18px}
+}
+@media(max-width:700px){
+ .home-hero.home-hero--editorial{display:flex;flex-direction:column;padding:22px 18px 65px;gap:0}
+ .home-hero--editorial .home-hero-visual{order:0;width:100%;height:clamp(300px,88vw,410px);min-height:0;margin:0 0 30px}
+ .home-hero--editorial .home-hero-copy{order:1}
+ .home-hero--editorial .home-overline{margin-top:22px}
+ .home-hero.home-hero--editorial h1{font-size:clamp(67px,15vw,92px);margin:16px 0 22px}
+ .home-hero--editorial .home-hero-subtext,.home-hero--editorial .home-hero-actions,.home-hero--editorial .home-hero-foot{margin-left:0}
+ .home-hero--editorial .home-hero-foot{margin-top:26px}
+ .home-hero--editorial .home-scroll-cue{left:20px}
+ .home-hero--editorial .home-hero-photo-caption{right:10px;bottom:10px;min-width:0;padding:11px 13px}
+ .home-philosophy-title h2{font-size:clamp(54px,13vw,76px)!important}
+ .home-products--editorial .home-product-meta h3{font-size:22px}
+ .home-products--editorial .home-product-meta p{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ikki-home-edition-links a:after,.home-products--editorial .home-product-art img,.home-feature-art img{transition:none!important}
+}
