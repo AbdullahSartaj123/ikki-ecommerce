@@ -3219,3 +3219,28 @@ body.quick-view-open{overflow:hidden!important}
  .ikki-catalog-hero-side:before,.ikki-catalog-hero-side img{animation:none!important}
  .ikki-premium-catalog .collection-quick-view,.ikki-premium-catalog .ikki-card-discover,.ikki-premium-catalog .ikki-card-discover span{transition:none!important}
 }
+
+
+/* IKKI collection refinement — ensure the editorial hero is never caught by legacy reveal states. */
+.ikki-catalog-hero,
+.ikki-catalog-hero-inner,
+.ikki-catalog-hero-inner>*,
+.ikki-catalog-hero-side,
+.ikki-catalog-hero-side>*{
+ opacity:1!important;
+ visibility:visible!important;
+}
+.ikki-catalog-hero-inner{transform:none!important}
+.ikki-catalog-hero{
+ display:grid;
+ grid-template-columns:minmax(0,1.08fr) minmax(280px,.92fr);
+ align-items:center;
+}
+.ikki-catalog-hero-side{width:100%;min-width:0}
+.ikki-catalog-hero-side img{max-width:100%}
+@media(max-width:700px){
+ .ikki-catalog-hero{grid-template-columns:1fr;min-height:0}
+ .ikki-catalog-hero-inner{max-width:100%}
+ .ikki-catalog-hero-side{min-height:270px}
+ .ikki-catalog-hero-side img{height:290px}
+}
