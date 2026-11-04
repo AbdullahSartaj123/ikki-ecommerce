@@ -1,13 +1,25 @@
 <?php
-$pageTitle='Our Story — IKKI';
-$description='The thinking, philosophy and craft behind IKKI — a fragrance house shaped by memory, mood and self-expression.';
+require_once __DIR__.'/config/bootstrap.php';
+$pageTitle='The IKKI House — Our Story';
+$description='Meet IKKI, a fragrance house centred on four signature expressions: Legendary Profile, Informal, Amane and Sasha.';
+$liveSignatures=[];
+try{
+ $signatureQuery=db()->query("SELECT name,slug FROM products WHERE is_active=1 AND name IN ('Legendary Profile','Informal','Amane','Sasha')");
+ foreach($signatureQuery->fetchAll() as $row)$liveSignatures[$row['name']]=$row['slug'];
+}catch(Throwable $ex){error_log('[IKKI story] '.$ex->getMessage());}
+$signatureCards=[
+ ['name'=>'Legendary Profile','number'=>'01','image'=>'legendary-profile.svg'],
+ ['name'=>'Informal','number'=>'02','image'=>'informal.svg'],
+ ['name'=>'Amane','number'=>'03','image'=>'amane.svg'],
+ ['name'=>'Sasha','number'=>'04','image'=>'sasha.svg']
+];
 require __DIR__.'/includes/header.php';
 ?>
 <section class="page-banner page-banner-story" aria-labelledby="page-banner-title">
  <div class="page-banner-copy reveal">
   <nav class="page-banner-breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">›</span><span aria-current="page">Our Story</span></nav>
-  <h1 id="page-banner-title">Our Story</h1>
-  <p>A considered point of view on the art of fragrance</p>
+  <h1 id="page-banner-title">The House of <em>Four.</em></h1>
+  <p>Four signature fragrances. One considered point of view.</p>
  </div>
 </section>
 
@@ -15,9 +27,9 @@ require __DIR__.'/includes/header.php';
  <article class="story-narrative-block">
   <div class="story-narrative-visual slide-right"><img src="/assets/images/legendary-profile.svg" alt="Legendary Profile fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
-   <span class="story-narrative-eyebrow">THE BEGINNING</span>
+   <span class="story-narrative-eyebrow">THE IKKI POINT OF VIEW</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
-   <h2>Inspired by <em>Individuality</em></h2>
+   <h2>Fragrance is <em>personal.</em></h2>
    <p>Fragrance can hold a world of feeling — bringing a memory closer, marking a new chapter, or becoming part of how someone is remembered. IKKI is shaped around that personal connection between scent and self-expression.</p>
    <p>Our collection brings together distinct fragrance identities for different moods and moments. The invitation is simple: explore with curiosity and discover the expression that feels right to you.</p>
   </div>
@@ -25,9 +37,9 @@ require __DIR__.'/includes/header.php';
  <article class="story-narrative-block is-reversed">
   <div class="story-narrative-visual slide-left"><img src="/assets/images/informal.svg" alt="Informal fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
-   <span class="story-narrative-eyebrow">THE CRAFT</span>
+   <span class="story-narrative-eyebrow">THE EXPERIENCE</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
-   <h2>The Art of <em>Composition</em></h2>
+   <h2>Discover your <em>own expression.</em></h2>
    <p>Perfume is an art of balance. Fragrance compositions are often experienced in stages, from an opening impression to the character that develops and the notes that remain.</p>
    <p>For the wearer, these layers come together as one impression — a scent associated with a mood, a place or a moment. Discovering that connection is part of the pleasure of fragrance.</p>
   </div>
@@ -35,9 +47,9 @@ require __DIR__.'/includes/header.php';
  <article class="story-narrative-block">
   <div class="story-narrative-visual slide-right"><img src="/assets/images/amane.svg" alt="Amane fragrance concept artwork" width="800" height="1000" loading="lazy" decoding="async"></div>
   <div class="story-narrative-copy fade-up" data-delay="200ms">
-   <span class="story-narrative-eyebrow">TODAY</span>
+   <span class="story-narrative-eyebrow">THE COLLECTION</span>
    <span class="story-narrative-rule" aria-hidden="true"></span>
-   <h2>A World of <em>Fragrance</em></h2>
+   <h2>Four names. <em>One house.</em></h2>
    <p>IKKI brings together a collection of signature fragrances, each with its own identity. Every one offers a different way to explore mood, personal style and the memories connected to scent.</p>
    <p>We want discovering a fragrance to feel considered and welcoming — from exploring the collection to asking for guidance when you need it.</p>
   </div>
@@ -51,22 +63,15 @@ require __DIR__.'/includes/header.php';
   <p>Our signature collection is intentionally focused: four names, each with its own place in the IKKI house.</p>
  </div>
  <div class="ikki-house-signatures-grid">
-  <a href="/shop.php" class="ikki-house-signature">
-   <img src="/assets/images/legendary-profile.svg" alt="Legendary Profile IKKI fragrance artwork" width="600" height="750" loading="lazy" decoding="async">
-   <span>01 / THE SIGNATURE</span><h3>Legendary Profile</h3><i>DISCOVER THE COLLECTION ↗</i>
+  <?php foreach($signatureCards as $signatureCard):
+   $liveSlug=$liveSignatures[$signatureCard['name']]??null;
+   $signatureHref=$liveSlug?'/product.php?slug='.rawurlencode($liveSlug):'/shop.php';
+  ?>
+  <a href="<?=e($signatureHref)?>" class="ikki-house-signature">
+   <img src="/assets/images/<?=e($signatureCard['image'])?>" alt="<?=e($signatureCard['name'])?> IKKI signature concept artwork" width="600" height="750" loading="lazy" decoding="async">
+   <span><?=e($signatureCard['number'])?> / THE SIGNATURE</span><h3><?=e($signatureCard['name'])?></h3><i><?= $liveSlug?'EXPLORE THIS SIGNATURE':'VIEW THE COLLECTION' ?> ↗</i>
   </a>
-  <a href="/shop.php" class="ikki-house-signature">
-   <img src="/assets/images/informal.svg" alt="Informal IKKI fragrance artwork" width="600" height="750" loading="lazy" decoding="async">
-   <span>02 / THE SIGNATURE</span><h3>Informal</h3><i>DISCOVER THE COLLECTION ↗</i>
-  </a>
-  <a href="/shop.php" class="ikki-house-signature">
-   <img src="/assets/images/amane.svg" alt="Amane IKKI fragrance artwork" width="600" height="750" loading="lazy" decoding="async">
-   <span>03 / THE SIGNATURE</span><h3>Amane</h3><i>DISCOVER THE COLLECTION ↗</i>
-  </a>
-  <a href="/shop.php" class="ikki-house-signature">
-   <img src="/assets/images/sasha.svg" alt="Sasha IKKI fragrance artwork" width="600" height="750" loading="lazy" decoding="async">
-   <span>04 / THE SIGNATURE</span><h3>Sasha</h3><i>DISCOVER THE COLLECTION ↗</i>
-  </a>
+  <?php endforeach; ?>
  </div>
 </section>
 
