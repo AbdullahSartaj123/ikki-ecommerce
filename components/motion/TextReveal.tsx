@@ -20,7 +20,7 @@ export default function TextReveal({
   stagger = by === "letter" ? 0.025 : 0.075,
   as = "span",
 }: TextRevealProps) {
-  const Tag = motion[as] as typeof motion.span;
+  const Tag = motion.create(as);
   const pieces = by === "letter" ? Array.from(text) : text.split(" ");
   const childVariants = (by === "letter" ? letterStagger : wordStagger) as Variants;
 
