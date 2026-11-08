@@ -1,0 +1,5 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+export const metadata:Metadata={title:"Contact"};
+export default function ContactPage(){return <section className="container-luxe min-h-[65vh] py-24 md:py-36"><p className="eyebrow text-[#9b7d55]">We would love to hear from you</p><h1 className="display-font mt-7 text-6xl md:text-8xl">Let's connect.</h1><p className="mt-8 max-w-lg text-sm leading-8 text-[#77746d]">Questions about a fragrance, an order or simply want to say hello? Our team is here to help.</p><Link href="mailto:hello@ikki.pk" className="mt-10 inline-flex items-center gap-3 border-b border-[#ad8b5c] pb-3 text-sm">hello@ikki.pk <ArrowUpRight size={14}/></Link><p className="mt-16 text-[9px] uppercase tracking-[.2em] text-[#9b7d55]">Pakistan · Online enquiries</p></section>;}

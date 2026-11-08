@@ -1,0 +1,3 @@
+import type { Metadata } from "next";
+export const metadata:Metadata={title:"Checkout"};
+export default function CheckoutPage(){return <section className="container-luxe min-h-[65vh] py-24"><p className="eyebrow text-[#9b7d55]">Secure checkout</p><h1 className="display-font mt-6 text-6xl">Almost yours.</h1><p className="mt-6 max-w-lg text-sm leading-7 text-[#77746d]">Checkout will be enabled once the order and payment backend is connected.</p></section>;}

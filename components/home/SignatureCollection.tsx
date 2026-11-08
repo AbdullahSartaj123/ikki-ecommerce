@@ -1,0 +1,6 @@
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import Reveal from "@/components/animations/Reveal";
+import ProductCard from "@/components/product/ProductCard";
+import { products } from "@/lib/data/products";
+export default function SignatureCollection(){return <section className="container-luxe py-24 md:py-32"><Reveal className="mb-14 flex flex-col justify-between gap-7 md:flex-row md:items-end"><div><p className="eyebrow text-[#9b7d55]">The signature collection</p><h2 className="display-font mt-5 text-5xl leading-none md:text-7xl">Four ways to<br/><i className="text-[#9b7d55]">be remembered.</i></h2></div><Link href="/collection/" className="inline-flex items-center gap-3 border-b border-[#ad8b5c] pb-2 text-[9px] uppercase tracking-[.2em]">View all fragrances <ArrowUpRight size={13}/></Link></Reveal><div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-4">{products.map((product,i)=><Reveal key={product.slug} delay={i*.08}><ProductCard product={product} index={i}/></Reveal>)}</div></section>;}

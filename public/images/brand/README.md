@@ -1,0 +1,1 @@
+Brand imagery will live in this directory. Use optimized WebP/AVIF photography for production product and campaign assets.

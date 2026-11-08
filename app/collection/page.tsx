@@ -1,0 +1,5 @@
+import type { Metadata } from "next";
+import ProductCard from "@/components/product/ProductCard";
+import { products } from "@/lib/data/products";
+export const metadata:Metadata={title:"The Collection",description:"Discover the four signature fragrances by IKKI."};
+export default function CollectionPage(){return <section className="container-luxe py-20 md:py-28"><p className="eyebrow text-[#9b7d55]">The complete edit · 01—04</p><h1 className="display-font mt-6 text-6xl md:text-8xl">The collection.</h1><p className="mt-6 max-w-lg text-sm leading-7 text-[#77746d]">Four distinct expressions. Each composed to become a part of your own signature.</p><div className="gold-rule my-12"/><div className="grid gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">{products.map((product,i)=><ProductCard key={product.slug} product={product} index={i}/>)}</div></section>;}

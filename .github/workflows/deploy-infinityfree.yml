@@ -1,9 +1,8 @@
-name: Deploy Ikki to InfinityFree
+name: Build and Deploy Ikki to InfinityFree
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -11,31 +10,47 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    name: Upload PHP website
+  build:
+    name: Build Next.js static site
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-
+    timeout-minutes: 20
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Check PHP syntax
-        uses: shivammathur/setup-php@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          php-version: '8.2'
-      - name: Lint PHP files
+          node-version: 20
+          cache: npm
+      - name: Install dependencies
+        run: npm install
+      - name: Type-check
+        run: npx tsc --noEmit
+      - name: Build static website
+        run: npm run build
+      - name: Verify export
         run: |
-          find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
+          test -f out/index.html
+          test -d out/collection
+      - name: Upload static site artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ikki-static-site
+          path: out/
+          if-no-files-found: error
 
-      - name: Safety check — require a website entry point
-        run: |
-          if [ ! -f index.php ] && [ ! -f index.html ]; then
-            echo 'No website entry point found; refusing to sync an empty repository to hosting.'
-            exit 1
-          fi
-
-      - name: Deploy website files to InfinityFree
+  deploy:
+    name: Deploy static export to InfinityFree
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Download static site
+        uses: actions/download-artifact@v4
+        with:
+          name: ikki-static-site
+          path: ./out/
+      - name: Deploy website files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -43,18 +58,9 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
-          local-dir: ./
+          local-dir: ./out/
           server-dir: /htdocs/
           exclude: |
             **/.git*
             **/.git*/**
             **/.github/**
-            **/docs/**
-            **/database/**
-            **/vendor/**
-            **/node_modules/**
-            **/storage/uploads/**
-            .gitignore
-            README.md
-            config/database.php
-            config/database.example.php
