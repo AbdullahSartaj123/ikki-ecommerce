@@ -22,3 +22,8 @@ The project uses Next.js static export (`out/`) for InfinityFree shared hosting.
 - `components/`: shared layout, page sections, product UI and motion
 - `lib/data/`: typed catalogue and navigation data
 - `public/images/`: local brand and product imagery
+
+
+## Responsive and accessibility standards
+
+All page and component work must follow the mandatory [IKKI Responsive & Accessibility Standards](./docs/RESPONSIVE-ACCESSIBILITY-STANDARDS.md). This is the project-wide reference for breakpoints, semantic HTML, image alternatives, keyboard access, focus treatment, motion preferences and WCAG 2.2 AA contrast.

@@ -19,6 +19,8 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // IKKI responsive aliases; unprefixed styles are the mobile baseline.
+      screens: { tablet: "640px", laptop: "1024px", desktop: "1440px" },
       colors: {
         // Core house palette
         ink: "#080807",

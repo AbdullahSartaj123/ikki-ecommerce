@@ -67,3 +67,33 @@ html { scroll-behavior: auto; }
 @media (pointer: fine) {
   body, a, button, [data-cursor="hover"] { cursor: none; }
 }
+
+
+/* IKKI accessibility baseline — shared defaults */
+:root { --brand-focus: #E2C99E; }
+:focus-visible {
+  outline: 2px solid var(--brand-focus);
+  outline-offset: 3px;
+}
+.skip-link {
+  position: fixed;
+  z-index: 10000;
+  top: 1rem;
+  left: 1rem;
+  transform: translateY(-180%);
+  padding: .75rem 1rem;
+  background: #F4F0E8;
+  color: #080807;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within { scroll-behavior: auto !important; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
