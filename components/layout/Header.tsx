@@ -62,21 +62,22 @@ export default function Header() {
     }, reduceMotion ? 0 : 180);
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
+        if (searchOpen) searchInput.current?.blur();
         setSearchOpen(false);
         setMobileOpen(false);
         setMegaOpen(false);
+        if (mobileOpen) mobileTrigger.current?.focus();
       }
-      if (event.key === "Tab" && searchOpen && searchPanel.current) {
-        const items = searchPanel.current.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), input:not([disabled])',
-        );
+      const activePanel = searchOpen ? searchPanel.current : mobileOpen ? mobilePanel.current : null;
+      if (event.key === "Tab" && activePanel) {
+        const items = activePanel.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), input:not([disabled])');
         if (!items.length) return;
         const first = items[0];
         const last = items[items.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
+        if (event.shiftKey && (document.activeElement === first || !activePanel.contains(document.activeElement))) {
           event.preventDefault();
           last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
+        } else if (!event.shiftKey && (document.activeElement === last || !activePanel.contains(document.activeElement))) {
           event.preventDefault();
           first.focus();
         }
@@ -126,7 +127,7 @@ export default function Header() {
     <>
       <a href="#main-content" className="skip-link">Skip to content</a>
       <header
-        className={`ikki-site-header fixed inset-x-0 top-0 z-[80] transition-[background-color,border-color,backdrop-filter,box-shadow] duration-500 ${solid ? "is-solid" : "is-transparent"}`}
+        className={`ikki-site-header fixed inset-x-0 top-0 z-[100] transition-[background-color,border-color,backdrop-filter,box-shadow] duration-500 ${solid ? "is-solid" : "is-transparent"}`}
         data-scrolled={solid}
         onMouseLeave={closeMega}
         onBlurCapture={(event) => { const next = event.relatedTarget as Node | null; if (!next || !event.currentTarget.contains(next)) setMegaOpen(false); }}
