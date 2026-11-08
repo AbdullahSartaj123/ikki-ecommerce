@@ -28,6 +28,13 @@ jobs:
         run: |
           find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
 
+      - name: Safety check — require a website entry point
+        run: |
+          if [ ! -f index.php ] && [ ! -f index.html ]; then
+            echo 'No website entry point found; refusing to sync an empty repository to hosting.'
+            exit 1
+          fi
+
       - name: Deploy website files to InfinityFree
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
