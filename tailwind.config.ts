@@ -137,7 +137,7 @@ const config: Config = {
         "26": "6.5rem",
         "30": "7.5rem",
         "34": "8.5rem",
-        " section": "6rem",
+        "section": "6rem",
         "gutter": "clamp(1.25rem, 5vw, 5rem)",
       },
 
