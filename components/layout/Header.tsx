@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, ChevronDown, Menu, Search, ShoppingBag, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Search, ShoppingBag, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { brands } from "@/lib/data/brands";
 import { products } from "@/lib/data/products";
@@ -34,6 +34,8 @@ export default function Header() {
   const brandsTrigger = useRef<HTMLButtonElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
   const searchPanel = useRef<HTMLDivElement>(null);
+  const mobilePanel = useRef<HTMLDivElement>(null);
+  const [mobileBrandsOpen, setMobileBrandsOpen] = useState(false);
   const megaTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -56,6 +58,7 @@ export default function Header() {
     document.body.style.overflow = "hidden";
     const focusTimer = window.setTimeout(() => {
       if (searchOpen) searchInput.current?.focus();
+      else if (mobileOpen) mobilePanel.current?.querySelector("a[href], button:not([disabled])")?.focus();
     }, reduceMotion ? 0 : 180);
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -115,6 +118,8 @@ export default function Header() {
       : brands;
   }, [query]);
 
+  useEffect(() => { if (!mobileOpen) setMobileBrandsOpen(false); }, [mobileOpen]);
+  useEffect(() => { setMobileOpen(false); setMobileBrandsOpen(false); setMegaOpen(false); setSearchOpen(false); }, [pathname]);
   const solid = !isHome || scrolled;
 
   return (
@@ -131,13 +136,13 @@ export default function Header() {
             <div className="ikki-nav-left">
               <button
                 type="button"
-                className="ikki-mobile-trigger"
+                className={`ikki-mobile-trigger ${mobileOpen ? "is-open" : ""}`}
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={mobileOpen}
                 onClick={() => { setMobileOpen((value) => !value); setMegaOpen(false); }}
               >
-                {mobileOpen ? <X size={20} strokeWidth={1.4} /> : <Menu size={20} strokeWidth={1.4} />}
-                <span className="ikki-nav-caption">Menu</span>
+                <span className="ikki-hamburger-lines" aria-hidden="true"><span /><span /></span>
+                <span className="ikki-nav-caption">{mobileOpen ? "Close" : "Menu"}</span>
               </button>
               <nav className="ikki-desktop-links" aria-label="Main navigation">
                 <div
@@ -229,25 +234,39 @@ export default function Header() {
 
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            className="ikki-mobile-panel"
-            initial={reduceMotion ? false : { opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.3 }}
-          >
-            <div className="ikki-mobile-panel-top"><span className="ikki-overline">Explore IKKI</span><button type="button" onClick={() => setMobileOpen(false)} aria-label="Close menu"><X size={22} /></button></div>
-            <Link href="/collection/" onClick={() => setMobileOpen(false)} className="ikki-mobile-main-link">Shop <ArrowUpRight size={18} /></Link>
-            <p className="ikki-mobile-label">The four houses</p>
-            {brands.map((brand, index) => (
-              <Link key={brand.slug} href={`/brands/${brand.slug}/`} onClick={() => setMobileOpen(false)} className="ikki-mobile-brand-link">
-                <span>0{index + 1}</span>{brand.name}<ArrowUpRight size={15} />
-              </Link>
-            ))}
-            <div className="ikki-mobile-secondary">
-              {navLinks.slice(1).map((link) => <Link key={link.href} href={link.href} onClick={() => setMobileOpen(false)}>{link.label}</Link>)}
-              <button type="button" onClick={() => { setMobileOpen(false); setSearchOpen(true); }}><Search size={15} /> Search</button>
+          <motion.div ref={mobilePanel} className="ikki-mobile-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation"
+            initial={reduceMotion ? false : { opacity: 0, y: -18 }} animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -12 }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.42, ease: [0.22, 1, 0.36, 1] }}>
+            <div className="ikki-mobile-menu-inner">
+              <div className="ikki-mobile-panel-top"><span className="ikki-overline">Explore the house</span><span className="ikki-mobile-edition">IKKI · EST. IN SCENT</span></div>
+              <nav className="ikki-mobile-navigation" aria-label="Mobile main navigation">
+                <motion.div initial={reduceMotion ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduceMotion ? 0 : 0.05 }}>
+                  <Link href="/collection/" onClick={() => setMobileOpen(false)} className="ikki-mobile-main-link"><span>Shop all</span><ArrowUpRight aria-hidden="true" /></Link>
+                </motion.div>
+                <motion.div initial={reduceMotion ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduceMotion ? 0 : 0.1 }}>
+                  <button type="button" className="ikki-mobile-accordion-trigger" aria-expanded={mobileBrandsOpen} aria-controls="ikki-mobile-brand-list" onClick={() => setMobileBrandsOpen((open) => !open)}><span>The four houses</span><ChevronDown className={mobileBrandsOpen ? "is-open" : ""} aria-hidden="true" /></button>
+                  <AnimatePresence initial={false}>
+                    {mobileBrandsOpen && (
+                      <motion.div id="ikki-mobile-brand-list" className="ikki-mobile-brand-list" initial={reduceMotion ? false : { height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }} transition={{ duration: reduceMotion ? 0.01 : 0.28 }}>
+                        {brands.map((brand, index) => (
+                          <Link key={brand.slug} href={`/brands/${brand.slug}/`} onClick={() => setMobileOpen(false)} className="ikki-mobile-brand-link" style={{ ["--brand-primary" as string]: brand.palette.primary }}>
+                            <span className="ikki-mobile-brand-index">0{index + 1}</span><span className="ikki-mobile-brand-name">{brand.name}</span><ArrowUpRight aria-hidden="true" />
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+                {navLinks.slice(1).map((link, index) => (
+                  <motion.div key={link.href} initial={reduceMotion ? false : { opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduceMotion ? 0 : 0.15 + index * 0.055 }}>
+                    <Link href={link.href} onClick={() => setMobileOpen(false)} className="ikki-mobile-main-link"><span>{link.label}</span><ArrowUpRight aria-hidden="true" /></Link>
+                  </motion.div>
+                ))}
+                <motion.button type="button" className="ikki-mobile-search-link" onClick={() => { setMobileOpen(false); setSearchOpen(true); }} initial={reduceMotion ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: reduceMotion ? 0 : 0.32 }}><Search size={16} /> Search fragrances</motion.button>
+              </nav>
             </div>
+            <div className="ikki-mobile-cta-wrap"><Link href="/collection/" className="ikki-mobile-shop-cta" onClick={() => setMobileOpen(false)}>Shop now <ArrowUpRight size={17} aria-hidden="true" /></Link><span className="ikki-mobile-cta-note">Find the scent that feels like you.</span></div>
           </motion.div>
         )}
       </AnimatePresence>
