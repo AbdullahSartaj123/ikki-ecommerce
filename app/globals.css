@@ -63,3 +63,7 @@ html { scroll-behavior: auto; }
   .ikki-cursor { display: none !important; }
   [data-reveal] { will-change: auto; }
 }
+
+@media (pointer: fine) {
+  body, a, button, [data-cursor="hover"] { cursor: none; }
+}

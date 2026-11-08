@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, type PointerEvent as ReactPointerEvent } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -137,7 +137,7 @@ export function useMagnetic<T extends HTMLElement>(strength = 0.22) {
 export function useCardPointer<T extends HTMLElement>() {
   const ref = useRef<T>(null);
 
-  const onPointerMove = useCallback((event: React.PointerEvent<T>) => {
+  const onPointerMove = useCallback((event: ReactPointerEvent<T>) => {
     const element = ref.current;
     if (!element) return;
     const bounds = element.getBoundingClientRect();
