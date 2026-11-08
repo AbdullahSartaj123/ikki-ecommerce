@@ -10,7 +10,7 @@ html { scroll-behavior: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
 
-.ikki-cursor { position:fixed; z-index:9999; top:0; left:0; width:58px; height:58px; margin:0; pointer-events:none; opacity:0; transform:translate3d(0,0,0); mix-blend-mode:difference; transition:opacity .22s ease; }
+.ikki-cursor { position:fixed; z-index:9999; top:0; left:0; width:58px; height:58px; margin:-29px 0 0 -29px; pointer-events:none; opacity:0; transform:translate3d(0,0,0); mix-blend-mode:difference; transition:opacity .22s ease; }
 .ikki-cursor[data-visible="true"] { opacity:1; }
 .ikki-cursor-ring { position:absolute; inset:0; border:1px solid rgba(226,201,158,.92); border-radius:50%; background:rgba(226,201,158,0); transform:scale(.27); transition:transform .38s cubic-bezier(.22,1,.36,1),background .38s ease,border-color .38s ease; }
 .ikki-cursor-dot { position:absolute; top:50%; left:50%; width:5px; height:5px; margin:-2.5px 0 0 -2.5px; border-radius:50%; background:#e2c99e; pointer-events:none; }
