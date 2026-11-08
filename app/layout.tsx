@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
+import { Fraunces, Manrope } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import MotionProvider from "@/components/motion/MotionProvider";
+
+const displayFont = Fraunces({ subsets: ["latin"], variable: "--font-display", display: "swap" });
+const bodyFont = Manrope({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "IKKI — Fragrance, considered.", template: "%s | IKKI" },
@@ -18,7 +22,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         <MotionProvider>
           <Header />
           <main>{children}</main>
