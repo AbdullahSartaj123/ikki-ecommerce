@@ -25,7 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${displayFont.variable} ${bodyFont.variable}`}>
         <MotionProvider>
           <Header />
-          <main>{children}</main>
+          <main id="main-content">{children}</main>
           <Footer />
         </MotionProvider>
       </body>

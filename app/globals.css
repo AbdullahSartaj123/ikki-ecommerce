@@ -165,3 +165,8 @@ html { scroll-behavior: auto; }
 @media(max-width:900px) { .ikki-desktop-links { display:none; }.ikki-mobile-trigger { display:inline-flex; }.ikki-nav-inner { grid-template-columns:1fr auto 1fr; height:78px; }.is-solid .ikki-nav-inner { height:70px; }.ikki-nav-actions { gap:12px; }.ikki-wordmark > span { font-size:32px; } }
 @media(max-width:640px) { .ikki-nav-shell { padding-inline:17px; }.ikki-nav-inner { height:70px; }.is-solid .ikki-nav-inner { height:64px; }.ikki-nav-caption,.ikki-cart-label { display:none; }.ikki-mobile-trigger { min-width:38px; }.ikki-wordmark > span { font-size:29px; }.ikki-wordmark small { font-size:6px; }.ikki-nav-actions { gap:7px; }.ikki-icon-button { width:38px; }.ikki-cart-link { min-width:38px; min-height:42px; justify-content:center; }.ikki-search-results { grid-template-columns:1fr; gap:25px; margin-top:25px; }.ikki-search-panel { padding:25px 20px; }.ikki-search-field { margin-top:24px; }.ikki-search-bottom { flex-direction:column; }.ikki-mobile-panel { padding-inline:20px; } }
 @media(prefers-reduced-motion:reduce) { .ikki-site-header,.ikki-nav-inner,.ikki-chevron,.ikki-mega-image img,.ikki-mega-image-arrow,.ikki-search-brand-result,.ikki-search-product-result { transition:none !important; } }
+
+/* Journal editorial panels */
+.journal-panel-one{background:radial-gradient(ellipse at 65% 30%,rgba(198,163,107,.45),transparent 48%),linear-gradient(145deg,#403326,#11100d 70%);}
+.journal-panel-two{background:radial-gradient(ellipse at 25% 30%,rgba(199,123,91,.4),transparent 48%),linear-gradient(145deg,#493126,#17100d 70%);}
+.journal-panel-three{background:radial-gradient(ellipse at 65% 25%,rgba(155,120,245,.36),transparent 48%),linear-gradient(145deg,#342a4b,#0d0b12 70%);}
