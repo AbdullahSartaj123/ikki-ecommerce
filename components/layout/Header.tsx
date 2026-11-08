@@ -31,7 +31,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [activeBrand, setActiveBrand] = useState(brands[0].slug);
+  const brandsTrigger = useRef<HTMLButtonElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
   const searchPanel = useRef<HTMLDivElement>(null);
   const megaTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -116,7 +116,6 @@ export default function Header() {
   }, [query]);
 
   const solid = !isHome || scrolled;
-  const activeBrandData = brands.find((brand) => brand.slug === activeBrand) ?? brands[0];
 
   return (
     <>
@@ -125,6 +124,7 @@ export default function Header() {
         className={`ikki-site-header fixed inset-x-0 top-0 z-[80] transition-[background-color,border-color,backdrop-filter,box-shadow] duration-500 ${solid ? "is-solid" : "is-transparent"}`}
         data-scrolled={solid}
         onMouseLeave={closeMega}
+        onBlurCapture={(event) => { const next = event.relatedTarget as Node | null; if (!next || !event.currentTarget.contains(next)) setMegaOpen(false); }}
       >
         <div className="ikki-nav-shell">
           <div className="ikki-nav-inner">
@@ -146,8 +146,10 @@ export default function Header() {
                 >
                   <button
                     type="button"
+                    ref={brandsTrigger}
                     className="ikki-nav-link"
                     aria-haspopup="true"
+                    aria-controls="ikki-brands-mega"
                     aria-expanded={megaOpen}
                     onClick={() => setMegaOpen((value) => !value)}
                     onFocus={() => setMegaOpen(true)}
@@ -181,7 +183,9 @@ export default function Header() {
         <AnimatePresence>
           {megaOpen && (
             <motion.div
+              id="ikki-brands-mega-panel"
               className="ikki-mega-backdrop"
+              onKeyDown={(event) => { if (event.key === "Escape") { event.preventDefault(); setMegaOpen(false); brandsTrigger.current?.focus(); } }}
               initial={reduceMotion ? false : { opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
@@ -189,41 +193,34 @@ export default function Header() {
               onMouseEnter={() => { if (megaTimer.current) clearTimeout(megaTimer.current); }}
               onMouseLeave={closeMega}
             >
-              <div className="ikki-mega-inner">
-                <div className="ikki-mega-intro">
-                  <span className="ikki-overline">Four worlds. One house.</span>
-                  <h2>Find your<br /><i>signature.</i></h2>
-                  <p>Distinct expressions, each with a world of its own.</p>
-                  <Link href="/collection/" className="ikki-mega-all" onClick={() => setMegaOpen(false)}>Explore all fragrances <ArrowUpRight size={14} /></Link>
-                </div>
-                <div className="ikki-mega-brands">
+              <nav id="ikki-brands-mega" className="ikki-mega-grid" aria-label="Explore IKKI brands">
                   {brands.map((brand, index) => (
-                    <motion.div
+                    <motion.article
                       key={brand.slug}
-                      className="ikki-mega-brand"
+                      className="ikki-mega-card"
+                      style={{ ["--brand-primary" as string]: brand.palette.primary, ["--brand-surface" as string]: brand.palette.surface }}
                       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: reduceMotion ? 0.01 : 0.38, delay: reduceMotion ? 0 : index * 0.075, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <Link
                         href={`/brands/${brand.slug}/`}
-                        className="ikki-mega-brand-link"
-                        onMouseEnter={() => setActiveBrand(brand.slug)}
-                        onFocus={() => setActiveBrand(brand.slug)}
+                        className="ikki-mega-card-link"
                         onClick={() => setMegaOpen(false)}
                       >
-                        <span className="ikki-mega-image" style={{ ["--brand-accent" as string]: brand.palette.primary }}>
-                          <img src={brandPreview[brand.slug]} alt="" aria-hidden="true" />
-                          <span className="ikki-mega-image-index">0{index + 1}</span>
-                          <span className="ikki-mega-image-arrow"><ArrowUpRight size={15} /></span>
+                        <span className="ikki-mega-card-top">
+                          <span className="ikki-mega-card-index">0{index + 1} / 04</span>
+                          <span className="ikki-mega-card-wordmark">{brand.name}</span>
+                          <span className="ikki-mega-card-tagline">{brand.tagline}</span>
                         </span>
-                        <span className="ikki-mega-brand-name">{brand.name}</span>
-                        <span className="ikki-mega-brand-tagline">{brand.tagline}</span>
+                        <span className="ikki-mega-card-image">
+                          <img src={brandPreview[brand.slug]} alt={`${brand.name} visual identity`} loading="lazy" />
+                        </span>
+                        <span className="ikki-mega-card-shop">Shop {brand.name}<ArrowUpRight size={14} /></span>
                       </Link>
-                    </motion.div>
+                    </motion.article>
                   ))}
-                </div>
-              </div>
+                </nav>
               <div className="ikki-mega-footer"><span>Selected world</span><strong>{activeBrandData.name}</strong><span>{activeBrandData.tagline}</span></div>
             </motion.div>
           )}
