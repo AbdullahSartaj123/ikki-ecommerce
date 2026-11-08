@@ -32,6 +32,7 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
   const brandsTrigger = useRef<HTMLButtonElement>(null);
+  const mobileTrigger = useRef<HTMLButtonElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
   const searchPanel = useRef<HTMLDivElement>(null);
   const mobilePanel = useRef<HTMLDivElement>(null);
@@ -58,7 +59,7 @@ export default function Header() {
     document.body.style.overflow = "hidden";
     const focusTimer = window.setTimeout(() => {
       if (searchOpen) searchInput.current?.focus();
-      else if (mobileOpen) mobilePanel.current?.querySelector("a[href], button:not([disabled])")?.focus();
+      else if (mobileOpen) mobilePanel.current?.querySelector<HTMLElement>("a[href], button:not([disabled])")?.focus();
     }, reduceMotion ? 0 : 180);
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -138,6 +139,7 @@ export default function Header() {
               <button
                 type="button"
                 className={`ikki-mobile-trigger ${mobileOpen ? "is-open" : ""}`}
+                ref={mobileTrigger}
                 aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={mobileOpen}
                 onClick={() => { setMobileOpen((value) => !value); setMegaOpen(false); }}
@@ -227,7 +229,7 @@ export default function Header() {
                     </motion.article>
                   ))}
                 </nav>
-              <div className="ikki-mega-footer"><span>Selected world</span><strong>{activeBrandData.name}</strong><span>{activeBrandData.tagline}</span></div>
+              <div className="ikki-mega-footer"><span>Four houses</span><strong>One signature</strong><span>Discover a fragrance with its own point of view.</span></div>
             </motion.div>
           )}
         </AnimatePresence>
