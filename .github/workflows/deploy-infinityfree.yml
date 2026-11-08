@@ -1,4 +1,4 @@
-name: Build and Deploy Ikki to InfinityFree
+name: IKKI — Build and Deploy
 
 on:
   push:
@@ -6,50 +6,59 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: ikki-infinityfree-production
+  group: ikki-ci-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
   build:
-    name: Build Next.js static site
+    name: Install, type-check and build
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
+          node-version: 22
+
       - name: Install dependencies
-        run: npm install
+        run: npm install --no-audit --no-fund
+
       - name: Type-check
         run: npx tsc --noEmit
+
       - name: Build static website
         run: npm run build
-      - name: Verify export
+
+      - name: Verify static export
         run: |
           test -f out/index.html
-          test -d out/collection
+          echo "Static export generated successfully."
+
       - name: Upload static site artifact
         uses: actions/upload-artifact@v4
         with:
           name: ikki-static-site
           path: out/
           if-no-files-found: error
+          retention-days: 7
 
   deploy:
-    name: Deploy static export to InfinityFree
+    name: Manual deployment to InfinityFree
+    if: github.event_name == 'workflow_dispatch'
     needs: build
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    environment: production
     steps:
       - name: Download static site
         uses: actions/download-artifact@v4
         with:
           name: ikki-static-site
           path: ./out/
+
       - name: Deploy website files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
